@@ -485,6 +485,21 @@
     msgI.addEventListener('input', () => { $('#msg-counter').textContent = msgI.value.length; });
     const status = $('#form-status');
     const setStatus = (text, error = false) => { status.hidden = false; status.textContent = text; status.classList.toggle('is-error', error); };
+    // the sent toast: a clear, self-dismissing confirmation on top of the status line below the form
+    const toastEl = $('#sent-toast');
+    let toastT = 0, toastT2 = 0;
+    const showToast = (title, line) => {
+      if (!toastEl) return;
+      $('[data-toast-title]', toastEl).textContent = title;
+      $('[data-toast-line]', toastEl).textContent = line;
+      clearTimeout(toastT); clearTimeout(toastT2);
+      toastEl.hidden = false;
+      requestAnimationFrame(() => requestAnimationFrame(() => toastEl.classList.add('is-on')));
+      toastT = setTimeout(() => {
+        toastEl.classList.remove('is-on');
+        toastT2 = setTimeout(() => { toastEl.hidden = true; }, 450);
+      }, 5200);
+    };
     let submitting = false;
     form.addEventListener('submit', async e => {
       e.preventDefault();
@@ -501,6 +516,7 @@
       if (localPreview) {
         setStatus('Preview complete — your form is valid. This local preview does not send messages. Your details have not been submitted.');
         emit('zs:celebrate');
+        showToast('Preview only', 'The form is valid — nothing is sent from localhost.');
         return;
       }
       if (Date.now() - loadedAt < 3000) { setStatus('Please take a moment before sending your message.', true); return; }
@@ -519,6 +535,8 @@
         try { sessionStorage.setItem('zs_last_submit', String(Date.now())); } catch (err) {}
         setStatus(`Your request has been sent. Delivery cannot be confirmed here; you can also reach me directly at ${EMAIL}.`);
         emit('zs:celebrate');
+        const first = nameI.value.trim().split(/\s+/)[0];
+        showToast(first ? `Thanks, ${first}!` : 'Message sent!', "Your brief is on its way to my inbox. I personally reply within one business day.");
         form.reset(); selectInterest(''); $('#msg-counter').textContent = '0';
         Object.keys(touched).forEach(k => { touched[k] = false; paint(k); });
       } catch (err) {

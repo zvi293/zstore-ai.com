@@ -465,6 +465,12 @@
 
   <div class="cursor" aria-hidden="true"><span class="cursor-blob"><span class="cursor-label">Open<br />study</span></span></div>
 
+  <!-- sent toast: a visual echo of the #form-status line, so screen readers hear it only once -->
+  <div class="toast" id="sent-toast" aria-hidden="true" hidden>
+    <span class="toast-bead"><svg viewBox="0 0 24 24" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
+    <span class="toast-copy"><b data-toast-title>Message sent!</b><span data-toast-line></span></span>
+  </div>
+
   <dialog class="menu" id="menu" aria-label="Menu">
     <div class="menu-sheet">
       <div class="menu-top">
