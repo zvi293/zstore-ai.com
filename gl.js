@@ -238,6 +238,13 @@ void main(){
   function boot() {
     try { gl = canvas.getContext('webgl', { antialias: false, alpha: true, premultipliedAlpha: true, powerPreference: 'high-performance', depth: false, stencil: false }); } catch (e) { gl = null; }
     if (!gl) { noGL(); return; }
+    // A software rasterizer (SwiftShader / llvmpipe / Basic Render — GPU-less VMs and audit bots)
+    // runs the raymarcher on the CPU and stalls the whole page: such visitors get the no-gl layout.
+    try {
+      const dbg = gl.getExtension('WEBGL_debug_renderer_info');
+      const ren = dbg ? String(gl.getParameter(dbg.UNMASKED_RENDERER_WEBGL) || '') : '';
+      if (/swiftshader|llvmpipe|software|basic render/i.test(ren)) { gl = null; noGL(); return; }
+    } catch (e) {}
     let hp = 'highp';
     try { const pf = gl.getShaderPrecisionFormat(gl.FRAGMENT_SHADER, gl.HIGH_FLOAT); if (!pf || pf.precision === 0) hp = 'mediump'; } catch (e) {}
     // text holes are a uniform array: take as many as the fragment uniform budget allows (up to 12)
