@@ -6,3 +6,10 @@
 
 # Security headers are also declared per-path in _headers; netlify.toml keeps only the build config
 # so there is a single source of truth for headers.
+
+# apps-script/ holds the server code of the contact form for versioning only — never publish it.
+[[redirects]]
+  from = "/apps-script/*"
+  to = "/404.html"
+  status = 404
+  force = true
