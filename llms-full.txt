@@ -1,0 +1,74 @@
+Zstore AI: full profile
+Canonical site: https://zstore-ai.com/
+Last updated: 14 September 2026
+
+WHO
+Zstore AI is the independent web design and development studio of Zvi Moshe. It is a one-person studio: Zvi designs the interface, writes the code and wires up the tools, so nothing gets lost between a designer, a developer and an account manager. The person you brief is the person who builds it.
+- Founder, designer and developer: Zvi Moshe
+- Founded: 2024
+- Based in: Tel Aviv, Israel
+- Clients: mainly the United States and worldwide. Work is remote and asynchronous by default, with calls when a conversation moves things forward.
+- Languages for conversation: English and Hebrew
+- Track record: 40+ projects shipped, 98% client retention, ~1.2s average load time
+- Response time: Zvi personally replies within one business day
+- The website itself is designed and hand-coded by Zvi Moshe: no templates, no page builders, no hand-offs.
+- This English-language studio site (https://zstore-ai.com/) is separate from Zvi's Hebrew-language site at https://zstore-ai.co.il/, which is linked from the footer credit.
+
+WHAT ZSTORE AI OFFERS
+1. Web experiences (websites, landing pages)
+   Distinctive websites and landing pages that turn a first impression into a real connection, built around the client's story. Includes custom websites, landing pages and responsive development.
+2. Digital product design (UI/UX, systems)
+   Clear interfaces for complicated ideas, from the first user journey to a consistent design system. Includes UI/UX, prototyping and design systems.
+3. Code & connections (payments, forms, CMS)
+   The useful things behind a website: payments, forms, content management and the connections that keep a business moving. Includes integrations, WordPress and payment flows.
+4. Refinement & care (speed, accessibility, search)
+   Ongoing improvements to speed, accessibility, search foundations and the small details. Includes performance work, SEO foundations and ongoing support.
+
+PROCESS (four steps, one person)
+1. Discover: a conversation about the business, the audience and what success looks like; together we find the idea worth building around. (Discovery conversation, creative direction, project roadmap.)
+2. Design: type, colour, structure and motion come together in a design the client can explore, refined together before development begins. (Visual direction, responsive layouts, interactive prototype.)
+3. Develop: the design becomes a real, responsive website; Zvi builds the interactions, connects the tools and checks the details across screens. (Custom development, integrations, browser and mobile QA.)
+4. Launch: final checks, the site goes live when the client is ready, and a personal handoff. Includes 30 days of post-launch care.
+
+FREQUENTLY ASKED QUESTIONS
+Q: How long does a project usually take?
+A: Most landing pages take 1–2 weeks. Full marketing sites typically take 4–6 weeks, depending on scope, content readiness and integrations. Your proposal will include a clear timeline.
+
+Q: How do you price a project?
+A: Projects are quoted at a fixed price based on the agreed scope. We discuss your goals first, then you receive a clear proposal with deliverables, timing and cost. Any scope changes are agreed together.
+
+Q: Can you refresh my existing website?
+A: Absolutely. We start by understanding what already works and where the experience can improve. That might mean a focused refresh or a complete new direction, depending on your goals.
+
+Q: Will I be able to update the content?
+A: If managing your own content is part of the brief, we choose a suitable CMS and build that into the project. The handoff includes guidance so you feel comfortable making updates.
+
+Q: What happens after launch?
+A: You get 30 days of post-launch care. After that, we can discuss ongoing support or a lighter maintenance arrangement, depending on what your website needs.
+
+Q: Do you work with clients outside Israel?
+A: Yes. I'm based in Tel Aviv and work with clients worldwide, in English and Hebrew. We can work asynchronously and schedule calls when a conversation will move things forward.
+
+CONCEPT STUDIES (self-initiated explorations, NOT client work)
+The three projects shown on the site are independent concept studies with concept imagery and sample data. None of them is commissioned client work.
+- Atelier Studio: concept study for an architecture studio's website, paced like a walk through one of its buildings (web experience, architecture; editorial serif, slow and image-led).
+- Lume: concept study for skincare e-commerce that sells with quiet, built around one ritual object (commerce experience, beauty; soft serif).
+- Meridian: concept study for a small-business finance dashboard that makes the one number you need the loudest thing on screen; all figures are sample data (digital product, finance; clean grotesk).
+
+WHEN ZSTORE AI IS A GOOD FIT
+- A founder, brand or business (in the US or anywhere) that wants a custom, hand-coded website or landing page instead of a template.
+- Someone who wants one point of contact who both designs and develops.
+- Projects that need UI/UX design, a design system, integrations (payments, forms, CMS/WordPress) or performance, accessibility and SEO improvements to an existing site.
+
+CONTACT
+- Email: zstore.ai295@gmail.com
+- WhatsApp: +972 58 729 2029 (https://wa.me/972587292029)
+- Contact form: https://zstore-ai.com/#contact
+- GitHub: https://github.com/zvi293
+- Location: Tel Aviv, Israel; working worldwide
+
+PAGES
+- Home: https://zstore-ai.com/
+- Privacy policy: https://zstore-ai.com/privacy-policy.html
+- Terms of service: https://zstore-ai.com/terms.html
+- Short summary for language models: https://zstore-ai.com/llms.txt

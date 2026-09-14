@@ -1,0 +1,66 @@
+{
+  "id": "/",
+  "name": "Zstore AI",
+  "short_name": "Zstore AI",
+  "description": "Zstore AI is the independent design and development studio of Zvi Moshe: hand-coded websites, landing pages, UI/UX and integrations. Tel Aviv, serving the US and worldwide.",
+  "lang": "en",
+  "dir": "ltr",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#ECEDEF",
+  "theme_color": "#ECEDEF",
+  "categories": [
+    "business",
+    "productivity",
+    "design"
+  ],
+  "icons": [
+    {
+      "src": "/image/brand/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/image/brand/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/image/brand/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Start a project",
+      "short_name": "Contact",
+      "description": "Send Zvi a project brief",
+      "url": "/#contact",
+      "icons": [
+        {
+          "src": "/image/brand/icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Concept studies",
+      "short_name": "Work",
+      "description": "Browse the independent concept studies",
+      "url": "/#work",
+      "icons": [
+        {
+          "src": "/image/brand/icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    }
+  ]
+}

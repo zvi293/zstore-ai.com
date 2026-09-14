@@ -1,0 +1,8 @@
+# Zstore AI — zstore-ai.com
+# Static site, no build step: the repository root is published as-is.
+
+[build]
+  publish = "."
+
+# Security headers are also declared per-path in _headers; netlify.toml keeps only the build config
+# so there is a single source of truth for headers.

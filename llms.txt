@@ -1,0 +1,45 @@
+# Zstore AI
+
+> Zstore AI is the independent web design and development studio of Zvi Moshe, based in Tel Aviv, working with clients mainly in the United States and worldwide. One person designs and hand-codes websites, landing pages, UI/UX and integrations: no templates, no page builders, no hand-offs. Contact: zstore.ai295@gmail.com · WhatsApp +972 58 729 2029.
+
+Zstore AI is a one-person studio: the person you brief (Zvi Moshe) is the person who designs and builds the site. Founded in 2024. Projects are quoted at a fixed price based on the agreed scope, and every launch includes 30 days of post-launch care. Zvi works in English and Hebrew and replies within one business day.
+
+The canonical site of the English-language studio is https://zstore-ai.com/. Zvi also runs a separate Hebrew-language site at https://zstore-ai.co.il/ (linked from the footer credit).
+
+## Key facts
+
+- Name: Zstore AI
+- Founder, designer and developer: Zvi Moshe
+- Founded: 2024
+- Location: Tel Aviv. Clients mainly in the United States and worldwide; remote and asynchronous by default
+- Languages: English and Hebrew
+- Email: zstore.ai295@gmail.com
+- WhatsApp: +972 58 729 2029 (https://wa.me/972587292029)
+- GitHub: https://github.com/zvi293
+- Track record: 40+ projects shipped, 98% client retention, ~1.2s average load time
+- Response time: within one business day
+
+## Services
+
+- Web experiences: custom websites and landing pages, responsive development
+- Digital product design: UI/UX, prototyping, design systems
+- Code & connections: integrations, payment flows, forms, WordPress and CMS
+- Refinement & care: performance, accessibility, SEO foundations, ongoing support
+
+## Pages
+
+- [Home](https://zstore-ai.com/): who Zstore AI is, concept studies, services, the studio, process, FAQ and the contact form
+- [Concept studies](https://zstore-ai.com/#work): Atelier Studio, Lume and Meridian, self-initiated design explorations (not client work)
+- [Services](https://zstore-ai.com/#services): what Zstore AI designs and builds
+- [Process](https://zstore-ai.com/#process): Discover, Design, Develop, Launch
+- [FAQ](https://zstore-ai.com/#faq): timelines, pricing, redesigns, content updates, after launch, working with clients outside Israel
+- [Contact](https://zstore-ai.com/#contact): send a brief, email or WhatsApp
+
+## Details
+
+- [Full plain-text profile](https://zstore-ai.com/llms-full.txt): every fact, service, process step and FAQ answer in one file
+
+## Optional
+
+- [Privacy policy](https://zstore-ai.com/privacy-policy.html)
+- [Terms of service](https://zstore-ai.com/terms.html)
