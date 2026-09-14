@@ -298,10 +298,9 @@ void main(){
   const cam = { pos: [0, 0, 20], f: [0, 0, -1], r: [1, 0, 0], u: [0, 1, 0], tan: Math.tan(14 * PI / 180), D: 20 };
   let region = 'none', armed = false, buildLevel = 0, paused = false;
   const mouse = { x: -1e4, y: -1e4, nx: 0, ny: 0, snx: 0, sny: 0, speed: 0, active: false };
-  // phones start a notch lower and only step up if frames stay well inside budget (see frame())
-  // phones never climb above 0.9 (a DPR-3 raymarch at full 1.35 costs ~40% more for no visible gain)
-  const QMIN = 0.45, QMAX = MOBILE ? 0.9 : 1;
-  let W = 1, Hh = 1, scale = 1, quality = MOBILE ? 0.85 : 0.9, frames = 0, acc = 0, mnDt = 1, rw = 2, rh = 2;
+  // start sharp; the adaptive loop sheds within ~20 frames on phones that can't hold it (QMIN floor)
+  const QMIN = 0.45, QMAX = 1;
+  let W = 1, Hh = 1, scale = 1, quality = 0.9, frames = 0, acc = 0, mnDt = 1, rw = 2, rh = 2;
   const heroEl = document.querySelector('[data-gl-hero]');
   const heroInner = document.querySelector('[data-hero-inner]');
   const heroStage = document.querySelector('[data-hero-stage]');
@@ -310,10 +309,12 @@ void main(){
   const navBar = document.querySelector('.nav-bar');
   const motionOff = () => root.classList.contains('motion-off');
 
+  // render up to 2 device px per CSS px: on a dpr-3 phone that is 2/3 native (crisp under FXAA), on
+  // dpr-2 screens fully native. The old 1.35 phone cap read visibly soft next to the surrounding text.
   const scaleFor = q => {
     const dpr = devicePixelRatio || 1;
-    let s = Math.min(dpr, MOBILE ? 1.35 : 1.5) * q;
-    if (MOBILE && q >= 0.7) s = Math.max(s, Math.min(dpr, 1));
+    let s = Math.min(dpr, 2) * q;
+    if (MOBILE && q >= 0.7) s = Math.max(s, Math.min(dpr, 1.2)); // even a mild shed never drops below ~native
     return s;
   };
   // The canvas and the FXAA target are sized once for the best quality this device may reach (only a real viewport
