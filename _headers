@@ -1,7 +1,11 @@
 # Zstore AI — HTTP headers (Netlify)
 
+# The CSP sha256 hash allows the one inline bootstrap <script> in index.html (motion/js/gl classes).
+# If that script's content ever changes, recompute the hash from the committed bytes:
+#   node -e "const c=require('crypto'),s=require('child_process').execSync('git show HEAD:index.html').toString('binary');console.log('sha256-'+c.createHash('sha256').update(Buffer.from(/<script>([\s\S]*?)<\/script>/.exec(s)[1],'binary')).digest('base64'))"
 /*
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'sha256-LLGOhoxL6/HUCW4KvEqe/wFMj6aHZel9/PFfdMwyqsU='; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; form-action 'self' https://script.google.com; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests
   X-Frame-Options: DENY
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
