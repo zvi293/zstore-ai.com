@@ -408,7 +408,9 @@
 
   /* ------------------------------------------------------------ process tabs (ARIA tabs, roving tabindex) */
   const tabs = $$('[data-step]'), kit = $('[data-kit]');
+  let stepNow = 0;
   const activateStep = (index, focus) => {
+    stepNow = index;
     tabs.forEach((tab, i) => {
       const sel = i === index; tab.setAttribute('aria-selected', String(sel)); tab.tabIndex = sel ? 0 : -1;
       const p = $('#step-panel-' + i); p.hidden = !sel; p.classList.remove('is-in');
@@ -417,16 +419,36 @@
     if (kit) kit.dataset.kit = String(index);
     if (focus) tabs[index].focus();
   };
+  // auto-advance: once the step area scrolls into view the four steps cycle every 2s, so the
+  // process tells itself. Any real interaction (tap, click, arrow keys) hands control back for
+  // good; hovering the tab bar or keeping focus inside the section only holds the timer, and so
+  // do motion-off and a hidden tab, so nothing moves for people who asked it not to.
+  let stepTimer = 0, stepManual = false, stepHover = false;
+  const stopStepAuto = () => { stepManual = true; if (stepTimer) { clearInterval(stepTimer); stepTimer = 0; } };
   tabs.forEach((tab, i) => {
-    tab.addEventListener('click', () => activateStep(i));
+    tab.addEventListener('click', () => { stopStepAuto(); activateStep(i); });
     tab.addEventListener('keydown', e => {
       let n;
       if (e.key === 'ArrowRight' || e.key === 'ArrowDown') n = (i + 1) % tabs.length;
       if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') n = (i + tabs.length - 1) % tabs.length;
       if (e.key === 'Home') n = 0; if (e.key === 'End') n = tabs.length - 1;
-      if (n !== undefined) { e.preventDefault(); activateStep(n, true); }
+      if (n !== undefined) { e.preventDefault(); stopStepAuto(); activateStep(n, true); }
     });
   });
+  const stepsBar = $('.steps'), stepBody = $('[data-step-body]'), processSec = $('#process');
+  if (stepsBar && stepBody && processSec && tabs.length && 'IntersectionObserver' in window) {
+    stepsBar.addEventListener('pointerenter', () => { stepHover = true; });
+    stepsBar.addEventListener('pointerleave', () => { stepHover = false; });
+    const stepTick = () => {
+      if (motionOff() || document.hidden || stepHover || processSec.contains(document.activeElement)) return;
+      activateStep((stepNow + 1) % tabs.length);
+    };
+    const stepIO = new IntersectionObserver(entries => entries.forEach(en => {
+      if (en.isIntersecting && !stepManual) { if (!stepTimer) stepTimer = setInterval(stepTick, 2000); }
+      else if (stepTimer) { clearInterval(stepTimer); stepTimer = 0; }
+    }), { threshold: 0.35 });
+    stepIO.observe(stepBody);
+  }
 
   /* ------------------------------------------------------------ contact: interest chips, WhatsApp, form */
   const interest = $('#interest'), stageBox = $('[data-gl-stage]');
@@ -443,6 +465,16 @@
     url.searchParams.set('text', "Hi Zvi! I came across Zstore AI and I'd love to talk about a project I have in mind.");
     link.href = url.toString();
   });
+  // the floating WhatsApp bead springs in once the visitor leaves the hero (where it would
+  // cover the CTA row on phones) and slips away again at the top
+  const waFab = $('.wa-fab');
+  if (waFab) {
+    let waRaf = false;
+    const waSync = () => { waRaf = false; waFab.classList.toggle('is-on', scrollY > innerHeight * 0.6); };
+    addEventListener('scroll', () => { if (!waRaf) { waRaf = true; requestAnimationFrame(waSync); } }, { passive: true });
+    addEventListener('resize', waSync);
+    waSync();
+  }
 
   const form = $('#contact-form');
   const nameI = $('#full-name'), emailI = $('#email'), msgI = $('#message');
