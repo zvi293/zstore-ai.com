@@ -4,11 +4,11 @@ Founder:    Zvi Moshe (design and development)
 Email:      zstore.ai295 [at] gmail [dot] com
 WhatsApp:   +972 58 729 2029
 GitHub:     https://github.com/zvi293
-Location:   Tel Aviv, Israel. Working with clients mainly in the US and worldwide.
+Location:   Tel Aviv, Israel. Working with clients worldwide.
 Languages:  English, Hebrew
 
 /* SITE */
-Last update:  2026-09-14
+Last update:  2026-09-15
 Language:     English
 Standards:    HTML5, CSS, WCAG 2.2 AA, Schema.org, Open Graph
 Components:   Hand-coded HTML, CSS and JavaScript. Hand-written WebGL. No frameworks, no build step, no runtime dependencies.

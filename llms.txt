@@ -1,6 +1,6 @@
 # Zstore AI
 
-> Zstore AI is the independent web design and development studio of Zvi Moshe, based in Tel Aviv, working with clients mainly in the United States and worldwide. One person designs and hand-codes websites, landing pages, UI/UX and integrations: no templates, no page builders, no hand-offs. Contact: zstore.ai295@gmail.com · WhatsApp +972 58 729 2029.
+> Zstore AI is the independent web design and development studio of Zvi Moshe, based in Tel Aviv, working with clients worldwide. One person designs and hand-codes websites, landing pages, UI/UX and integrations: no templates, no page builders, no hand-offs. Contact: zstore.ai295@gmail.com · WhatsApp +972 58 729 2029.
 
 Zstore AI is a one-person studio: the person you brief (Zvi Moshe) is the person who designs and builds the site. Founded in 2024. Projects are quoted at a fixed price based on the agreed scope, and every launch includes 30 days of post-launch care. Zvi works in English and Hebrew and replies within one business day.
 
@@ -11,7 +11,7 @@ The canonical site of the English-language studio is https://zstore-ai.com/. Zvi
 - Name: Zstore AI
 - Founder, designer and developer: Zvi Moshe
 - Founded: 2024
-- Location: Tel Aviv. Clients mainly in the United States and worldwide; remote and asynchronous by default
+- Location: Tel Aviv. Clients worldwide; remote and asynchronous by default, with calls in the shared time-zone window (Tel Aviv is 2 hours ahead of London, 7 ahead of New York, 10 ahead of Los Angeles)
 - Languages: English and Hebrew
 - Email: zstore.ai295@gmail.com
 - WhatsApp: +972 58 729 2029 (https://wa.me/972587292029)
@@ -32,7 +32,7 @@ The canonical site of the English-language studio is https://zstore-ai.com/. Zvi
 - [Concept studies](https://zstore-ai.com/#work): Atelier Studio, Lume and Meridian, self-initiated design explorations (not client work)
 - [Services](https://zstore-ai.com/#services): what Zstore AI designs and builds
 - [Process](https://zstore-ai.com/#process): Discover, Design, Develop, Launch
-- [FAQ](https://zstore-ai.com/#faq): timelines, pricing, redesigns, content updates, after launch, working with clients outside Israel
+- [FAQ](https://zstore-ai.com/#faq): timelines, pricing, redesigns, content updates, after launch, international clients and time zones
 - [Contact](https://zstore-ai.com/#contact): send a brief, email or WhatsApp
 
 ## Details

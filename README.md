@@ -1,6 +1,6 @@
 # Zstore AI — zstore-ai.com
 
-The English-language studio site of **Zvi Moshe** (Zstore AI, Tel Aviv — serving clients mainly in the US and worldwide).
+The English-language studio site of **Zvi Moshe** (Zstore AI, Tel Aviv — working with clients worldwide; the Israeli market is served by the separate Hebrew site, zstore-ai.co.il).
 Hand-coded HTML, CSS and JavaScript with a hand-written WebGL 1 raymarcher ("Tactile Play" design). No frameworks, no build step, no runtime dependencies, CSP `'self'`.
 
 ## Run locally
@@ -15,6 +15,12 @@ node serve.cjs
 
 Netlify publishes the repository root as-is (`netlify.toml`, `publish = "."`). Push to `main` → deploy.
 Headers (cache + security) live in `_headers`. The custom domain is **zstore-ai.com** (DNS on Cloudflare).
+
+### Search engines & AI indexes
+
+- **Google**: verified via the `google-site-verification` meta tag in `index.html` (Search Console).
+- **Bing / IndexNow**: the root-level `5bdacc…021.txt` file is the site's IndexNow key (key = filename). After content changes deploy, ping `https://api.indexnow.org/indexnow` with the changed URLs — Bing (which also feeds ChatGPT Search/Copilot), Yandex, Seznam and Naver all consume IndexNow. Bing Webmaster Tools itself needs a Microsoft-account login (one-click "Import from Google Search Console") — that step is manual.
+- **hreflang**: `index.html` declares `en` + `x-default` (this site) and `he` → https://zstore-ai.co.il/. The pairing only takes effect once the Hebrew site adds the three reciprocal tags (`he` → itself, `en` and `x-default` → zstore-ai.com) — do that in the zstore-ai.co.il repo.
 
 ## Structure
 

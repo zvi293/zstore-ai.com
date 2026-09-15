@@ -1,13 +1,13 @@
 Zstore AI: full profile
 Canonical site: https://zstore-ai.com/
-Last updated: 14 September 2026
+Last updated: 15 September 2026
 
 WHO
 Zstore AI is the independent web design and development studio of Zvi Moshe. It is a one-person studio: Zvi designs the interface, writes the code and wires up the tools, so nothing gets lost between a designer, a developer and an account manager. The person you brief is the person who builds it.
 - Founder, designer and developer: Zvi Moshe
 - Founded: 2024
 - Based in: Tel Aviv, Israel
-- Clients: mainly the United States and worldwide. Work is remote and asynchronous by default, with calls when a conversation moves things forward.
+- Clients: worldwide. Work is remote and asynchronous by default, with calls in the shared time-zone window (Tel Aviv is 2 hours ahead of London, 7 ahead of New York and 10 ahead of Los Angeles).
 - Languages for conversation: English and Hebrew
 - Track record: 40+ projects shipped, 98% client retention, ~1.2s average load time
 - Response time: Zvi personally replies within one business day
@@ -26,7 +26,7 @@ WHAT ZSTORE AI OFFERS
 
 PROCESS (four steps, one person)
 1. Discover: a conversation about the business, the audience and what success looks like; together we find the idea worth building around. (Discovery conversation, creative direction, project roadmap.)
-2. Design: type, colour, structure and motion come together in a design the client can explore, refined together before development begins. (Visual direction, responsive layouts, interactive prototype.)
+2. Design: type, color, structure and motion come together in a design the client can explore, refined together before development begins. (Visual direction, responsive layouts, interactive prototype.)
 3. Develop: the design becomes a real, responsive website; Zvi builds the interactions, connects the tools and checks the details across screens. (Custom development, integrations, browser and mobile QA.)
 4. Launch: final checks, the site goes live when the client is ready, and a personal handoff. Includes 30 days of post-launch care.
 
@@ -46,8 +46,11 @@ A: If managing your own content is part of the brief, we choose a suitable CMS a
 Q: What happens after launch?
 A: You get 30 days of post-launch care. After that, we can discuss ongoing support or a lighter maintenance arrangement, depending on what your website needs.
 
-Q: Do you work with clients outside Israel?
-A: Yes. I'm based in Tel Aviv and work with clients worldwide, in English and Hebrew. We can work asynchronously and schedule calls when a conversation will move things forward.
+Q: Do you work with international clients?
+A: Yes — that's the default. I'm based in Tel Aviv and work with clients worldwide, remotely, in English and Hebrew. Clear written updates keep the project moving between time zones, and we schedule calls when a conversation will move things forward.
+
+Q: Which time zones do you work with?
+A: All of them, in practice. Tel Aviv runs 2 hours ahead of London, 7 ahead of New York and 10 ahead of Los Angeles, so Europe overlaps my whole day and the US overlaps my afternoon and evening. Most work moves asynchronously, and calls land in the window we share.
 
 CONCEPT STUDIES (self-initiated explorations, NOT client work)
 The three projects shown on the site are independent concept studies with concept imagery and sample data. None of them is commissioned client work.
@@ -56,7 +59,7 @@ The three projects shown on the site are independent concept studies with concep
 - Meridian: concept study for a small-business finance dashboard that makes the one number you need the loudest thing on screen; all figures are sample data (digital product, finance; clean grotesk).
 
 WHEN ZSTORE AI IS A GOOD FIT
-- A founder, brand or business (in the US or anywhere) that wants a custom, hand-coded website or landing page instead of a template.
+- A founder, brand or business (anywhere in the world) that wants a custom, hand-coded website or landing page instead of a template.
 - Someone who wants one point of contact who both designs and develops.
 - Projects that need UI/UX design, a design system, integrations (payments, forms, CMS/WordPress) or performance, accessibility and SEO improvements to an existing site.
 
