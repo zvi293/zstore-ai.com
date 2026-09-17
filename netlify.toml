@@ -7,6 +7,13 @@
 # Security headers are also declared per-path in _headers; netlify.toml keeps only the build config
 # so there is a single source of truth for headers.
 
+# The Netlify subdomain serves a full copy of the site: send it to the custom domain.
+[[redirects]]
+  from = "https://zstore-ai-com.netlify.app/*"
+  to = "https://zstore-ai.com/:splat"
+  status = 301
+  force = true
+
 # apps-script/ holds the server code of the contact form for versioning only — never publish it.
 [[redirects]]
   from = "/apps-script/*"
@@ -14,9 +21,29 @@
   status = 404
   force = true
 
-# One canonical URL for the homepage: /index.html collapses into /
+# One canonical URL for the homepage: /index.html and /index collapse into /
 [[redirects]]
   from = "/index.html"
   to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/index"
+  to = "/"
+  status = 301
+  force = true
+
+# The legal pages live at their .html URLs (canonical, sitemap, JSON-LD, links). Netlify also
+# serves them without the extension, so fold those duplicates into the canonical URLs.
+[[redirects]]
+  from = "/privacy-policy"
+  to = "/privacy-policy.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/terms"
+  to = "/terms.html"
   status = 301
   force = true
