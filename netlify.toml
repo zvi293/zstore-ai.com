@@ -4,6 +4,12 @@
 [build]
   publish = "."
 
+# Serve links exactly as written (./privacy-policy.html). Netlify's "Pretty URLs" post-processing
+# rewrote them to /privacy-policy, a non-canonical duplicate. This overrides the UI setting; removing
+# it silently brings the rewriting back and turns every legal link into a hop through the 301s below.
+[build.processing.html]
+  pretty_urls = false
+
 # Security headers are also declared per-path in _headers; netlify.toml keeps only the build config
 # so there is a single source of truth for headers.
 
