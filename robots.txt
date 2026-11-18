@@ -1,9 +1,12 @@
 # robots.txt: Zstore AI, studio of Zvi Moshe
 # https://zstore-ai.com/
 # Open to search engines and AI assistants. The post-submission thank-you page stays out of indexes.
-# Note: a crawler that matches a named group ignores the "*" group, so every group repeats the thank-you rule.
+# Note: a crawler that matches a named group ignores the "*" group, so every group repeats the thank-you rule
+# and the content signal.
+# Content signals (https://contentsignals.org): explicit permission for search, AI answers and AI training.
 
 User-agent: *
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
 Allow: /
 Disallow: /thank-you.html
 
@@ -14,6 +17,7 @@ User-agent: Bingbot
 User-agent: DuckDuckBot
 User-agent: Applebot
 User-agent: YandexBot
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
 Allow: /
 Disallow: /thank-you.html
 
@@ -38,6 +42,7 @@ User-agent: DuckAssistBot
 User-agent: YouBot
 User-agent: CCBot
 User-agent: cohere-ai
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
 Allow: /
 Disallow: /thank-you.html
 

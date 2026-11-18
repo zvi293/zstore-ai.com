@@ -24,7 +24,10 @@
 }
 *, *::before, *::after { box-sizing: border-box; }
 [hidden] { display: none !important; }
-html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; scroll-behavior: smooth; scrollbar-gutter: stable; background: var(--chalk); }
+/* overflow-x: clip on html keeps body's own clip on the body box (instead of handing it to the viewport), so a
+   reveal that overshoots the right edge for a moment (a spring scaleX) never widens a phone's layout viewport,
+   which would stretch the fixed nav with it */
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; scroll-behavior: smooth; scrollbar-gutter: stable; background: var(--chalk); overflow-x: clip; }
 html.motion-off { scroll-behavior: auto; }
 /* popup lock: the body is pinned at -scrollY (set inline by app.js), so nothing behind a popup can scroll — iOS included */
 html.is-locked { overflow: hidden; }
@@ -38,14 +41,22 @@ h1, h2, h3, p, ul, ol, figure, dl, dd { margin: 0; padding: 0; }
 p { text-wrap: pretty; } /* no one-word last lines ("hear | it.") */
 .svc-title, .studio-title, .faq-title, .contact-title, .d-name, .study-copy h2, .panel h3, .qa summary, .card-spec dd, .spec dd { text-wrap: balance; }
 ul, ol { list-style: none; }
-:focus-visible { outline: 3px solid var(--orange); outline-offset: 3px; border-radius: 12px; }
-.services :focus-visible, .menu-card :focus-visible { outline-color: var(--ink); } /* an orange ring is invisible on the orange slabs */
+:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; border-radius: 12px; }
+/* Focus ring: ink on light grounds (orange on chalk is only 2.7:1, under WCAG's 3:1), Signal Orange on ink grounds (6.3:1).
+   :where() keeps the dark rule at base specificity, so the surface rules below always win inside dark contexts. */
+:where([data-tone="dark"], .menu-sheet, .nav.is-dark, .toast) :focus-visible { outline-color: var(--orange); }
+.services :focus-visible, .menu-card :focus-visible, .dd-panel :focus-visible { outline-color: var(--ink); } /* orange and porcelain surfaces inside dark contexts */
+.card-slab :focus-visible { outline-color: var(--tint-ink, var(--ink)); } /* tinted concept cards on the ink work slab */
 .sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
 .sr { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 .skip { position: fixed; left: 16px; top: -80px; z-index: 100; background: var(--ink); color: #fff; padding: 12px 18px; border-radius: 999px; }
 .skip:focus { top: 16px; }
 section[id], form[id], section[id] h2 { scroll-margin-top: calc(var(--nav-top) + var(--nav-h) + 16px); }
 #top { scroll-margin-top: 0; }
+/* WCAG 2.4.11 Focus Not Obscured: when Tab / Shift+Tab scrolls a control into view it stops below the fixed
+   nav capsule and above the bottom beads (WhatsApp, "On this page"), never under them. :where() keeps this
+   at zero specificity, so anchor targets with their own scroll-margin (sections, page rules) are unchanged. */
+:where(a[href], button, input, select, textarea, summary, [tabindex]:not([tabindex="-1"])) { scroll-margin-top: calc(var(--nav-top) + var(--nav-h) + 16px); scroll-margin-bottom: 84px; }
 
 /* ---------- brand: Z monogram + wordmark */
 .logo { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; color: var(--ink); }
@@ -87,16 +98,25 @@ a:focus-visible .roll .ch, button:focus-visible .roll .ch { transform: translate
 .nav { position: fixed; z-index: 50; top: var(--nav-top); left: var(--pad); right: var(--pad); pointer-events: none; }
 .nav-bar { pointer-events: auto; position: relative; max-width: 1400px; margin: 0 auto; height: var(--nav-h); display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 0 6px 0 16px; border-radius: 999px; background: rgba(246,246,247,.8); -webkit-backdrop-filter: blur(18px) saturate(1.5); backdrop-filter: blur(18px) saturate(1.5); box-shadow: inset 0 0 0 1px rgba(255,255,255,.75), 0 10px 34px -20px rgba(17,17,20,.5); transition: background-color .35s var(--ease), box-shadow .35s, color .35s; }
 .nav-links { position: absolute; left: 50%; transform: translateX(-50%); display: flex; gap: 2px; }
-.nav-links a { position: relative; padding: 0 14px; height: 44px; display: inline-flex; align-items: center; border-radius: 999px; font-weight: 500; font-size: 15px; transition: background-color .25s; }
-.nav-links a[aria-current]::after { content: ''; position: absolute; left: 50%; bottom: 5px; width: 5px; height: 5px; margin-left: -2.5px; border-radius: 50%; background: var(--orange); }
-@media (hover: hover) { .nav-links a:hover { background: rgba(17,17,20,.06); } }
+.nav-links > a, .nav-dd-link { position: relative; padding: 0 14px; height: 44px; display: inline-flex; align-items: center; border-radius: 999px; font-weight: 500; font-size: 15px; transition: background-color .25s; }
+/* the dot: aria-current="page" on inner pages; .is-here on home marks the link whose page the section in view previews */
+:is(.nav-links > a, .nav-dd-link):is([aria-current], .is-here)::after { content: ''; position: absolute; left: 50%; bottom: 5px; width: 5px; height: 5px; margin-left: -2.5px; border-radius: 50%; background: var(--orange); }
+@media (hover: hover) { .nav-links > a:hover, .nav-dd:hover { background: rgba(17,17,20,.06); } }
 .nav-actions { display: flex; align-items: center; gap: 6px; }
 .nav-cta { min-height: 48px; padding: 0 20px; }
 .motion-btn { display: inline-flex; align-items: center; gap: 9px; height: 48px; padding: 0 16px 0 14px; border-radius: 999px; font-size: 14px; font-weight: 500; }
 @media (hover: hover) { .motion-btn:hover { background: rgba(17,17,20,.06); } }
-.motion-dot { position: relative; width: 12px; height: 12px; border-radius: 50%; background: var(--orange); box-shadow: 0 0 0 4px rgba(255,90,31,.18); animation: pulse 2.2s var(--ease) infinite; }
-.motion-off .motion-dot { background: transparent; box-shadow: inset 0 0 0 2px currentColor; animation: none; opacity: .7; }
-@keyframes pulse { 50% { box-shadow: 0 0 0 7px rgba(255,90,31,0); } }
+/* the Motion glyph: two orange pause bars that keep breathing while motion is on (tap = pause), and an ink play
+   triangle once it is off. Readable on its own, so the icon-only toggle (phones, tablets, narrow desktops) never looks
+   like a stray notification dot. --md: bar color (deep orange on the light capsule for 3:1, orange on ink). */
+.motion-dot { --md: var(--orange); position: relative; flex: none; width: 14px; height: 14px; }
+.motion-dot::before, .motion-dot::after { content: ''; position: absolute; top: 1px; bottom: 1px; width: 4px; border-radius: 2px; background: var(--md); transform-origin: 50% 50%; animation: motionBob 1.8s var(--ease) infinite; }
+.motion-dot::before { left: 2px; }
+.motion-dot::after { right: 2px; animation-delay: .12s; }
+@keyframes motionBob { 50% { transform: scaleY(.7); } }
+.nav:not(.is-dark) .motion-dot { --md: var(--orange-deep); }
+.motion-off .motion-dot::before { left: 3px; width: 10px; border-radius: 1px; background: currentColor; clip-path: polygon(0 0, 100% 50%, 0 100%); animation: none; }
+.motion-off .motion-dot::after { display: none; }
 .menu-btn { display: none; position: relative; width: 48px; height: 48px; border-radius: 50%; background: var(--ink); }
 .menu-btn i { position: absolute; left: 15px; right: 15px; height: 2px; background: #fff; border-radius: 2px; }
 .menu-btn i:nth-of-type(1) { top: 19px; } .menu-btn i:nth-of-type(2) { top: 27px; }
@@ -107,7 +127,82 @@ a:focus-visible .roll .ch, button:focus-visible .roll .ch { transform: translate
 .nav.is-dark .zmark svg { filter: none; }
 .nav.is-dark .menu-btn { background: var(--orange); }
 .nav.is-dark .menu-btn i { background: var(--ink); }
-@media (hover: hover) { .nav.is-dark .nav-links a:hover, .nav.is-dark .motion-btn:hover { background: rgba(255,255,255,.08); } }
+/* the tone change: the glass fades over .35s and everything drawn on it (logo, links, beads, menu button) swaps in
+   one step at the fade's midpoint, so no part ever sits on a capsule of its own shade. The fade runs on a symmetric
+   curve while .tone-shift is on, so its time midpoint (.17s) is also its visual midpoint: with the site's ease-out
+   the glass is ~95% changed by .17s and the logo and links would almost vanish before they swap. app.js puts .tone-shift on
+   the nav only around a change, so hover, press, the menu bars and the a11y panel's open state keep their own timing.
+   Gradient beads swap via allow-discrete (a browser without it swaps them at once, as before). */
+.nav.tone-shift .nav-bar { transition: background-color .35s cubic-bezier(.45, 0, .55, 1), box-shadow .35s cubic-bezier(.45, 0, .55, 1), color 0s linear .17s; }
+/* the first tone on load is set at once (app.js adds .tone-snap for a single style pass) */
+.nav.tone-snap, .nav.tone-snap *, .nav.tone-snap *::before, .nav.tone-snap *::after { transition: none !important; }
+.nav.tone-shift :is(.logo, .zmark svg, .wordmark b, .menu-btn) { transition: color 0s linear .17s, background-color 0s linear .17s, box-shadow 0s linear .17s, filter 0s linear .17s; }
+.nav.tone-shift .menu-btn i { transition: background-color 0s linear .17s; }
+.nav.tone-shift .motion-dot::before, .nav.tone-shift .motion-dot::after, .nav.tone-shift .a11y-btn.has-on::after { transition: background-color 0s linear .17s, box-shadow 0s linear .17s; }
+/* (the Motion toggle inherits its colour from the capsule, which already swaps at the midpoint: no colour delay of its own) */
+.nav.tone-shift .nav-bar .motion-btn { transition: transform .45s var(--spring), box-shadow .3s, background-color 0s linear .17s, background-image 0s linear .17s; transition-behavior: allow-discrete; }
+.nav.tone-shift .nav-bar .a11y-btn { transition: transform .45s var(--spring), box-shadow .3s, color 0s linear .17s, background-color 0s linear .17s, background-image 0s linear .17s; transition-behavior: allow-discrete; }
+.motion-off .nav.tone-shift .nav-bar .a11y-btn { transition-duration: .01ms; }
+@media (hover: hover) { .nav.is-dark .nav-links > a:hover, .nav.is-dark .nav-dd:hover, .nav.is-dark .motion-btn:hover { background: rgba(255,255,255,.08); } }
+
+/* ---------- nav: Services disclosure (desktop). "Services" stays a link to the hub; the chevron button
+   (aria-expanded) opens a porcelain mega panel. The panel sits inside .nav-dd (so it follows the button in
+   tab order) but is positioned against .nav-links (absolute + transform = its containing block), so it is
+   centred under the capsule. Closed = visibility:hidden, so its links are out of the tab order. No JS: no
+   chevron, the link just works. gl.js measures .nav-bar's own box only, so the panel never moves the WebGL mask. */
+.nav-dd { display: flex; align-items: center; border-radius: 999px; transition: background-color .25s; }
+.nav-dd-link { padding-right: 2px; }
+.nav-dd-link:hover { background: none; }
+.dd-btn { display: grid; place-items: center; width: 44px; height: 44px; margin-right: 0; border-radius: 999px; }
+.dd-btn:focus-visible { outline-offset: -6px; } /* an inset ring: it never overlaps the "Services" label */
+.dd-btn::before { content: ''; width: 7px; height: 7px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; border-radius: 1px; transform: translateY(-2px) rotate(45deg); transition: transform .5s var(--spring); }
+.nav-dd.is-open { background: rgba(17,17,20,.08); }
+.nav.is-dark .nav-dd.is-open { background: rgba(255,255,255,.1); }
+.nav-dd.is-open .dd-btn::before { transform: translateY(2px) rotate(225deg); }
+html:not(.js) .dd-btn, html:not(.js) .dd-panel { display: none; }
+html:not(.js) .nav-dd-link { padding-right: 14px; }
+.dd-panel { position: absolute; z-index: 2; left: 50%; top: calc(100% + 18px); width: min(800px, calc(100vw - 2 * var(--pad))); display: grid; grid-template-columns: minmax(0, 250px) minmax(0, 1fr); gap: 8px; padding: 8px; border-radius: 32px; background: var(--chalk-2); color: var(--ink); text-align: left; box-shadow: inset 0 1px 0 #fff, 0 1px 0 rgba(17,17,20,.06), 0 44px 80px -36px rgba(17,17,20,.6); transform-origin: 50% 0; opacity: 0; visibility: hidden; transform: translateX(-50%) translateY(-12px) scale(.96); transition: opacity .18s, transform .5s var(--spring), visibility 0s .5s; }
+.dd-panel::before { content: ''; position: absolute; left: 0; right: 0; top: -22px; height: 22px; } /* hover bridge across the gap under the capsule */
+.nav-dd.is-open .dd-panel { opacity: 1; visibility: visible; transform: translateX(-50%); transition-delay: 0s; }
+.motion-off .dd-panel { transition: opacity .15s, visibility 0s .15s; transform: translateX(-50%); }
+.motion-off .nav-dd.is-open .dd-panel { transition-delay: 0s; }
+.dd-intro { position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: flex-start; gap: 14px; padding: 20px 20px 18px; border-radius: 26px; background: radial-gradient(120% 120% at 15% 0%, #FF7440 0%, var(--orange) 55%, #F4501A 100%); color: var(--ink); box-shadow: inset 0 2px 0 rgba(255,255,255,.28); }
+.dd-kicker { font-family: var(--mono); font-size: 13px; font-weight: 500; letter-spacing: -.02em; }
+.dd-line { position: relative; z-index: 1; font-size: 27px; font-weight: 600; line-height: .98; letter-spacing: -.05em; max-width: 9ch; }
+.dd-intro .zkit { position: absolute; right: -18px; bottom: 44px; width: 112px; transform: rotate(-12deg); }
+.dd-all { position: relative; z-index: 1; margin-top: auto; display: inline-flex; align-items: center; gap: 10px; min-height: 44px; padding: 0 6px 0 16px; border-radius: 999px; background: var(--ink); color: #fff; font-size: 15px; font-weight: 500; transition: transform .45s var(--spring); }
+.dd-all b { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: var(--orange); color: var(--ink); font-weight: 500; transition: transform .45s var(--spring); }
+@media (hover: hover) { .dd-all:hover b { transform: rotate(-45deg); } }
+.dd-all:active { transform: scale(.96); }
+.dd-intro :focus-visible { outline-color: var(--ink); }
+.dd-list { display: grid; align-content: center; gap: 2px; padding: 2px; }
+.dd-list a { display: grid; grid-template-columns: 28px minmax(0, 1fr) 36px; grid-template-areas: "i n b" "i d b"; align-items: center; column-gap: 10px; min-height: 66px; padding: 10px 10px 10px 14px; border-radius: 20px; transition: background-color .25s, box-shadow .25s, transform .5s var(--spring); }
+.dd-i { grid-area: i; align-self: start; padding-top: 4px; font-family: var(--mono); font-size: 13px; font-weight: 500; color: var(--graphite); }
+.dd-n { grid-area: n; font-size: 18px; font-weight: 600; letter-spacing: -.03em; line-height: 1.15; }
+.dd-d { grid-area: d; margin-top: 2px; font-size: 14px; color: var(--graphite); line-height: 1.3; }
+.dd-list b { grid-area: b; display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: rgba(17,17,20,.06); font-weight: 500; transition: transform .5s var(--spring), background-color .25s, color .25s; }
+.dd-list a:focus-visible, .dd-list a[aria-current] { background: #fff; box-shadow: inset 0 1px 0 #fff, 0 12px 24px -18px rgba(17,17,20,.5); }
+.dd-list a:focus-visible b, .dd-list a[aria-current] b { background: var(--ink); color: var(--orange); }
+@media (hover: hover) {
+  .dd-list a:hover { background: #fff; box-shadow: inset 0 1px 0 #fff, 0 12px 24px -18px rgba(17,17,20,.5); transform: translateX(3px); }
+  .dd-list a:hover b { background: var(--ink); color: var(--orange); transform: rotate(-45deg); }
+}
+.dd-list a:active { transform: scale(.98); }
+
+/* ---------- glazed CSS Z kit: the three ceramic pieces of the monogram, reused in the nav panel, the menu,
+   the footer and the inner-page heroes / CTA slab. Size it with width; .zkit-ink / .zkit-porcelain change the glaze
+   (orange groove), .zp-ink / .zp-porcelain glaze a single piece, .zkit-loose pulls the pieces slightly apart.
+   [data-push] (app.js) feeds --px/--py (-1..1) from the pointer; each piece answers at its own depth. */
+.zkit { position: relative; display: block; width: 160px; aspect-ratio: 1; pointer-events: none; flex: none; }
+.zkit .kit-piece { translate: calc(var(--px, 0) * var(--dz, 8px)) calc(var(--py, 0) * var(--dz, 8px)); transition: transform .9s var(--spring), translate .9s var(--spring), opacity .5s; }
+.zkit .kp-top { --dz: 9px; } .zkit .kp-diag { --dz: 15px; } .zkit .kp-bot { --dz: 6px; }
+.zkit-loose .kp-top { transform: translate(-7%, -16%) rotate(-7deg); }
+.zkit-loose .kp-diag { transform: translate(4%, 2%) rotate(-30deg); }
+.zkit-loose .kp-bot { transform: translate(8%, 18%) rotate(5deg); }
+.zkit-ink .kit-piece, .zkit .zp-ink { background: linear-gradient(170deg, #55555F 0%, #26262D 38%, #111114 78%, #050507 100%); box-shadow: inset 0 2px 0 rgba(255,255,255,.2), inset 0 -5px 0 rgba(0,0,0,.45), 0 22px 28px -16px rgba(0,0,0,.65); }
+.zkit-porcelain .kit-piece, .zkit .zp-porcelain { background: linear-gradient(170deg, #FFFFFF 0%, #F4F4F6 42%, #D6D7DC 100%); box-shadow: inset 0 2px 0 #fff, inset 0 -5px 0 rgba(17,17,20,.12), 0 22px 28px -16px rgba(17,17,20,.45); }
+:is(.zkit-ink, .zkit-porcelain) .kit-piece::after, .zkit :is(.zp-ink, .zp-porcelain)::after { background: var(--orange); box-shadow: inset 0 1px 1px rgba(120,20,0,.5), 0 1px 0 rgba(255,255,255,.35); }
+.motion-off .zkit .kit-piece { transition: none; translate: none; }
 
 /* ---------- canvas */
 #gl { position: fixed; left: 0; top: 0; width: 100%; height: 100vh; height: 100lvh; z-index: 0; pointer-events: none; transition: opacity .3s; }
@@ -167,6 +262,9 @@ a:focus-visible .roll .ch, button:focus-visible .roll .ch { transform: translate
 /* no JavaScript: both stages show the full static Z, and controls that need script stay hidden */
 html:not(.js) .fzp { opacity: 1; transform: none; }
 html:not(.js) .stage-btn, html:not(.js) .menu-btn, html:not(.js) .motion-btn, html:not(.js) [data-clock] { display: none; }
+/* without JS the menu dialog can't open: under 1024px a plain "Menu" link jumps to the footer navigation instead */
+.menu-nojs { display: none; align-items: center; min-height: 48px; padding: 0 18px; border-radius: 999px; background: var(--ink); color: #fff; font-size: 15px; font-weight: 500; }
+@media (max-width: 1023px) { html:not(.js) .menu-nojs { display: inline-flex; } }
 html:not(.js) .hero-hint { visibility: hidden; }
 
 /* ---------- work */
@@ -299,6 +397,8 @@ html:not(.js) .hero-hint { visibility: hidden; }
 .studio-title { font-size: clamp(44px, 5.6vw, 90px); line-height: .92; letter-spacing: -.056em; font-weight: 600; max-width: 13ch; }
 .tape { position: relative; display: inline-block; z-index: 0; white-space: nowrap; }
 .tape::before { content: ''; position: absolute; z-index: -1; left: -.08em; right: -.1em; top: .3em; bottom: -.02em; border-radius: .08em; background: var(--orange); transform: rotate(-1.6deg); box-shadow: inset 0 -.04em 0 rgba(120,20,0,.2); }
+/* accessibility widget, dark mode: the tape's letters turn ink (a11y.css), so the strip must cover them top to bottom */
+html.a11y-dark .tape::before { top: .04em; }
 .studio-body { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 36px; margin-top: clamp(28px, 3.5vw, 48px); color: var(--graphite); font-size: clamp(16px, 1.2vw, 18px); max-width: 780px; }
 .studio-lead { grid-column: 1 / -1; color: var(--ink); font-size: clamp(19px, 1.6vw, 24px); line-height: 1.32; letter-spacing: -.02em; max-width: 34ch; }
 .spec { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: clamp(28px, 3.5vw, 48px); border-top: 2px solid var(--ink); max-width: 780px; }
@@ -466,21 +566,98 @@ html:not(.js) .wa-fab { animation: waIn .7s var(--spring) .9s backwards; }
 @keyframes waIn { from { opacity: 0; translate: 0 14px; scale: .4; } }
 .motion-off .wa-fab { animation: none; transition: none; }
 @media (max-width: 767px) { .wa-fab { width: 54px; height: 54px; right: max(14px, env(safe-area-inset-right)); bottom: max(14px, calc(env(safe-area-inset-bottom) + 10px)); } .wa-fab svg { width: 28px; height: 28px; } }
-/* the footer credit shares that corner: end it before the bead's lane */
+/* the email bead rides on top of the WhatsApp bead: it is the next sibling (.wa-fab + .mail-fab), so it shows, hides and
+   springs exactly when the WhatsApp bead does, including every page-level hold rule that hides .wa-fab.is-on */
+.mail-fab { position: fixed; z-index: 40; right: calc(max(18px, env(safe-area-inset-right)) + 5px); bottom: calc(max(18px, calc(env(safe-area-inset-bottom) + 12px)) + 70px); display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; color: #111114; background: radial-gradient(circle at 34% 24%, #FFB58F 0 10%, var(--orange) 50%, #D94210 100%); box-shadow: inset 0 2px 0 rgba(255,255,255,.4), inset 0 -3px 0 rgba(120,20,0,.3), 0 16px 26px -14px rgba(17,17,20,.55); transition: transform .45s var(--spring), box-shadow .3s; }
+.mail-fab svg { width: 24px; height: 24px; transition: transform .45s var(--spring); }
+@media (hover: hover) { .mail-fab:hover { transform: translateY(-3px) scale(1.06); box-shadow: inset 0 2px 0 rgba(255,255,255,.4), inset 0 -3px 0 rgba(120,20,0,.3), 0 22px 34px -16px rgba(17,17,20,.6); } .mail-fab:hover svg { transform: rotate(-8deg); } }
+.mail-fab:active { transform: scale(.94); }
+.js .mail-fab { opacity: 0; visibility: hidden; pointer-events: none; translate: 0 14px; scale: .6; transition: opacity .3s, visibility 0s .3s, translate .45s var(--spring), scale .45s var(--spring), transform .45s var(--spring), box-shadow .3s; }
+.js .wa-fab.is-on + .mail-fab { opacity: 1; visibility: visible; pointer-events: auto; translate: none; scale: none; transition-delay: .06s, .06s, .06s, .06s, 0s, 0s; }
+html:not(.js) .mail-fab { animation: waIn .7s var(--spring) 1s backwards; }
+.motion-off .mail-fab, .motion-off .mail-fab svg { animation: none; transition: none; }
+/* keyboard focus on the floating beads: a white + ink double ring that reads over chalk, ink sections and the dark theme */
+:is(.wa-fab, .mail-fab):focus-visible { outline: 3px solid #FFFFFF; outline-offset: 2px; }
+.wa-fab:focus-visible { box-shadow: 0 0 0 8px #111114, inset 0 2px 0 rgba(255,255,255,.35), inset 0 -3px 0 rgba(0,60,25,.3); }
+.mail-fab:focus-visible { box-shadow: 0 0 0 8px #111114, inset 0 2px 0 rgba(255,255,255,.4), inset 0 -3px 0 rgba(120,20,0,.3); }
+@media (max-width: 767px) { .mail-fab { width: 46px; height: 46px; right: calc(max(14px, env(safe-area-inset-right)) + 4px); bottom: calc(max(14px, calc(env(safe-area-inset-bottom) + 10px)) + 64px); } .mail-fab svg { width: 22px; height: 22px; } }
+/* the footer credit shares that corner. With JS, app.js hides the bead while the footer is on screen (.is-on off).
+   Without JS the bead always shows: end the footer before its lane (desktop) or above it (phones). */
 @media (min-width: 768px) { .footer-bottom { padding-right: max(0px, calc(86px - var(--pad))); } }
+@media (max-width: 767px) { html:not(.js) .footer-bottom { padding-bottom: calc(54px + 14px + env(safe-area-inset-bottom)); } }
 
-/* ---------- footer */
-.footer { position: relative; z-index: 2; margin: 0 10px max(10px, calc(env(safe-area-inset-bottom) + 6px)); padding: clamp(36px, 5vw, 64px) var(--pad) 22px; border-radius: var(--r-lg); background: var(--ink); color: #F3F3F5; }
-.footer-top { display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; max-width: 1400px; margin: 0 auto; }
+/* ---------- footer: the mega footer, an ink slab on every page.
+   .fm-top = brand (logo, statement, sub line) + a glazed Z kit; .fm-cols = .fm-nav (Services / Studio / Guides
+   link columns) + .fm-contact (orange slab: email, WhatsApp, reply promise, live Tel Aviv time);
+   .footer-bottom = copyright, Privacy / Terms, back to top and the credit badge (untouched, see below). */
+.footer { position: relative; z-index: 2; margin: 0 10px max(10px, calc(env(safe-area-inset-bottom) + 6px)); padding: clamp(40px, 6vw, 88px) var(--pad) 22px; border-radius: var(--r-lg); background: var(--ink); color: #F3F3F5; overflow: hidden; }
+.fm-top { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: 24px 48px; max-width: 1400px; margin: 0 auto; }
+.fm-brand { display: grid; justify-items: start; gap: clamp(18px, 2.4vw, 30px); min-width: 0; }
 .footer .logo .zmark { width: 40px; height: 40px; }
 .footer .logo .wordmark { font-size: 28px; }
 .footer .logo .wordmark b { height: 26px; font-size: 15px; padding: 0 7px 1px; border-radius: 7px; }
-.footer-line { color: rgba(243,243,245,.66); font-size: 15px; }
-.back-top { display: inline-flex; align-items: center; gap: 10px; min-height: 48px; padding: 0 20px; border-radius: 999px; box-shadow: inset 0 0 0 1px rgba(255,255,255,.18); font-weight: 500; }
-.back-top b { color: var(--orange); }
-.footer-bottom { display: flex; justify-content: space-between; align-items: center; gap: 16px 24px; flex-wrap: wrap; max-width: 1400px; margin: clamp(36px, 5vw, 70px) auto 0; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.1); font-size: 14px; color: rgba(243,243,245,.66); }
-.footer-legal { display: flex; gap: 4px; }
+.fm-line { font-size: clamp(42px, 6.6vw, 112px); font-weight: 600; line-height: .88; letter-spacing: -.062em; max-width: 11ch; text-wrap: balance; }
+.fm-line span { color: #7A7C86; }
+.fm-sub { max-width: 38ch; color: rgba(243,243,245,.66); font-size: clamp(15px, 1.2vw, 18px); }
+.fm-kit { width: clamp(130px, 15vw, 220px); margin: 0 clamp(0px, 2vw, 40px) 8px 0; transform: rotate(-9deg); }
+.fm-cols { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 1.3fr); gap: 24px clamp(24px, 4vw, 64px); align-items: start; max-width: 1400px; margin: clamp(40px, 5vw, 72px) auto 0; padding-top: clamp(28px, 3vw, 40px); border-top: 1px solid rgba(255,255,255,.1); }
+.fm-nav { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px clamp(16px, 2.4vw, 40px); }
+.fm-h { display: flex; align-items: baseline; gap: 10px; margin-bottom: 8px; font-family: var(--mono); font-size: 13px; font-weight: 500; letter-spacing: -.01em; color: rgba(243,243,245,.62); }
+.fm-h span { color: var(--orange-soft); }
+.fm-col ul { display: grid; }
+.fm-col a { position: relative; display: inline-flex; align-items: center; min-height: 44px; padding: 6px 0; font-size: 16px; font-weight: 500; letter-spacing: -.015em; line-height: 1.22; color: #F3F3F5; transition: transform .45s var(--spring), color .25s; }
+.fm-col a::before { content: ''; position: absolute; left: -16px; top: 50%; width: 7px; height: 7px; margin-top: -3.5px; border-radius: 2px; background: var(--orange); transform: rotate(45deg) scale(0); transition: transform .45s var(--spring); }
+.fm-col a[aria-current] { color: var(--orange-soft); }
+@media (hover: hover) { .fm-col a:hover { transform: translateX(14px); color: #fff; } .fm-col a:hover::before { transform: rotate(45deg) scale(1); } }
+.fm-col a:focus-visible { outline-offset: 2px; }
+.fm-contact { padding: 8px 18px 16px 20px; border-radius: 28px; background: radial-gradient(120% 140% at 12% 0%, #FF7440 0%, var(--orange) 55%, #F4501A 100%); color: var(--ink); box-shadow: inset 0 2px 0 rgba(255,255,255,.28), 0 26px 50px -30px rgba(255,90,31,.5); }
+.fm-contact .fm-h { margin: 12px 0 2px; color: var(--ink); }
+.fm-contact .fm-h span { color: var(--ink); }
+.fm-line-a { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "k b" "v b"; align-items: center; column-gap: 12px; min-height: 60px; padding: 8px 0; border-bottom: 1px solid rgba(17,17,20,.16); }
+.fm-line-a .mc-k { grid-area: k; }
+.fm-line-a .mc-v { grid-area: v; font-size: clamp(16px, 1.3vw, 18px); }
+.fm-line-a b { grid-area: b; display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: var(--ink); color: var(--orange); font-weight: 500; transition: transform .45s var(--spring); }
+@media (hover: hover) { .fm-line-a:hover b { transform: rotate(-45deg) scale(1.06); } }
+.fm-line-a:active b { transform: scale(.9) rotate(-45deg); }
+.fm-contact :focus-visible { outline-color: var(--ink); }
+.fm-note { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 12px; margin-top: 12px; font-size: 14px; font-weight: 500; }
+.fm-note time { font-variant-numeric: tabular-nums; font-weight: 600; }
+.fm-note .live-dot { display: inline-block; margin-right: 6px; vertical-align: 1px; box-shadow: 0 0 0 3px rgba(17,17,20,.12); background: #0E7A3E; }
+.back-top { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; padding: 0 18px; border-radius: 999px; color: #F3F3F5; box-shadow: inset 0 0 0 1px rgba(255,255,255,.18); font-weight: 500; transition: transform .45s var(--spring), background-color .25s; }
+.back-top b { color: var(--orange); transition: transform .45s var(--spring); }
+@media (hover: hover) { .back-top:hover { background: rgba(255,255,255,.06); } .back-top:hover b { transform: translateY(-3px); } }
+.back-top:active { transform: scale(.96); }
+.footer-bottom { display: flex; justify-content: space-between; align-items: center; gap: 16px 24px; flex-wrap: wrap; max-width: 1400px; margin: clamp(32px, 4vw, 56px) auto 0; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.1); font-size: 14px; color: rgba(243,243,245,.66); }
+.fb-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 20px; }
+.footer-legal { display: flex; flex-wrap: wrap; gap: 4px; }
 .footer-legal a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 10px; color: #F3F3F5; }
+.fb-end { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; }
+/* phones (app.js, under 768px): the three link groups fold into tap-to-open porcelain-on-ink rows, so the closing
+   frame after the CTA slab is about one screen instead of ~1.6. Each row: mono index, the group name, a link-count
+   chip and an orange bead whose plus springs into a minus. No JS / tablets / desktop: the open columns above. */
+.fm-tog { display: none; }
+@media (max-width: 767px) {
+  .fm-nav.is-fold { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  .fm-nav.is-fold .fm-col { border-radius: 22px; background: rgba(255,255,255,.045); box-shadow: inset 0 0 0 1px rgba(255,255,255,.09); transition: background-color .3s, box-shadow .3s; }
+  .fm-nav.is-fold .fm-col.is-open { background: rgba(255,255,255,.075); box-shadow: inset 0 0 0 1px rgba(255,255,255,.14); }
+  .fm-nav.is-fold .fm-h { margin: 0; }
+  .fm-tog { display: flex; align-items: center; gap: 10px; width: 100%; min-height: 60px; padding: 0 10px 0 18px; border-radius: 22px; text-align: left; color: #F3F3F5; font-family: var(--sans); font-size: 19px; font-weight: 600; letter-spacing: -.03em; -webkit-tap-highlight-color: transparent; }
+  .fm-tog > span:first-child { font-family: var(--mono); font-size: 13px; font-weight: 500; letter-spacing: -.01em; color: var(--orange-soft); }
+  .fm-tog:focus-visible { outline: 2px solid var(--orange); outline-offset: -2px; }
+  .fm-n { display: inline-grid; place-items: center; min-width: 26px; height: 22px; margin-left: auto; padding: 0 7px; border-radius: 7px; background: rgba(255,255,255,.08); font-family: var(--mono); font-size: 12px; font-weight: 500; color: rgba(243,243,245,.66); }
+  .fm-pm { position: relative; flex: none; width: 40px; height: 40px; border-radius: 50%; background: radial-gradient(circle at 34% 26%, #FFB58F 0 9%, var(--orange) 48%, #D94210 100%); box-shadow: inset 0 1px 0 rgba(255,255,255,.4), inset 0 -3px 0 rgba(120,20,0,.28), 0 8px 14px -8px rgba(255,90,31,.6); transition: transform .55s var(--spring); }
+  .fm-pm::before, .fm-pm::after { content: ''; position: absolute; left: 50%; top: 50%; width: 14px; height: 2.5px; margin: -1.25px 0 0 -7px; border-radius: 2px; background: var(--ink); transition: transform .55s var(--spring); }
+  .fm-pm::after { transform: rotate(90deg); }
+  .fm-tog[aria-expanded="true"] .fm-pm { transform: rotate(180deg); }
+  .fm-tog[aria-expanded="true"] .fm-pm::after { transform: rotate(90deg) scaleX(0); }
+  .fm-tog:active .fm-pm { transform: scale(.88); }
+  .fm-nav.is-fold ul { padding: 0 18px 12px; }
+  .fm-nav.is-fold .fm-col.is-shut ul { display: none; }
+  .fm-nav.is-fold .fm-col.is-anim ul { overflow: hidden; }
+  .fm-nav.is-fold .fm-col.is-open li { animation: linkIn .6s var(--spring) both; animation-delay: calc(var(--li, 0) * 40ms + 60ms); }
+  .motion-off .fm-nav.is-fold .fm-col li, .motion-off .fm-pm, .motion-off .fm-pm::after { animation: none; transition: none; }
+}
+
 /* Zstore AI credit — preserved exactly: full pill, light chip, no shadow */
 .zstore-badge { display: inline-flex; align-items: center; flex-shrink: 0; padding: 8px 14px; border-radius: 999px; background: rgba(255,255,255,.92); border: 1px solid rgba(255,255,255,.2); box-shadow: none; }
 .zstore-badge img { display: block; width: auto; height: 30px; }
@@ -489,14 +666,13 @@ html:not(.js) .wa-fab { animation: waIn .7s var(--spring) .9s backwards; }
 /* ---------- legal pages (privacy-policy.html, terms.html) */
 .legal { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(32px, 6vw, 110px); align-items: start; max-width: 1400px; margin: 0 auto; padding: calc(var(--nav-top) + var(--nav-h) + clamp(44px, 7vw, 110px)) var(--pad) clamp(60px, 8vw, 120px); }
 .legal-head { position: sticky; top: calc(var(--nav-top) + var(--nav-h) + 40px); }
-.legal-kicker { font-family: var(--mono); font-size: 13px; color: var(--graphite); }
 .legal-title { margin-top: 14px; font-size: clamp(50px, 6.6vw, 120px); line-height: .9; letter-spacing: -.06em; font-weight: 700; }
-.legal-updated { display: inline-flex; align-items: center; min-height: 36px; margin-top: 24px; padding: 0 14px; border-radius: 999px; background: var(--orange); color: var(--ink); font-size: 14px; font-weight: 600; transform: rotate(-3deg); box-shadow: inset 0 1px 0 rgba(255,255,255,.4), 0 10px 20px -10px rgba(180,50,0,.6); }
+.legal-updated { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 0 .3em; min-height: 36px; margin-top: 24px; padding: 0 14px; border-radius: 999px; background: var(--orange); color: var(--ink); font-size: 14px; font-weight: 600; transform: rotate(-3deg); box-shadow: inset 0 1px 0 rgba(255,255,255,.4), 0 10px 20px -10px rgba(180,50,0,.6); }
 .legal-intro { margin-top: 22px; max-width: 34ch; color: var(--graphite); font-size: 18px; }
 .legal-list { display: grid; gap: 10px; }
 .legal-sec { padding: clamp(20px, 2.4vw, 32px); border-radius: 30px; background: var(--chalk-2); box-shadow: inset 0 1px 0 #fff, 0 1px 0 rgba(17,17,20,.06), 0 16px 34px -28px rgba(17,17,20,.5); }
 .legal-sec h2 { display: flex; align-items: baseline; gap: 12px; font-size: clamp(24px, 2.2vw, 34px); font-weight: 600; letter-spacing: -.04em; line-height: 1.05; }
-.legal-sec h2 span { font-family: var(--mono); font-size: 13px; font-weight: 500; letter-spacing: 0; color: var(--orange-deep); }
+.legal-sec h2 span { flex: none; display: inline-grid; place-items: center; min-width: 28px; height: 24px; padding: 0 6px; border-radius: 7px; background: var(--ink); color: var(--chalk); font-family: var(--mono); font-size: 13px; font-weight: 500; letter-spacing: 0; line-height: 1; box-shadow: inset 0 -2px 0 rgba(255,255,255,.14), 0 2px 0 rgba(17,17,20,.25); transform: translateY(-3px); }
 .legal-sec p, .legal-sec li { max-width: 62ch; color: var(--graphite); font-size: clamp(16px, 1.15vw, 18px); }
 .legal-sec p, .legal-sec ul { margin-top: 12px; }
 .legal-sec ul { display: grid; gap: 8px; }
@@ -504,12 +680,9 @@ html:not(.js) .wa-fab { animation: waIn .7s var(--spring) .9s backwards; }
 .legal-sec li::before { content: ''; position: absolute; left: 2px; top: .56em; width: 8px; height: 8px; border-radius: 2px; background: var(--orange); transform: rotate(45deg); }
 .legal-sec strong { color: var(--ink); font-weight: 600; }
 .legal-sec a { display: inline-block; padding: 12px 0; margin: -12px 0; color: var(--ink); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; overflow-wrap: anywhere; }
-.nav-home { min-height: 48px; padding: 0 20px 0 12px; }
-.nav-home .btn-ico { margin: 0 -2px 0 0; }
 .footer-legal a[aria-current] { color: var(--orange); }
 @media (max-width: 1023px) { .legal { grid-template-columns: minmax(0, 1fr); } .legal-head { position: static; } }
 @media (max-width: 767px) { .legal-title { font-size: clamp(46px, 14.4vw, 76px); } .legal-sec { padding: 20px 18px 22px; border-radius: 24px; } .legal-intro { font-size: 16px; } }
-@media (max-width: 400px) { .nh-long { display: none; } }
 
 /* ---------- popups (native dialog) */
 dialog { color: var(--ink); }
@@ -530,7 +703,8 @@ dialog::backdrop { background: rgba(17,17,20,.55); }
 .menu-top { flex: none; display: flex; justify-content: space-between; align-items: center; min-height: 52px; }
 .menu-body { position: relative; flex: 1 0 auto; display: flex; flex-direction: column; justify-content: center; }
 .menu-links { position: relative; z-index: 1; display: flex; flex-direction: column; }
-.menu-links a { display: flex; align-items: baseline; gap: 14px; width: fit-content; min-height: 48px; padding: 2px 0; font-size: min(16.4vw, 7.5svh, 96px); font-weight: 600; letter-spacing: -.055em; line-height: 1.02; }
+.menu-links a { display: flex; align-items: baseline; gap: 14px; width: fit-content; min-height: 48px; padding: 2px 0; font-size: min(12vw, 5.2svh, 84px); font-weight: 600; letter-spacing: -.055em; line-height: 1.02; transition: transform .45s var(--spring); }
+.menu-links a:active { transform: translateX(6px); }
 /* tall screens: the three glazed pieces of the Z stand beside the links */
 .menu-z { display: none; }
 @media (min-width: 600px) and (min-height: 700px) {
@@ -541,17 +715,23 @@ dialog::backdrop { background: rgba(17,17,20,.55); }
   .motion-off .menu[open] .menu-z .kit-piece { animation: none; }
 }
 @keyframes pieceDrop { from { translate: 0 -70%; opacity: 0; } }
-.menu-links a span { font-family: var(--mono); font-size: 13px; font-weight: 500; letter-spacing: 0; color: var(--orange); transform: translateY(-.2em); }
+.menu-links a span { flex: none; display: inline-grid; place-items: center; width: 30px; font-family: var(--mono); font-size: 13px; font-weight: 500; letter-spacing: 0; color: var(--orange); transform: translateY(-.2em); }
+/* the page you're on: its number becomes a small orange key */
+.menu-links a[aria-current] span { height: 22px; border-radius: 7px; background: var(--orange); color: var(--ink); box-shadow: inset 0 -2px 0 rgba(120,20,0,.3); }
 .menu[open] .menu-links a { animation: linkIn .6s var(--ease) both; }
 .menu[open] .menu-links a:nth-child(2) { animation-delay: .03s; } .menu[open] .menu-links a:nth-child(3) { animation-delay: .06s; }
 .menu[open] .menu-links a:nth-child(4) { animation-delay: .09s; } .menu[open] .menu-links a:nth-child(5) { animation-delay: .12s; } .menu[open] .menu-links a:nth-child(6) { animation-delay: .15s; }
+.menu[open] .menu-links a:nth-child(7) { animation-delay: .18s; }
 @keyframes linkIn { from { transform: translateY(30%); opacity: 0; } }
 .motion-off .menu[open] .menu-sheet, .motion-off .menu[open] .menu-links a { animation: none; }
-.menu-studies { flex: none; }
-.menu-studies p { font-size: 14px; color: rgba(243,243,245,.66); margin-bottom: 8px; }
-.menu-studies div { display: flex; flex-wrap: wrap; gap: 6px; }
-.menu-studies button { min-height: 44px; padding: 0 16px; border-radius: 999px; background: #26262D; font-weight: 500; font-size: 15px; box-shadow: inset 0 1px 0 rgba(255,255,255,.08); }
-.menu-studies button::before { content: ''; display: inline-block; width: 8px; height: 8px; margin-right: 8px; border-radius: 2px; background: var(--orange); transform: rotate(45deg); vertical-align: 1px; }
+/* service shortcuts: five keycap pills under the page links */
+.menu-services { flex: none; min-width: 0; }
+.menu-services p { font-size: 14px; color: rgba(243,243,245,.66); margin-bottom: 8px; }
+.menu-services ul { display: flex; flex-wrap: wrap; gap: 6px; }
+.menu-services a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 14px 0 13px; border-radius: 999px; background: #26262D; font-weight: 500; font-size: 14.5px; white-space: nowrap; box-shadow: inset 0 1px 0 rgba(255,255,255,.08), inset 0 -2px 0 rgba(0,0,0,.35); transition: transform .45s var(--spring), background-color .25s; }
+.menu-services a::before { content: ''; display: inline-block; width: 7px; height: 7px; margin-right: 8px; border-radius: 2px; background: var(--orange); transform: rotate(45deg); }
+.menu-services a:active { transform: scale(.95); }
+.menu-services a[aria-current] { background: #F3F3F5; color: var(--ink); }
 /* the orange slab: direct lines, same material as the services section */
 .menu-card { flex: none; margin-right: 8px; padding: 4px 14px 4px 16px; border-radius: 24px; background: radial-gradient(120% 160% at 12% 0%, #FF7440 0%, var(--orange) 55%, #F4501A 100%); color: var(--ink); box-shadow: inset 0 2px 0 rgba(255,255,255,.28), 0 18px 34px -20px rgba(255,90,31,.55); }
 .menu-card a { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "k b" "v b"; align-items: center; column-gap: 12px; min-height: 58px; padding: 8px 0; }
@@ -592,9 +772,19 @@ dialog::backdrop { background: rgba(17,17,20,.55); }
 
 /* ---------- responsive */
 @media (max-width: 1180px) {
-  .nav-links a { padding: 0 11px; }
+  .nav-links > a, .nav-dd-link { padding: 0 10px; }
+  .nav-cta { padding: 0 16px; }
   .nav .motion-label { display: none; }
   .nav-actions .motion-btn { width: 48px; padding: 0; justify-content: center; }
+  /* icon only: a porcelain bead (the same ceramic as the accessibility bead beside it) holding the glyph */
+  .nav-actions .motion-btn { border-radius: 50%; background: radial-gradient(circle at 34% 24%, #FFFFFF 0 16%, #F2F2F4 46%, #DCDDE2 100%); box-shadow: inset 0 1px 0 #fff, inset 0 -3px 0 rgba(17,17,20,.12), 0 6px 12px -8px rgba(17,17,20,.55); transition: transform .45s var(--spring), box-shadow .3s; }
+  .nav.is-dark .nav-actions .motion-btn { background: radial-gradient(circle at 34% 24%, #62626C 0 10%, #2C2C33 50%, #18181C 100%); box-shadow: inset 0 1px 0 rgba(255,255,255,.18), inset 0 -3px 0 rgba(0,0,0,.4), 0 6px 12px -8px rgba(0,0,0,.8); }
+  .nav-actions .motion-btn:active { transform: scale(.9); }
+}
+@media (min-width: 768px) and (max-width: 1099px) {
+  .fm-cols { grid-template-columns: minmax(0, 1fr); }
+  .fm-contact { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 28px; }
+  .fm-contact .fm-h, .fm-contact .fm-note { grid-column: 1 / -1; }
 }
 @media (max-width: 1023px) {
   .nav-links { display: none; }
@@ -706,10 +896,21 @@ dialog::backdrop { background: rgba(17,17,20,.55); }
   .field-row { grid-template-columns: 1fr; gap: 0; }
   .chip { padding: 0 14px; }
   .brief-foot .btn-xl { width: 100%; justify-content: space-between; padding-right: 22px; }
-  .footer { margin: 0 8px max(8px, calc(env(safe-area-inset-bottom) + 6px)); border-radius: 30px; }
-  .footer-top { flex-direction: column; align-items: flex-start; }
-  .footer-bottom { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .footer { margin: 0 8px max(8px, calc(env(safe-area-inset-bottom) + 6px)); border-radius: 30px; padding-top: 36px; }
+  .fm-top { grid-template-columns: minmax(0, 1fr); }
+  .fm-brand { gap: 20px; }
+  .fm-line { font-size: min(13.4vw, 64px); }
+  .fm-kit { position: absolute; right: -10px; top: -14px; width: 92px; margin: 0; }
+  .fm-cols { grid-template-columns: minmax(0, 1fr); margin-top: 32px; padding-top: 24px; }
+  .fm-nav { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 22px 18px; }
+  .fm-guides { grid-column: 1 / -1; }
+  .fm-guides ul { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 18px; }
+  .fm-col a { font-size: 15.5px; }
+  .fm-contact { padding: 4px 14px 14px 16px; border-radius: 24px; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; gap: 14px; margin-top: 28px; }
+  .fb-meta { flex-direction: column-reverse; align-items: flex-start; gap: 6px; width: 100%; }
   .footer-legal { margin-left: -10px; }
+  .fb-end { width: 100%; justify-content: space-between; }
   .study { --gap-t: max(8px, env(safe-area-inset-top)); --gap-b: max(8px, env(safe-area-inset-bottom)); --gap-l: max(8px, env(safe-area-inset-left)); --gap-r: max(8px, env(safe-area-inset-right)); border-radius: 28px; }
   .study-copy { padding: 18px 20px 22px; }
   .study-cols { grid-template-columns: 1fr; }
@@ -736,13 +937,31 @@ dialog::backdrop { background: rgba(17,17,20,.55); }
   .study-actions .btn { font-size: 15px; padding: 0 16px 0 18px; gap: 10px; }
   .study-actions .btn-ico { margin-right: -8px; }
 }
+/* phone menu: the whole sheet, Accessibility + Motion included, fits one screen down to 390x664 / 375x667.
+   Service pills become one swipeable row, the Tel Aviv clock moves up beside the close button, and the
+   bottom row holds only the Accessibility + Motion pair. */
+@media (max-width: 599px) and (orientation: portrait) and (max-height: 900px) {
+  .menu-sheet { gap: 12px; }
+  .menu-links a { font-size: min(11.5vw, 5.1svh, 46px); min-height: 44px; }
+  .menu-services p { display: none; } /* the nav keeps its "Services" name */
+  .menu-services ul { flex-wrap: nowrap; overflow-x: auto; margin-right: -10px; padding-right: 10px; scrollbar-width: none; overscroll-behavior-x: contain; }
+  .menu-services ul::-webkit-scrollbar { display: none; }
+  .menu-services li { flex: none; }
+  .menu-card a { min-height: 52px; padding: 4px 0; }
+  .menu-foot .menu-clock { position: absolute; top: 10px; right: 72px; height: 52px; font-size: 14px; }
+}
+@media (max-width: 599px) and (orientation: portrait) and (max-height: 760px) {
+  .menu-sheet { gap: 10px; }
+  .menu-top { min-height: 48px; }
+  .menu-foot .menu-clock { height: 48px; }
+  .menu-card a { min-height: 48px; padding: 3px 0; }
+}
+@media (max-width: 359px) and (orientation: portrait) and (max-height: 900px) { .menu-foot .menu-clock { display: none; } } /* no room beside the logo */
 /* short portrait phones (SE, older Androids): the hero must fit one screen, so the intro keeps only its first sentence */
 @media (max-width: 767px) and (orientation: portrait) and (max-height: 700px) {
   .hero { min-height: 520px; }
   .intro-more { display: none; }
   .hero-title { font-size: min(15.6vw, 8.8svh, 84px); }
-  .menu-sheet { gap: 10px; }
-  .menu-links a { font-size: min(12vw, 6.4svh); }
 }
 /* phones in landscape: stage beside the statement. The width floor keeps a portrait phone with the
    on-screen keyboard open (visual viewport ~370-460px tall) out of this layout. */
@@ -767,11 +986,16 @@ dialog::backdrop { background: rgba(17,17,20,.55); }
   .card-foot { padding-top: 10px; }
   /* the contact stage fits under the nav, so its caption, the kit and "Build it now" are on screen together */
   .stage { height: 340px; height: min(340px, calc(100svh - var(--nav-top) - var(--nav-h) - 20px)); min-height: 260px; }
-  /* menu: links on the left, lines + studies on the right */
-  .menu-sheet { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-rows: auto auto auto 1fr; grid-template-areas: "top top" "body studies" "body card" "body foot"; gap: 8px 28px; align-content: start; }
+  /* menu: links on the left, services + lines on the right */
+  .menu-sheet { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-rows: auto auto auto 1fr; grid-template-areas: "top top" "body services" "body card" "body foot"; gap: 8px 28px; align-content: start; }
   .menu::after { border-radius: 0 0 32px 0; left: 50%; }
-  .menu-top { grid-area: top; } .menu-body { grid-area: body; justify-content: flex-start; } .menu-studies { grid-area: studies; } .menu-card { grid-area: card; } .menu-foot { grid-area: foot; align-self: start; }
-  .menu-links a { font-size: min(8.4svh, 36px); min-height: 48px; }
+  .menu-top { grid-area: top; } .menu-body { grid-area: body; justify-content: flex-start; } .menu-services { grid-area: services; } .menu-card { grid-area: card; } .menu-foot { grid-area: foot; align-self: start; }
+  /* seven pages in two short columns, so the whole menu fits one landscape screen */
+  .menu-links { display: grid; grid-template-columns: repeat(2, max-content); column-gap: 26px; }
+  .menu-links a { font-size: min(8svh, 32px); min-height: 46px; }
+  .menu-services ul { flex-wrap: wrap; overflow: visible; margin-right: 0; padding-right: 0; }
+  .menu-services a { min-height: 40px; padding: 0 12px; font-size: 14px; }
+  .menu-services p { display: none; }
   .menu-card { display: block; padding: 2px 14px; } .menu-card a { min-height: 54px; padding: 6px 0; }
   .menu-card a + a { border-left: 0; padding-left: 0; border-top: 1px solid rgba(17,17,20,.16); }
   .mc-v { font-size: 16px; }
@@ -779,4 +1003,4 @@ dialog::backdrop { background: rgba(17,17,20,.55); }
   .study-visual { position: sticky; top: 0; align-self: start; aspect-ratio: auto; height: calc(100dvh - var(--gap-t) - var(--gap-b)); }
   .study-cols { grid-template-columns: 1fr; }
 }
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .wa-fab { animation: none !important; transition: none !important; } }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } :is(.wa-fab, .mail-fab, .mail-fab svg) { animation: none !important; transition: none !important; } }

@@ -23,7 +23,7 @@ http.createServer((req, res) => {
   let p; try { p = decodeURIComponent(new URL(req.url, 'http://x').pathname); } catch { res.writeHead(400); return res.end(); }
   if (p.endsWith('/')) p += 'index.html';
   let file = path.join(root, p);
-  if (!file.startsWith(root) || !fs.existsSync(file) || !fs.statSync(file).isFile()) file = path.join(root, '404.html');
+  if (!(file === root || file.startsWith(root + path.sep)) || !fs.existsSync(file) || !fs.statSync(file).isFile()) file = path.join(root, '404.html');
   const type = types[path.extname(file)] || 'application/octet-stream';
   const gz = /^(text\/|application\/(json|manifest|xml))/.test(type) && /\bgzip\b/.test(req.headers['accept-encoding'] || '');
   const head = { ...siteHeaders(), 'Content-Type': type, 'Cache-Control': 'no-cache' };

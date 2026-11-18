@@ -43,10 +43,9 @@ function doPost(e) {
       throw new Error("Invalid email address");
     }
 
-    // Rate cap, counted only for submissions that passed every check above.
-    if (overRateLimit_(MAX_PER_HOUR)) {
-      return redirectPage_(REDIRECT_URL);
-    }
+    // Rate cap, counted only for submissions that passed every check above. Over the cap the lead is
+    // still saved to the sheet (no MailApp quota cost); only the notification email is skipped.
+    var overCap = overRateLimit_(MAX_PER_HOUR);
 
     // ===== WRITE TO SHEET =====
     var ss = SpreadsheetApp.openById(SPREADSHEET_ID);
@@ -56,7 +55,11 @@ function doPost(e) {
       sheet.appendRow(["Timestamp", "Name", "Email", "Message"]);
     }
 
-    sheet.appendRow([new Date(), name, email, message]);
+    sheet.appendRow([new Date(), cell_(name), cell_(email), cell_(message)]);
+
+    if (overCap) {
+      return redirectPage_(REDIRECT_URL);
+    }
 
     // ===== SEND EMAIL =====
     MailApp.sendEmail({
@@ -99,17 +102,26 @@ function redirectPage_(url) {
   );
 }
 
-// Approximate rolling-hour counter; if the cache is ever unavailable,
-// prefer delivering mail over blocking it.
+// Counter per clock hour: each hour gets its own key, so the count always clears when the hour ends
+// (one shared key would have its 3600 s TTL reset by every put and could stay over the cap forever).
+// If the cache is ever unavailable, prefer delivering mail over blocking it.
 function overRateLimit_(maxPerHour) {
   try {
     var cache = CacheService.getScriptCache();
-    var n = Number(cache.get("submitCount") || 0) + 1;
-    cache.put("submitCount", String(n), 3600);
+    var key = "submitCount_" + Math.floor(Date.now() / 3600000);
+    var n = Number(cache.get(key) || 0) + 1;
+    cache.put(key, String(n), 3700);
     return n > maxPerHour;
   } catch (err) {
     return false;
   }
+}
+
+// A value starting with = + - @ (or a tab / CR) would be stored as a live formula in the Leads sheet:
+// prefix it with an apostrophe so Sheets keeps it as plain text.
+function cell_(s) {
+  s = String(s);
+  return /^[=+\-@\t\r]/.test(s) ? "'" + s : s;
 }
 
 function escapeHtml_(s) {

@@ -1,0 +1,438 @@
+/* Zstore AI — /about/ page styles. Prefix: .ab-  (loaded after tactile.css + site.css; never restyles shared classes globally)
+   Sections: hero speech bubble + name tag · One Lanyard (signature) · who (ink, split-flap facts) · why (split, pull-back image)
+   · beliefs (sticker board that lifts in the scroll's wind) · code (typed source card, keycaps) · time zones. Mobile first (390px). */
+
+/* ============================================================ hero: speech-bubble H1, kinetic second line, name tag */
+.ab-title { font-size: clamp(2.75rem, 12.4vw, 4rem); line-height: .92; }
+.ab-bubble { position: relative; display: table; margin: 0 0 .26em -.02em; padding: .1em .3em .16em; border-radius: .42em .42em .42em .1em; background: var(--orange); color: var(--ink); font-size: .74em; letter-spacing: -.05em; white-space: nowrap; transform: rotate(-3deg); transform-origin: 6% 100%; box-shadow: inset 0 .05em 0 rgba(255,255,255,.4), inset 0 -.06em 0 rgba(120,20,0,.22), 0 .3em .5em -.3em rgba(180,50,0,.7); animation: abPop 1s var(--spring) .1s backwards; }
+/* the tail: a glazed wedge under the first letter */
+.ab-bubble::after { content: ''; position: absolute; left: .32em; bottom: -.2em; width: .34em; height: .3em; background: var(--orange); clip-path: polygon(0 0, 100% 0, 0 100%); }
+.ab-rest { display: block; }
+.ab-w { display: inline-block; animation: abRise .9s var(--spring) backwards; }
+.ab-w:nth-child(1) { animation-delay: .22s; } .ab-w:nth-child(2) { animation-delay: .27s; } .ab-w:nth-child(3) { animation-delay: .32s; }
+.ab-w:nth-child(4) { animation-delay: .37s; } .ab-w:nth-child(5) { animation-delay: .42s; } .ab-w:nth-child(6) { animation-delay: .47s; } .ab-w:nth-child(7) { animation-delay: .52s; }
+@keyframes abPop { 0% { transform: rotate(-16deg) scale(.55); } 100% { transform: rotate(-3deg) scale(1); } }
+@keyframes abRise { 0% { transform: translateY(.42em) rotate(2.5deg); } 100% { transform: none; } }
+.motion-off :is(.ab-bubble, .ab-w) { animation: none; }
+/* phones: the portrait sits below the fold, so the bubble gets his face: a round avatar it speaks from
+   (same 800w file the arch already loads, so no extra request) */
+@media (max-width: 767px) {
+  .ab-bubble { margin-left: 2.1em; border-radius: .42em; transform-origin: -1em 60%; }
+  .ab-bubble::before { content: ''; position: absolute; left: -1.9em; top: 50%; width: 1.64em; height: 1.64em; margin-top: -.84em; border-radius: 50%; background: #C9D0D4 url(/image/20251111_150847-800.webp) 64% 17% / 215% auto no-repeat; box-shadow: 0 0 0 .07em var(--chalk-2), 0 0 0 .15em var(--orange), 0 .32em .5em -.26em rgba(17,17,20,.55); transform: rotate(3deg); }
+  .ab-bubble::after { left: -.22em; bottom: auto; top: 50%; margin-top: -.15em; width: .3em; height: .3em; clip-path: polygon(100% 0, 100% 100%, 0 50%); }
+  .ab-media .zkit { left: 0; }
+}
+
+/* the portrait's name tag: a porcelain badge clipped to the arch */
+.ab-media { padding-bottom: 1.4rem; }
+.ab-media .ab-tag { position: absolute; left: -2%; bottom: 0; z-index: 3; display: grid; gap: .3rem; margin: 0; padding: 1.35rem 1.05rem .8rem; border-radius: 1.1rem; background: var(--chalk-2); color: var(--ink); font-family: var(--mono); font-size: .8125rem; letter-spacing: -.02em; transform: rotate(-4deg); box-shadow: inset 0 1px 0 #fff, 0 1.4rem 2rem -1.2rem rgba(17,17,20,.55); }
+.ab-tag-clip { position: absolute; left: 50%; top: -.55rem; width: 2.4rem; height: .9rem; margin-left: -1.2rem; border-radius: .35rem; background: linear-gradient(180deg, #8B8E96, #4A4C53); box-shadow: inset 0 1px 0 rgba(255,255,255,.45), 0 2px 3px rgba(17,17,20,.3); }
+.ab-tag-clip::after { content: ''; position: absolute; left: 50%; top: .62rem; width: .9rem; height: .32rem; margin-left: -.45rem; border-radius: 99px; background: var(--ink); opacity: .55; }
+.ab-tag-row { display: flex; align-items: baseline; justify-content: space-between; gap: 1.1rem; }
+.ab-tag-k { color: var(--graphite); }
+.ab-tag-v { font-weight: 500; }
+.ab-tag-row + .ab-tag-row { padding-top: .3rem; border-top: 1px dashed var(--line); }
+
+/* ============================================================ One Lanyard (signature) */
+.ab-slug { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem; margin-bottom: 1rem; font-family: var(--mono); font-size: .8125rem; font-weight: 500; letter-spacing: -.02em; color: var(--graphite); }
+.ab-slug span { display: inline-grid; place-items: center; min-height: 1.6rem; padding: 0 .55rem; border-radius: .45rem; box-shadow: inset 0 0 0 1.5px rgba(17,17,20,.28); }
+.ab-slug span:last-child { background: var(--ink); color: var(--chalk); box-shadow: inset 0 -2px 0 rgba(255,255,255,.14), 0 2px 0 rgba(17,17,20,.25); }
+.ab-slug .ab-slug-arrow { box-shadow: none; padding: 0; }
+
+.ab-ly { position: relative; }
+.ab-ly-top { display: grid; gap: 1.1rem; margin-bottom: 1.6rem; }
+/* the constant request: what you asked, before anyone touches it */
+.ab-ly-ask { position: relative; justify-self: start; display: grid; gap: .25rem; max-width: 26rem; padding: .85rem 1.15rem 1rem; border-radius: 1.3rem 1.3rem 1.3rem .35rem; background: var(--ink); color: #F3F3F5; box-shadow: 0 1.2rem 2rem -1.4rem rgba(17,17,20,.7); }
+.ab-ly-ask-k { font-family: var(--mono); font-size: .75rem; color: var(--orange-soft); }
+.ab-ly-ask-q { font-size: 1.1875rem; font-weight: 600; letter-spacing: -.025em; line-height: 1.2; }
+
+/* the switch: a physical slide toggle with a keycap knob */
+.ab-ly-bar { display: none; }
+.js .ab-ly-bar { display: flex; flex-wrap: wrap; align-items: center; gap: .35rem .7rem; }
+.ab-ly-opt { display: inline-flex; align-items: center; min-height: 2.75rem; font-size: 1rem; font-weight: 500; letter-spacing: -.02em; color: var(--graphite); cursor: pointer; user-select: none; -webkit-user-select: none; transition: color .25s; }
+.ab-ly-opt.is-on { color: var(--ink); font-weight: 600; }
+.ab-ly-switch { position: relative; flex: none; width: 5.75rem; height: 3.25rem; border-radius: 999px; background: #DFE0E4; box-shadow: inset 0 2px 5px rgba(17,17,20,.22), inset 0 -1px 0 #fff, 0 1px 0 #fff; transition: background-color .35s; }
+.ab-ly-knob { position: absolute; left: .3rem; top: .3rem; width: 2.65rem; height: 2.65rem; border-radius: 50%; background: radial-gradient(circle at 35% 28%, #3A3A43 0%, var(--ink) 62%); box-shadow: inset 0 1px 0 rgba(255,255,255,.22), inset 0 -3px 0 rgba(0,0,0,.45), 0 5px 10px -4px rgba(17,17,20,.6); transition: transform .6s var(--spring); }
+.ab-ly-knob::after { content: ''; position: absolute; left: 50%; top: 50%; width: .9rem; height: .9rem; margin: -.45rem 0 0 -.45rem; border-radius: 50%; box-shadow: inset 0 0 0 2px rgba(255,255,255,.28); }
+.ab-ly-switch[aria-checked="true"] { background: var(--orange); box-shadow: inset 0 2px 5px rgba(120,20,0,.35), inset 0 -1px 0 rgba(255,255,255,.4), 0 1px 0 #fff; }
+.ab-ly-switch[aria-checked="true"] .ab-ly-knob { transform: translateX(2.5rem); }
+.ab-ly-switch:active .ab-ly-knob { scale: .94; }
+.ab-ly-hint { display: none; align-items: center; gap: .35rem; font-family: var(--mono); font-size: .75rem; color: var(--graphite); }
+.ab-ly-hint::before { content: '←'; display: inline-block; animation: abNudge 1.6s var(--spring) 3 1.2s; }
+.ab-ly.is-used .ab-ly-hint { visibility: hidden; }
+@keyframes abNudge { 0%, 100% { transform: none; } 40% { transform: translate(-3px, -3px); } }
+.motion-off .ab-ly-hint::before { animation: none; }
+
+/* ---- badges: the shared base (no-JS shows them as a plain grid of name badges) */
+.ab-ly-h { margin-bottom: 1rem; font-size: 1.25rem; font-weight: 600; letter-spacing: -.03em; text-wrap: balance; }
+.ab-ly-badges { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.1rem .625rem; }
+.ab-ly-slot { position: relative; min-width: 0; padding-top: .3rem; }
+/* the rail: each slot draws its segment (bridging the gap), so a row of slots is one continuous rod */
+.ab-ly-slot::before { content: ''; position: absolute; left: -.3125rem; right: -.3125rem; top: 0; height: .5rem; background: linear-gradient(180deg, #3A3A43, var(--ink)); box-shadow: inset 0 1px 0 rgba(255,255,255,.18), 0 3px 5px -2px rgba(17,17,20,.4); transition: opacity .4s; }
+.ab-ly-slot:nth-child(3n+1)::before { left: -.5rem; border-radius: 99px 0 0 99px; }
+.ab-ly-slot:nth-child(3n)::before { right: -.5rem; border-radius: 0 99px 99px 0; }
+.ab-ly-badge { position: relative; transform-origin: 50% 0; will-change: transform; }
+.ab-ly-strap { position: relative; display: block; height: 2.1rem; margin-top: .05rem; }
+/* two ribbons meeting at a metal clip: the lanyard */
+.ab-ly-strap::before, .ab-ly-strap::after { content: ''; position: absolute; top: -.1rem; bottom: .35rem; width: .42rem; border-radius: 2px; background: linear-gradient(90deg, #FF7440, var(--orange) 55%, var(--orange-deep)); }
+.ab-ly-strap::before { right: 50%; transform-origin: 100% 100%; transform: rotate(-14deg); }
+.ab-ly-strap::after { left: 50%; transform-origin: 0 100%; transform: rotate(14deg); }
+.ab-ly-card { position: relative; display: grid; justify-items: center; gap: .45rem; padding: .95rem .5rem .8rem; border-radius: .95rem; background: var(--chalk-2); text-align: center; box-shadow: inset 0 1px 0 #fff, 0 1px 0 rgba(17,17,20,.06), 0 1.1rem 1.6rem -1.3rem rgba(17,17,20,.6); }
+/* the clip + punched slot at the top of every card */
+.ab-ly-card::before { content: ''; position: absolute; left: 50%; top: -.55rem; width: 1.5rem; height: .85rem; margin-left: -.75rem; border-radius: .3rem; background: linear-gradient(180deg, #9A9DA5, #4A4C53); box-shadow: inset 0 1px 0 rgba(255,255,255,.5), 0 2px 3px rgba(17,17,20,.3); }
+.ab-ly-card::after { content: ''; position: absolute; left: 50%; top: .55rem; width: 1.3rem; height: .3rem; margin-left: -.65rem; border-radius: 99px; background: #D9DADF; box-shadow: inset 0 1px 1px rgba(17,17,20,.25); }
+.ab-ly-i { justify-self: start; margin-top: .2rem; font-family: var(--mono); font-size: .6875rem; color: var(--graphite); }
+/* faceless avatar: head + shoulders on a tinted tile */
+.ab-ly-av { position: relative; width: 2.6rem; height: 2.6rem; border-radius: .7rem; overflow: hidden; background: var(--sand); }
+.ab-ly-av::before { content: ''; position: absolute; left: 50%; top: 22%; width: 34%; height: 34%; margin-left: -17%; border-radius: 50%; background: rgba(17,17,20,.55); }
+.ab-ly-av::after { content: ''; position: absolute; left: 50%; bottom: -24%; width: 76%; height: 50%; margin-left: -38%; border-radius: 50% 50% 0 0; background: rgba(17,17,20,.55); }
+.ab-av-sage { background: var(--sage); } .ab-av-peri { background: var(--peri); } .ab-av-chalk { background: #D9DADF; }
+.ab-ly-role { font-size: .875rem; font-weight: 600; line-height: 1.15; letter-spacing: -.02em; overflow-wrap: normal; hyphens: auto; }
+
+/* ---- message bubbles (the telephone game) */
+.ab-ly-chain { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .5rem; margin-top: 1.4rem; padding-bottom: 1.4rem; }
+.ab-ly-msg { position: relative; display: grid; gap: .2rem; padding: .7rem .95rem .8rem; border-radius: 1.1rem 1.1rem 1.1rem .3rem; background: #fff; box-shadow: inset 0 0 0 1px var(--line), 0 .8rem 1.2rem -1rem rgba(17,17,20,.45); }
+.ab-ly-from { font-family: var(--mono); font-size: .75rem; color: var(--graphite); }
+.ab-ly-q { font-size: 1rem; font-weight: 500; line-height: 1.3; letter-spacing: -.015em; }
+/* a zig-zag conversation: the right column sits half a step lower */
+.ab-ly-chain .ab-ly-msg:nth-child(even) { top: 1.4rem; border-radius: 1.1rem 1.1rem .3rem 1.1rem; }
+.ab-ly-msg { min-width: 0; }
+.ab-ly-from { overflow-wrap: anywhere; }
+.ab-ly-chain .ab-ly-msg:last-child { background: var(--sand); box-shadow: 0 .8rem 1.2rem -1rem rgba(42,33,24,.5); }
+.ab-ly-chain .ab-ly-msg:last-child .ab-ly-from { color: #4A4D55; } /* graphite is 4.36:1 on sand; this is 5.5:1 */
+
+/* ---- Zvi: the one badge */
+.ab-ly-one { margin-top: 2.2rem; }
+.ab-ly-zvi { position: relative; width: min(100%, 19rem); transform-origin: 50% 0; will-change: transform; }
+.ab-ly-strap-zvi { height: 2.6rem; }
+.ab-ly-strap-zvi::before, .ab-ly-strap-zvi::after { width: .5rem; }
+.ab-ly-zcard { position: relative; padding: 1.4rem 1.1rem 1.1rem; border-radius: 1.3rem; background: var(--ink); color: #F3F3F5; box-shadow: inset 0 1px 0 rgba(255,255,255,.12), 0 1.8rem 2.6rem -1.6rem rgba(17,17,20,.8); }
+.ab-ly-zcard::before { content: ''; position: absolute; left: 50%; top: -.6rem; width: 1.8rem; height: .95rem; margin-left: -.9rem; border-radius: .32rem; background: linear-gradient(180deg, #B5B8BF, #5A5C63); box-shadow: inset 0 1px 0 rgba(255,255,255,.55), 0 2px 3px rgba(0,0,0,.4); }
+.ab-ly-zcard::after { content: ''; position: absolute; left: 50%; top: .6rem; width: 1.5rem; height: .32rem; margin-left: -.75rem; border-radius: 99px; background: #2A2A31; box-shadow: inset 0 1px 1px rgba(0,0,0,.6); }
+.ab-ly-pass { display: inline-flex; align-items: center; min-height: 1.6rem; margin-top: .3rem; padding: 0 .65rem; border-radius: 999px; background: var(--orange); color: var(--ink); font-family: var(--mono); font-size: .6875rem; font-weight: 500; letter-spacing: .02em; text-transform: uppercase; transform: rotate(-3deg); }
+.ab-ly-who { display: flex; align-items: center; gap: .85rem; margin-top: .8rem; }
+.ab-ly-photo { flex: none; width: 3.6rem; height: 3.6rem; border-radius: 1rem; object-fit: cover; object-position: 50% 18%; box-shadow: 0 0 0 2px rgba(255,255,255,.12); }
+.ab-ly-name { display: grid; font-size: 1.5rem; font-weight: 700; line-height: 1; letter-spacing: -.045em; }
+.ab-ly-name span { margin-top: .3rem; font-family: var(--mono); font-size: .75rem; font-weight: 500; letter-spacing: -.02em; color: var(--orange-soft); }
+.ab-ly-ticks { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .45rem .6rem; margin-top: 1rem; padding-top: .9rem; border-top: 1px solid rgba(255,255,255,.14); font-size: .875rem; color: rgba(243,243,245,.86); }
+.ab-ly-ticks li { position: relative; padding-left: 1.45rem; line-height: 1.25; }
+.ab-ly-ticks li::before { content: ''; position: absolute; left: 0; top: .02em; width: 1.05rem; height: 1.05rem; border-radius: 50%; background: var(--glaze); }
+.ab-ly-ticks li::after { content: ''; position: absolute; left: .37rem; top: .2em; width: .25rem; height: .48rem; border-right: 2px solid var(--ink); border-bottom: 2px solid var(--ink); transform: rotate(45deg); }
+.ab-ly-direct { display: grid; gap: .7rem; margin-top: 1.1rem; }
+.ab-ly-reply { background: var(--chalk-2); border-radius: 1.1rem 1.1rem .3rem 1.1rem; }
+.ab-ly-whole { display: inline-flex; flex-wrap: wrap; align-items: center; gap: .4rem; justify-self: start; min-height: 2.75rem; padding: .3rem 1rem; border-radius: 999px; background: var(--orange); color: var(--ink); font-size: 1rem; font-weight: 500; letter-spacing: -.015em; transform: rotate(-1.5deg); box-shadow: inset 0 1px 0 rgba(255,255,255,.4), 0 .7rem 1.2rem -.8rem rgba(180,50,0,.7); }
+.ab-ly-whole b { font-weight: 700; }
+/* the count that matters: hand-offs between your words and the code */
+.ab-ly-zero { display: flex; align-items: center; gap: .9rem; justify-self: start; margin-top: 1.4rem; }
+.ab-ly-zero b { flex: none; display: inline-grid; place-items: center; width: 3.4rem; height: 3.4rem; border-radius: .9rem; background: var(--ink); color: var(--chalk); font-family: var(--mono); font-size: 1.75rem; font-weight: 500; transform: rotate(-4deg); box-shadow: inset 0 -4px 0 rgba(255,255,255,.14), 0 4px 0 #6d1f02; }
+.ab-ly-zero span { max-width: 15rem; font-size: 1rem; font-weight: 500; line-height: 1.3; letter-spacing: -.015em; }
+.ab-ly-note { display: flex; flex-wrap: wrap; align-items: baseline; gap: .3rem .7rem; max-width: 46rem; margin-top: 2rem; color: var(--graphite); font-size: 1rem; line-height: 1.45; }
+.ab-ly-note-k { font-family: var(--mono); font-size: .75rem; color: var(--ink); padding: .1rem .5rem; border-radius: .4rem; box-shadow: inset 0 0 0 1.5px rgba(17,17,20,.28); }
+
+/* ---- JS stage: both states share one grid cell (height = the taller state, so flipping never shifts the page) */
+.js .ab-ly-h { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.js .ab-ly-stage { display: grid; }
+.js .ab-ly-agency, .js .ab-ly-one { grid-area: 1 / 1; min-width: 0; }
+.js .ab-ly-one { position: relative; z-index: 2; margin-top: 0; display: grid; justify-items: center; align-content: start; visibility: hidden; pointer-events: none; transition: visibility 0s .5s; }
+.js .ab-ly.is-one .ab-ly-one { visibility: visible; pointer-events: auto; transition-delay: 0s; }
+.js .ab-ly-zvi { opacity: 0; transition: opacity .3s .05s; }
+.js .ab-ly.is-one .ab-ly-zvi { opacity: 1; transition-delay: .22s; }
+.js .ab-ly-direct { width: min(100%, 26rem); }
+/* bubbles pop out / in with a spring, one after another */
+.js .ab-ly-msg, .js .ab-ly-whole { transition: transform .55s var(--spring), opacity .25s; transition-delay: calc(var(--k, 0) * 55ms + 260ms); }
+.js .ab-ly-chain .ab-ly-msg:nth-child(1) { --k: 0; } .js .ab-ly-chain .ab-ly-msg:nth-child(2) { --k: 1; } .js .ab-ly-chain .ab-ly-msg:nth-child(3) { --k: 2; }
+.js .ab-ly-chain .ab-ly-msg:nth-child(4) { --k: 3; } .js .ab-ly-chain .ab-ly-msg:nth-child(5) { --k: 4; } .js .ab-ly-chain .ab-ly-msg:nth-child(6) { --k: 5; }
+.js .ab-ly.is-one .ab-ly-chain .ab-ly-msg { opacity: 0; transform: scale(.4) rotate(-6deg); transition: transform .3s cubic-bezier(.5, -.6, .7, 1), opacity .22s; transition-delay: calc(var(--k, 0) * 30ms); }
+.js .ab-ly-chain { transition: visibility 0s; }
+.js .ab-ly.is-one .ab-ly-chain { visibility: hidden; transition-delay: .5s; }
+.js .ab-ly-reply { --k: 6; } .js .ab-ly-whole { --k: 8; } .js .ab-ly-zero { --k: 10; }
+.js .ab-ly-zero { transition: transform .55s var(--spring), opacity .25s; transition-delay: calc(var(--k) * 55ms + 260ms); }
+.js .ab-ly:not(.is-one) .ab-ly-zero { opacity: 0; transform: scale(.5); transition: transform .25s, opacity .2s; transition-delay: 0s; }
+.js .ab-ly:not(.is-one) .ab-ly-direct > * { opacity: 0; transform: scale(.5) translateY(-.6rem); transition: transform .25s, opacity .2s; transition-delay: 0s; }
+.js .ab-ly.is-one .ab-ly-whole { transform: rotate(-1.5deg); }
+/* the second rail (phones and tablets) retracts when everyone has moved onto the first */
+@media (max-width: 1023px) {
+  .js .ab-ly.is-one .ab-ly-slot:nth-child(n+4)::before { opacity: 0; }
+  /* the cell keeps the taller agency height, so the spare room becomes the direct line: a cord from Zvi's badge
+     straight down to his reply, with a bead that runs along it each time you flip to Zstore AI */
+  .js .ab-ly-one { grid-template-rows: auto minmax(0, 1fr) auto; }
+  .js .ab-ly-direct { display: flex; flex-direction: column; align-self: stretch; margin-top: 0; }
+  .js .ab-ly-direct .ab-ly-whole { align-self: flex-start; }
+  .js .ab-ly-line { position: relative; display: block; flex: 1 0 1.8rem; align-self: center; width: 4px; margin: -.1rem 0 -.2rem; border-radius: 2px; background: repeating-linear-gradient(180deg, rgba(17,17,20,.38) 0 .55rem, transparent .55rem .9rem); }
+  .ab-ly-line i { position: absolute; left: 50%; top: calc(100% - .95rem); width: .95rem; height: .95rem; margin-left: -.475rem; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #FF9A70, var(--orange) 55%, var(--orange-deep)); box-shadow: 0 3px 6px -2px rgba(180,50,0,.7); }
+  .js .ab-ly.is-one .ab-ly-line i { animation: abBead .9s cubic-bezier(.5, 0, .2, 1) .55s backwards; }
+  .js .ab-ly-zero { margin-top: 1.4rem; }
+}
+.ab-ly-line { display: none; }
+@keyframes abBead { from { top: 0; } }
+.motion-off .ab-ly-line i { animation: none !important; }
+.js .ab-ly.is-one .ab-ly-badge { z-index: 1; }
+.motion-off .ab-ly *, .motion-off .ab-ly *::before, .motion-off .ab-ly *::after { transition-duration: 0s !important; transition-delay: 0s !important; }
+
+/* ============================================================ who: ink slab, spec, split-flap facts */
+.ab-who-grid { display: grid; gap: 2rem; }
+.ab-who-media { margin: 0; }
+.ab-who-media img { width: 100%; height: auto; border-radius: var(--r-md); box-shadow: 0 2.4rem 3.6rem -2.4rem rgba(0,0,0,.9); }
+.ab-who-copy > * + * { margin-top: 1.1rem; }
+.ab-who-copy p { color: rgba(243,243,245,.78); font-size: 1.0625rem; line-height: 1.55; max-width: 56ch; }
+.ab-who-copy .ab-who-big { color: #F3F3F5; font-size: clamp(1.5rem, 6.4vw, 2.4rem); font-weight: 600; line-height: 1.08; letter-spacing: -.04em; text-wrap: balance; }
+.ab-spec { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 1.8rem !important; border-top: 2px solid #F3F3F5; }
+.ab-spec div { padding: .8rem .8rem .8rem 0; border-bottom: 1px solid rgba(255,255,255,.14); }
+.ab-spec div:nth-child(even) { padding-left: .9rem; border-left: 1px solid rgba(255,255,255,.14); }
+.ab-spec dt { font-family: var(--mono); font-size: .8125rem; color: rgba(243,243,245,.62); }
+.ab-spec dd { margin-top: .25rem; font-size: 1rem; font-weight: 600; letter-spacing: -.02em; line-height: 1.25; text-wrap: balance; }
+.ab-flap-facts { display: grid; grid-template-columns: minmax(0, 1fr); margin-top: 2.6rem; border-top: 2px solid #F3F3F5; }
+.ab-flap-facts > div { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .4rem 1rem; padding: 1rem 0 .9rem; border-bottom: 1px solid rgba(255,255,255,.14); }
+.ab-flap-facts dt { font-family: var(--mono); font-size: .8125rem; color: rgba(243,243,245,.62); }
+.ab-flap-facts dd { font-size: clamp(2.75rem, 13vw, 5rem); font-weight: 600; line-height: 1; letter-spacing: -.04em; }
+/* the split-flap board: every digit is a two-leaf tile hinged on its seam (the real value is in the .sr text) */
+.ab-flap { display: inline-flex; align-items: center; gap: .07em; font-variant-numeric: tabular-nums; }
+.ab-ft { position: relative; display: inline-block; width: .78em; height: 1.16em; border-radius: .12em; background: linear-gradient(180deg, #2C2C34 0%, #24242B 49.6%, #1A1A1F 50.4%, #202026 100%); color: #F3F3F5; line-height: 1.16em; text-align: center; perspective: 3.2em; box-shadow: inset 0 1px 0 rgba(255,255,255,.1), inset 0 -2px 0 rgba(0,0,0,.45), 0 .12em .2em -.08em rgba(0,0,0,.8); }
+/* the seam and its two little hinge pins */
+.ab-ft::after { content: ''; position: absolute; left: 0; right: 0; top: calc(50% - 1px); z-index: 4; height: 2px; background: #0C0C0F; box-shadow: 0 1px 0 rgba(255,255,255,.06); pointer-events: none; }
+.ab-ft::before { content: ''; position: absolute; left: -.04em; right: -.04em; top: calc(50% - .06em); z-index: 5; height: .12em; border-radius: .04em; background: linear-gradient(90deg, #6B6E76 0 .07em, transparent .07em calc(100% - .07em), #6B6E76 calc(100% - .07em)); pointer-events: none; }
+/* leaves and halves are built by about.js: each one holds the whole glyph and is clipped to its half */
+.ab-fh, .ab-fl { position: absolute; inset: 0; border-radius: inherit; backface-visibility: hidden; -webkit-backface-visibility: hidden; transform-origin: 50% 50%; }
+.ab-fh-t, .ab-fl-t { clip-path: inset(0 0 50% 0); background: linear-gradient(180deg, #2C2C34, #24242B 50%); }
+.ab-fh-b, .ab-fl-b { clip-path: inset(50% 0 0 0); background: linear-gradient(180deg, #1A1A1F 50%, #202026); }
+.ab-fl { z-index: 2; visibility: hidden; }
+.ab-fl-t { box-shadow: inset 0 -.3em .4em -.3em rgba(0,0,0,.6); }
+.ab-fs { color: rgba(243,243,245,.86); }
+
+/* ============================================================ why: split with a pull-back image */
+.ab-why-grid { display: grid; gap: 2.4rem; }
+.ab-why-copy > * + * { margin-top: 1.1rem; }
+.ab-why-copy .sec-title { margin-top: 1rem; }
+.ab-why-answer { font-size: clamp(1.1875rem, 1.55vw, 1.4375rem); line-height: 1.4; letter-spacing: -.018em; max-width: 46ch; }
+.ab-why-list { display: grid; gap: .6rem; margin-top: 1.6rem !important; }
+.ab-why-list li { position: relative; display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: 1rem; padding: 1.1rem 1.1rem 1.15rem; border-radius: 1.5rem; background: var(--chalk-2); box-shadow: var(--raised); }
+.ab-why-k { grid-row: 1 / span 2; display: inline-grid; place-items: center; width: 2.4rem; height: 2.4rem; border-radius: .7rem; background: var(--ink); color: var(--chalk); font-family: var(--mono); font-size: .875rem; font-weight: 500; transform: rotate(-4deg); box-shadow: inset 0 -3px 0 rgba(255,255,255,.14), 0 3px 0 #6d1f02; }
+.ab-why-list li:nth-child(even) .ab-why-k { transform: rotate(3deg); }
+.ab-why-list h3 { font-size: 1.25rem; font-weight: 600; line-height: 1.15; letter-spacing: -.03em; }
+.ab-why-list p { margin-top: .35rem; color: var(--graphite); font-size: 1rem; line-height: 1.5; }
+.ab-why-links { color: var(--graphite); font-size: 1rem; line-height: 1.6; }
+.ab-why-links a, .ab-pr-eg a, .ab-pr-fig a { color: var(--ink); font-weight: 600; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 3px; text-decoration-color: rgba(17,17,20,.3); transition: text-decoration-color .2s; }
+@media (hover: hover) { .ab-why-links a:hover, .ab-pr-eg a:hover, .ab-pr-fig a:hover { text-decoration-color: currentColor; } }
+.ab-why-media { position: relative; margin: 0; }
+.ab-why-frame { overflow: hidden; border-radius: var(--r-lg); box-shadow: 0 3rem 5rem -3rem rgba(17,17,20,.55); }
+.ab-why-frame img { width: 100%; height: auto; }
+.ab-why-sticker { position: absolute; right: 1rem; bottom: -.9rem; z-index: 1; min-height: 2.5rem; padding: 0 1rem; font-size: .9375rem; transform: rotate(5deg); }
+/* the camera pulls back as the image scrolls into view: it is whole (never cropped) once fully on screen */
+@supports (animation-timeline: view()) {
+  html:not(.motion-off) .ab-why-frame img { animation: abPull linear both; animation-timeline: view(); animation-range: entry 0% entry 100%; }
+}
+@keyframes abPull { from { transform: scale(1.14); } to { transform: none; } }
+
+/* ============================================================ beliefs: stickers on a porcelain board, lifted by the scroll's wind */
+.ab-pr { overflow-x: clip; }
+.ab-pr-board { display: grid; gap: 1.1rem; }
+.ab-pr-item { --rot: -1.2deg; position: relative; padding: 1.5rem 1.3rem 1.4rem; border-radius: 1.8rem; background: #fff; rotate: var(--rot); transform-origin: 50% 0; box-shadow: inset 0 0 0 1px rgba(17,17,20,.06), 0 2px 0 rgba(17,17,20,.06), 0 1.2rem 1.8rem -1.5rem rgba(17,17,20,.45); transition: rotate .5s var(--spring), translate .5s var(--spring), scale .3s var(--spring); }
+.ab-pr-item:nth-child(even) { --rot: 1.1deg; }
+.ab-pr-item > * + * { margin-top: .55rem; }
+.ab-pr-n { position: absolute; right: 1rem; top: 1rem; display: inline-grid; place-items: center; width: 2.5rem; height: 2.5rem; border-radius: 50%; background: var(--glaze); color: var(--ink); font-family: var(--mono); font-size: .8125rem; font-weight: 500; box-shadow: inset 0 1px 0 rgba(255,255,255,.4), 0 5px 10px -5px rgba(180,50,0,.7); }
+.ab-pr-t { max-width: 15ch; padding-right: 2.6rem; font-size: clamp(1.625rem, 7vw, 2.25rem); font-weight: 700; line-height: .98; letter-spacing: -.05em; text-wrap: balance; }
+.ab-pr-item p { color: var(--prose-c); font-size: 1rem; line-height: 1.5; }
+.ab-pr-eg { padding-top: .7rem; border-top: 1px dashed rgba(17,17,20,.2); }
+.ab-pr-eg > span:first-child { display: inline-block; margin-right: .4rem; padding: .05rem .45rem; border-radius: .35rem; background: var(--ink); color: var(--chalk); font-family: var(--mono); font-size: .6875rem; vertical-align: .12em; }
+/* tones: porcelain, sand, ink, sage, periwinkle */
+.ab-pr-2 { background: var(--sand); color: #2A2118; }
+.ab-pr-3 { background: var(--ink); color: #F3F3F5; }
+.ab-pr-3 p { color: rgba(243,243,245,.78); }
+.ab-pr-3 .ab-pr-eg { border-top-color: rgba(255,255,255,.2); }
+.ab-pr-3 .ab-pr-eg > span:first-child { background: var(--orange); color: var(--ink); }
+.ab-pr-4 { background: var(--sage); }
+.ab-pr-5 { background: var(--peri); }
+:is(.ab-pr-2, .ab-pr-4, .ab-pr-5) p { color: rgba(17,17,20,.82); }
+.ab-pr-img { padding: .6rem .6rem 1.1rem; background: var(--ink); }
+.ab-pr-fig { margin: 0; }
+.ab-pr-fig img { width: 100%; height: auto; border-radius: 1.3rem; }
+.ab-pr-fig figcaption { margin-top: .9rem; padding: 0 .6rem; color: rgba(243,243,245,.78); font-size: 1rem; line-height: 1.45; }
+.ab-pr-fig figcaption a { color: #F3F3F5; text-decoration-color: rgba(255,255,255,.4); }
+.ab-pr-img :focus-visible { outline-color: var(--orange); }
+/* rub it down: press a sticker and it flattens onto the board */
+@media (hover: hover) { .ab-pr-item:hover { rotate: 0deg; translate: 0 -3px; } }
+.ab-pr-item:active { rotate: 0deg; scale: .985; }
+/* each sticker is stuck down along its top edge only: about.js tips it on rotateX with the scroll's speed, so the
+   loose bottom edge lifts and flutters back (transform only; nothing moves while the page is still) */
+.ab-pr-item.is-lifting { will-change: transform; }
+.motion-off .ab-pr-item { transition: none; transform: none !important; }
+
+/* ============================================================ code: GitHub + the page's own source, typed in */
+.ab-code-grid { display: grid; gap: 2.4rem; }
+.ab-code-copy > * + * { margin-top: 1.1rem; }
+.ab-code-copy .sec-title { margin-top: 1rem; }
+.ab-code-answer { color: rgba(243,243,245,.8); font-size: clamp(1.125rem, 1.4vw, 1.3125rem); line-height: 1.45; max-width: 46ch; }
+.ab-code-keys { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem .55rem; color: rgba(243,243,245,.72); font-size: 1rem; }
+.ab-code-keys > span:first-child { flex-basis: 100%; }
+.ab-keys { display: inline-flex; gap: .3rem; }
+.ab-keys kbd { display: inline-grid; place-items: center; min-width: 2.75rem; min-height: 2.75rem; padding: 0 .55rem; border-radius: .6rem; background: linear-gradient(180deg, #2E2E36, #1B1B20); color: #F3F3F5; font-family: var(--mono); font-size: .875rem; box-shadow: inset 0 1px 0 rgba(255,255,255,.16), inset 0 -4px 0 rgba(0,0,0,.5), 0 2px 0 #000; transition: transform .25s var(--spring), box-shadow .2s; }
+.ab-keys kbd:last-child { background: var(--orange); color: var(--ink); box-shadow: inset 0 1px 0 rgba(255,255,255,.35), inset 0 -4px 0 rgba(120,20,0,.35), 0 2px 0 #6d1f02; }
+.ab-code-keys.is-pressed .ab-keys kbd { animation: abKey .5s var(--spring) both; }
+.ab-code-keys.is-pressed .ab-keys kbd:nth-child(2) { animation-delay: .12s; } .ab-code-keys.is-pressed .ab-keys kbd:nth-child(3) { animation-delay: .24s; }
+.ab-code-keys.is-pressed .ab-keys + .ab-keys-or + .ab-keys kbd { animation-delay: .5s; } .ab-code-keys.is-pressed .ab-keys + .ab-keys-or + .ab-keys kbd:nth-child(2) { animation-delay: .62s; } .ab-code-keys.is-pressed .ab-keys + .ab-keys-or + .ab-keys kbd:nth-child(3) { animation-delay: .74s; }
+@keyframes abKey { 40% { transform: translateY(3px); box-shadow: inset 0 1px 0 rgba(255,255,255,.16), inset 0 -1px 0 rgba(0,0,0,.5), 0 0 0 #000; } }
+.motion-off .ab-keys kbd { animation: none !important; }
+.ab-src { position: relative; margin: 0; border-radius: var(--r-md); background: var(--chalk-2); color: var(--ink); box-shadow: inset 0 1px 0 #fff, 0 2.6rem 4rem -2.4rem rgba(0,0,0,.9); overflow: hidden; transform: rotate(1deg); }
+.ab-src-bar { display: flex; align-items: center; gap: .4rem; padding: .8rem 1rem; border-bottom: 1px solid var(--line); font-family: var(--mono); font-size: .75rem; color: var(--graphite); }
+.ab-src-bar i { width: .7rem; height: .7rem; border-radius: 50%; background: #D3D4D9; }
+.ab-src-bar i:first-child { background: var(--orange); }
+.ab-src-bar span { margin-left: .5rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ab-src-code { margin: 0; padding: 1rem 1rem 1.1rem; font-family: var(--mono); font-size: .8125rem; line-height: 1.6; white-space: pre-wrap; overflow-wrap: anywhere; color: #34363C; }
+.ab-src-l { position: relative; display: block; padding-left: 2.4rem; text-indent: 0; }
+.ab-src-n { position: absolute; left: 0; width: 1.6rem; text-align: right; color: #6D7078; user-select: none; -webkit-user-select: none; }
+.ab-src-l:last-child::after { content: ''; display: inline-block; width: .55em; height: 1.1em; margin-left: .2em; vertical-align: -.2em; background: var(--orange); animation: abCaret 1s steps(1) 6; }
+@keyframes abCaret { 50% { opacity: 0; } }
+.ab-src figcaption { padding: .8rem 1rem 1rem; border-top: 1px solid var(--line); font-size: .875rem; color: var(--graphite); }
+/* typed in line by line (set by about.js only when the card is still below the fold, motion on) */
+.ab-src.is-armed .ab-src-l { clip-path: inset(0 100% 0 0); }
+.ab-src.is-typing .ab-src-l { animation: abType .55s steps(22, end) both; }
+.ab-src.is-typing .ab-src-l:nth-child(2) { animation-delay: .35s; } .ab-src.is-typing .ab-src-l:nth-child(3) { animation-delay: .7s; }
+.ab-src.is-typing .ab-src-l:nth-child(4) { animation-delay: 1.05s; } .ab-src.is-typing .ab-src-l:nth-child(5) { animation-delay: 1.4s; }
+.ab-src.is-typing .ab-src-l:nth-child(6) { animation-delay: 1.9s; } .ab-src.is-typing .ab-src-l:nth-child(7) { animation-delay: 2.25s; }
+@keyframes abType { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+.motion-off .ab-src-l, .motion-off .ab-src-l::after { animation: none !important; clip-path: none !important; }
+
+/* ============================================================ time zones */
+.ab-tz-grid { display: grid; gap: 1.6rem; }
+.ab-tz-copy > * + * { margin-top: 1.1rem; }
+.ab-tz-answer { font-size: clamp(1.1875rem, 1.55vw, 1.4375rem); line-height: 1.4; letter-spacing: -.018em; max-width: 46ch; }
+.ab-tz-keys { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .6rem; margin-top: 1.6rem !important; }
+.ab-tz-keys li { display: flex; align-items: center; justify-content: space-between; gap: .6rem; min-height: 3.5rem; padding: .5rem .55rem .5rem 1rem; border-radius: 1.1rem; background: var(--chalk-2); box-shadow: var(--raised); }
+.ab-tz-city { font-size: .9375rem; font-weight: 600; letter-spacing: -.02em; line-height: 1.15; }
+.ab-tz-key { display: inline-grid; place-items: center; min-width: 3.4rem; min-height: 2.5rem; padding: 0 .5rem; border-radius: .6rem; background: var(--ink); color: var(--chalk); font-family: var(--mono); font-size: .875rem; box-shadow: inset 0 -3px 0 rgba(255,255,255,.14), 0 3px 0 #6d1f02; }
+.ab-tz-keys li:first-child { background: var(--ink); color: #F3F3F5; }
+.ab-tz-keys li:first-child .ab-tz-key { background: var(--orange); color: var(--ink); box-shadow: inset 0 -3px 0 rgba(120,20,0,.3), 0 3px 0 #000; }
+/* live (JS): each tile becomes a little desk clock: city + ceramic dial on top, the local time + its offset key below.
+   The hands rest at twelve, spring round to the time as the tiles come into view, then tick with the minute.
+   Night hours glaze the dial dark. Without JS the tiles stay city + offset key. */
+.ab-tz-face, .ab-tz-now { display: none; }
+.ab-tz-keys.is-live li { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "city face" "now key"; align-items: center; gap: .7rem .5rem; padding: .85rem .75rem .8rem 1rem; }
+.ab-tz-keys.is-live .ab-tz-city { grid-area: city; }
+.ab-tz-keys.is-live .ab-tz-key { grid-area: key; justify-self: end; min-width: 2.9rem; min-height: 2.25rem; padding: 0 .4rem; font-size: .8125rem; }
+.ab-tz-keys.is-live .ab-tz-now { grid-area: now; display: block; font-size: 1.25rem; font-weight: 600; letter-spacing: -.045em; line-height: 1; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.ab-tz-now small { margin-left: .1em; font-family: var(--mono); font-size: .6875rem; font-weight: 500; letter-spacing: 0; color: var(--graphite); }
+.ab-tz-keys li:first-child .ab-tz-now small { color: rgba(243,243,245,.7); }
+.ab-tz-keys.is-live .ab-tz-face { grid-area: face; position: relative; display: block; width: 2.25rem; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle at 34% 26%, #FFFFFF 0%, #F2F2F5 42%, #D3D4DA 100%); box-shadow: inset 0 1px 0 #fff, inset 0 -2px 3px rgba(17,17,20,.16), 0 2px 0 #C5C6CC, 0 8px 12px -8px rgba(17,17,20,.6); transition: background-color .4s; }
+.ab-tz-face::before { content: ''; position: absolute; left: 50%; top: 9%; width: 2px; height: 13%; border-radius: 2px; background: currentColor; opacity: .45; translate: -50% 0; }
+.ab-tz-face::after { content: ''; position: absolute; left: 50%; top: 50%; width: 20%; height: 20%; border-radius: 50%; background: var(--orange); translate: -50% -50%; box-shadow: 0 1px 1px rgba(17,17,20,.35); }
+.ab-tz-face { color: var(--ink); }
+.ab-tz-face i { position: absolute; left: 50%; bottom: 50%; width: 2.5px; margin-left: -1.25px; border-radius: 2px; background: currentColor; transform-origin: 50% 100%; rotate: 0deg; transition: rotate 1.5s var(--spring); }
+.ab-tz-face .ab-tz-h { width: 3px; margin-left: -1.5px; height: 25%; }
+.ab-tz-face .ab-tz-m { height: 36%; }
+.ab-tz-keys.is-set .ab-tz-h { rotate: var(--tz-h, 0deg); }
+.ab-tz-keys.is-set .ab-tz-m { rotate: var(--tz-m, 0deg); }
+.ab-tz-keys li:nth-child(2) .ab-tz-face i { transition-delay: .08s; }
+.ab-tz-keys li:nth-child(3) .ab-tz-face i { transition-delay: .16s; }
+.ab-tz-keys li:nth-child(4) .ab-tz-face i { transition-delay: .24s; }
+.ab-tz-keys.is-swept .ab-tz-face i, .motion-off .ab-tz-face i { transition: none; }
+/* home dial: orange glaze on the ink tile; night dials: dark glaze with chalk hands */
+.ab-tz-keys li:first-child .ab-tz-face { background: radial-gradient(circle at 34% 26%, #FF8A57 0%, var(--orange) 55%, #E04510 100%); box-shadow: inset 0 1px 0 rgba(255,255,255,.4), inset 0 -2px 3px rgba(120,20,0,.35), 0 2px 0 #000; }
+.ab-tz-keys li:first-child .ab-tz-face::after { background: var(--ink); }
+.ab-tz-keys li.is-night .ab-tz-face { color: #F3F3F5; background: radial-gradient(circle at 34% 26%, #5A5A66 0%, #26262D 50%, #0B0B0E 100%); box-shadow: inset 0 1px 0 rgba(255,255,255,.18), inset 0 0 0 1px rgba(255,255,255,.08), 0 2px 0 #000, 0 8px 12px -8px rgba(17,17,20,.6); }
+.ab-tz-keys li.is-night .ab-tz-face::after { background: var(--orange); }
+
+/* ============================================================ tablet + desktop */
+@media (min-width: 640px) {
+  .js .ab-ly-hint { display: inline-flex; }
+  .ab-flap-facts { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .ab-flap-facts > div { display: block; padding: 1rem 1.1rem .9rem 0; }
+  .ab-flap-facts > div + div { padding-left: 1.1rem; border-left: 1px solid rgba(255,255,255,.14); }
+  .ab-flap-facts dd { margin-top: .7rem; font-size: clamp(3rem, 6vw, 5.5rem); }
+  .ab-pr-board { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ab-tz-keys { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .ab-tz-keys li { flex-direction: column; align-items: flex-start; padding: .8rem .8rem .7rem 1rem; min-height: 6rem; }
+  .ab-tz-keys.is-live li { min-height: 0; }
+  .ab-spec { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .ab-spec div:nth-child(even) { padding-left: 0; border-left: 0; }
+  .ab-spec div:not(:nth-child(3n+1)) { padding-left: .9rem; border-left: 1px solid rgba(255,255,255,.14); }
+  .ab-ly-top { grid-template-columns: minmax(0, 1fr) auto; align-items: center; }
+  .ab-ly-card { padding: 1.1rem .7rem 1rem; }
+  .ab-ly-av { width: 3.2rem; height: 3.2rem; }
+  .ab-ly-role { font-size: 1rem; }
+}
+@media (min-width: 768px) {
+  .ab-title { font-size: clamp(3.5rem, 8.4vw, 5.5rem); }
+  .ab-media .ab-tag { left: -3%; }
+  .js .ab-ly-one { margin-top: 0; }
+}
+@media (min-width: 1024px) {
+  .ab-title { font-size: clamp(4rem, 6.4vw, 7rem); }
+  .ab-media { padding-bottom: 0; }
+  .ab-media .ab-tag { left: -10%; bottom: 9%; }
+  /* the lanyard: one long rail of six */
+  .ab-ly-badges { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 1rem; }
+  .ab-ly-slot::before { left: -.5rem; right: -.5rem; border-radius: 0; }
+  .ab-ly-slot:nth-child(3n+1)::before, .ab-ly-slot:nth-child(3n)::before { left: -.5rem; right: -.5rem; border-radius: 0; }
+  .ab-ly-slot:first-child::before { left: -.75rem; border-radius: 99px 0 0 99px; }
+  .ab-ly-slot:last-child::before { right: -.75rem; border-radius: 0 99px 99px 0; }
+  .ab-ly-strap { height: 2.75rem; }
+  .ab-ly-card { padding: 1.3rem .8rem 1.15rem; border-radius: 1.15rem; }
+  .ab-ly-av { width: 3.8rem; height: 3.8rem; border-radius: .9rem; }
+  .ab-ly-role { font-size: 1.0625rem; }
+  /* each badge says its line right under itself, passing it on to the right */
+  .ab-ly-chain { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 1rem; margin-top: 1.4rem; padding-bottom: 0; }
+  .ab-ly-chain .ab-ly-msg:nth-child(even) { top: 0; }
+  .ab-ly-msg { border-radius: .4rem 1.1rem 1.1rem 1.1rem; }
+  .ab-ly-chain .ab-ly-msg:nth-child(even) { border-radius: .4rem 1.1rem 1.1rem 1.1rem; }
+  .ab-ly-chain .ab-ly-msg:not(:last-child)::after { content: '→'; position: absolute; right: -.85rem; top: 50%; z-index: 1; display: grid; place-items: center; width: 1.3rem; height: 1.3rem; margin-top: -.65rem; border-radius: 50%; background: var(--ink); color: #fff; font-size: .75rem; }
+  .ab-ly-chain .ab-ly-msg:nth-child(odd) { transform: rotate(-1deg); }
+  .ab-ly-chain .ab-ly-msg:nth-child(even) { transform: rotate(1deg); }
+  .js .ab-ly-one { grid-template-columns: minmax(0, 1fr) 20rem minmax(0, 1fr); column-gap: 2rem; justify-items: stretch; align-items: start; }
+  .js .ab-ly-zvi { grid-column: 2; width: 100%; }
+  .js .ab-ly-direct { grid-column: 3; grid-row: 1; align-self: center; margin-top: 3rem; width: 100%; max-width: 24rem; }
+  .js .ab-ly-zero { grid-column: 1; grid-row: 1; align-self: center; justify-self: end; margin-top: 3rem; flex-direction: row-reverse; text-align: right; }
+  .ab-ly-zcard { padding: 1.6rem 1.3rem 1.3rem; }
+  .ab-ly-strap-zvi { height: 3.2rem; }
+
+  .ab-who-grid { grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr); gap: clamp(2.5rem, 5vw, 6rem); align-items: center; }
+  .ab-why-grid { grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: clamp(2.5rem, 5vw, 6rem); align-items: center; }
+  .ab-why-media { position: sticky; top: calc(var(--nav-space) + 3rem); align-self: start; margin-top: 4rem; }
+  .ab-pr-board { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.4rem; align-items: start; }
+  .ab-pr-item { padding: 1.9rem 1.6rem 1.7rem; }
+  .ab-pr-2, .ab-pr-5 { margin-top: 2.4rem; }
+  .ab-pr-t { font-size: clamp(1.875rem, 2.5vw, 2.5rem); }
+  .ab-code-grid { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(2.5rem, 5vw, 6rem); align-items: center; }
+  .ab-src-code { padding: 1.3rem 1.4rem 1.4rem; font-size: .875rem; }
+  .ab-tz-grid { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(2.5rem, 5vw, 6rem); align-items: start; }
+  /* the four desk clocks take the full width under the heading + answer, so each dial and time reads big */
+  .ab-tz-grid { row-gap: 0; }
+  .ab-tz-copy { display: contents; }
+  .ab-tz-grid > .sec-title { grid-column: 1; grid-row: 1 / span 2; }
+  .ab-tz-answer { grid-column: 2; grid-row: 1; }
+  .ab-tz-copy > .text-link { grid-column: 2; grid-row: 2; justify-self: start; margin-top: 1.3rem; }
+  .ab-tz-keys { grid-column: 1 / -1; grid-row: 3; gap: 1rem; margin-top: clamp(2.5rem, 4vw, 3.5rem) !important; }
+  .ab-tz-keys.is-live li { gap: 1.4rem .8rem; padding: 1.3rem 1.3rem 1.25rem 1.5rem; border-radius: 1.6rem; }
+  .ab-tz-keys.is-live li:nth-child(odd) { rotate: -.6deg; } .ab-tz-keys.is-live li:nth-child(even) { rotate: .6deg; translate: 0 .5rem; }
+  .ab-tz-keys.is-live .ab-tz-city { font-size: 1.125rem; }
+  .ab-tz-keys.is-live .ab-tz-face { width: 3.75rem; }
+  .ab-tz-keys.is-live .ab-tz-face i { width: 3.5px; margin-left: -1.75px; }
+  .ab-tz-keys.is-live .ab-tz-face .ab-tz-h { width: 4.5px; margin-left: -2.25px; }
+  .ab-tz-keys.is-live .ab-tz-now { font-size: clamp(2rem, 2.6vw, 2.625rem); }
+  .ab-tz-keys.is-live .ab-tz-now small { font-size: .8125rem; }
+  .ab-tz-keys.is-live .ab-tz-key { min-width: 3.4rem; min-height: 2.5rem; padding: 0 .55rem; font-size: .875rem; }
+}
+/* phones: the hero H1 bubble keeps its words on one line down to 320px */
+@media (max-width: 379px) { .ab-tz-keys.is-live li { column-gap: .35rem; padding-right: .65rem; } .ab-tz-keys.is-live .ab-tz-face { width: 2rem; } .ab-tz-keys.is-live .ab-tz-city { letter-spacing: -.035em; } }
+@media (max-width: 359px) {
+  .ab-tz-keys.is-live { grid-template-columns: minmax(0, 1fr); }
+  .ab-title { font-size: 2.5rem; }
+  .ab-ly-role { font-size: .8125rem; }
+  .ab-ly-badges { column-gap: .5rem; }
+}
+/* the a11y widget's bigger text: two badges per rail row (and one bubble per row at 200%) so role names never break */
+@media (max-width: 1023px) {
+  html:is(.a11y-t2, .a11y-t3) .ab-ly-badges { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  html:is(.a11y-t2, .a11y-t3) .ab-ly-slot:nth-child(n)::before { left: -.3125rem; right: -.3125rem; border-radius: 0; }
+  html:is(.a11y-t2, .a11y-t3) .ab-ly-slot:nth-child(2n+1)::before { left: -.5rem; border-radius: 99px 0 0 99px; }
+  html:is(.a11y-t2, .a11y-t3) .ab-ly-slot:nth-child(2n)::before { right: -.5rem; border-radius: 0 99px 99px 0; }
+  html.js:is(.a11y-t2, .a11y-t3) .ab-ly.is-one .ab-ly-slot:nth-child(n+3)::before { opacity: 0; }
+  html.a11y-t3 .ab-ly-chain { grid-template-columns: minmax(0, 1fr); }
+  html.a11y-t3 .ab-ly-chain .ab-ly-msg:nth-child(even) { top: 0; }
+}
+/* every badge in a row is the same height, whatever its role name wraps to */
+.ab-ly-slot { display: flex; flex-direction: column; }
+.ab-ly-badge { flex: 1; display: flex; flex-direction: column; }
+.ab-ly-card { flex: 1; align-content: start; }
+/* the a11y widget's bigger text: the desk clocks go one per row on phones/tablets, two per row on desktop */
+html:is(.a11y-t2, .a11y-t3) .ab-tz-keys.is-live { grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 1024px) { html:is(.a11y-t2, .a11y-t3) .ab-tz-keys.is-live { grid-template-columns: repeat(2, minmax(0, 1fr)); } }

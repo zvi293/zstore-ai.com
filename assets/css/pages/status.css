@@ -1,0 +1,105 @@
+/* Status pages (404.html, thank-you.html) — page-scoped, prefix .st-
+   404: the Z's diagonal lies on the floor; tap "Put the piece back" and it jumps into its slot.
+   Thank you: the brief builds the Z: three pieces fly in and lock together, then the receipt chips pop.
+   On phones the Z leaves the corner and gets its own tray under the buttons. Motion off = final states. */
+
+.st-btn { position: relative; z-index: 3; display: inline-flex; align-items: center; gap: 10px; min-height: 48px; padding: 0 18px 0 7px; border: 0; border-radius: 999px; background: var(--ink); color: #F3F3F5; font: 600 15px/1 var(--sans); letter-spacing: -.01em; cursor: pointer; box-shadow: inset 0 1px 0 rgba(255,255,255,.14), inset 0 -3px 0 rgba(0,0,0,.5), 0 4px 0 #000, 0 16px 26px -14px rgba(17,17,20,.7); transition: transform .45s var(--spring), box-shadow .25s; -webkit-tap-highlight-color: transparent; }
+.st-btn[hidden] { display: none; }
+.st-btn-k { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: radial-gradient(90% 90% at 30% 20%, #FF8A57 0%, var(--orange) 55%, #E8480F 100%); color: var(--ink); font-size: 17px; font-weight: 700; box-shadow: inset 0 1px 0 rgba(255,255,255,.4), inset 0 -2px 0 rgba(120,20,0,.35); transition: transform .6s var(--spring); }
+.st-btn:active { transform: translateY(4px); box-shadow: inset 0 1px 0 rgba(255,255,255,.14), inset 0 -1px 0 rgba(0,0,0,.5), 0 0 0 #000, 0 6px 12px -8px rgba(17,17,20,.6); }
+.st-btn[aria-pressed="true"] .st-btn-k { transform: rotate(-200deg); }
+@media (hover: hover) { .st-btn:hover .st-btn-k { transform: rotate(-30deg) scale(1.08); } .st-btn[aria-pressed="true"]:hover .st-btn-k { transform: rotate(-230deg) scale(1.08); } }
+.st-btn:focus-visible { outline: 3px solid var(--ink); outline-offset: 4px; }
+.st-stage { cursor: pointer; }
+.st-stage .zkit { overflow: visible; }
+
+/* ---------- 404: the missing diagonal */
+.st-oops .kp-diag { opacity: 1; transform: var(--st-loose); animation: stNudge 3.4s ease-in-out 1.4s infinite; }
+.st-oops { --st-loose: translate(-34%, 300%) rotate(4deg); }
+@keyframes stNudge { 0%, 78%, 100% { transform: var(--st-loose); } 84% { transform: var(--st-loose) translateY(-10%) rotate(-5deg); } 90% { transform: var(--st-loose) translateY(0) rotate(3deg); } 95% { transform: var(--st-loose) rotate(-1deg); } }
+.st-oops.is-fixed .kp-diag { transform: rotate(-36.4deg); animation: stFly .95s var(--spring) both; }
+@keyframes stFly { 0% { transform: var(--st-loose); } 45% { transform: translate(-10%, -120%) rotate(-70deg) scale(1.06); } 100% { transform: rotate(-36.4deg); } }
+.st-oops.is-dropped .kp-diag { animation: stDrop .8s var(--spring) both, stNudge 3.4s ease-in-out 2.4s infinite; }
+@keyframes stDrop { 0% { transform: rotate(-36.4deg); } 30% { transform: translate(-6%, -40%) rotate(-50deg); } 100% { transform: var(--st-loose); } }
+.st-oops .kit-ghost { transition: opacity .4s .35s; }
+.st-oops.is-fixed .kit-ghost { opacity: 0; }
+.st-oops.is-fixed .zkit { animation: stBump .7s var(--spring) .55s both; }
+@keyframes stBump { 0% { scale: 1; } 40% { scale: 1.07 .95; } 100% { scale: 1; } }
+.st-oops .sticker { transition: transform .55s var(--spring), background-color .3s, color .3s; }
+.st-oops.is-fixed .sticker { background: var(--ink); color: #F3F3F5; transform: rotate(-5deg) scale(1.06); }
+
+/* ---------- thank you: the brief builds the Z */
+.st-build .kit-piece { animation: stIn 1s var(--spring) both; }
+.st-build .kit-piece { animation-duration: 1.1s; }
+.st-build .kp-top { --fx: -150%; --fy: -230%; --fr: -50deg; animation-delay: .3s; }
+.st-build .kp-diag { --fx: 170%; --fy: -90%; --fr: 40deg; animation-delay: .65s; }
+.st-build .kp-bot { --fx: -110%; --fy: 260%; --fr: 30deg; animation-delay: 1s; }
+@keyframes stIn { 0% { opacity: 0; translate: var(--fx) var(--fy); rotate: var(--fr); } 30% { opacity: 1; } 100% { opacity: 1; translate: 0 0; rotate: 0deg; } }
+.st-build .zkit::before { content: ''; position: absolute; inset: 6%; border-radius: 50%; box-shadow: 0 0 0 2px rgba(255,90,31,.55); opacity: 0; pointer-events: none; }
+.st-build.is-built .zkit::before { animation: stRing 1.1s cubic-bezier(.2,.9,.1,1); }
+@keyframes stRing { 0% { opacity: .9; scale: .7; } 100% { opacity: 0; scale: 1.45; } }
+.st-build.is-built .zkit { animation: stBump .7s var(--spring) both; }
+.st-chips { position: absolute; z-index: 2; list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; justify-items: start; pointer-events: none; }
+.st-chips li { display: inline-flex; align-items: center; gap: 7px; min-height: 32px; padding: 0 12px 0 8px; border-radius: 999px; background: var(--chalk-2); color: var(--ink); font-size: 13px; font-weight: 600; letter-spacing: -.01em; white-space: nowrap; box-shadow: inset 0 1px 0 #fff, inset 0 -2px 0 rgba(17,17,20,.08), 0 10px 18px -12px rgba(17,17,20,.55); }
+.st-chips li::before { content: '✓'; display: grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; background: var(--ink); color: var(--orange); font-size: 11px; font-weight: 700; }
+.st-chips li:first-child { background: var(--orange); }
+.st-chips li:first-child::before { color: #fff; }
+.st-chips li:nth-child(1) { rotate: -4deg; } .st-chips li:nth-child(2) { rotate: 2deg; margin-left: 14px; } .st-chips li:nth-child(3) { rotate: -2deg; margin-left: 4px; }
+.st-build .st-chips li { animation: stChip .6s var(--spring) both; animation-delay: calc(1.6s + var(--i, 0) * .14s); }
+.st-chips li:nth-child(2) { --i: 1; } .st-chips li:nth-child(3) { --i: 2; }
+@keyframes stChip { 0% { opacity: 0; transform: translateY(16px) scale(.5); } 100% { opacity: 1; transform: none; } }
+.st-build .sticker { animation: stChip .6s var(--spring) 1.5s both; }
+
+/* "Next" marker on the first step */
+.st-next { position: relative; }
+.st-next .step-k { position: relative; }
+.st-now { display: inline-flex; align-items: center; gap: 6px; margin-left: 10px; padding: 3px 9px; border-radius: 999px; background: var(--orange); color: var(--ink); font-family: var(--mono); font-size: 11.5px; font-weight: 500; letter-spacing: 0; vertical-align: 3px; transform: rotate(-3deg); }
+.st-now .live-dot { width: 7px; height: 7px; }
+
+/* ---------- desktop / tablet: the big Z stays in the hero column, the button sits under it */
+@media (min-width: 768px) {
+  .st-stage { padding-bottom: 0; }
+  .st-stage .st-btn { position: absolute; right: 2%; bottom: -78px; }
+  .st-oops { --st-loose: translate(-62%, 292%) rotate(5deg); }
+  .st-build .st-chips { left: -9%; bottom: 8%; gap: 10px; }
+  .step-list.st-steps { grid-template-columns: minmax(0, 1fr); }
+  .st-build .st-chips li { min-height: 40px; padding: 0 16px 0 9px; font-size: 15px; gap: 9px; }
+  .st-build .st-chips li::before { width: 24px; height: 24px; font-size: 13px; }
+  .st-build .sticker { min-height: 40px; padding: 0 18px; font-size: 15px; }
+  .st-hero .ph-in { padding-bottom: 72px; }
+}
+
+@media (min-width: 768px) and (max-width: 1279px) {
+  .st-stage .st-btn { bottom: -100px; }
+  .st-hero .ph-in { padding-bottom: 96px; }
+}
+@media (min-width: 768px) and (max-width: 1099px) { .st-build .st-chips { display: none; } }
+
+/* ---------- phones: the Z gets its own tray under the buttons */
+@media (max-width: 767px) {
+  .st-hero .ph-in { grid-template-columns: minmax(0, 1fr); grid-template-areas: "crumbs" "kicker" "title" "lead" "chips" "byline" "actions" "art" "spec"; }
+  .st-hero .ph-art.st-stage { width: 100%; height: 252px; margin: 28px 0 0; align-self: stretch; justify-self: stretch; border-radius: 30px; background: radial-gradient(120% 90% at 30% 10%, #FFFFFF 0%, var(--chalk-2) 50%, #E6E7EA 100%); box-shadow: inset 0 1px 0 #fff, inset 0 -6px 14px -8px rgba(17,17,20,.12), 0 1px 0 rgba(17,17,20,.06), 0 24px 40px -30px rgba(17,17,20,.55); overflow: hidden; }
+  .st-hero .ph-art.st-stage::before { content: ''; position: absolute; left: 18px; right: 18px; bottom: 74px; height: 1px; background: repeating-linear-gradient(90deg, rgba(17,17,20,.18) 0 6px, transparent 6px 12px); }
+  .st-hero .st-stage .zkit { position: absolute; width: 150px; left: 26px; top: 18px; transform: rotate(-8deg); }
+  .st-hero .st-build .zkit { width: 134px; left: 18px; top: 26px; }
+  .st-hero .st-stage .sticker { display: inline-flex; right: 16px; top: 16px; transform: rotate(6deg); }
+  .st-hero .st-stage .st-btn { position: absolute; right: 12px; bottom: 12px; }
+  .st-oops { --st-loose: translate(128%, 300%) rotate(8deg); }
+  .st-hero .st-oops .kp-diag { z-index: 2; }
+  .st-build .st-chips { right: 14px; top: 18px; justify-items: end; }
+  .st-build .st-chips li:nth-child(2) { margin-left: 0; margin-right: 10px; }
+  .st-build .sticker { display: none !important; }
+  .st-build .st-btn { left: auto; }
+  .st-hero .ph-art::after { display: none; }
+}
+@media (max-width: 359px) {
+  .st-hero .ph-art.st-stage { height: 236px; }
+  .st-hero .st-stage .zkit { width: 128px; left: 18px; }
+  .st-build .st-chips li { font-size: 12px; }
+}
+
+/* ---------- quiet: final states, no idle motion */
+.motion-off .st-oops .kp-diag, .motion-off .st-oops.is-fixed .kp-diag, .motion-off .st-oops.is-dropped .kp-diag,
+.motion-off .st-build .kit-piece, .motion-off .st-build .st-chips li, .motion-off .st-build .sticker, .motion-off .st-stage .zkit,
+.motion-off .st-build .zkit::before { animation: none !important; }
+.motion-off .st-btn, .motion-off .st-btn-k, .motion-off .st-oops .kit-ghost, .motion-off .st-oops .sticker { transition: none; }

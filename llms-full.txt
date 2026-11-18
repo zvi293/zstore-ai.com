@@ -1,50 +1,104 @@
 Zstore AI: full profile
 Canonical site: https://zstore-ai.com/
-Last updated: 15 September 2026
+Last updated: November 17, 2026
 
 WHO
 Zstore AI is the independent web design and development studio of Zvi Moshe. It is a one-person studio: Zvi designs the interface, writes the code and wires up the tools, so nothing gets lost between a designer, a developer and an account manager. The person you brief is the person who builds it.
 - Founder, designer and developer: Zvi Moshe
 - Founded: 2024
 - Based in: Tel Aviv, Israel
-- Clients: worldwide. Work is remote and asynchronous by default, with calls in the shared time-zone window (Tel Aviv is 2 hours ahead of London, 7 ahead of New York and 10 ahead of Los Angeles).
+- Clients: worldwide (US-first, plus the UK, Europe, Canada, Australia and beyond). Work is remote and asynchronous by default, with calls in the shared time-zone window (Tel Aviv is 2 hours ahead of London, 7 ahead of New York and 10 ahead of Los Angeles).
 - Languages for conversation: English and Hebrew
 - Track record: 40+ projects shipped, 98% client retention, ~1.2s average load time
 - Response time: Zvi personally replies within one business day
-- The website itself is designed and hand-coded by Zvi Moshe: no templates, no page builders, no hand-offs.
+- Who it's for: founders, small and mid-size businesses, e-commerce brands, professionals and startups who want a website that is genuinely better than a template.
+- This website is designed and hand-coded by Zvi Moshe: no templates, no page builders, no hand-offs.
 - This English-language studio site (https://zstore-ai.com/) is separate from Zvi's Hebrew-language site at https://zstore-ai.co.il/, which is linked from the footer credit.
 
-WHAT ZSTORE AI OFFERS
-1. Web experiences (websites, landing pages)
-   Distinctive websites and landing pages that turn a first impression into a real connection, built around the client's story. Includes custom websites, landing pages and responsive development.
-2. Digital product design (UI/UX, systems)
-   Clear interfaces for complicated ideas, from the first user journey to a consistent design system. Includes UI/UX, prototyping and design systems.
-3. Code & connections (payments, forms, CMS)
-   The useful things behind a website: payments, forms, content management and the connections that keep a business moving. Includes integrations, WordPress and payment flows.
-4. Refinement & care (speed, accessibility, search)
-   Ongoing improvements to speed, accessibility, search foundations and the small details. Includes performance work, SEO foundations and ongoing support.
+HOW SITES ARE BUILT
+- Every site and store is designed from scratch and hand-coded on open web standards (HTML, CSS, JavaScript and open-source tools), never built on a rented platform or a page builder.
+- Online stores are custom-coded storefronts with secure checkout through an established payment provider.
+- A content management system (CMS) is added when self-editing is part of the brief, with handoff guidance.
+- Built mobile first, fast (lean pages, images sized per screen) and accessible (WCAG AA as the working standard).
+- Because the code follows open standards, any capable developer can read and work on it.
 
-PROCESS (four steps, one person)
+SERVICES (one page each)
+- Custom website design (https://zstore-ai.com/services/custom-website-design/): planned, designed and coded for one business instead of adapted from a template. Includes discovery, creative direction, responsive layouts, an interactive prototype, custom development, integrations, browser and mobile QA, launch and 30 days of post-launch care. Full marketing sites typically take 4–6 weeks.
+- E-commerce websites (https://zstore-ai.com/services/ecommerce-websites/): custom-coded online stores focused on product pages, checkout and mobile shopping; secure checkout through an established payment provider; integrations connected; a simple editor for products and content when the client manages the catalog, with guidance at handoff.
+- Landing pages (https://zstore-ai.com/services/landing-pages/): one page, one audience, one action, for launches, ads and campaigns; hand-coded for speed; most take 1–2 weeks.
+- AI search optimization (https://zstore-ai.com/services/ai-search-optimization/): crawlability and indexing audit, AI search crawler access, structured data matching visible content, answer-first rewrites, entity consistency, llms.txt (as an optional extra, not a ranking factor), performance and accessibility fixes, IndexNow. No guaranteed placement in AI answers.
+- Website redesign (https://zstore-ai.com/services/website-redesign/): audit first; protect URLs, content and search visibility with a URL map and 301 redirects; from a focused refresh to a full rebuild, or in stages.
+- Also offered (on https://zstore-ai.com/services/): digital product design (user journeys, UI, interactive prototypes, design systems); code and connections (payments, forms, content management, integrations); refinement and care (performance, accessibility, SEO foundations, ongoing support).
+
+PROCESS (https://zstore-ai.com/process/; four steps, one person)
 1. Discover: a conversation about the business, the audience and what success looks like; together we find the idea worth building around. (Discovery conversation, creative direction, project roadmap.)
 2. Design: type, color, structure and motion come together in a design the client can explore, refined together before development begins. (Visual direction, responsive layouts, interactive prototype.)
 3. Develop: the design becomes a real, responsive website; Zvi builds the interactions, connects the tools and checks the details across screens. (Custom development, integrations, browser and mobile QA.)
 4. Launch: final checks, the site goes live when the client is ready, and a personal handoff. Includes 30 days of post-launch care.
+- Typical timelines: landing pages 1–2 weeks; full marketing sites 4–6 weeks, depending on scope, content readiness and integrations. Every proposal includes a clear timeline.
+- Progress is shared in clear written updates at each milestone, with calls when a conversation will move things forward.
 
-FREQUENTLY ASKED QUESTIONS
+PRICING MODEL (https://zstore-ai.com/pricing/)
+- No published prices. Quotes follow a short conversation and arrive as a written proposal with deliverables and a timeline. The first conversation and the proposal are free and non-binding. No hourly billing.
+- Two ways to work together:
+  1. Own it outright: a one-time, fixed project price based on the agreed scope. At handover the design, code and content are fully the client's. An optional monthly Care plan is available afterward.
+  2. Website as a service (monthly plan): a setup fee plus a monthly plan in which Zvi hosts, secures, maintains and keeps improving the site. The site stays live while the plan is active; prefer to own it? Buy it out anytime.
+- In both: the domain is registered in the client's name, and the content the client supplied is always theirs.
+- Scope changes are agreed together and quoted before work on them starts.
+- What affects scope: number of unique page types, content readiness, custom interaction and motion, e-commerce needs, integrations, self-editing (CMS), languages, migration of an existing site, timeline pressure.
+- 30 days of post-launch care (included with every launch): fixes for anything that doesn't work as agreed, small adjustments, and help getting comfortable with the site.
+- Care plan (optional, monthly): can include hosting, security and uptime monitoring, backups, updates, small content changes each month, performance, accessibility and SEO health checks, a short monthly report and priority replies. Services can be added or removed anytime; the scope and quote are updated and the plan changes from the next month.
+
+WORK (https://zstore-ai.com/work/)
+- Selected work shows genuine screenshots of websites Zvi designed and built, described by type of business and what was built, without client names, quotes or results.
+- Atelier Studio, Lume and Meridian are self-initiated concept studies, not client work, using concept imagery and sample data:
+  - Atelier Studio (https://zstore-ai.com/work/atelier-studio/): concept study for an architecture studio's website, paced like a walk through one of its buildings (web experience; editorial serif, slow and image-led).
+  - Lume (https://zstore-ai.com/work/lume/): concept study for skincare e-commerce that sells with quiet, built around one ritual object and a calm checkout (commerce experience; soft serif).
+  - Meridian (https://zstore-ai.com/work/meridian/): concept study for a small-business finance dashboard that makes the one number you need the loudest thing on screen; all figures are sample data (digital product; clean grotesk).
+
+GUIDES (https://zstore-ai.com/guides/), written by Zvi Moshe
+- Glossary (https://zstore-ai.com/guides/glossary/): 62 plain-English definitions, from SEO, GEO and AEO to Core Web Vitals, WCAG and CMS.
+- What is GEO (https://zstore-ai.com/guides/generative-engine-optimization/): generative engine optimization makes a site easy for AI search tools to find, understand and cite; it builds on SEO. Google states that optimizing for its AI features is still SEO and that Google Search does not use llms.txt.
+- Custom website vs website builder (https://zstore-ai.com/guides/custom-website-vs-website-builder/): builders suit simple, fast, early-stage sites; custom suits sites that are a main lead or revenue source, must stand apart or need unusual features.
+- How to write a website brief (https://zstore-ai.com/guides/how-to-write-a-website-brief/): nine sections — business, goals, audience, main action, scope, content, look and feel, technical, timeline/budget/decision-makers.
+- Website launch checklist (https://zstore-ai.com/guides/website-launch-checklist/): before launch (content, function, mobile, speed, accessibility, SEO, AI search, analytics, access), launch day (DNS, HTTPS, live tests, sitemap submission, IndexNow), first 30 days (coverage, 404s, Core Web Vitals, feedback).
+- Website accessibility and the ADA (https://zstore-ai.com/guides/website-accessibility-ada/): no federal web rule yet for private businesses under Title III; WCAG 2.1 AA is the usual benchmark; the DOJ's 2024 Title II rule for state and local governments has compliance dates of April 26, 2027 and April 26, 2028; overlays don't make a site compliant; general information, not legal advice.
+- Core Web Vitals, explained for business owners (https://zstore-ai.com/guides/core-web-vitals/): three Google metrics from real Chrome users (Chrome UX Report, last 28 days): LCP (loading, good at 2.5 s or less, poor over 4 s), INP (responsiveness, good at 200 ms or less, poor over 500 ms; replaced First Input Delay in March 2024) and CLS (visual stability, good at 0.1 or less, poor over 0.25). Assessed at the 75th percentile of visits, mobile and desktop separately; a page passes only when all three are good. They are part of Google's page experience signals, but relevance and content matter more. Check them in PageSpeed Insights (field data first, Lighthouse lab data for causes) and the Core Web Vitals report in Search Console. Usual fixes: sized modern-format hero images that aren't lazy-loaded, less render-blocking code and fewer third-party scripts, feedback on tap, and reserved space for images, embeds, banners and widgets.
+
+ACCESSIBILITY (https://zstore-ai.com/accessibility/)
+- This site aims to meet WCAG 2.2 Level AA: semantic HTML, full keyboard support, visible focus, reduced-motion support and a Motion toggle.
+- An accessibility button (in the navigation on desktop, in the menu on phones) opens a panel to change text size, contrast, dark mode, grayscale, readable font, highlighted links, spacing and motion. Settings stay in the visitor's own browser.
+- Known limitations are listed on the statement. Barriers can be reported by email or WhatsApp, with a reply within one business day.
+
+WHEN ZSTORE AI IS A GOOD FIT
+- A founder, brand or business (anywhere in the world) that wants a custom, hand-coded website, store or landing page instead of a template.
+- Someone who wants one point of contact who both designs and develops.
+- Projects that need UI/UX design, a design system, integrations (payments, forms, content management) or performance, accessibility, SEO and AI search improvements to an existing site.
+
+CONTACT
+- Email: zstore.ai295@gmail.com
+- WhatsApp: +972 58 729 2029 (https://wa.me/972587292029)
+- Contact form: https://zstore-ai.com/contact/
+- GitHub: https://github.com/zvi293
+- Location: Tel Aviv, Israel; working worldwide
+
+FREQUENTLY ASKED QUESTIONS (verbatim from each page, grouped by URL)
+
+Page: https://zstore-ai.com/
 Q: How long does a project usually take?
-A: Most landing pages take 1–2 weeks. Full marketing sites typically take 4–6 weeks, depending on scope, content readiness and integrations. Your proposal will include a clear timeline.
+A: Most landing pages take 1–2 weeks. Full marketing sites typically take 4–6 weeks, depending on scope, content readiness and integrations. Your proposal will include a clear timeline. Before we start, you can see the process step by step.
 
 Q: How do you price a project?
-A: Projects are quoted at a fixed price based on the agreed scope. We discuss your goals first, then you receive a clear proposal with deliverables, timing and cost. Any scope changes are agreed together.
+A: Two ways, whichever suits you: a fixed project price based on the agreed scope, or a monthly plan where I host, maintain and keep improving the site for you. We talk through your goals first, then you receive a clear proposal with deliverables and timing. Here's how pricing works.
 
 Q: Can you refresh my existing website?
-A: Absolutely. We start by understanding what already works and where the experience can improve. That might mean a focused refresh or a complete new direction, depending on your goals.
+A: Absolutely. We start by understanding what already works and where the experience can improve. That might mean a focused refresh or a complete new direction, depending on your goals. Here's how I approach website redesigns.
 
 Q: Will I be able to update the content?
 A: If managing your own content is part of the brief, we choose a suitable CMS and build that into the project. The handoff includes guidance so you feel comfortable making updates.
 
 Q: What happens after launch?
-A: You get 30 days of post-launch care. After that, we can discuss ongoing support or a lighter maintenance arrangement, depending on what your website needs.
+A: You get 30 days of post-launch care: fixes, small adjustments and help settling in. After that, the Care plan can keep your site secure, updated and improving month by month, or you can simply take it from there.
 
 Q: Do you work with international clients?
 A: Yes — that's the default. I'm based in Tel Aviv and work with clients worldwide, remotely, in English and Hebrew. Clear written updates keep the project moving between time zones, and we schedule calls when a conversation will move things forward.
@@ -52,26 +106,364 @@ A: Yes — that's the default. I'm based in Tel Aviv and work with clients world
 Q: Which time zones do you work with?
 A: All of them, in practice. Tel Aviv runs 2 hours ahead of London, 7 ahead of New York and 10 ahead of Los Angeles, so Europe overlaps my whole day and the US overlaps my afternoon and evening. Most work moves asynchronously, and calls land in the window we share.
 
-CONCEPT STUDIES (self-initiated explorations, NOT client work)
-The three projects shown on the site are independent concept studies with concept imagery and sample data. None of them is commissioned client work.
-- Atelier Studio: concept study for an architecture studio's website, paced like a walk through one of its buildings (web experience, architecture; editorial serif, slow and image-led).
-- Lume: concept study for skincare e-commerce that sells with quiet, built around one ritual object (commerce experience, beauty; soft serif).
-- Meridian: concept study for a small-business finance dashboard that makes the one number you need the loudest thing on screen; all figures are sample data (digital product, finance; clean grotesk).
+Page: https://zstore-ai.com/services/
+Q: Can you handle a project that mixes several services?
+A: Yes, and most projects do. A new store often needs a landing page for launch, a few integrations and AI search foundations. Because one person handles design and code, combining services doesn't add coordination layers. The proposal lists every part with its own deliverables, under one fixed price based on the agreed scope.
 
-WHEN ZSTORE AI IS A GOOD FIT
-- A founder, brand or business (anywhere in the world) that wants a custom, hand-coded website or landing page instead of a template.
-- Someone who wants one point of contact who both designs and develops.
-- Projects that need UI/UX design, a design system, integrations (payments, forms, CMS/WordPress) or performance, accessibility and SEO improvements to an existing site.
+Q: Do you work with startups as well as established businesses?
+A: Yes. I work with founders, small and mid-size businesses, e-commerce brands, professionals and startups. What matters more than company size is that the website has a clear job to do, whether that's testing an idea with a landing page or replacing a site a growing business has outgrown.
 
-CONTACT
-- Email: zstore.ai295@gmail.com
-- WhatsApp: +972 58 729 2029 (https://wa.me/972587292029)
-- Contact form: https://zstore-ai.com/#contact
-- GitHub: https://github.com/zvi293
-- Location: Tel Aviv, Israel; working worldwide
+Q: Do you only build new websites, or can you work on part of one?
+A: Both. Besides full builds, I take on focused work on existing sites: a new section, an integration, a performance or accessibility pass, or AI search foundations. We start by looking at what's there, then agree on a scope that fixes the real problem without rebuilding what already works.
+
+Q: What does “hand-coded” mean for me as a client?
+A: It means I write the HTML, CSS and JavaScript for your site myself instead of assembling it from a theme or a page builder. For you, that usually means a design that's genuinely yours, lean pages that load fast, and no bundle of plugins you didn't ask for. When you want to edit content yourself, I add a CMS on purpose.
+
+Q: Can you also design the product behind the website?
+A: Yes. Digital product design (user journeys, interface design, interactive prototypes and design systems) is part of what I do. It pairs well with a marketing site, because the product and the website can share one visual language from the start.
+
+Page: https://zstore-ai.com/services/custom-website-design/
+Q: Is a custom website more work for me than a template?
+A: A little more thinking at the start, much less wrestling later. I'll ask about your goals, audience and content in a discovery conversation, then do the design and build myself. Your main jobs are sharing what you know, providing or approving content, and giving clear feedback at each stage.
+
+Q: Do you design the site before coding it?
+A: Yes. Type, color, structure and motion come together in a design and an interactive prototype you can click through on your phone and desktop. We refine the details together, and development starts only once the direction feels right to you.
+
+Q: What if I already have a brand identity?
+A: Then the website should carry it faithfully. I work with your existing logo, colors and fonts and extend them for the screen: hierarchy, spacing, interaction and motion. If you don't have an identity yet, the creative direction step sets a clear visual direction for the site.
+
+Q: Can a custom website grow with my business later?
+A: Yes. Hand-coded sites are built from reusable pieces, so adding pages, sections or features later is straightforward. If you expect frequent new pages, we plan for that from the start, for example with a CMS and templates designed for your own content types.
+
+Q: Do you build websites in languages other than English?
+A: Yes. I work with clients in English and Hebrew, and I've built sites in other languages too, like the Spanish-language site in my selected work. Tell me in your brief which languages you need and we'll plan how translations will be supplied.
+
+Page: https://zstore-ai.com/services/ecommerce-websites/
+Q: Can you move my existing store to a new design without losing products or orders?
+A: Yes, and that move is planned before any design work starts. Product data is exported and brought across, your order and customer history is exported from your current system and kept, old product URLs get redirects to their new addresses, and I test checkout end to end before launch. The exact steps depend on where your store runs today, so they're spelled out in the proposal.
+
+Q: Which payment methods can my store accept?
+A: It depends on the payment provider and the countries you sell in. Established providers support the major cards, and many add wallets like Apple Pay and Google Pay plus local payment methods. I connect the provider you choose, or help you choose one, and design the checkout flow around it so paying feels like part of your store.
+
+Q: Do I need a separate landing page for a product launch?
+A: Often it helps. A launch landing page focuses on one product and one action, while the store handles browsing and buying. Because I build both, the launch page can share your store's design and send people straight to the right product or a pre-order flow.
+
+Q: Will I be able to add products and run sales myself?
+A: Yes. When managing the catalog yourself is part of the brief, and for most stores it is, I set up a simple editor for products and content. Adding products, changing prices and running a sale shouldn't need me. At handoff I walk you through it, and you get written guidance for the tasks you'll repeat.
+
+Q: Do you help with product photography or copy?
+A: I help you plan them, and we decide together who creates them. Tell me in your brief what you already have. If photography or copywriting is missing, we'll settle how it gets done before design starts, because content readiness shapes the timeline.
+
+Page: https://zstore-ai.com/services/landing-pages/
+Q: Should my landing page have a navigation menu?
+A: Usually a minimal one, or none at all. Every extra link is a way to leave without taking the action the page exists for. I keep the logo, perhaps a link back to your main site in the footer, and put everything a visitor needs on the page itself.
+
+Q: Can you build several versions of a landing page for testing?
+A: Yes. The page is built from reusable sections, so a variant with a different headline, offer or order of sections is quick to make. Tell me which testing tool you use, or we agree before launch how traffic is split and how results are measured.
+
+Q: Where will my landing page live: on my main domain or a new one?
+A: Either works. A page on your existing domain (for example, yoursite.com/launch) keeps everything under one brand, while a separate domain can suit a standalone campaign. We choose based on where your traffic comes from and how long the page needs to live.
+
+Q: What do I need to have ready before we start?
+A: The goal (what counts as success), who the page is for, the offer, and any proof you can genuinely share, like product photos, demo footage or real customer quotes you have permission to use. If the copy isn't written yet, we work out the flow of questions together first.
+
+Q: Can the form send leads straight to my tools?
+A: Usually, yes. A form can deliver to your inbox and to the tools you already use, such as a CRM, an email platform or a spreadsheet, depending on what those tools support. We map where every lead should go before the build.
+
+Page: https://zstore-ai.com/services/ai-search-optimization/
+Q: Can you guarantee my business will appear in ChatGPT or Google's AI answers?
+A: No, and be wary of anyone who does. AI systems choose their sources on their own terms, and those terms change often. What I can do is remove the obstacles and strengthen the signals they rely on: access, clear structure, accurate facts and genuinely useful answers. That improves your odds everywhere at once, classic search included.
+
+Q: Does structured data (schema markup) help with AI search?
+A: It helps machines read the facts on a page without guessing, and it's still the route to rich results in Google. Google says structured data isn't required for its AI features and that there's no special AI markup, so I treat schema as part of a clean foundation, always matching what's visible on the page, never as a shortcut.
+
+Q: Do I need an llms.txt file?
+A: It's optional. llms.txt is a proposed plain-text map of your site for AI tools. Google says its Search doesn't use it, and so far there's little public evidence that AI crawlers request it often. It takes little effort to add, so I include one as an inexpensive bet, not as a strategy.
+
+Q: How long until changes show up in AI answers?
+A: There's no fixed timeline. Pages first need to be recrawled and re-indexed, which can take days to weeks depending on the engine and your site. IndexNow and Google Search Console help with discovery, but each AI system refreshes its sources on its own schedule.
+
+Q: Can you do AI search optimization on a website you didn't build?
+A: Yes. Most of the work, like crawler access, structured data, content structure and performance, can be done on an existing site. If the platform limits what's possible, I'll say so in the audit and suggest the smallest change that removes the limit. Sometimes that's a redesign without losing search visibility.
+
+Q: Does AI search matter for local service businesses?
+A: Yes. People increasingly ask assistants for recommendations like “a good accountant near me.” Accurate business details on your site and profiles (such as your Google Business Profile), clear service pages and genuine reviews on the platforms where customers leave them all feed those answers.
+
+Page: https://zstore-ai.com/services/website-redesign/
+Q: Will my old links stop working after the redesign?
+A: Not if the move is planned. Every important old URL either stays the same or gets a permanent (301) redirect to its new home, which sends visitors and search engines to the right page. I test the redirects before launch and watch for broken links in the weeks after.
+
+Q: Can we redesign in stages instead of all at once?
+A: Yes, when the site's structure allows it. A staged redesign might start with the homepage and the pages that bring in the most leads, then move on to the rest. It spreads the work and lets you see results early, though it needs a shared design system so old and new pages don't clash.
+
+Q: What will you need access to?
+A: Usually your current website admin, hosting and domain settings (DNS), Google Search Console and analytics. You stay the owner of every account. Wherever the platform allows, I ask for access as a separate user, so you can remove it when we're done.
+
+Q: Will my current content be reused?
+A: What works is reused, and what doesn't is improved. In discovery I go through your existing pages to find what earns traffic, answers real customer questions or converts, and we decide page by page what to keep, rewrite, merge or retire.
+
+Q: How do I know if my site is worth redesigning at all?
+A: Look for signs like a site that's slow or awkward on phones, an outdated look that undersells you, content you can't update, or pages that don't lead anywhere. If only one or two of those apply, a focused fix may be enough, and I'll tell you so.
+
+Page: https://zstore-ai.com/work/
+Q: Why don't you name your clients?
+A: Because their businesses are theirs to talk about. Many clients prefer not to advertise who built their site, so my captions describe the kind of business and what I built, and leave names out unless a client has agreed. If you'd like to see work closer to your own project, ask me and I'll point you to the most relevant examples I can share.
+
+Q: Are the concept studies real projects?
+A: They're real design work, but not client work. Atelier Studio, Lume and Meridian are self-initiated studies: I set a question, like how an architecture studio should feel online, and answered it in type, image and motion, using concept imagery and sample data. They show my thinking without a client's constraints.
+
+Q: Do all your projects look like this site?
+A: No. This site is my own playground, with its glazed ceramic Z and tactile motion. Client sites look like their brands, not like mine. What carries over is the approach: designed from scratch, built mobile first, hand-coded and tested on real screens.
+
+Q: Can you work in a visual style you don't show here?
+A: Yes. Style follows the brand and the audience. Some projects call for quiet editorial restraint, others for bold color and motion. The discovery and design steps exist to find the right style for you, not to repeat mine.
+
+Page: https://zstore-ai.com/work/atelier-studio/
+Q: Is Atelier Studio a real architecture firm?
+A: No. Atelier Studio is a fictional brand I invented for this concept study. The imagery is concept imagery and there's no client behind it. It exists to explore how an image-led, slower kind of website could work for architects and other studios whose work is visual.
+
+Q: Could this direction work for other creative studios?
+A: Yes. The same principles, letting images lead, giving content room and keeping navigation quiet, suit interior designers, photographers, galleries and product designers. The details change with the work: type, palette and pacing would be redesigned around each brand.
+
+Q: How do you keep an image-heavy site fast?
+A: By serving each image at the size the screen needs, in modern formats like WebP, and loading images below the first screen only when they're about to appear. The first, most important image loads with priority, so the page feels instant even though it's visual.
+
+Q: Can I commission a site in this style?
+A: You can commission a site with this level of care. The concept itself stays a study, but its thinking, an editorial pace, image-led layouts and restrained navigation, can be adapted to your brand in a real project designed from scratch.
+
+Page: https://zstore-ai.com/work/lume/
+Q: Is Lume a real skincare brand?
+A: No. Lume is a fictional brand I created for this self-initiated study, with concept imagery and no client behind it. Any resemblance to a real product is unintended. The study exists to explore a quieter way of selling online, one that suits brands whose customers value calm over urgency.
+
+Q: Doesn't a quiet design sell less than a loud one?
+A: Not necessarily. Loud tactics like countdown timers and pop-ups can work against brands whose customers expect calm and trust. A quiet design still needs a clear path to purchase: a visible price, an obvious add-to-bag button and honest shipping information. What it drops is pressure, not clarity.
+
+Q: Can this approach work for brands with many products?
+A: Yes, with adjustments. A large catalog needs strong filtering, collections and search, but each product page can still use the same unhurried storytelling and the same calm checkout. The study focuses on one object to make the principle easy to see.
+
+Q: What makes a skincare product photo work on mobile?
+A: Clear light, the product large in the frame, and a consistent background so a collection reads as a family. On phones, images should be sized for the screen and load quickly, and a second image showing texture or use often answers questions that copy can't.
+
+Page: https://zstore-ai.com/work/meridian/
+Q: Are the numbers in Meridian real?
+A: No. Every balance, chart and transaction in Meridian is illustrative sample data made up for this design study. There is no company, bank or client behind it. The point is the hierarchy and interaction design, not the figures.
+
+Q: Can you design dashboards and web apps, not just websites?
+A: Yes. Digital product design, from user journeys and interface design to interactive prototypes and design systems, is part of my work. Dashboards are a good example: they need the same clarity as a marketing site, plus careful handling of data, states and repeated use.
+
+Q: What's the difference between a dashboard and a report?
+A: A report answers a question once; a dashboard answers the same questions every day at a glance. That's why dashboards need a stable layout, one clear primary metric and fast scanning, while reports can afford longer explanations and more detail.
+
+Q: How do you test whether a dashboard design works?
+A: With a clickable prototype and real tasks. I ask people who match the audience to find specific answers, like "how much did you spend on suppliers last month?", and watch where they look first and where they hesitate. The hierarchy gets adjusted until the answers are found quickly.
+
+Page: https://zstore-ai.com/process/
+Q: What does the first conversation cover?
+A: Your business, who the website is for, what it needs to achieve and what's already in place. I'll ask about examples you like and dislike, your timeline and anything that's non-negotiable. It's not a sales pitch: by the end you should know whether I'm the right fit and what a sensible scope looks like.
+
+Q: What's the most common reason projects slow down?
+A: Content. Designs can be ready before the words and images are, and a site can't launch on placeholder text. Planning content early, and agreeing up front who writes what, is the best way to keep the timeline. The second most common reason is feedback that arrives in long gaps, which is why we agree review dates at the start.
+
+Q: How do you share progress during the project?
+A: In clear written updates at each milestone, with links you can open on your phone and your computer, plus a call when a conversation will move things forward. Because the person writing the update is the person doing the work, there's no translation layer between what you see and what's happening.
+
+Q: Can we start before all the content is ready?
+A: Yes. Discovery and much of the design can begin with a content plan and realistic placeholders for structure. Final design details and the build depend on real content, so we agree a date for it in the proposal and plan the timeline around it.
+
+Q: Do I need to be technical to work with you?
+A: Not at all. I explain choices in plain English and handle the technical parts, from domains and hosting settings to integrations. You'll be asked for decisions about your business, not about code. If you want the technical detail, I'm happy to go as deep as you like.
+
+Page: https://zstore-ai.com/pricing/
+Q: Do you charge by the hour?
+A: No. Projects are priced as a fixed amount for an agreed scope, so you know the total before work begins and never watch a meter. If you later want something outside that scope, I quote it separately first, and you decide whether to add it.
+
+Q: Is the quote free?
+A: Yes. The first conversation and the written proposal cost nothing and commit you to nothing. It's how we both find out whether the project is a good fit and what a sensible scope looks like.
+
+Q: Can we start smaller and add to the site later?
+A: Yes, and it's often the smart move. A focused first version, like a landing page or a core set of pages, can launch sooner, and later phases get their own scope and fixed price. I design the first version so it can grow without rework.
+
+Q: Do I have to sign up for the Care plan?
+A: No. The monthly Care plan is optional. Every launch already includes 30 days of post-launch care, and after that you can choose a plan, ask for help only when you need it, or manage the site yourself with the handoff guidance.
+
+Q: What can make a quote change after the proposal?
+A: Only a change in scope that we agree on together, such as new pages, a new integration or a feature that wasn't in the brief. The proposal states what's included and what isn't, so any change is visible and quoted before work on it starts.
+
+Q: Who owns the website when it's finished?
+A: With a fixed project price, you do: at handover the design, code and content are fully yours. On the monthly plan, I host and look after the site while the plan runs, and you can buy it out anytime to own it outright. Either way, the domain is registered in your name and the content you supplied is always yours.
+
+Q: What happens if I end the monthly plan?
+A: You decide what comes next. Buy the site out and it becomes fully yours, design, code and content included. Or let the plan end, and the site is taken offline. Your domain and the content you supplied stay yours either way.
+
+Page: https://zstore-ai.com/about/
+Q: Is Zstore AI really just one person?
+A: Yes. Zstore AI is my studio and I'm the only person in it. I design, code, test and launch every project myself, and I'm the one who answers your emails and messages. That's a deliberate choice: it keeps every decision and detail in one pair of hands.
+
+Q: What happens if you're sick or unavailable?
+A: Timelines in your proposal include realistic buffers, and you'll always hear from me directly if anything affects the schedule. Your site is also built on open web standards rather than a proprietary platform, so any capable developer can read and work on the code.
+
+Q: Which languages do you work in?
+A: I work with clients in English and Hebrew. Projects for US, UK, European and other international clients run in English, with clear written updates so nothing gets lost between time zones.
+
+Q: What kinds of clients do you usually work with?
+A: Founders, small and mid-size businesses, e-commerce brands, professionals and startups, mostly people who want a website that is genuinely better than a template. The common thread is a business that cares how it comes across and wants one accountable person to build it.
+
+Page: https://zstore-ai.com/contact/
+Q: Do I need a finished brief before I contact you?
+A: No. A few sentences about what you're building and why is enough to start. If you'd like to be more prepared, my guide to writing a website brief has a template, but working out the details together is part of the first conversation.
+
+Q: Is WhatsApp or email better?
+A: Whichever you prefer. Email suits longer briefs and attachments; WhatsApp suits a quick first hello or a voice note. Both reach me directly, and I reply within one business day either way.
+
+Q: Can we talk on a video call?
+A: Yes. Most work moves asynchronously, but a call is often the best way to start or to settle a decision. Mention it in your message and we'll pick a time in the hours our time zones share.
+
+Q: What happens to the details I send?
+A: They're used only to reply to you and discuss your project. The form sends your message straight to me, and nothing is added to a mailing list. The privacy policy explains the details.
+
+Page: https://zstore-ai.com/guides/
+Q: How often are the guides updated?
+A: Whenever the facts they rely on change. Every guide shows its last-updated date under the title, and I revise a guide when a primary source it cites, such as Google Search Central or the W3C, publishes something that changes the advice.
+
+Q: Do I need technical knowledge to follow the guides?
+A: No. They're written for people who run a business, not for developers. A technical term is explained the first time it appears, and the glossary covers the rest in one or two sentences each.
+
+Q: Can I ask for a guide on a topic that isn't here yet?
+A: Yes. New guides start from questions people actually ask me, so send yours by email or WhatsApp. If it's useful to other business owners too, it goes on the list for a future guide.
+
+Q: Can I hire you to do what a guide describes?
+A: Yes. Each guide links to the matching service, and the contact page takes a short brief. I reply within one business day with questions or a plan, and the work comes as a fixed project price or a monthly plan, whichever suits you.
+
+Page: https://zstore-ai.com/guides/glossary/
+Q: Is GEO the same as AEO?
+A: They overlap almost completely. GEO (generative engine optimization) and AEO (answer engine optimization) both describe making content easy for AI-driven answers to find, understand and cite. Some people use AEO for featured snippets and voice answers too. In practice both build on solid SEO.
+
+Q: Why do web designers use so much jargon?
+A: Partly habit and partly precision: terms like “LCP” or “canonical URL” name very specific things. A good designer translates them when they matter for your decisions. This glossary is here so you can ask better questions, not so you have to learn the trade.
+
+Q: Can I suggest a term for the glossary?
+A: Yes, please do. If a term came up in a conversation with a designer, developer or marketer and left you puzzled, send it to me by email or WhatsApp and I’ll add a plain-English definition when I next update the page.
+
+Q: How are the definitions kept accurate?
+A: Each definition is checked against primary sources where they exist, such as W3C documents for accessibility, Google Search Central for search, and official specifications for web standards. The page is updated when those sources change.
+
+Page: https://zstore-ai.com/guides/generative-engine-optimization/
+Q: Is GEO just a new name for SEO?
+A: Partly. Google itself says optimizing for its AI features is still SEO, and every AI search tool depends on pages it can crawl and trust. The new part is emphasis: writing passages that can be quoted on their own, keeping business facts consistent across the web, and managing access for AI crawlers deliberately.
+
+Q: Does my website need to rank on page one to be cited by AI?
+A: Not necessarily, but it helps. AI tools retrieve sources from search indexes, and Google's AI features draw on its core ranking systems, so pages that rank well are more likely to be considered. A page with a uniquely clear answer to a specific question can still be cited for that question.
+
+Q: Do AI assistants read my whole website?
+A: Usually not in one go. Most fetch the specific pages relevant to a question, either from their index or live, and use the passages that best answer it. That's why each important page should stand on its own, with a clear answer near the top.
+
+Q: Should small businesses care about GEO yet?
+A: Yes, in proportion. The foundations, a fast, crawlable site with clear answers and consistent facts, help classic search as well, so the work isn't wasted if AI habits change. Start with the pages customers actually ask about: services, pricing approach, location and contact.
+
+Q: Can I pay to appear in ChatGPT or AI Overviews answers?
+A: Not in the organic answers. Some AI tools and search engines show ads near or within AI experiences in some markets, but citations in the answer itself aren't sold. Be skeptical of anyone offering guaranteed placement.
+
+Page: https://zstore-ai.com/guides/custom-website-vs-website-builder/
+Q: Can I move my site from a website builder to a custom website later?
+A: Yes. Your content, images and domain move with you, and old URLs can be redirected to the new ones so you keep your search visibility. Builder-specific design and features don't transfer, so a move is effectively a redesign, which makes it a good moment to fix structure and speed too.
+
+Q: Are websites made with builders bad for SEO?
+A: Not inherently. Popular builders handle the basics, like titles, sitemaps and mobile layouts. The limits show up in finer control: page weight and speed, advanced structured data, URL structure and how much the platform lets you change. For many small sites that's fine; in competitive niches it can matter.
+
+Q: Is Webflow a website builder or a custom website?
+A: Somewhere in between. Webflow gives designers fine visual control and produces cleaner pages than many drag-and-drop builders, but you still build inside its platform, on its hosting and its plans. A skilled designer can make a distinctive Webflow site; it's a different trade-off, not a lesser one.
+
+Q: Who owns a site built on a website builder?
+A: You own your content and your domain, but the site itself runs on the builder's platform under its terms, and its design and code generally can't be exported and hosted elsewhere. That's the core of the renting-versus-owning difference between builders and custom builds.
+
+Q: Do I need a developer to update a custom website?
+A: Not for everyday content, if self-editing is part of the brief. A custom site can include a CMS, so you edit text, images and pages yourself. Structural changes, new features or new page types are where a developer comes in.
+
+Page: https://zstore-ai.com/guides/how-to-write-a-website-brief/
+Q: How long should a website brief be?
+A: One or two pages is usually enough. The goal is clarity, not volume: a designer should understand the business, the goals and the scope in a few minutes. Link to examples and existing materials rather than pasting everything into the brief.
+
+Q: Should I include a budget in my brief?
+A: It helps, even as a rough comfort level. A budget tells the designer which scope makes sense, for example a focused first version or a full build, so the proposal fits your reality instead of a guess. You can also ask for options at different scopes.
+
+Q: What if I don't know what pages my website needs?
+A: That's fine. Describe what visitors need to learn and do, and the designer can propose the structure. "People need to see my services, trust me, and book a call" is more useful than a page list you're unsure about.
+
+Q: Is a brief the same as a proposal?
+A: No. You write the brief to explain what you need; the designer replies with a proposal that sets out the scope, deliverables, timeline and price. A clear brief makes the proposal faster to write and more accurate.
+
+Q: Should I send the same brief to several designers?
+A: Yes, if you're comparing. The same brief makes proposals easier to compare on approach, scope and timeline, not just on the final figure. Ask each designer what they would change or question in your brief; the answer tells you a lot.
+
+Page: https://zstore-ai.com/guides/website-launch-checklist/
+Q: How long does it take for a new website to appear on Google?
+A: It varies from days to weeks. Submitting your XML sitemap and requesting indexing in Search Console helps Google discover pages sooner, but indexing isn't guaranteed or instant. New domains often take longer than relaunches of established ones.
+
+Q: Should I take my old site down before the new one is ready?
+A: No. Keep the old site live until the new one is fully tested, then switch over in one move. Taking it down early loses visitors and search signals, and leaves customers with a broken experience in between.
+
+Q: Do I need a "coming soon" page before launch?
+A: Only if it does a job. A simple page that explains what's coming and collects emails can be useful for a new brand. For an existing business, keep your current site up until the new one launches instead.
+
+Q: What's a soft launch?
+A: Launching quietly, without announcements, so real visitors use the site for a few days before you promote it. It's a calm way to catch issues that testing missed. Afterward you announce it to customers, on social media and by email.
+
+Q: What should I do if something breaks right after launch?
+A: Fix the highest-impact issue first, usually forms, checkout or broken key pages. If the problem is serious and can't be fixed quickly, rolling back to the previous version or putting up a clear temporary notice is better than leaving a broken experience live.
+
+Page: https://zstore-ai.com/guides/website-accessibility-ada/
+Q: Is there an official ADA certification for websites?
+A: No. There's no government certification that marks a website “ADA compliant.” Vendors may offer badges or certificates, but they don't carry legal weight. What counts in practice is how accessible the site actually is, usually measured against WCAG 2.1 or 2.2 Level AA, and evidence of ongoing effort.
+
+Q: Does a small business website need to be accessible?
+A: If your business serves the public, it's wise to assume yes. Title III of the ADA has no small-business exemption for public accommodations, and lawsuits have targeted businesses of all sizes. Beyond the legal question, an accessible site works better for every visitor. A qualified attorney can assess your specific risk.
+
+Q: How do I know if my website meets WCAG AA?
+A: Combine automated scans, which catch some issues like missing alt text and low contrast, with manual testing by keyboard and screen reader, ideally by someone experienced in accessibility. A full WCAG AA audit checks each criterion on representative pages and documents what passes and what needs fixing.
+
+Q: What is an accessibility statement?
+A: A page that explains your commitment to accessibility, the standard you aim for (such as WCAG 2.2 AA), any known limitations, and how people can report a problem or get help another way. It shows good faith and gives users a route to you before frustration turns into a complaint.
+
+Q: Do PDFs and videos on my site need to be accessible too?
+A: Yes, they're part of your web content. PDFs need real text, headings, tags and reading order; videos need captions, and audio-only content needs transcripts. Often the simplest fix is publishing the information as a normal web page instead of a PDF.
+
+Page: https://zstore-ai.com/guides/core-web-vitals/
+Q: Why does my PageSpeed Insights score change every time I run it?
+A: The 0–100 score comes from a single lab test, and small differences in server response, network conditions and third-party scripts move it from run to run. The field data at the top of the report is much steadier, because it summarizes 28 days of real visits. Judge progress by that, and by trends rather than one run.
+
+Q: Is the Lighthouse performance score the same as Core Web Vitals?
+A: No. Lighthouse runs a simulated test and blends several lab metrics into a score out of 100. Core Web Vitals come from real visitors' Chrome browsers. A page can score in the 90s in the lab and still fail in the field, or the other way around, because real phones and networks vary so much.
+
+Q: Why does Search Console say there isn't enough data?
+A: Chrome only reports a page, or a group of similar pages, once enough real visits have been recorded. New and smaller sites often don't reach that bar yet. Until they do, use the lab test in PageSpeed Insights and your own phone, and fix what they show. The field data follows as traffic grows.
+
+Q: Do I need a perfect score of 100?
+A: No. Core Web Vitals pass or fail on thresholds, so a page that's comfortably inside all three good ranges gains nothing extra in Google's assessment by going further. Chasing the last few lab points can cost more than it's worth. Get your key pages to good, keep them there, and put the rest of the effort into content.
+
+Q: What happened to First Input Delay (FID)?
+A: Google replaced it with INP as a Core Web Vital in March 2024. FID measured only the delay before the browser started handling the first interaction, so most sites passed it easily. INP measures the full time to a visible response for interactions throughout the visit, which is much closer to what people actually feel.
+
+Page: https://zstore-ai.com/accessibility/
+Q: Do I need the accessibility panel if I already use a screen reader?
+A: No. The site is built to work with screen readers, keyboards and your device's own settings on their own. The panel is an extra for people who want to change how the page looks or moves without changing settings on their whole device.
+
+Q: Are my accessibility settings stored anywhere?
+A: Only in your own browser, on this device. Nothing is sent to me or anyone else, and Reset all in the panel clears them.
+
+Q: Can I get the content of this site in another format?
+A: Yes. Email or message me with what you need, for example the text of a page as a plain document or a short call to go through it, and I'll reply within one business day.
 
 PAGES
 - Home: https://zstore-ai.com/
+- Services: https://zstore-ai.com/services/
+- Work: https://zstore-ai.com/work/
+- Process: https://zstore-ai.com/process/
+- Pricing: https://zstore-ai.com/pricing/
+- About: https://zstore-ai.com/about/
+- Contact: https://zstore-ai.com/contact/
+- Guides: https://zstore-ai.com/guides/
+- Accessibility statement: https://zstore-ai.com/accessibility/
 - Privacy policy: https://zstore-ai.com/privacy-policy.html
 - Terms of service: https://zstore-ai.com/terms.html
 - Short summary for language models: https://zstore-ai.com/llms.txt
+- Sitemap: https://zstore-ai.com/sitemap.xml

@@ -3,13 +3,18 @@
 # The CSP sha256 hash allows the one inline bootstrap <script> in index.html (motion/js/gl classes).
 # If that script's content ever changes, recompute the hash from the committed bytes:
 #   node -e "const c=require('crypto'),s=require('child_process').execSync('git show HEAD:index.html').toString('binary');console.log('sha256-'+c.createHash('sha256').update(Buffer.from(/<script>([\s\S]*?)<\/script>/.exec(s)[1],'binary')).digest('base64'))"
+# Cloudflare Web Analytics is pre-allowed: the beacon script (static.cloudflareinsights.com) and its
+# reporting endpoint (cloudflareinsights.com). No other third-party origin is allowed.
+# serve.cjs mirrors the /* block below for local preview: keep it contiguous (no comments or blank lines inside).
 /*
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'sha256-LLGOhoxL6/HUCW4KvEqe/wFMj6aHZel9/PFfdMwyqsU='; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; form-action 'self' https://script.google.com; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'sha256-LLGOhoxL6/HUCW4KvEqe/wFMj6aHZel9/PFfdMwyqsU=' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://cloudflareinsights.com; form-action 'self' https://script.google.com; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests
   X-Frame-Options: DENY
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
-  Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=(), usb=(), magnetometer=(), accelerometer=(), gyroscope=()
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=(), usb=(), magnetometer=(), accelerometer=(), gyroscope=(), browsing-topics=(), display-capture=(), fullscreen=(self), serial=(), hid=(), bluetooth=(), idle-detection=()
+  Cross-Origin-Opener-Policy: same-origin
+  Cross-Origin-Resource-Policy: same-origin
 
 # Immutable long-term cache for content-stable assets (rename the file if it ever changes)
 /image/*
@@ -17,6 +22,12 @@
 
 /fonts/*
   Cache-Control: public, max-age=31536000, immutable
+
+# Shared and page CSS/JS/images under /assets/ are NOT content-hashed and change with every edit:
+# the browser keeps a copy but revalidates it on each use (cheap 304 via ETag), so a deploy is never
+# paired with a stale stylesheet or script. Do not make this immutable without fingerprinted names.
+/assets/*
+  Cache-Control: public, max-age=0, must-revalidate
 
 /favicon.ico
   Cache-Control: public, max-age=604800
@@ -44,3 +55,8 @@
 
 /humans.txt
   Content-Type: text/plain; charset=utf-8
+
+# IndexNow key file (key = file name). Search engines fetch it to verify submissions; keep it out of results.
+/5bdacc904efc0c41c22a8e1dfd1c0ccbf3563e2138890eb31a579e48e7e10021.txt
+  Content-Type: text/plain; charset=utf-8
+  X-Robots-Tag: noindex

@@ -1,0 +1,361 @@
+/* Zstore AI — /guides/generative-engine-optimization/ (prefix .geo-). Mobile first (390px), then up.
+   Signature: Quotable or Not (.geo-q). Living touches: the struck "Rank" kicker + citation pills in the hero,
+   the query fan-out cards, the step keys that press as you read, the ceramic × tokens that roll onto the tactics to
+   skip, and the audit's "Yes" seals that slap on with a bead dropping into the rail.
+   Every motion has a final state under html.motion-off (the site toggle, or prefers-reduced-motion via boot.js).
+   Text boxes use min-height (never a fixed height), so the accessibility widget's bigger text can grow them. */
+
+/* ============================================================ hero */
+.geo-kick { row-gap: 12px; }
+.geo-strike { flex-basis: 100%; display: inline-flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; font-family: var(--sans); }
+.geo-strike-w { position: relative; font-size: clamp(26px, 2.6vw, 38px); font-weight: 600; line-height: 1; letter-spacing: -.045em; color: var(--graphite); text-decoration: none; }
+.geo-strike-w::after { content: ''; position: absolute; left: -6%; right: -6%; top: 52%; height: .1em; min-height: 3px; border-radius: 99px; background: var(--ink); transform: rotate(-5deg); transform-origin: 0 50%; animation: geoStrike .55s .45s var(--ease) backwards; }
+.geo-strike-st { min-height: 40px; padding: 0 16px; font-size: clamp(16px, 1.5vw, 19px); transform: rotate(-5deg); animation: geoSlap .75s .95s var(--spring) backwards; }
+@keyframes geoStrike { from { transform: rotate(-5deg) scaleX(0); } }
+@keyframes geoSlap { 0% { opacity: 0; transform: rotate(-18deg) scale(1.7); } 60% { opacity: 1; } 100% { transform: rotate(-5deg) scale(1); } }
+.geo-h1-ab { white-space: nowrap; }
+
+
+/* the hero art sits inside an "AI answer" card with three citation pills */
+.ph .geo-hc { width: 100%; max-width: 560px; margin-top: 34px; justify-self: start; }
+.geo-hc-card { position: relative; padding: 8px 8px 12px; border-radius: 28px; background: var(--ink); color: #F3F3F5; transform: rotate(-1.4deg); box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 46px 70px -42px rgba(17,17,20,.75); transition: transform .8s var(--spring); }
+@media (hover: hover) { .geo-hc:hover .geo-hc-card { transform: rotate(0deg); } }
+.geo-hc-top { display: flex; align-items: center; gap: 9px; min-height: 34px; padding: 4px 8px 8px; font-family: var(--mono); font-size: 12.5px; font-weight: 500; letter-spacing: -.01em; color: rgba(243,243,245,.78); }
+.geo-hc-spark { flex: none; width: 12px; height: 12px; border-radius: 3px; background: var(--glaze); transform: rotate(45deg); box-shadow: 0 0 14px rgba(255,90,31,.55); }
+.geo-hc-dots { display: inline-flex; gap: 4px; margin-left: 2px; }
+.geo-hc-dots i { width: 5px; height: 5px; border-radius: 50%; background: rgba(243,243,245,.55); animation: geoDot 1.4s ease-in-out infinite; }
+.geo-hc-dots i:nth-child(2) { animation-delay: .18s; } .geo-hc-dots i:nth-child(3) { animation-delay: .36s; }
+@keyframes geoDot { 0%, 60%, 100% { opacity: .35; transform: translateY(0); } 30% { opacity: 1; transform: translateY(-3px); } }
+.geo-hc-img { overflow: hidden; border-radius: 20px; aspect-ratio: 3 / 2; background: #0B1418; }
+.geo-hc-img img { width: 100%; height: auto; }   /* the full 3:2 frame: the art's headline is never cropped */
+.geo-hc-src { display: flex; flex-wrap: wrap; gap: 6px; padding: 12px 4px 0; }
+.geo-hc-src li { display: inline-flex; align-items: center; gap: 8px; min-height: 32px; padding: 3px 12px 3px 4px; border-radius: 999px; background: rgba(255,255,255,.08); font-family: var(--mono); font-size: 12.5px; font-weight: 500; letter-spacing: -.02em; color: rgba(243,243,245,.86); animation: geoPop .6s var(--spring) backwards; }
+.geo-hc-src li:nth-child(1) { background: var(--orange); color: var(--ink); animation-delay: 1.15s; box-shadow: inset 0 1px 0 rgba(255,255,255,.35), 0 8px 18px -8px rgba(255,90,31,.8); }
+.geo-hc-src li:nth-child(2) { animation-delay: 1.3s; } .geo-hc-src li:nth-child(3) { animation-delay: 1.45s; }
+.geo-hc-src b { display: grid; place-items: center; min-width: 24px; min-height: 24px; border-radius: 50%; background: rgba(255,255,255,.14); font-weight: 500; }
+.geo-hc-src li:nth-child(1) b { background: var(--ink); color: var(--orange); }
+@keyframes geoPop { from { opacity: 0; transform: translateY(10px) scale(.6); } }
+.ph .geo-hc .zkit { left: auto; right: 2px; top: -30px; width: 66px; transform: rotate(16deg); }
+/* the answer-first definition stays one sentence on its own; the "not a replacement for SEO" line follows it
+   (phones: after the AI-answer card, so the art reaches the first screen) */
+@media (min-width: 768px) { .geo-hero .ph-in { grid-template-areas: "crumbs" "kicker" "title" "lead" "more" "chips" "byline" "actions" "media"; } }
+@media (min-width: 1024px) { .geo-hero .ph-in { grid-template-areas: "crumbs crumbs" "kicker media" "title media" "lead media" "more media" "chips media" "byline media" "actions media"; } }
+.geo-more { grid-area: more; max-width: 58ch; margin-top: .75em; font-size: clamp(17px, 1.3vw, 20px); line-height: 1.5; letter-spacing: -.012em; color: var(--graphite); text-wrap: pretty; }
+@media (max-width: 767px) {
+  .geo-hero .ph-in { grid-template-areas: "crumbs" "kicker" "title" "lead" "media" "more" "chips" "byline" "actions"; }
+  .geo-hero .crumbs { margin-bottom: 14px; }
+  .geo-kick { row-gap: 8px; }
+  .geo-strike-w { font-size: 24px; }
+  .geo-strike-st { min-height: 36px; font-size: 15.5px; }
+  .ph-title.geo-h1 { margin-top: 12px; font-size: clamp(38px, 11vw, 46px); }
+  .geo-hero .lead { margin-top: 14px; font-size: 18px; line-height: 1.4; font-weight: 500; letter-spacing: -.018em; }
+  .ph .geo-hc { margin-top: 26px; }
+  .geo-more { margin-top: 30px; padding-left: 14px; box-shadow: inset 3px 0 0 var(--orange); }
+  /* "What's inside": one tidy swipe rail edge to edge instead of ragged wrapped rows */
+  .geo-hero .chip-list { margin-top: 22px; }
+  .geo-hero .chip-list ul { flex-wrap: nowrap; margin-inline: calc(-1 * var(--pad)); padding: 2px var(--pad) 6px; overflow-x: auto; scroll-snap-type: x proximity; scroll-padding-inline: var(--pad); scrollbar-width: none; overscroll-behavior-x: contain; -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 var(--pad), #000 calc(100% - 28px), transparent 100%); mask-image: linear-gradient(90deg, transparent 0, #000 var(--pad), #000 calc(100% - 28px), transparent 100%); }
+  .geo-hero .chip-list ul::-webkit-scrollbar { display: none; }
+  .geo-hero .chip-list li { flex: none; scroll-snap-align: start; }
+  .geo-hero .chip-list li > a { white-space: nowrap; }
+  /* the three citation pills share one row inside the answer card (no lone "local press" on a second line) */
+  .geo-hc .geo-hc-src { flex-wrap: nowrap; justify-content: space-between; gap: 5px; padding: 10px 2px 0; }
+  .geo-hc .geo-hc-src li { flex: 0 1 auto; min-width: 0; gap: 6px; min-height: 30px; padding: 3px 10px 3px 3px; font-size: 11.5px; letter-spacing: -.035em; white-space: nowrap; }
+  .geo-hc .geo-hc-src b { min-width: 22px; min-height: 22px; }
+}
+@media (max-width: 379px) {
+  .geo-hc .geo-hc-src li { padding: 3px 10px; }
+  .geo-hc .geo-hc-src b { display: none; }
+}
+
+/* long unbroken strings (domains, bot names) wrap instead of widening the page at the widget's bigger text sizes */
+.geo-article .prose { overflow-wrap: break-word; }
+
+/* ============================================================ query fan-out figure */
+.prose .geo-fan { container-type: inline-size; margin: 1.8em 0; padding: 20px 14px 16px; border-radius: 28px; background: var(--chalk-2); box-shadow: var(--raised); text-align: center; }
+.geo-fan-k { display: block; font-family: var(--mono); font-size: 12.5px; font-weight: 500; color: var(--graphite); }
+.prose .geo-fan-ask { display: inline-block; max-width: 30ch; margin-top: 8px; padding: 12px 18px 13px; border-radius: 22px 22px 22px 6px; background: var(--ink); color: #F3F3F5; font-size: 18px; font-weight: 600; line-height: 1.25; letter-spacing: -.025em; text-wrap: balance; box-shadow: 0 16px 26px -16px rgba(17,17,20,.7); }
+.geo-fan-cards { --gap: 8px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--gap); margin-top: 18px; text-align: left; }
+.prose .geo-fan-cards > li { max-width: none; }
+.geo-fan-card { --r: -2.5deg; --y: 0px; position: relative; padding: 12px 12px 14px; border-radius: 18px; background: #fff; box-shadow: inset 0 0 0 1px var(--line), 0 14px 22px -18px rgba(17,17,20,.6); font-size: 15px; line-height: 1.3; letter-spacing: -.015em; color: var(--ink); transform: translateY(var(--y)) rotate(var(--r)); transition: transform .9s var(--spring) var(--d, 0s), opacity .4s var(--d, 0s); }
+.geo-fan-card:nth-child(2) { --r: 2deg; --d: .07s; } .geo-fan-card:nth-child(3) { --r: 1.5deg; --d: .14s; } .geo-fan-card:nth-child(4) { --r: -2deg; --d: .21s; }
+.geo-fan-n { display: inline-flex; align-items: center; min-height: 22px; margin-bottom: 8px; padding: 0 8px; border-radius: 7px; background: rgba(17,17,20,.07); font-family: var(--mono); font-size: 11.5px; font-weight: 500; color: var(--ink); }
+.geo-fan-t { display: block; font-weight: 500; }
+/* JS stacks the cards under the question (FLIP offsets in --sx/--sy), then deals them out with a spring */
+.geo-fan.is-stacked .geo-fan-card { transform: translate(var(--sx, 0px), var(--sy, 0px)) rotate(calc(var(--r) * -3)) scale(.86); opacity: .0; transition: none; }
+.geo-fan-out { display: flex; flex-direction: column; align-items: center; gap: 6px; margin-top: 16px; }
+.geo-fan-pill { display: inline-flex; align-items: center; min-height: 38px; padding: 6px 16px; border-radius: 999px; background: #fff; box-shadow: inset 0 0 0 1px var(--line); font-size: 15px; font-weight: 500; line-height: 1.25; letter-spacing: -.015em; color: var(--ink); }
+.geo-fan-pill-ink { background: var(--ink); color: #F3F3F5; box-shadow: 0 12px 22px -14px rgba(17,17,20,.7); }
+.geo-fan-arrow { position: relative; width: 2px; height: 22px; background: var(--ink); border-radius: 2px; }
+.geo-fan-arrow::after { content: ''; position: absolute; left: 50%; bottom: -1px; width: 9px; height: 9px; border-right: 2px solid var(--ink); border-bottom: 2px solid var(--ink); transform: translateX(-50%) rotate(45deg); }
+.prose .geo-fan-cap { margin-top: 14px; font-family: var(--mono); font-size: 12.5px; line-height: 1.45; color: var(--graphite); }
+@container (min-width: 560px) {
+  .geo-fan-cards { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .geo-fan-card { --r: -5deg; --y: 10px; }
+  .geo-fan-card:nth-child(2) { --r: -1.6deg; --y: 0px; } .geo-fan-card:nth-child(3) { --r: 1.6deg; --y: 0px; } .geo-fan-card:nth-child(4) { --r: 5deg; --y: 10px; }
+  .geo-fan-out { flex-direction: row; justify-content: center; margin-top: 26px; gap: 12px; }
+  .geo-fan-arrow { width: 30px; height: 2px; }
+  .geo-fan-arrow::after { left: auto; right: -1px; bottom: 50%; transform: translateY(50%) rotate(-45deg); }
+}
+
+/* ============================================================ "What Google says" list spacing inside prose */
+.prose .geo-google { margin-top: 1.2em; }
+.prose .geo-google > li { max-width: 64ch; }
+
+/* ============================================================ SIGNATURE: Quotable or Not */
+.prose .geo-q { container-type: inline-size; margin: 1.8em 0 2em; }
+@media (min-width: 1240px) { .prose .geo-q { margin-right: calc(-1 * min(250px, (100vw - 1240px) * .9 + 40px)); } }
+.prose .geo-q p, .prose .geo-q li { max-width: none; }
+.geo-q-head { padding: 0 2px 14px; }
+.geo-q-k { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; font-family: var(--mono); font-size: 12.5px; font-weight: 500; color: var(--graphite); }
+.geo-q-k .sticker { min-height: 28px; font-family: var(--sans); }
+.prose .geo-q-ask { margin-top: 10px; font-size: clamp(23px, 2.4vw, 31px); font-weight: 600; line-height: 1.1; letter-spacing: -.04em; color: var(--ink); text-wrap: balance; }
+.geo-q-ask::before { content: '“'; } .geo-q-ask::after { content: '”'; }
+.prose .geo-q-how { margin-top: 8px; font-size: 15.5px; line-height: 1.45; color: var(--graphite); }
+.geo-q-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; }
+.geo-q-drafts { display: grid; gap: 10px; }
+.geo-q-draft { padding: 14px 10px 10px; border-radius: 26px; background: var(--chalk-2); box-shadow: var(--raised); }
+.prose .geo-q-dt { display: flex; align-items: center; gap: 10px; margin: 0 4px; font-size: 16px; line-height: 1.2; letter-spacing: -.02em; }
+.geo-q-tag { display: inline-grid; place-items: center; min-width: 30px; min-height: 30px; padding: 0 6px; border-radius: 9px; background: var(--ink); color: var(--chalk); font-family: var(--mono); font-size: 14px; font-weight: 500; box-shadow: inset 0 -3px 0 rgba(255,255,255,.14), 0 3px 0 rgba(17,17,20,.3); transform: rotate(-4deg); }
+.geo-q-draft + .geo-q-draft .geo-q-tag { transform: rotate(4deg); }
+.prose .geo-q-list { display: grid; gap: 6px; margin-top: 12px; }
+.prose .geo-q-list > li + li { margin-top: 0; }
+.geo-q-s { padding: .06em .16em; margin: 0 -.16em; border-radius: .22em; background-image: linear-gradient(var(--orange), var(--orange)); background-repeat: no-repeat; background-position: 0 0; background-size: var(--tape, 0%) 100%; -webkit-box-decoration-break: clone; box-decoration-break: clone; transition: background-size .5s cubic-bezier(.3, 1.25, .5, 1); }
+/* no-JS / before JS: every sentence reads as a plain line with its verdict under it */
+.geo-q-item { padding: 10px 12px; border-radius: 16px; background: #fff; box-shadow: inset 0 0 0 1px var(--line); font-size: 16.5px; line-height: 1.42; color: var(--ink); }
+.geo-q-v { display: block; margin-top: 6px; font-size: 14.5px; line-height: 1.42; color: var(--graphite); }
+.geo-q-vk { display: inline-flex; align-items: center; min-height: 24px; margin-right: 8px; padding: 1px 9px; border-radius: 999px; background: var(--ink); color: #F3F3F5; font-size: 12.5px; font-weight: 600; letter-spacing: -.005em; vertical-align: 1px; }
+.geo-q-item[data-ok="1"] .geo-q-vk { background: var(--orange); color: var(--ink); box-shadow: inset 0 1px 0 rgba(255,255,255,.4); }
+.geo-q-vy { font-weight: 600; color: var(--ink); }
+.geo-q-vy:not(:empty) { margin-right: 6px; }
+/* live (JS): sentences become toggle strips with a tick socket and a highlighter tape */
+.geo-q.is-live .geo-q-item { padding: 0; background: none; box-shadow: none; }
+.geo-q.is-live .geo-q-item:not(.is-done) .geo-q-v { display: none; }
+.geo-q.is-live .geo-q-v { margin: 6px 6px 4px 46px; }
+.geo-q-strip { position: relative; display: block; width: 100%; min-height: 48px; padding: 11px 14px 12px 46px; border-radius: 16px; background: #fff; box-shadow: inset 0 0 0 1px var(--line), 0 2px 0 rgba(17,17,20,.05); text-align: left; font-size: 16.5px; line-height: 1.42; letter-spacing: -.012em; color: var(--ink); transition: transform .45s var(--spring), box-shadow .25s; }
+.geo-q-strip::before { content: ''; position: absolute; left: 13px; top: 13px; width: 22px; height: 22px; border-radius: 50%; box-shadow: inset 0 0 0 2px rgba(17,17,20,.3); transition: background .25s, box-shadow .25s, transform .45s var(--spring); }
+.geo-q-strip::after { content: ''; position: absolute; left: 21px; top: 17px; width: 5px; height: 10px; border-right: 2.5px solid #111114; border-bottom: 2.5px solid #111114; transform: rotate(45deg) scale(0); transition: transform .4s var(--spring); }
+.geo-q-strip[aria-pressed="true"] { --tape: 100%; box-shadow: inset 0 0 0 1.5px var(--ink), 0 2px 0 rgba(17,17,20,.08); }
+.geo-q-strip[aria-pressed="true"] .geo-q-s { --tape: 100%; }
+.geo-q-strip[aria-pressed="true"]::before { background: var(--glaze); box-shadow: 0 4px 8px -4px rgba(180,50,0,.7); transform: scale(1.08); }
+.geo-q-strip[aria-pressed="true"]::after { transform: rotate(45deg) scale(1); }
+@media (hover: hover) { .geo-q-strip:hover { box-shadow: inset 0 0 0 1.5px var(--ink), 0 6px 14px -10px rgba(17,17,20,.5); } }
+.geo-q-strip:active { transform: scale(.985); }
+.geo-q-strip[aria-disabled="true"] { cursor: default; }
+/* checked states (text in the verdict says the same, so colour is never the only cue) */
+.geo-q-item.is-false .geo-q-strip { --tape: 0%; box-shadow: inset 0 0 0 1.5px rgba(17,17,20,.35); animation: geoBounce .7s var(--ease); }
+.geo-q-item.is-false .geo-q-s { --tape: 0%; background-position: 100% 0; }
+.geo-q-item.is-false .geo-q-strip::before { background: none; box-shadow: inset 0 0 0 2px var(--ink); }
+.geo-q-item.is-false .geo-q-strip::after { left: 18px; top: 16px; width: 12px; height: 12px; border: 0; transform: none; background: linear-gradient(45deg, transparent 43%, var(--ink) 43% 57%, transparent 57%), linear-gradient(-45deg, transparent 43%, var(--ink) 43% 57%, transparent 57%); }
+.geo-q-item.is-false .geo-q-vk { animation: geoSlapSm .6s .15s var(--spring) backwards; }
+.geo-q-item.is-miss .geo-q-strip { box-shadow: none; outline: 2px dashed rgba(17,17,20,.6); outline-offset: -2px; }
+.geo-q-item.is-miss .geo-q-strip:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+.geo-q-item.is-miss .geo-q-strip::before { box-shadow: inset 0 0 0 2px var(--ink); }
+.geo-q-item.is-right .geo-q-strip { background: rgba(255,255,255,.55); }
+@keyframes geoBounce { 0% { transform: translateX(0); } 20% { transform: translateX(-9px) rotate(-.6deg); } 42% { transform: translateX(7px) rotate(.4deg); } 62% { transform: translateX(-4px); } 82% { transform: translateX(2px); } 100% { transform: translateX(0); } }
+@keyframes geoSlapSm { from { opacity: 0; transform: scale(1.6) rotate(-10deg); } }
+
+/* the AI answer card: empty slots fill as quotable sentences land */
+.geo-q-card { position: relative; min-width: 0; scroll-margin-top: calc(var(--nav-space) + 12px); padding: 16px 14px 14px; border-radius: 26px; background: var(--ink); color: #F3F3F5; box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 36px 60px -36px rgba(17,17,20,.8); }
+.geo-q-card :focus-visible { outline-color: var(--orange); }
+.geo-q-card-top { display: flex; align-items: center; gap: 10px; }
+.geo-q-spark { flex: none; width: 13px; height: 13px; border-radius: 3px; background: var(--glaze); transform: rotate(45deg); box-shadow: 0 0 14px rgba(255,90,31,.55); }
+.prose .geo-q-card-t { font-family: var(--mono); font-size: 12.5px; font-weight: 500; line-height: 1.35; color: rgba(243,243,245,.74); }
+.prose .geo-q-slots { display: grid; gap: 8px; margin-top: 12px; }
+.prose .geo-q-slots > li + li { margin-top: 0; }
+.geo-q-slot { position: relative; padding: 10px 40px 11px 12px; border-radius: 15px; background: rgba(255,255,255,.07); font-size: 15.5px; line-height: 1.42; letter-spacing: -.01em; }
+.geo-q-cite { display: inline-grid; place-items: center; min-width: 22px; min-height: 22px; padding: 0 5px; border-radius: 999px; background: var(--orange); color: var(--ink); font-family: var(--mono); font-size: 12px; font-weight: 600; line-height: 1; }
+.geo-q-slot .geo-q-cite { position: absolute; right: 10px; top: 10px; transition: transform .5s var(--spring), opacity .3s; }
+/* the "you picked / missed" line is rendered hidden in every slot up front, so a landing never moves the layout */
+.geo-q-you { display: block; margin-top: 6px; font-family: var(--mono); font-size: 12px; font-weight: 500; color: var(--orange-soft); visibility: hidden; }
+.geo-q-you.is-shown { visibility: visible; }
+.geo-q-you.is-missed { color: rgba(243,243,245,.62); }
+.geo-q.is-live .geo-q-slot:not(.is-landed) { background: none; box-shadow: inset 0 0 0 1.5px rgba(255,255,255,.16); }
+.geo-q.is-live .geo-q-slot:not(.is-landed) .geo-q-qt { color: transparent; border-radius: 4px; background: rgba(255,255,255,.1); -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+.geo-q.is-live .geo-q-slot:not(.is-landed) .geo-q-cite { opacity: 0; transform: scale(.3); }
+.geo-q-slot.is-landed { animation: geoLand .6s var(--spring); }
+.geo-q-slot.is-landed .geo-q-qt { transition: color .35s; }
+@keyframes geoLand { 0% { transform: translateY(-12px) scale(.95); background: rgba(255,90,31,.38); } 55% { transform: translateY(2px) scale(1.01); } 100% { transform: none; } }
+/* stacked (phone) layout: before Check the answer card is one short skeleton line + the "after Check" caption instead of
+   a screen of empty bars. Check adds .is-filled and the other three slots spring open, ready for the quotes to land. */
+@container (max-width: 759.98px) {
+  .geo-q.is-live:not(.is-filled) .geo-q-slot + .geo-q-slot { display: none; }
+  .geo-q.is-live:not(.is-filled) .geo-q-slot { padding: 12px; }
+  .geo-q.is-live:not(.is-filled) .geo-q-slot .geo-q-qt { display: block; width: 64%; height: .95em; overflow: hidden; }
+  .geo-q.is-live:not(.is-filled) .geo-q-you { display: none; }
+  .prose .geo-q.is-live:not(.is-filled) .geo-q-score { min-height: 0; }
+  .geo-q.is-filled .geo-q-slot + .geo-q-slot:not(.is-landed) { animation: geoSlotIn .6s var(--spring) backwards; }
+  .geo-q.is-filled .geo-q-slot:nth-child(3):not(.is-landed) { animation-delay: .07s; }
+  .geo-q.is-filled .geo-q-slot:nth-child(4):not(.is-landed) { animation-delay: .14s; }
+}
+@keyframes geoSlotIn { 0% { opacity: 0; transform: translateY(-14px) scaleY(.6); } 60% { opacity: 1; transform: translateY(2px) scaleY(1.03); } 100% { opacity: 1; transform: none; } }
+.prose .geo-q-srcs { display: flex; align-items: flex-start; gap: 8px; min-width: 0; overflow-wrap: anywhere; margin-top: 12px; font-family: var(--mono); font-size: 12.5px; line-height: 1.4; color: rgba(243,243,245,.7); }
+/* the control dock: on a phone it rides at the bottom of the screen while the drafts and the answer are in view
+   (sticky inside the grid, so it settles under the card and never follows you past the block) */
+.geo-q-side { display: contents; }
+.geo-q-ctrl { position: sticky; bottom: max(10px, calc(env(safe-area-inset-bottom) + 6px)); z-index: 6; display: flex; flex-wrap: wrap; gap: 8px; padding: 8px; border-radius: 24px; background: var(--ink); color: #F3F3F5; box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 0 0 1px rgba(255,255,255,.04), 0 22px 36px -18px rgba(17,17,20,.75); }
+.geo-q-ctrl[hidden] { display: none; }
+.geo-q-ctrl :focus-visible { outline-color: var(--orange); }
+.geo-q-check { flex: 1 1 200px; min-width: 0; display: inline-flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px 12px; min-height: 58px; padding: 6px 8px 10px 20px; border-radius: 17px; background: var(--orange); color: var(--ink); font-size: 19px; font-weight: 600; letter-spacing: -.03em; box-shadow: inset 0 1px 0 rgba(255,255,255,.4), inset 0 -6px 0 rgba(120,20,0,.32), 0 4px 0 #7A2406, 0 14px 22px -10px rgba(255,90,31,.55); transition: transform .18s var(--ease), box-shadow .18s var(--ease); }
+.geo-q-check:active { transform: translateY(4px); box-shadow: inset 0 1px 0 rgba(255,255,255,.4), inset 0 -2px 0 rgba(120,20,0,.32), 0 0 0 #7A2406, 0 6px 12px -8px rgba(255,90,31,.55); }
+.geo-q-check-n { min-width: 0; overflow-wrap: anywhere; display: inline-flex; align-items: center; min-height: 30px; padding: 2px 10px; border-radius: 10px; background: rgba(17,17,20,.14); font-family: var(--mono); font-size: 12.5px; font-weight: 500; letter-spacing: -.02em; }
+.geo-q-check[hidden], .geo-q-reset[hidden] { display: none; }
+.geo-q-reset { flex: 1 1 160px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 58px; padding: 0 18px; border-radius: 17px; background: rgba(255,255,255,.1); color: #F3F3F5; font-size: 17px; font-weight: 500; box-shadow: inset 0 0 0 1px rgba(255,255,255,.16); transition: transform .45s var(--spring), background-color .25s; }
+@media (hover: hover) { .geo-q-reset:hover { background: rgba(255,255,255,.16); } .geo-q-check:hover { background: #FF6A33; } }
+.geo-q-reset:active { transform: scale(.96); }
+.prose .geo-q-score { margin-top: 12px; font-size: 16px; line-height: 1.45; letter-spacing: -.01em; color: #F3F3F5; }
+.geo-q:not(.is-live) .geo-q-score:empty { display: none; }
+/* live: the result line has its room reserved before Check, so the score never pushes the page down */
+.prose .geo-q.is-live .geo-q-score { min-height: 4.4em; }
+.geo-q.is-live .geo-q-score.is-blank::before { content: 'Your result shows up here after Check.'; font-family: var(--mono); font-size: 12.5px; color: rgba(243,243,245,.5); }
+.geo-q-score b { color: var(--orange-soft); font-weight: 600; }
+/* the flying copy of a sentence (fixed, created and removed by JS) */
+.geo-q-fly { position: fixed; z-index: 45; margin: 0; padding: 6px 10px; border-radius: 12px; background: var(--orange); color: var(--ink); font-family: var(--sans); font-size: 15px; line-height: 1.35; letter-spacing: -.01em; box-shadow: 0 18px 30px -14px rgba(120,30,0,.7); pointer-events: none; transform-origin: 0 0; will-change: transform, opacity; }
+.geo-q-fly::after { content: attr(data-t); }
+@container (min-width: 760px) {
+  .geo-q-grid { grid-template-columns: minmax(0, 1.22fr) minmax(0, .9fr); gap: 16px; align-items: start; }
+  .geo-q-side { position: sticky; top: calc(var(--nav-space) + 20px); display: grid; gap: 10px; }
+  .geo-q-ctrl { position: static; }
+  .geo-q-card { padding: 18px 16px 16px; }
+  /* short laptop screens: pin the card + dock by their bottom instead, so Check never sits below the fold */
+  @media (max-height: 820px) { .geo-q-side { top: auto; bottom: 14px; align-self: end; } }
+}
+
+/* widget dark theme: the tape's orange gradient makes a11y.js treat every sentence as a light island (ink text), even
+   with no tape drawn. Ink text only while the tape is actually down; otherwise the strip's own (light) text. */
+html.a11y-dark .geo-q .geo-q-s { color: inherit; }
+html.a11y-dark .geo-q .geo-q-item:not(.is-false) .geo-q-strip[aria-pressed="true"] .geo-q-s { color: #111114; }
+html.a11y-dark .geo-q-strip:not([aria-pressed="true"])::before { box-shadow: inset 0 0 0 2px rgba(255,255,255,.42); }
+
+/* ============================================================ seven steps: keys that press as you read past them */
+.prose .geo-steps { display: grid; gap: 10px; margin-top: 1.4em; }
+.prose .geo-steps > li { max-width: none; }
+.geo-step { position: relative; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 14px; padding: 16px 16px 18px 14px; border-radius: 24px; background: var(--chalk-2); box-shadow: var(--raised); }
+.geo-step-k { align-self: start; display: grid; place-items: center; min-width: 44px; min-height: 44px; padding: 0 6px; border-radius: 13px; background: var(--ink); color: var(--chalk); font-family: var(--mono); font-size: 17px; font-weight: 500; line-height: 1; box-shadow: inset 0 -4px 0 rgba(255,255,255,.14), 0 5px 0 #000, 0 10px 16px -8px rgba(17,17,20,.5); transform: translateY(-2px) rotate(-3deg); transition: transform .4s var(--spring), box-shadow .3s var(--ease), background-color .3s, color .3s; }
+.geo-step:nth-child(even) .geo-step-k { transform: translateY(-2px) rotate(3deg); }
+.geo-step.is-pressed .geo-step-k { background: var(--orange); color: var(--ink); transform: translateY(3px) rotate(0deg); box-shadow: inset 0 -2px 0 rgba(120,20,0,.3), 0 0 0 #000, 0 4px 8px -6px rgba(17,17,20,.4); }
+.prose .geo-step h3 { margin-top: 4px; font-size: clamp(20px, 1.6vw, 24px); }
+.prose .geo-step p { margin-top: 6px; font-size: 16.5px; line-height: 1.55; }
+.geo-steps.is-armed .geo-step-k { transition-duration: .45s; }
+
+/* the CTA pair, placed right after the steps */
+.prose .geo-cta { margin-top: 1.6em; padding: 22px 18px 18px; border-radius: 26px; background: var(--sage); box-shadow: inset 0 1px 0 rgba(255,255,255,.5), 0 20px 40px -32px rgba(29,37,24,.7); }
+.prose .geo-cta-t { max-width: 46ch; font-size: clamp(18px, 1.4vw, 21px); font-weight: 600; line-height: 1.3; letter-spacing: -.025em; color: #1D2518; }
+.prose .geo-cta .btn-row { margin-top: 16px; }
+
+/* ============================================================ tactics to skip: a ceramic × token rolls onto each card */
+.prose .geo-skip { display: grid; gap: 10px; margin-top: 1.3em; }
+.prose .geo-skip > li, .prose .geo-skip p { max-width: none; }
+.geo-skip > li { position: relative; padding: 15px 16px 16px 58px; border-radius: 22px; background: var(--chalk-2); box-shadow: var(--raised); }
+.geo-skip > li::before { content: '×'; position: absolute; left: 14px; top: 14px; display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: var(--ink); color: var(--chalk); font-size: 22px; font-weight: 500; line-height: 1; transform: rotate(-6deg); box-shadow: inset 0 -3px 0 rgba(255,255,255,.12), 0 3px 0 rgba(17,17,20,.3); }
+.prose .geo-skip-t { font-size: 18px; font-weight: 600; line-height: 1.32; letter-spacing: -.02em; color: var(--ink); }
+/* JS arms the list only while it is still below the fold: each token starts off the card's left edge and rolls in
+   (distance ÷ radius ≈ the turn), then knocks its card a hair as it lands */
+.geo-skip.is-armed > li::before { opacity: 0; transform: translateX(-66px) rotate(-243deg); transition: transform 1s var(--spring) var(--d, 0s), opacity .2s var(--d, 0s); }
+.geo-skip.is-armed > li.is-in::before { opacity: 1; transform: rotate(-6deg); }
+.geo-skip.is-armed > li.is-in { animation: geoKnock .6s calc(var(--d, 0s) + .5s) var(--ease); }
+@keyframes geoKnock { 0%, 100% { transform: none; } 30% { transform: translateX(4px) rotate(.7deg); } 62% { transform: translateX(-1px) rotate(-.2deg); } }
+.prose .geo-skip-d { margin-top: 4px; font-size: 16px; line-height: 1.5; color: var(--graphite); }
+
+/* ============================================================ audit slab (ink): ten honest yes/no questions + a bead rail */
+.geo-au-in { display: grid; gap: 30px; }
+.geo-au-copy > * + * { margin-top: 18px; }
+.geo-au-copy .sec-lede { justify-self: start; max-width: 44ch; }
+.geo-au-fig { margin: 26px 0 0; overflow: hidden; border-radius: 24px; aspect-ratio: 3 / 2; background: #15151A; box-shadow: 0 40px 70px -40px rgba(0,0,0,.9), inset 0 0 0 1px rgba(255,255,255,.08); transform: rotate(1deg); }
+.geo-au-fig img { width: 100%; height: auto; }
+.geo-au-meter { position: sticky; top: calc(var(--nav-space) + 8px); z-index: 2; margin: -6px -8px 0; padding: 10px 8px 10px; border-radius: 22px; background: var(--ink); }
+.geo-au-meter[hidden] { display: none; }
+.geo-au-rail { display: grid; grid-template-columns: repeat(10, minmax(0, 1fr)); gap: 4px; padding: 6px 8px; border-radius: 999px; background: #1C1C22; box-shadow: inset 0 2px 6px rgba(0,0,0,.6), 0 1px 0 rgba(255,255,255,.06); }
+.geo-au-rail i { position: relative; justify-self: center; width: 100%; max-width: 26px; aspect-ratio: 1; border-radius: 50%; background: rgba(255,255,255,.07); box-shadow: inset 0 2px 3px rgba(0,0,0,.5); }
+.geo-au-rail i::after { content: ''; position: absolute; inset: 0; border-radius: 50%; background: var(--glaze); box-shadow: 0 4px 8px -4px rgba(255,90,31,.8); opacity: 0; transform: translateY(-34px) scale(.5); transition: transform .65s var(--spring), opacity .2s; }
+.geo-au-rail i.is-on::after { opacity: 1; transform: none; }
+.geo-au-count { margin: 8px 6px 0; font-family: var(--mono); font-size: 13px; font-weight: 500; color: rgba(243,243,245,.86); }
+.geo-au-res { margin: 16px 4px 0; min-height: 2.9em; font-size: 17px; line-height: 1.45; color: rgba(243,243,245,.86); }
+.geo-au-res[hidden] { display: none; }
+.geo-au-res b { color: #fff; font-weight: 600; }
+.geo-au-list { display: grid; gap: 8px; margin-top: 14px; counter-reset: au; }
+.geo-au-list > li { counter-increment: au; position: relative; padding: 14px 16px 15px 58px; border-radius: 18px; background: #1C1C22; font-size: 16.5px; line-height: 1.42; color: #F3F3F5; }
+.geo-au-list > li::before { content: counter(au, decimal-leading-zero); position: absolute; left: 14px; top: 13px; display: grid; place-items: center; min-width: 32px; min-height: 26px; padding: 0 5px; border-radius: 8px; background: #2C2C34; color: var(--orange-soft); font-family: var(--mono); font-size: 12.5px; font-weight: 500; }
+.geo-au-list.is-live { overflow-x: clip; }   /* the hidden, oversized seals never widen the page */
+.geo-au-list.is-live > li { padding: 0; background: none; }
+.geo-au-list.is-live > li::before { content: none; }
+.geo-au-b { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 12px; width: 100%; min-height: 64px; padding: 12px 12px 12px 14px; border-radius: 18px; background: #1C1C22; color: #F3F3F5; text-align: left; font-size: 16.5px; line-height: 1.4; letter-spacing: -.01em; transition: background-color .3s, transform .45s var(--spring), box-shadow .3s; }
+.geo-au-t { min-width: 0; }
+.geo-au-n { display: inline-grid; place-items: center; min-width: 30px; min-height: 22px; margin-right: 8px; vertical-align: 1px; padding: 0 5px; border-radius: 8px; background: #2C2C34; color: var(--orange-soft); font-family: var(--mono); font-size: 12.5px; font-weight: 500; }
+/* the seal: an empty dashed ring asks "yes?"; a tap slaps a glazed ceramic "Yes" seal onto the card */
+.geo-au-st { position: relative; flex: none; display: grid; place-items: center; width: min(3.7em, 74px); aspect-ratio: 1; font-size: 15px; }
+.geo-au-st-q, .geo-au-st-s { position: absolute; inset: 0; display: grid; place-items: center; border-radius: 50%; }
+.geo-au-st-q { border: 1.5px dashed rgba(243,243,245,.32); font-family: var(--mono); font-size: 12px; font-weight: 500; color: rgba(243,243,245,.62); transition: opacity .2s, transform .45s var(--spring); }
+.geo-au-st-s { --r: -12deg; background: var(--glaze); color: #111114; font-weight: 700; letter-spacing: -.03em; box-shadow: inset 0 2px 0 rgba(255,255,255,.4), inset 0 -3px 0 rgba(120,20,0,.4), 0 8px 14px -6px rgba(0,0,0,.7); opacity: 0; transform: rotate(-34deg) scale(1.6); transition: opacity .12s, transform .55s var(--spring); }
+.geo-au-st-s::before { content: ''; position: absolute; inset: 4px; border-radius: 50%; border: 1.5px solid rgba(17,17,20,.32); }
+.geo-au-list > li:nth-child(even) .geo-au-st-s { --r: 9deg; }
+.geo-au-b[aria-pressed="true"] { background: #26262D; box-shadow: inset 0 0 0 1.5px rgba(255,90,31,.55); }
+.geo-au-b[aria-pressed="true"] .geo-au-st-q { opacity: 0; transform: scale(.7); }
+.geo-au-b[aria-pressed="true"] .geo-au-st-s { opacity: 1; transform: rotate(var(--r)); }
+.geo-au-b.is-thunk { animation: geoThunk .42s var(--ease); }
+@keyframes geoThunk { 0%, 100% { transform: none; } 28% { transform: translateY(3px) scale(.985); } }
+@media (hover: hover) { .geo-au-b:hover { background: #24242B; } }
+.geo-au-b:active { transform: scale(.98); }
+
+/* ============================================================ tablet + desktop */
+@media (min-width: 768px) {
+  .ph .geo-hc { margin-top: 40px; }
+  .ph .geo-hc .zkit { right: -18px; top: -36px; width: 92px; }
+  .prose .geo-fan { padding: 26px 22px 20px; }
+  .prose .geo-fan-ask { font-size: 21px; }
+  .geo-q-draft { padding: 16px 12px 12px; }
+  .geo-step { padding: 20px 22px 22px 18px; gap: 18px; }
+  .geo-step-k { min-width: 50px; min-height: 50px; font-size: 18px; }
+  .prose .geo-cta { padding: 26px 26px 24px; }
+  .prose .geo-cta .btn-row { flex-direction: row; }
+}
+@media (min-width: 1024px) {
+  .ph-title.geo-h1 { font-size: clamp(46px, 5.5vw, 92px); }
+  .ph .geo-hc { margin-top: 0; justify-self: end; align-self: center; }
+  .ph .geo-hc .zkit { right: -34px; top: -40px; width: 110px; }
+  .geo-au-in { grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr); gap: clamp(40px, 5vw, 96px); align-items: start; }
+  .geo-au-copy { position: sticky; top: calc(var(--nav-space) + 30px); }
+  .geo-au-meter { top: calc(var(--nav-space) + 14px); }
+}
+
+/* wide desktop: the demos and card lists step out of the 720px reading column into the empty right gutter
+   (same reach as Quotable or Not), so they read as objects on the page, not small widgets in a big canvas;
+   the seven steps and the tactics to skip become two-up grids (shorter page, more rhythm). Prose stays 720px. */
+@media (min-width: 1240px) {
+  .geo-article { --geo-out: min(250px, calc((100vw - 1240px) * .9 + 40px)); }
+  .geo-article .prose > :is(.geo-fan, .table-wrap, .geo-steps, .geo-skip, .geo-cta) { margin-right: calc(-1 * var(--geo-out)); }
+  .prose .geo-fan { padding: 30px 30px 24px; }
+  .prose .geo-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; align-items: stretch; }
+  .prose .geo-steps > li:last-child:nth-child(odd) { grid-column: 1 / -1; }
+  .prose .geo-skip { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .prose .geo-skip > li:last-child:nth-child(odd) { grid-column: 1 / -1; }
+  .prose .geo-cta { display: flex; align-items: center; justify-content: space-between; gap: 18px 32px; padding: 24px 26px; }
+  .prose .geo-cta .btn-row { margin-top: 0; flex: none; }
+}
+
+/* ============================================================ quiet: Motion off / reduced motion → final states */
+.motion-off .geo-strike-w::after, .motion-off .geo-strike-st, .motion-off .geo-hc-src li, .motion-off .geo-hc-dots i,
+.motion-off .geo-q-item.is-false .geo-q-strip, .motion-off .geo-q-item.is-false .geo-q-vk, .motion-off .geo-q-slot.is-landed, .motion-off .geo-q.is-filled .geo-q-slot, .motion-off .geo-skip > li, .motion-off .geo-au-b { animation: none; }
+.motion-off .geo-skip.is-armed > li::before { opacity: 1; transform: rotate(-6deg); }
+.motion-off :is(.geo-hc-card, .geo-fan-card, .geo-q-s, .geo-q-strip, .geo-q-strip::before, .geo-q-strip::after, .geo-q-slot .geo-q-cite, .geo-q-slot .geo-q-qt, .geo-step-k, .geo-skip > li::before, .geo-au-rail i::after, .geo-au-b, .geo-au-st-q, .geo-au-st-s, .geo-q-check, .geo-q-reset) { transition: none; }
+
+/* page-scoped floating-control holds (JS toggles the classes on #main): the WhatsApp bead stays off the audit's
+   tap targets, and the "On this page" pill steps aside while the Quotable dock owns the bottom of the screen */
+.js:has(#main.geo-hold-wa) .wa-fab.is-on, .js:has(#main.geo-hold-wa) .wa-fab.is-on + .mail-fab, .js:has(#main.geo-q-dock) .toc-pill.is-on { opacity: 0; visibility: hidden; pointer-events: none; translate: 0 14px; scale: .6; transition-delay: 0s, .3s, 0s, 0s, 0s, 0s; }
+@media print { .geo-q-ctrl, .geo-au-meter { display: none !important; } .geo-q-v { display: block !important; } }
+
+/* ============================================================ beauty pass 3 (2026-11-17)
+   H1: the acronym is an ink keycap that presses in after the "Get quoted" sticker lands, and "optimization GEO?" never
+   splits, so phones read three calm lines (What is / generative engine / optimization GEO?) instead of a stranded
+   "(GEO)?". The parentheses stay in the text for search and screen readers (visually hidden). */
+.geo-h1-end { white-space: nowrap; }
+.geo-h1-kc { display: inline-block; margin: 0 .06em 0 .02em; padding: .02em .16em .1em; border-radius: .16em; background: var(--ink); color: var(--chalk); font-size: .8em; line-height: 1; letter-spacing: -.02em; vertical-align: .06em; box-shadow: inset 0 -.08em 0 rgba(255,255,255,.14), 0 .08em 0 #6d1f02, 0 .3em .5em -.3em rgba(17,17,20,.6); transform: rotate(-3deg); }
+html.js:not(.motion-off) .geo-h1-kc { animation: geoKey .8s 1.25s var(--spring) backwards; }
+@keyframes geoKey { 0% { opacity: 0; transform: translateY(-.5em) rotate(-14deg) scale(1.25); } 55% { opacity: 1; transform: translateY(.06em) rotate(-2deg) scale(.96); box-shadow: inset 0 -.03em 0 rgba(255,255,255,.14), 0 .02em 0 #6d1f02; } 100% { transform: rotate(-3deg); } }
+@media (prefers-reduced-motion: reduce) { .geo-h1-kc { animation: none !important; } }
+@media (max-width: 767px) {
+  .ph-title.geo-h1 { line-height: .98; text-wrap: balance; }
+}
+/* reading measure: body paragraphs and plain lists stop at ~75 characters (about 640px at desktop size); headings,
+   figures and the demos keep the full column */
+.geo-article .prose > p, .geo-article .prose > :is(ul, ol):not([class]) > li { max-width: 37em; }
+.geo-article .prose .tip p { max-width: 37em; }

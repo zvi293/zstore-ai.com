@@ -1,0 +1,500 @@
+/* Zstore AI — /guides/glossary/ (page prefix .gl-). Loaded after tactile.css + site.css.
+   Signature: Easily Confused — six hanging porcelain/ink plates on a ceramic pin; flip one (tap, button, or drag with
+   a mouse) and it swings on a damped spring to its partner term, with the difference in one line underneath.
+   Living touches: the A–Z keycap row in the H1 (an alphabet wave runs from A to Z once), tap-to-translate jargon
+   (each term turns into plain English in place, an honest bead meter counts them), the sticky letter keys (the key for the letter you're reading stays
+   pressed), live search with highlighted matches, and permalink keys + an arrival stamp on the term you land on.
+   No-JS: every card shows both terms stacked, both versions of each sentence are printed, all 57 terms are listed.
+   Motion off / reduced motion: final states only. */
+
+html:not(.js) .gl-js, .js .gl-nojs { display: none; }
+.gl-sr { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; border: 0; }
+
+/* ============================================================ hero */
+.gl-h1 { max-width: 14ch; }
+.gl-kc::before { content: attr(data-k); }
+.gl-kr { display: flex; align-items: center; gap: .12em; margin: .1em 0 .12em; }
+.gl-kc { display: inline-grid; place-items: center; flex: none; width: 1.5em; height: 1.5em; border-radius: .3em; font-size: .58em; font-weight: 700; letter-spacing: -.04em; line-height: 1;
+  background: radial-gradient(circle at 34% 22%, #FFB08C 0 10%, var(--orange) 48%, #E24A12 100%); color: #111114;
+  box-shadow: inset 0 .05em 0 rgba(255,255,255,.4), inset 0 -.1em 0 rgba(120,20,0,.35), 0 .12em 0 #7A2405, 0 .28em .34em -.14em rgba(0,0,0,.7);
+  transform: rotate(-4deg); }
+.gl-kc-z { transform: rotate(5deg); }
+.gl-kr-run { display: flex; align-items: center; gap: .045em; flex: 0 1 auto; min-width: 0; overflow: hidden; padding: .06em .02em; }
+.gl-kr-run i { display: block; flex: none; width: .15em; height: .15em; border-radius: .045em; background: rgba(255,255,255,.2); box-shadow: inset 0 -.02em 0 rgba(0,0,0,.4); }
+.gl-kr-run i:nth-child(1) { --i: 0; } .gl-kr-run i:nth-child(2) { --i: 1; } .gl-kr-run i:nth-child(3) { --i: 2; } .gl-kr-run i:nth-child(4) { --i: 3; }
+.gl-kr-run i:nth-child(5) { --i: 4; } .gl-kr-run i:nth-child(6) { --i: 5; } .gl-kr-run i:nth-child(7) { --i: 6; } .gl-kr-run i:nth-child(8) { --i: 7; }
+.gl-kr-run i:nth-child(9) { --i: 8; } .gl-kr-run i:nth-child(10) { --i: 9; } .gl-kr-run i:nth-child(11) { --i: 10; } .gl-kr-run i:nth-child(12) { --i: 11; }
+.gl-kr-run i:nth-child(13) { --i: 12; } .gl-kr-run i:nth-child(14) { --i: 13; } .gl-kr-run i:nth-child(15) { --i: 14; } .gl-kr-run i:nth-child(16) { --i: 15; }
+.gl-kr-run i:nth-child(17) { --i: 16; } .gl-kr-run i:nth-child(18) { --i: 17; } .gl-kr-run i:nth-child(19) { --i: 18; } .gl-kr-run i:nth-child(20) { --i: 19; }
+.gl-kr-run i:nth-child(21) { --i: 20; } .gl-kr-run i:nth-child(22) { --i: 21; } .gl-kr-run i:nth-child(23) { --i: 22; } .gl-kr-run i:nth-child(24) { --i: 23; }
+/* the alphabet wave: A is pressed, a light runs along B…Y, then Z is pressed (once, on load) */
+html:not(.motion-off) .gl-kc { animation: glKeyPress .7s var(--spring) .35s both; }
+html:not(.motion-off) .gl-kc-z { animation-delay: 1.45s; }
+html:not(.motion-off) .gl-kr-run i { animation: glWave .9s var(--ease) both; animation-delay: calc(.55s + var(--i) * 38ms); }
+@keyframes glKeyPress {
+  0% { translate: 0 0; }
+  30% { translate: 0 .1em; box-shadow: inset 0 .05em 0 rgba(255,255,255,.4), inset 0 -.05em 0 rgba(120,20,0,.35), 0 .02em 0 #7A2405, 0 .06em .1em -.06em rgba(0,0,0,.7); }
+  100% { translate: 0 0; }
+}
+@keyframes glWave {
+  0%, 100% { background: rgba(255,255,255,.2); translate: 0 0; }
+  35% { background: var(--orange); translate: 0 -.07em; box-shadow: 0 0 .2em rgba(255,90,31,.55); }
+}
+
+.gl-hero .ph-in { grid-template-areas: "crumbs" "kicker" "title" "lead" "more" "byline" "actions" "aside"; }
+/* the lede is a one-line standfirst; the rest follows it (phones: after the index card, so the art reaches the first screen) */
+.gl-more { grid-area: more; max-width: 58ch; margin-top: .75em; font-size: clamp(17px, 1.3vw, 20px); line-height: 1.5; letter-spacing: -.012em; color: rgba(243,243,245,.72); text-wrap: pretty; }
+.gl-hero .byline-av { background: var(--orange); color: var(--ink); box-shadow: inset 0 -3px 0 rgba(120,20,0,.3), 0 3px 0 rgba(0,0,0,.5); }
+.gl-hero .byline-t { color: #F3F3F5; }
+.gl-hero .byline-t a { text-decoration-color: rgba(255,255,255,.45); }
+.gl-hero .byline-m { color: rgba(243,243,245,.66); }
+.gl-hero .byline-m > * + * { background: rgba(255,255,255,.1); color: #F3F3F5; }
+@media (hover: hover) { .gl-hero .byline-t a:hover { text-decoration-color: #fff; } }
+.gl-aside { width: 100%; }
+@media (max-width: 767px) {
+  .gl-hero .ph-in { grid-template-areas: "crumbs" "kicker" "title" "lead" "actions" "aside" "more" "byline"; }
+  .gl-hero .crumbs { margin-bottom: 16px; }
+  .gl-hero .lead { margin-top: 14px; font-size: 19px; line-height: 1.38; font-weight: 500; letter-spacing: -.02em; color: #F3F3F5; }
+  .gl-hero .btn-row { margin-top: 20px; }
+  .gl-more { margin-top: 40px; }
+  .gl-hero .byline { margin-top: 22px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.12); }
+  .gl-hero .ph-aside { margin-top: 34px; }
+  .gl-hero .zkit { display: none; } /* on phones the card, the keycaps and the sticker carry the hero; a half-hidden kit read as clutter */
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  .gl-hero .ph-aside { margin-top: 52px; }
+  .gl-hero .zkit { top: 18%; right: -150px; width: 132px; }
+}
+.gl-card { position: relative; z-index: 1; margin: 0; padding: 10px 10px 12px; border-radius: 26px; background: var(--chalk-2); color: var(--ink); transform: rotate(-1.6deg);
+  box-shadow: inset 0 1px 0 #fff, inset 0 -3px 0 rgba(17,17,20,.08), 0 40px 70px -30px rgba(0,0,0,.85); }
+.gl-card-top { display: flex; align-items: center; gap: 10px; min-height: 30px; padding: 0 8px 8px; font-family: var(--mono); font-size: 12px; font-weight: 500; letter-spacing: -.02em; color: var(--graphite); }
+.gl-card-top span:last-child { margin-left: auto; }
+.gl-card-hole { width: 12px; height: 12px; border-radius: 50%; background: var(--ink); box-shadow: inset 0 2px 2px rgba(0,0,0,.6), 0 1px 0 #fff; }
+.gl-card img { width: 100%; height: auto; aspect-ratio: 3 / 2; border-radius: 16px; background: #1B1B20; }
+.gl-card-st { position: absolute; right: 14px; bottom: -16px; min-height: 36px; font-size: 14px; transform: rotate(4deg); }
+
+/* ============================================================ signature: Easily Confused */
+.gl-cf { display: flex; gap: 14px; margin: 0 calc(-1 * var(--pad)); padding: 26px var(--pad) 18px; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scroll-padding-inline: var(--pad); scrollbar-width: none; }
+.gl-cf::-webkit-scrollbar { display: none; }
+.gl-cf-item { position: relative; flex: 0 0 min(84%, 360px); scroll-snap-align: start; display: grid; grid-template-rows: auto 1fr auto auto; gap: 12px; padding: 14px 14px 16px; border-radius: 30px;
+  background: linear-gradient(180deg, #FBFBFC 0%, var(--chalk-2) 100%); box-shadow: var(--raised); }
+.gl-cf-k { display: flex; align-items: center; gap: 8px; padding: 2px 4px 0; font-family: var(--mono); font-size: 12.5px; font-weight: 500; letter-spacing: -.02em; color: var(--graphite); }
+.gl-cf-k span:first-child { display: inline-grid; place-items: center; min-width: 2.1em; min-height: 1.76em; padding: .1em .48em; border-radius: 7px; background: var(--ink); color: var(--chalk); box-shadow: inset 0 -2px 0 rgba(255,255,255,.14), 0 2px 0 rgba(17,17,20,.25); }
+
+/* the well the plate hangs in: a rod, a glazed pin, the plate, its shadow */
+.gl-cf-stage { container-type: inline-size; position: relative; display: grid; padding: 48px 16px 30px; border-radius: 22px; background: linear-gradient(180deg, #E1E2E6 0%, #E9EAED 100%); box-shadow: inset 0 10px 18px -12px rgba(17,17,20,.35), inset 0 0 0 1px rgba(17,17,20,.05); perspective: 900px; }
+.gl-cf-stage::before { content: ''; position: absolute; left: 22px; right: 22px; top: 17px; height: 6px; border-radius: 3px; background: linear-gradient(180deg, #3A3A42, var(--ink)); box-shadow: 0 2px 3px rgba(17,17,20,.3); }
+.gl-cf-pin { position: absolute; z-index: 2; left: 50%; top: 10px; width: 22px; height: 22px; margin-left: -11px; border-radius: 50%; background: var(--glaze); box-shadow: inset 0 -2px 0 rgba(120,20,0,.35), 0 3px 5px -1px rgba(17,17,20,.45); }
+.gl-cf-pin::after { content: ''; position: absolute; left: 50%; top: 18px; width: 4px; height: 16px; margin-left: -2px; border-radius: 2px; background: linear-gradient(90deg, #4A4A52, var(--ink)); }
+.gl-cf-rotor { position: relative; z-index: 1; display: grid; gap: 10px; }
+.gl-cf-face { position: relative; display: grid; align-content: start; gap: 8px; padding: 20px 18px 10px; border-radius: 20px; background: #fff; color: var(--ink);
+  box-shadow: inset 0 1px 0 #fff, inset 0 -3px 0 rgba(17,17,20,.07), 0 1px 0 rgba(17,17,20,.08); }
+.gl-cf-b { background: linear-gradient(170deg, #26262D 0%, var(--ink) 60%); color: #F3F3F5; box-shadow: inset 0 1px 0 rgba(255,255,255,.12), inset 0 -3px 0 rgba(0,0,0,.4); }
+.gl-cf-t { font-size: clamp(34px, 15.5cqi, 60px); line-height: .92; letter-spacing: -.055em; font-weight: 700; overflow-wrap: break-word; hyphens: manual; }
+.gl-cf-item:nth-child(5) .gl-cf-a .gl-cf-t { font-size: clamp(28px, 11.6cqi, 48px); }
+.gl-cf-item:nth-child(4) .gl-cf-b .gl-cf-t { font-size: clamp(30px, 13.4cqi, 54px); }
+.gl-cf-d { font-size: 16px; line-height: 1.38; color: var(--graphite); max-width: 30ch; }
+.gl-cf-b .gl-cf-d { color: rgba(243,243,245,.76); }
+.gl-cf-go { display: inline-flex; align-items: center; gap: 6px; justify-self: start; min-height: 44px; font-size: 15px; font-weight: 600; text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: .22em; text-decoration-color: rgba(17,17,20,.3); transition: text-decoration-color .2s; }
+.gl-cf-go b { display: inline-grid; place-items: center; flex: none; width: 2em; height: 2em; border-radius: 50%; background: var(--ink); color: #fff; font-size: 12px; transition: transform .45s var(--spring); }
+.gl-cf-b .gl-cf-go { text-decoration-color: rgba(255,255,255,.35); }
+.gl-cf-b .gl-cf-go b { background: var(--orange); color: var(--ink); }
+.gl-cf-b :focus-visible { outline-color: var(--orange); }
+@media (hover: hover) { .gl-cf-go:hover { text-decoration-color: currentColor; } .gl-cf-go:hover b { transform: translateY(2px); } }
+/* the partner's index tab peeking from behind the plate */
+.gl-cf-peek { position: absolute; right: 16px; top: -1.83em; display: inline-flex; align-items: flex-start; min-height: 2.6em; padding: .35em .87em .5em; line-height: 1.1; border-radius: 8px 8px 3px 3px; font-family: var(--mono); font-size: 11.5px; font-weight: 500; letter-spacing: -.02em; transform: rotate(3deg); z-index: -1; }
+.gl-cf-a .gl-cf-peek { background: var(--ink); color: rgba(243,243,245,.82); }
+.gl-cf-b .gl-cf-peek { background: #fff; color: var(--graphite); }
+.gl-cf-shadow { position: absolute; left: 18%; right: 18%; bottom: 10px; height: 16px; border-radius: 50%; background: radial-gradient(closest-side, rgba(17,17,20,.28), transparent); filter: blur(3px); transform: scaleX(var(--gl-sx, 1)); pointer-events: none; }
+.gl-cf-diff { padding: 0 4px; font-size: 15.5px; line-height: 1.45; color: var(--prose-c); }
+.gl-cf-diff b { display: block; margin-bottom: 4px; font-family: var(--mono); font-size: 12px; font-weight: 500; letter-spacing: -.02em; color: var(--graphite); }
+.gl-cf-flip { display: inline-flex; align-items: center; justify-content: center; gap: 10px; width: 100%; min-height: 50px; padding: 0 18px 0 8px; border-radius: 999px; background: var(--ink); color: #fff; font-weight: 500; font-size: 15.5px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.14), inset 0 -3px 0 rgba(0,0,0,.45), 0 10px 20px -14px rgba(17,17,20,.7); transition: transform .45s var(--spring); }
+.gl-cf-flip:active { transform: scale(.96); }
+.gl-cf-flip-ico { position: relative; width: 34px; height: 34px; margin-right: auto; flex: none; border-radius: 50%; background: var(--glaze); box-shadow: inset 0 -2px 0 rgba(120,20,0,.35); transition: transform .6s var(--spring); }
+.gl-cf-flip-ico svg { position: absolute; inset: 7px; width: 20px; height: 20px; color: var(--ink); }
+.gl-cf-flip [data-gl-flip-label] { margin-right: auto; }
+.gl-cf-item.is-b .gl-cf-flip-ico { transform: rotate(180deg); }
+@media (hover: hover) { .gl-cf-flip:hover .gl-cf-flip-ico { transform: rotate(-40deg); } .gl-cf-item.is-b .gl-cf-flip:hover .gl-cf-flip-ico { transform: rotate(140deg); } }
+.gl-cf-flip:focus-visible { outline-color: var(--ink); }
+
+/* with JS: the two faces share one cell, back to back, and the plate rotates on the pin.
+   Without JS (or before the page script arrives) they stay stacked, both readable. */
+.js .gl-cf-rotor { gap: 0; transform-style: preserve-3d; transform: rotateY(var(--gl-ry, 0deg)); will-change: transform; }
+.js .gl-cf-face { grid-area: 1 / 1; -webkit-backface-visibility: hidden; backface-visibility: hidden; }
+.js .gl-cf-b { transform: rotateY(180deg); }
+html:not(.js) .gl-cf-flip, html:not(.js) .gl-cf-bar, html:not(.js) .gl-cf-peek, html:not(.js) .gl-cf-shadow { display: none; }
+html:not(.js) .gl-cf-stage { padding-bottom: 16px; }
+@media (hover: hover) and (pointer: fine) { .js .gl-cf-stage { cursor: grab; touch-action: pan-y; } .js .gl-cf-stage.is-drag { cursor: grabbing; } }
+
+.gl-cf-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 12px; margin-top: 6px; }
+.gl-cf-dots { display: flex; align-items: center; }
+.gl-cf-dot { position: relative; display: grid; place-items: center; width: 30px; height: 44px; }
+.gl-cf-dot::before { content: ''; width: 9px; height: 9px; border-radius: 99px; background: rgba(17,17,20,.22); transition: width .5s var(--spring), background-color .3s; }
+.gl-cf-dot[aria-current="true"]::before { width: 26px; background: var(--orange); box-shadow: inset 0 -2px 0 rgba(120,20,0,.3); }
+.gl-cf-dot.is-b::before { background: var(--ink); }
+.gl-cf-dot[aria-current="true"].is-b::before { background: var(--orange); }
+.gl-cf-all { flex: none; min-height: 48px; }
+
+/* ============================================================ jargon, translated (ink slab) */
+.gl-tr-in { display: grid; grid-template-columns: minmax(0, 1fr); grid-template-areas: "head" "ctl" "list" "fig"; gap: 26px; }
+.gl-tr-head { grid-area: head; display: grid; gap: 18px; }
+.gl-tr-head .sec-lede { justify-self: start; }
+.gl-tr-ctl { grid-area: ctl; display: flex; flex-wrap: wrap; align-items: center; gap: 14px 18px; }
+.gl-tr-all .btn-ico { font-size: 13px; font-weight: 700; letter-spacing: -.04em; }
+.gl-tr-meter { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; font-family: var(--mono); font-size: 13px; font-weight: 500; letter-spacing: -.02em; color: rgba(243,243,245,.7); }
+.gl-tr-beads { display: flex; align-items: center; gap: 5px; }
+.gl-tr-beads i { display: block; width: 11px; height: 11px; border-radius: 3.5px; background: rgba(255,255,255,.14); box-shadow: inset 0 -2px 0 rgba(0,0,0,.45); transition: background-color .3s, box-shadow .3s, transform .5s var(--spring); }
+.gl-tr-beads i.gl-gap { margin-left: 7px; }
+.gl-tr-beads i.is-on { background: var(--orange); box-shadow: inset 0 -2px 0 rgba(120,20,0,.4), 0 0 8px rgba(255,90,31,.45); transform: translateY(-2px); }
+.gl-tr-n { min-width: 12ch; }
+html:not(.js) .gl-tr-ctl, html:not(.js) .gl-find { display: none; }
+
+.gl-tr-list { grid-area: list; display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; }
+.gl-say { display: grid; gap: 10px; max-width: 640px; padding: 18px 20px 20px; border-radius: 28px 28px 28px 8px; background: var(--chalk-2); color: var(--ink); box-shadow: inset 0 1px 0 #fff, 0 26px 40px -26px rgba(0,0,0,.8); }
+.gl-say:nth-child(2) { justify-self: end; border-radius: 28px 28px 8px 28px; }
+.gl-say :focus-visible { outline-color: var(--ink); }
+.gl-say-k { display: flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 12.5px; font-weight: 500; letter-spacing: -.02em; color: var(--graphite); }
+.gl-say-k span { display: inline-grid; place-items: center; min-width: 2.1em; min-height: 1.76em; padding: .1em .48em; border-radius: 7px; background: var(--ink); color: var(--chalk); }
+.gl-say-b { display: grid; gap: 14px; }
+.gl-say-b p { line-height: 1.4; font-weight: 500; letter-spacing: -.02em; text-wrap: pretty; }
+.gl-say-j { font-size: clamp(20px, 1.85vw, 25px); }
+.gl-say-p { font-size: clamp(17px, 1.4vw, 20px); }
+.gl-nw { white-space: nowrap; }
+.gl-nw > .gl-ch { white-space: normal; } /* the phrase may wrap; only its closing punctuation is glued to it */
+.gl-say-pk { display: block; width: fit-content; margin-bottom: 8px; padding: 3px 10px; border-radius: 999px; background: var(--sage); font-family: var(--mono); font-size: 12px; font-weight: 500; letter-spacing: -.02em; color: var(--ink); }
+.gl-ch { display: inline; border-radius: 6px; }
+a.gl-ch { color: var(--ink); text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: .2em; text-decoration-color: var(--orange-deep); transition: background-color .2s; }
+@media (hover: hover) { a.gl-ch:hover { background: rgba(255,90,31,.14); } }
+mark.gl-ch { padding: 0 .05em; background: rgba(199,208,184,.85); color: var(--ink); -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+/* with JS: the printed plain-English sentence shares the jargon sentence's cell, invisible (aria-hidden), so the bubble
+   is always as tall as the fully translated sentence: tapping terms never moves anything below. */
+.gl-say-b.is-live > p { grid-area: 1 / 1; align-self: center; }
+.gl-say-b.is-live .gl-say-p { visibility: hidden; font-size: clamp(20px, 1.85vw, 25px); } /* the sizer: set like the live sentence */
+.gl-say-b.is-live .gl-say-pk { display: none; }
+.gl-nw > .gl-w { white-space: normal; }
+/* a term you can tap: a tinted key with an orange edge; translated, it becomes a sage-highlighted plain phrase */
+.gl-w { padding: .22em .06em; border-radius: 7px; cursor: pointer; color: var(--ink); -webkit-tap-highlight-color: transparent;
+  background-color: rgba(255,90,31,.13); background-clip: content-box; -webkit-box-decoration-break: clone; box-decoration-break: clone;
+  text-decoration: underline; text-decoration-thickness: 2.5px; text-underline-offset: .22em; text-decoration-color: var(--orange-deep); transition: background-color .2s; }
+.gl-w > span, .gl-w i { text-decoration: inherit; } /* underlines don't reach inline-blocks on their own */
+.gl-w i { display: inline-block; font-style: normal; }
+.gl-w-p { display: none; }
+.gl-w.is-p .gl-w-j { display: none; }
+.gl-w.is-p .gl-w-p { display: inline; }
+.gl-w.is-p { background-color: transparent; background-image: linear-gradient(rgba(199,208,184,.95), rgba(199,208,184,.95)); background-origin: content-box; background-repeat: no-repeat; background-size: 100% 100%; text-decoration-color: rgba(17,17,20,.35); text-decoration-thickness: 1.5px; }
+@media (hover: hover) { .gl-w:not(.is-p):hover { background-color: rgba(255,90,31,.24); } .gl-w.is-p:hover { text-decoration-color: var(--ink); } }
+.gl-w:active { background-color: rgba(255,90,31,.34); }
+.gl-w:focus-visible { outline: 3px solid var(--ink); outline-offset: 1px; }
+html:not(.motion-off) .gl-w.is-anim i { animation: glRise .7s var(--spring) both; animation-delay: calc(var(--d, 0) * 70ms); }
+html:not(.motion-off) .gl-w.is-anim.is-p { animation: glMark .8s var(--ease) both; }
+@keyframes glRise { 0% { opacity: 0; transform: translateY(.7em) rotateX(-75deg); } 100% { opacity: 1; transform: none; } }
+@keyframes glMark { 0% { background-size: 0 100%; } 100% { background-size: 100% 100%; } }
+
+.gl-tr-fig { grid-area: fig; justify-self: center; width: min(100%, 560px); margin: 8px 0 0; }
+.gl-tr-fig img { width: 100%; height: auto; aspect-ratio: 3 / 2; border-radius: 22px; transform: rotate(1.6deg); box-shadow: 0 30px 50px -28px rgba(0,0,0,.9); }
+
+/* ============================================================ the glossary: search, letter keys, terms */
+.gl-tools { display: contents; }
+.gl-find { display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; }
+.gl-find-l { font-family: var(--mono); font-size: 13px; font-weight: 500; letter-spacing: -.02em; color: var(--graphite); }
+.gl-q { position: relative; display: flex; align-items: center; gap: 10px; min-height: 60px; padding: 0 8px 0 18px; border-radius: 999px; background: #fff; box-shadow: inset 0 0 0 1.5px rgba(17,17,20,.14), 0 14px 30px -22px rgba(17,17,20,.6); transition: box-shadow .25s; }
+.gl-q:focus-within { box-shadow: inset 0 0 0 2.5px var(--ink), 0 14px 30px -22px rgba(17,17,20,.6); }
+.gl-q-ico { width: 22px; height: 22px; flex: none; color: var(--graphite); }
+.gl-q-in { flex: 1; width: 100%; min-width: 0; min-height: 56px; border: 0; background: transparent; color: var(--ink); font: inherit; font-size: 18px; letter-spacing: -.01em; -webkit-appearance: none; appearance: none; }
+.gl-q-in:focus { outline: none; }
+.gl-q-in::placeholder { color: #6D7078; opacity: 1; }
+.gl-q-in::-webkit-search-cancel-button, .gl-q-in::-webkit-search-decoration { -webkit-appearance: none; appearance: none; }
+.gl-q-kbd { display: none; place-items: center; min-width: 30px; height: 30px; margin-right: 8px; border-radius: 8px; background: linear-gradient(#fff, #EDEDF0); box-shadow: inset 0 -2px 0 rgba(17,17,20,.14), 0 1px 0 rgba(17,17,20,.15); font-family: var(--mono); font-size: 14px; color: var(--graphite); }
+@media (hover: hover) and (pointer: fine) { .js .gl-q:not(.has-q) .gl-q-kbd { display: inline-grid; } }
+.gl-q-x { display: grid; place-items: center; width: 44px; height: 44px; flex: none; border-radius: 50%; background: var(--ink); color: var(--chalk); font-size: 22px; line-height: 1; transition: transform .4s var(--spring); }
+.gl-q-x:active { transform: scale(.88); }
+.gl-count { min-height: 1.4em; font-family: var(--mono); font-size: 13px; font-weight: 500; letter-spacing: -.02em; color: var(--graphite); }
+.gl-count b { color: var(--ink); font-weight: 500; }
+
+/* the letter keys: a sticky strip under the nav on phones and tablets */
+.gl-rail { position: sticky; z-index: 6; top: calc(var(--nav-space) + 6px); margin: 18px calc(-1 * var(--pad)) 0; padding: 8px 0; background: rgba(236,237,239,.9); -webkit-backdrop-filter: blur(14px) saturate(1.4); backdrop-filter: blur(14px) saturate(1.4); }
+.gl-rail::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: rgba(17,17,20,.08); }
+.gl-keys { display: flex; gap: 6px; padding: 3px var(--pad) 6px; overflow-x: auto; scrollbar-width: none; scroll-padding-inline: var(--pad); }
+.gl-keys::-webkit-scrollbar { display: none; }
+.gl-keys li { flex: none; }
+.gl-key { display: inline-grid; place-items: center; min-width: 44px; height: 44px; padding: 0 9px; border-radius: 12px; font-family: var(--mono); font-size: 15px; font-weight: 500; color: var(--ink);
+  background: linear-gradient(180deg, #FFFFFF 0%, #F1F1F3 100%); box-shadow: inset 0 -3px 0 rgba(17,17,20,.13), 0 3px 0 rgba(17,17,20,.13), 0 7px 10px -7px rgba(17,17,20,.45);
+  transition: transform .35s var(--spring), box-shadow .25s, background .25s, color .25s; }
+a.gl-key:active, button.gl-key:active { transform: translateY(3px); box-shadow: inset 0 -1px 0 rgba(17,17,20,.13), 0 0 0 rgba(17,17,20,.13), 0 2px 4px -3px rgba(17,17,20,.45); }
+.gl-key.is-on { transform: translateY(3px); background: radial-gradient(circle at 34% 24%, #FFB08C 0 8%, var(--orange) 52%, #E8501A 100%); color: #111114; box-shadow: inset 0 -1px 0 rgba(120,20,0,.3), 0 0 0 rgba(0,0,0,0), 0 2px 5px -3px rgba(120,20,0,.6); }
+.gl-key.is-void, .gl-key[aria-disabled="true"] { background: transparent; color: rgba(17,17,20,.32); box-shadow: inset 0 0 0 1.5px rgba(17,17,20,.12); transform: none; }
+.gl-key[aria-disabled="true"] { pointer-events: none; }
+.gl-key-q { color: #F3F3F5; background: linear-gradient(180deg, #2B2B32, var(--ink)); box-shadow: inset 0 -3px 0 rgba(0,0,0,.5), 0 3px 0 rgba(17,17,20,.3), 0 7px 10px -7px rgba(17,17,20,.6); }
+.gl-key-q svg { width: 20px; height: 20px; }
+@media (hover: hover) { a.gl-key:not(.is-on):not([aria-disabled="true"]):hover { background: #fff; transform: translateY(-1px); } }
+
+/* terms */
+.gl-groups { display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px; margin-top: 26px; }
+.gl-az [id^="term-"], .gl-az [id^="letter-"] { scroll-margin-top: calc(var(--nav-space) + 92px); }
+.gl-group { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; }
+.gl-letter { display: flex; align-items: center; gap: 14px; }
+.gl-letter-k { display: inline-grid; place-items: center; min-width: 62px; height: 62px; padding: 0 10px; border-radius: 17px; background: linear-gradient(180deg, #2A2A31 0%, #111114 100%); color: #F3F3F5; font-size: 34px; font-weight: 700; letter-spacing: -.05em; line-height: 1;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.14), inset 0 -4px 0 rgba(0,0,0,.5), 0 4px 0 #050507, 0 12px 18px -10px rgba(17,17,20,.6); transform: rotate(-3deg); }
+.gl-group[data-gl-group="0"] .gl-letter-k { font-size: 24px; }
+.gl-letter-n { font-family: var(--mono); font-size: 13px; font-weight: 500; letter-spacing: -.02em; color: var(--graphite); }
+.gl-dl { margin: 0; padding: 2px 18px; border-radius: 26px; background: rgba(255,255,255,.66); box-shadow: var(--raised); }
+.gl-term { position: relative; padding: 18px 12px 18px; margin: 0 -12px; border-radius: 18px; }
+.gl-term + .gl-term::before { content: ''; position: absolute; left: 12px; right: 12px; top: 0; height: 1px; background: var(--line); }
+.gl-term dt { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+.gl-dt { min-width: 0; overflow-wrap: break-word; padding-top: 9px; font-size: 22px; font-weight: 600; letter-spacing: -.035em; line-height: 1.15; text-wrap: balance; }
+.gl-perma { display: grid; place-items: center; width: 44px; height: 44px; flex: none; margin: 0 -8px 0 0; border-radius: 12px; font-family: var(--mono); font-size: 17px; color: rgba(17,17,20,.42); transition: color .2s, background-color .2s, transform .4s var(--spring); }
+@media (hover: hover) { .gl-perma:hover { color: var(--ink); background: rgba(17,17,20,.06); } }
+.gl-perma:active { transform: scale(.88); }
+.gl-perma.is-copied { color: #111114; background: var(--orange); }
+.gl-tag { position: absolute; z-index: 3; right: 0; top: -30px; display: inline-flex; align-items: center; min-height: 30px; padding: 0 12px; border-radius: 999px; background: #111114; color: #fff; font-size: 13px; font-weight: 500; white-space: nowrap; pointer-events: none; animation: glTag 1.6s var(--spring) both; }
+@keyframes glTag { 0% { opacity: 0; transform: translateY(8px) scale(.7) rotate(-6deg); } 18%, 78% { opacity: 1; transform: rotate(-3deg); } 100% { opacity: 0; transform: translateY(-6px) rotate(-3deg); } }
+.motion-off .gl-tag { animation: glTagFlat 1.6s steps(1) both; }
+@keyframes glTagFlat { 0%, 90% { opacity: 1; transform: rotate(-3deg); } 100% { opacity: 0; } }
+.gl-term dd { margin: 4px 0 0; }
+.gl-def { overflow-wrap: break-word; max-width: 62ch; font-size: 17px; line-height: 1.5; color: var(--prose-c); }
+.gl-def code { padding: .05em .35em; border-radius: 6px; overflow-wrap: anywhere; -webkit-box-decoration-break: clone; box-decoration-break: clone; background: rgba(17,17,20,.07); font-family: var(--mono); font-size: .86em; color: var(--ink); }
+.gl-rel { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; }
+.gl-rel-k { margin-right: 2px; }
+.gl-rel-k { font-family: var(--mono); font-size: 12px; font-weight: 500; letter-spacing: -.02em; color: var(--graphite); }
+.gl-rel-l { display: contents; }
+.gl-rel-l a { position: relative; display: inline-flex; align-items: center; min-height: 36px; padding: 0 12px; border-radius: 999px; background: var(--chalk); font-size: 14px; font-weight: 500; letter-spacing: -.01em; box-shadow: inset 0 0 0 1px rgba(17,17,20,.1), 0 2px 0 rgba(17,17,20,.05); transition: background-color .2s, box-shadow .2s, transform .4s var(--spring); }
+.gl-rel-l a::before { content: ''; position: absolute; inset: -4px 0; } /* 44px tall hit area */
+.gl-rel-l a[href^="/"]::after { content: '→'; margin-left: 6px; font-size: 13px; color: var(--graphite); }
+@media (hover: hover) { .gl-rel-l a:hover { background: #fff; box-shadow: inset 0 0 0 1.5px var(--ink); } }
+.gl-rel-l a:active { transform: scale(.95); }
+
+/* search results */
+mark.gl-hl { padding: 0 .04em; border-radius: 3px; background: rgba(255,90,31,.32); color: inherit; box-shadow: 0 2px 0 var(--orange-deep); }
+html:not(.motion-off) .gl-term.is-hit { animation: glHit .6s var(--spring) both; animation-delay: calc(var(--h, 0) * 40ms); }
+@keyframes glHit { 0% { opacity: 0; transform: translateY(12px) scale(.985); } 100% { opacity: 1; transform: none; } }
+.gl-empty { display: grid; gap: 12px; padding: 24px 22px; border-radius: 26px; background: var(--chalk-2); box-shadow: inset 0 0 0 1.5px rgba(17,17,20,.12); }
+.gl-empty[hidden] { display: none; }
+.gl-empty-t { font-size: 22px; font-weight: 600; letter-spacing: -.03em; line-height: 1.2; overflow-wrap: anywhere; }
+.gl-empty p:not(.gl-empty-t) { color: var(--prose-c); }
+.gl-empty .btn-row { margin-top: 6px; }
+
+/* arrival: the term you jumped to gets a glazed bead and a short glow */
+.gl-term.is-target { background: #fff; box-shadow: inset 0 1px 0 #fff, 0 22px 36px -24px rgba(17,17,20,.55); }
+.gl-term.is-target::before, .gl-term.is-target + .gl-term::before { opacity: 0; }
+.gl-term:focus { outline: none; }
+.gl-term:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }
+.gl-term.is-target::after { content: ''; position: absolute; left: -7px; top: 26px; width: 14px; height: 14px; border-radius: 50%; background: var(--glaze); box-shadow: inset 0 -2px 0 rgba(120,20,0,.35), 0 2px 4px rgba(17,17,20,.4); }
+html:not(.motion-off) .gl-term.is-target { animation: glStamp .7s var(--spring) both; }
+html:not(.motion-off) .gl-term.is-target::after { animation: glBead .7s var(--spring) .15s both; }
+@keyframes glStamp { 0% { transform: scale(.97); } 100% { transform: none; } }
+@keyframes glBead { 0% { transform: scale(0); } 100% { transform: none; } }
+
+.gl-inline { text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: .2em; text-decoration-color: rgba(17,17,20,.38); font-weight: 500; color: var(--ink); }
+@media (hover: hover) { .gl-inline:hover { text-decoration-color: var(--ink); } }
+
+/* the shared WhatsApp bead steps aside while the term list is being read (page-scoped: html.gl-reading is set by
+   glossary.js only while the list is on screen), the same way it does over a guide's article */
+html.gl-reading .wa-fab.is-on, html.gl-reading .wa-fab.is-on + .mail-fab { opacity: 0; visibility: hidden; pointer-events: none; translate: 0 14px; scale: .6; transition: opacity .3s, visibility 0s .3s, translate .45s var(--spring), scale .45s var(--spring); }
+
+/* ============================================================ tablets */
+@media (min-width: 768px) {
+  /* the keycap row joins the words on their line (a shorter run of keys): a tight H1 with no orphan */
+  .gl-h1 { max-width: none; }
+  .gl-kr { display: inline-flex; vertical-align: .02em; margin: 0 0 0 .06em; }
+  .gl-kr-run { max-width: 1.95em; }
+  .gl-cf { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin: 0; padding: 22px 0 0; overflow: visible; }
+  .gl-cf-item { padding: 16px 16px 18px; grid-row: span 4; grid-template-rows: subgrid; }
+  .gl-cf-dots { display: none; }
+  .gl-cf-bar { justify-content: flex-end; margin-top: 22px; }
+  .gl-term { display: grid; grid-template-columns: minmax(0, .33fr) minmax(0, .67fr); gap: 24px; padding: 22px 14px; margin: 0 -14px; }
+  .gl-term + .gl-term::before { left: 14px; right: 14px; }
+  .gl-term dd { margin: 0; }
+  .gl-dt { padding-top: 6px; }
+  .gl-term dt { justify-content: flex-start; }
+  .gl-perma { order: -1; margin: 0 -4px 0 -14px; }
+  .gl-dl { padding: 4px 24px; }
+  .gl-tr-list { gap: 20px; }
+  .gl-say { padding: 22px 26px 24px; }
+}
+
+/* ============================================================ desktop */
+@media (min-width: 1024px) {
+  .gl-hero .ph-in { grid-template-columns: minmax(0, 1fr) minmax(0, clamp(320px, 31vw, 440px)); grid-template-areas: "crumbs crumbs" "kicker aside" "title aside" "lead aside" "more aside" "byline aside" "actions aside"; }
+  .gl-tr-in { grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); grid-template-areas: "head list" "ctl list" "fig list"; column-gap: clamp(40px, 5vw, 96px); row-gap: 30px; align-items: start; }
+  .gl-tr-fig { justify-self: start; align-self: end; width: 100%; max-width: 520px; }
+  .gl-say { max-width: 92%; }
+  .gl-tr-list { align-self: center; }
+}
+@media (min-width: 1100px) {
+  .gl-cf { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+  .gl-az-grid { display: grid; grid-template-columns: 322px minmax(0, 1fr); gap: 56px; align-items: start; }
+  .gl-tools { display: grid; gap: 22px; position: sticky; top: calc(var(--nav-space) + 24px); }
+  .gl-rail { position: static; margin: 0; padding: 0; background: none; -webkit-backdrop-filter: none; backdrop-filter: none; }
+  .gl-rail::after { display: none; }
+  .gl-keys { display: grid; grid-template-columns: repeat(6, 44px); gap: 10px 8px; padding: 0; overflow: visible; }
+  .gl-key { min-width: 44px; padding: 0; }
+  .gl-key-wrap-q { display: none; }
+  .gl-groups { margin-top: 0; gap: 34px; }
+  .gl-group { grid-template-columns: 104px minmax(0, 1fr); gap: 24px; align-items: start; }
+  .gl-letter { position: sticky; top: calc(var(--nav-space) + 24px); flex-direction: column; align-items: flex-start; gap: 12px; padding-top: 8px; }
+  .gl-letter-k { min-width: 88px; height: 88px; font-size: 50px; border-radius: 22px; }
+  .gl-group[data-gl-group="0"] .gl-letter-k { font-size: 30px; }
+  .gl-az [id^="term-"], .gl-az [id^="letter-"] { scroll-margin-top: calc(var(--nav-space) + 24px); }
+  .gl-empty { grid-column: 1 / -1; }
+}
+
+/* ============================================================ accessibility widget: dark mode
+   The porcelain objects (pair cards, the hero card, speech bubbles) stay light islands with ink text, like the shared
+   pills; the glossary list itself follows the dark theme. */
+/* ============================================================ phones: every entry folds to its headword + first sentence
+   (glossary.js splits the definition; the rest and the related links open with a springy tap). No JS: nothing folds. */
+.gl-fold { display: none; }
+@media (max-width: 767px) {
+  .js .gl-term.is-folded { cursor: pointer; -webkit-tap-highlight-color: transparent; }
+  .gl-term.is-folded .gl-def-more, .gl-term.is-folded .gl-rel { display: none; }
+  .gl-az.is-searching .gl-term .gl-def-more { display: inline; }
+  .gl-az.is-searching .gl-term .gl-rel { display: flex; }
+  .gl-az.is-searching .gl-fold { visibility: hidden; }
+  .gl-term.is-folded { padding-block: 14px 16px; }
+  .gl-fold { position: relative; display: grid; place-items: center; width: 44px; height: 44px; flex: none; margin: 0 -4px 0 auto; padding: 0; border: 0; border-radius: 12px; background: none; color: var(--ink); cursor: pointer; -webkit-tap-highlight-color: transparent; }
+  .gl-fold span { position: relative; display: block; width: 32px; height: 32px; border-radius: 10px; background: linear-gradient(180deg, #FFFFFF 0%, #EEEEF1 100%); box-shadow: inset 0 -3px 0 rgba(17,17,20,.12), 0 3px 0 rgba(17,17,20,.14), 0 7px 10px -7px rgba(17,17,20,.5); transition: transform .5s var(--spring), background .25s, box-shadow .25s, color .25s; }
+  .gl-fold span::before, .gl-fold span::after { content: ''; position: absolute; left: 50%; top: 50%; width: 12px; height: 2.5px; margin: -2.5px 0 0 -6px; border-radius: 2px; background: currentColor; transition: transform .5s var(--spring); }
+  .gl-fold span::after { transform: rotate(90deg); }
+  .gl-fold[aria-expanded="true"] span { color: #F3F3F5; background: linear-gradient(180deg, #2A2A31 0%, #111114 100%); box-shadow: inset 0 1px 0 rgba(255,255,255,.14), inset 0 -1px 0 rgba(0,0,0,.5), 0 1px 0 #050507; transform: translateY(2px) rotate(180deg); }
+  .gl-fold[aria-expanded="true"] span::after { transform: rotate(0deg); }
+  .gl-fold:active span { transform: translateY(3px) scale(.94); }
+  .gl-fold:focus-visible { outline: 3px solid var(--ink); outline-offset: 0; }
+  .gl-fold + .gl-perma { margin-left: -6px; }
+  .gl-term:not(.is-folded) .gl-rel { margin-top: 14px; }
+}
+.motion-off .gl-fold span, .motion-off .gl-fold span::after { transition: none; }
+
+/* ============================================================ three moments between the letters
+   (a pairs sticker after C, an ink reading trail after I, an "ask me" art card after P). Hidden while searching. */
+.gl-mo { position: relative; }
+.gl-az.is-searching .gl-mo { display: none; }
+.gl-mo-t { font-size: clamp(27px, 2.5vw, 36px); font-weight: 600; line-height: 1.04; letter-spacing: -.045em; text-wrap: balance; color: var(--ink); }
+.gl-mo-d { margin-top: 10px; max-width: 46ch; font-size: 16.5px; line-height: 1.5; color: var(--prose-c); text-wrap: pretty; }
+
+/* 1 · the pairs sticker card: three keycap pairs flip up into place on arrival */
+.gl-mo-pairs { margin: 18px 6px 4px; padding: 32px 22px 12px; border-radius: 30px; background: #fff; box-shadow: var(--lifted); transform: rotate(-1.2deg); transition: transform 1s var(--spring); }
+.gl-mo-st { position: absolute; left: 18px; top: -16px; min-height: 34px; font-size: 14px; }
+.gl-mo-caps { display: flex; flex-wrap: wrap; gap: 12px 16px; margin-top: 18px; }
+.gl-mo-caps li { display: flex; align-items: center; gap: 6px; perspective: 420px; }
+.gl-mo-caps span { display: inline-grid; place-items: center; min-width: 48px; height: 42px; padding: 0 10px; border-radius: 12px; background: linear-gradient(180deg, #2A2A31 0%, #111114 100%); color: #F3F3F5; font-family: var(--mono); font-size: 14.5px; font-weight: 500; letter-spacing: -.02em; box-shadow: inset 0 1px 0 rgba(255,255,255,.14), inset 0 -3px 0 rgba(0,0,0,.5), 0 3px 0 #050507, 0 10px 14px -10px rgba(17,17,20,.6); transform-origin: 50% 100%; transition: transform .8s var(--spring); transition-delay: calc(var(--d, 0) * 85ms + .15s); }
+.gl-mo-caps span:last-child { background: radial-gradient(circle at 34% 24%, #FFB08C 0 8%, var(--orange) 52%, #E8501A 100%); color: #111114; box-shadow: inset 0 -3px 0 rgba(120,20,0,.3), 0 3px 0 #B8380C, 0 10px 14px -10px rgba(180,50,0,.6); }
+.gl-mo-caps i { font-style: normal; font-size: 17px; color: var(--graphite); }
+.gl-mo-caps li:nth-child(1) span:last-child { --d: 1; } .gl-mo-caps li:nth-child(2) span:first-child { --d: 2; } .gl-mo-caps li:nth-child(2) span:last-child { --d: 3; }
+.gl-mo-caps li:nth-child(3) span:first-child { --d: 4; } .gl-mo-caps li:nth-child(3) span:last-child { --d: 5; }
+.js:not(.motion-off) .gl-mo-pairs:not(.is-in) { transform: translateY(28px) rotate(2.4deg); }
+.js:not(.motion-off) .gl-mo-pairs:not(.is-in) .gl-mo-caps span { transform: rotateX(-96deg); }
+@media (hover: hover) { .gl-mo-caps li:hover span { transform: rotateX(360deg); transition-delay: 0s; } }
+.gl-mo-pairs .text-link { margin-top: 6px; }
+@media (max-width: 767px) {
+  /* phones: three neat keycap columns (each pair stacked), never a ragged 2 + 1 row */
+  .gl-mo-caps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; max-width: 330px; }
+  .gl-mo-caps li { flex-direction: column; gap: 4px; }
+  .gl-mo-caps span { width: 100%; }
+  .gl-mo-caps i { transform: rotate(90deg); line-height: 1; }
+}
+
+/* 2 · the reading trail: an ink slab, numbered keycaps on a dashed path that draws itself */
+.gl-mo-trail { margin: 6px 0; padding: 24px 20px 18px; border-radius: 30px; background: radial-gradient(120% 90% at 100% 0, #2C2C33 0%, #17171B 58%, #111114 100%); color: #F3F3F5; box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 30px 50px -34px rgba(17,17,20,.85); overflow: hidden; }
+.gl-mo-k { display: flex; align-items: center; gap: 10px; font-family: var(--mono); font-size: 12.5px; font-weight: 500; letter-spacing: -.02em; color: rgba(243,243,245,.72); }
+.gl-mo-k span { display: inline-grid; place-items: center; min-height: 26px; padding: 0 9px; border-radius: 8px; background: var(--orange); color: #111114; transform: rotate(-4deg); box-shadow: inset 0 -2px 0 rgba(120,20,0,.3), 0 2px 0 #B8380C; }
+.gl-mo-trail .gl-mo-t { margin-top: 12px; color: #F3F3F5; }
+.gl-mo-path { position: relative; display: grid; gap: 2px; margin-top: 16px; }
+.gl-mo-path::before { content: ''; position: absolute; left: 21px; top: 24px; bottom: 24px; width: 2px; background: repeating-linear-gradient(to bottom, rgba(255,138,87,.85) 0 6px, transparent 6px 12px); transform-origin: 50% 0; transition: transform 1.2s cubic-bezier(.2, .9, .3, 1) .2s; }
+.gl-mo-path a { position: relative; display: flex; align-items: center; gap: 14px; min-height: 52px; padding: 4px 6px 4px 0; border-radius: 14px; color: #F3F3F5; font-size: 17px; font-weight: 500; letter-spacing: -.015em; line-height: 1.2; }
+.gl-mo-path a::after { content: '↓'; margin-left: auto; padding-left: 10px; font-size: 15px; color: rgba(243,243,245,.5); transition: transform .4s var(--spring), color .2s; }
+.gl-mo-path i { position: relative; z-index: 1; display: inline-grid; place-items: center; width: 44px; height: 40px; flex: none; border-radius: 12px; background: linear-gradient(180deg, #34343C 0%, #1D1D22 100%); color: #FF8A57; font-family: var(--mono); font-size: 14px; font-style: normal; font-weight: 500; box-shadow: inset 0 1px 0 rgba(255,255,255,.14), inset 0 -3px 0 rgba(0,0,0,.5), 0 3px 0 #050507; transition: transform .7s var(--spring), background .25s, color .25s; }
+.gl-mo-path li:nth-child(2) i { transition-delay: .12s; } .gl-mo-path li:nth-child(3) i { transition-delay: .24s; }
+.gl-mo-path li:nth-child(4) i { transition-delay: .36s; } .gl-mo-path li:nth-child(5) i { transition-delay: .48s; }
+.js:not(.motion-off) .gl-mo-trail:not(.is-in) .gl-mo-path::before { transform: scaleY(0); }
+.js:not(.motion-off) .gl-mo-trail:not(.is-in) .gl-mo-path i { transform: scale(.3) rotate(-30deg); }
+.gl-mo-trail.is-in .gl-mo-path a:hover i, .gl-mo-path a:focus-visible i { transition-delay: 0s; }
+@media (hover: hover) { .gl-mo-path a:hover i { background: var(--orange); color: #111114; transform: translateY(-2px) rotate(-5deg); } .gl-mo-path a:hover::after { color: #fff; transform: translateY(3px); } }
+.gl-mo-path a:active i { transform: scale(.9); }
+.gl-mo-path a:focus-visible { outline: 3px solid var(--orange); outline-offset: 2px; }
+
+/* 3 · "ask me": the x-ray keyboard art settles onto the card */
+.gl-mo-ask { display: grid; gap: 18px; margin: 8px 0; padding: 12px 12px 20px; border-radius: 30px; background: var(--chalk-2); box-shadow: var(--raised); }
+.gl-mo-fig { margin: 0; transform: rotate(1.6deg); transition: transform 1s var(--spring); }
+.gl-mo-fig img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; border-radius: 20px; background: #1B1B20; box-shadow: 0 26px 40px -26px rgba(17,17,20,.75); }
+.js:not(.motion-off) .gl-mo-ask:not(.is-in) .gl-mo-fig { transform: translateY(26px) rotate(-4deg) scale(.94); }
+.gl-mo-copy { padding: 0 8px; }
+.gl-mo-ask .btn { margin-top: 18px; }
+
+/* desktop: the rail's empty foot carries a "now reading" keycap (letter, count, a bead riding through the list) */
+.gl-now { display: none; }
+@media (min-width: 768px) {
+  .gl-mo-ask { grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr); align-items: center; gap: 30px; padding: 14px 30px 14px 14px; }
+  .gl-mo-copy { padding: 0; }
+}
+@media (min-width: 900px) {
+  .gl-mo-trail { padding: 30px 30px 26px; }
+  .gl-mo-path { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; margin-top: 26px; }
+  .gl-mo-path::before { left: 22px; right: 16%; top: 19px; bottom: auto; width: auto; height: 2px; background: repeating-linear-gradient(to right, rgba(255,138,87,.85) 0 6px, transparent 6px 12px); transform-origin: 0 50%; }
+  .js:not(.motion-off) .gl-mo-trail:not(.is-in) .gl-mo-path::before { transform: scaleX(0); }
+  .gl-mo-path a { flex-direction: column; align-items: flex-start; gap: 12px; min-height: 0; padding: 0 6px 8px 0; font-size: 16px; line-height: 1.25; }
+  .gl-mo-path a::after { display: none; }
+}
+@media (min-width: 1100px) {
+  .gl-mo { margin-left: 128px; }
+  .gl-mo-pairs { margin-left: 134px; margin-right: 10px; display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "t caps" "d caps" "link caps"; column-gap: 32px; align-items: start; padding: 34px 32px 16px; }
+  .gl-mo-pairs .gl-mo-t { grid-area: t; } .gl-mo-pairs .gl-mo-d { grid-area: d; } .gl-mo-pairs .text-link { grid-area: link; justify-self: start; }
+  .gl-mo-caps { grid-area: caps; flex-direction: column; align-self: center; margin-top: 0; }
+  .gl-now { display: grid; grid-template-columns: auto minmax(0, 1fr); grid-template-areas: "k t" "bar bar"; align-items: center; gap: 16px 16px; padding: 18px 18px 20px; border-radius: 26px; background: var(--chalk-2); box-shadow: var(--raised); opacity: 0; transform: translateY(12px); transition: opacity .3s, transform .6s var(--spring); }
+  .gl-reading .gl-now { opacity: 1; transform: none; }
+  .gl-now-k { grid-area: k; display: inline-grid; place-items: center; min-width: 64px; height: 64px; padding: 0 10px; border-radius: 18px; background: radial-gradient(circle at 34% 24%, #FFB08C 0 8%, var(--orange) 52%, #E8501A 100%); color: #111114; font-size: 36px; font-weight: 700; letter-spacing: -.05em; line-height: 1; box-shadow: inset 0 -4px 0 rgba(120,20,0,.3), 0 4px 0 #B8380C, 0 14px 20px -12px rgba(180,50,0,.6); transform: rotate(-3deg); }
+  .gl-now.is-num .gl-now-k { font-size: 22px; }
+  .gl-now-t { grid-area: t; display: grid; gap: 4px; }
+  .gl-now-t b { font-family: var(--mono); font-size: 12.5px; font-weight: 500; letter-spacing: -.02em; color: var(--graphite); }
+  .gl-now-t i { font-style: normal; font-size: 20px; font-weight: 600; letter-spacing: -.03em; line-height: 1.1; color: var(--ink); }
+  .gl-now-bar { grid-area: bar; position: relative; height: 6px; border-radius: 6px; background: rgba(17,17,20,.1); }
+  .gl-now-bar::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: calc(var(--p, 0) * 100%); border-radius: inherit; background: var(--ink); }
+  .gl-now-bar i { position: absolute; top: 50%; left: calc(var(--p, 0) * (100% - 16px)); width: 16px; height: 16px; margin-top: -8px; border-radius: 50%; background: var(--glaze); box-shadow: inset 0 -2px 0 rgba(120,20,0,.35), 0 3px 6px -2px rgba(180,50,0,.7); }
+}
+.motion-off .gl-mo-pairs, .motion-off .gl-mo-caps span, .motion-off .gl-mo-path::before, .motion-off .gl-mo-path i, .motion-off .gl-mo-fig, .motion-off .gl-now { transition: none; }
+
+html.a11y-dark :is(.gl-cf-item, .gl-card, .gl-say, .gl-mo-pairs, .gl-mo-ask) { --ink: #111114; --chalk: #ECEDEF; --chalk-2: #F6F6F7; --graphite: #595C64; --line: rgba(17,17,20,.12); --prose-c: #34363C;
+  --raised: inset 0 1px 0 #fff, 0 1px 0 rgba(17,17,20,.06), 0 16px 34px -28px rgba(17,17,20,.5); color: #111114; }
+html.a11y-dark .gl-cf-item :focus-visible, html.a11y-dark .gl-say :focus-visible { outline-color: #111114; }
+html.a11y-dark .gl-cf-b :focus-visible { outline-color: var(--orange); }
+html.a11y-dark .gl-dl { background: var(--chalk-2); }
+html.a11y-dark .gl-term.is-target { background: #26262D; box-shadow: inset 0 0 0 1px rgba(255,255,255,.12); }
+html.a11y-dark .gl-q { background: #1C1C22; box-shadow: inset 0 0 0 1.5px rgba(255,255,255,.2); }
+html.a11y-dark .gl-q:focus-within { box-shadow: inset 0 0 0 2.5px var(--ink); }
+html.a11y-dark .gl-q-in::placeholder { color: #8E919A; }
+html.a11y-dark .gl-q-kbd { background: #2A2A32; box-shadow: inset 0 -2px 0 rgba(0,0,0,.5); }
+html.a11y-dark .gl-rail { background: rgba(18,18,22,.9); }
+html.a11y-dark .gl-rail::after { background: rgba(255,255,255,.1); }
+html.a11y-dark .gl-key:not(.is-on):not(.gl-key-q) { background: linear-gradient(180deg, #2E2E36 0%, #23232A 100%); box-shadow: inset 0 1px 0 rgba(255,255,255,.08), inset 0 -3px 0 rgba(0,0,0,.45), 0 3px 0 rgba(0,0,0,.6); }
+html.a11y-dark .gl-key.is-void, html.a11y-dark .gl-key[aria-disabled="true"] { background: transparent !important; color: rgba(255,255,255,.34); box-shadow: inset 0 0 0 1.5px rgba(255,255,255,.14) !important; }
+html.a11y-dark .gl-letter-k { box-shadow: inset 0 0 0 1px rgba(255,255,255,.14), inset 0 -4px 0 rgba(0,0,0,.5), 0 4px 0 #000; }
+html.a11y-dark .gl-def code { background: rgba(255,255,255,.1); }
+html.a11y-dark .gl-perma { color: rgba(255,255,255,.5); }
+@media (hover: hover) { html.a11y-dark .gl-rel-l a:hover { background: #2A2A32; } html.a11y-dark .gl-perma:hover { background: rgba(255,255,255,.08); } }
+html.a11y-dark .gl-cf-dot:not([aria-current="true"]):not(.is-b)::before { background: rgba(255,255,255,.3); }
+html.a11y-dark .gl-inline { text-decoration-color: rgba(255,255,255,.42); }
+
+html.a11y-contrast .gl-tr-meter { color: #fff; }
+html.a11y-contrast .gl-tr-beads i:not(.is-on) { background: transparent; box-shadow: inset 0 0 0 1.5px #fff; }
+
+/* ============================================================ quiet when asked */
+.motion-off .gl-cf-rotor, .motion-off .gl-tr-beads i, .motion-off .gl-key, .motion-off .gl-cf-flip-ico, .motion-off .gl-cf-dot::before { transition: none; }
+@media (prefers-reduced-motion: reduce) { .gl-cf-rotor, .gl-tr-beads i, .gl-key, .gl-cf-flip-ico { transition: none; } }
+
+/* accessibility widget modes: bigger text lets the hero row and plate titles wrap instead of overflowing */
+html:is(.a11y-t2, .a11y-t3) .gl-cf-item { flex-basis: min(92%, 420px); }
+html:is(.a11y-t2, .a11y-t3) .gl-kr-run { display: none; }
+@media print { .gl-rail, .gl-tools, .gl-cf-bar, .gl-tr-ctl, .gl-cf-flip { display: none !important; } .gl-say-b.is-live > p { grid-area: auto; } .gl-say-b.is-live .gl-say-p { visibility: visible; } .gl-say-b.is-live .gl-say-pk { display: block; } }
+
+/* ============================================================ beauty pass 3 (2026-11-17)
+   The docked key strip is one frosted glass bar from the top edge down: when it sticks (.is-stuck, set by the page
+   script), a ::before of the same glass fills the gap behind the nav pill, so nothing slices through above the keys. */
+@media (max-width: 1099px) {
+  .gl-rail { background: rgba(236,237,239,.97); }
+  .gl-rail::before { content: ''; position: absolute; left: 0; right: 0; bottom: 100%; height: calc(var(--nav-space) + 8px); background: #ECEDEF; -webkit-backdrop-filter: blur(14px) saturate(1.4); backdrop-filter: blur(14px) saturate(1.4); opacity: 0; visibility: hidden; transition: opacity .25s, visibility 0s .25s; pointer-events: none; }
+  .gl-rail.is-stuck::before { opacity: 1; visibility: visible; transition-delay: 0s; }
+  html.a11y-dark .gl-rail { background: rgba(18,18,22,.97); } html.a11y-dark .gl-rail::before { background: #121216; }
+}
+/* translator cards: the live sentence sits right under its label on every card (the height reserved for the plain
+   English version stays below it), so the label-to-quote gap matches across all three */
+.gl-say-b.is-live > p { align-self: start; }

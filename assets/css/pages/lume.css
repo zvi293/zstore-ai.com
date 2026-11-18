@@ -1,0 +1,402 @@
+/* Zstore AI — /work/lume/ (concept study: Lume). Page-scoped: every class starts with .lu-
+   Signature: Re-glaze (jars pour a palette over a live product page + honest contrast meter).
+   Living touches: hero light sweep + scroll drift, the "ingredients" label over the slab edge, pressure
+   stickers that peel off and fall into a tray, a botanical stem that grows along the checklist, and loose
+   words that settle into one precise line. Motion off / reduced motion = final states. */
+
+@property --lu-glow { syntax: '<color>'; inherits: true; initial-value: #C7D0B8; }
+
+/* ============================================================ hero */
+.lu-hero { padding-bottom: clamp(84px, 9vw, 150px); }
+.lu-hero .ph-in { grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr); }
+.lu-hero .ph-title { font-size: clamp(44px, 6vw, 104px); }
+.lu-hero .lead { max-width: 54ch; }
+.lu-hero-media { grid-area: aside; align-self: center; position: relative; width: 100%; margin: 0; }
+.lu-mat { position: relative; overflow: hidden; padding: clamp(10px, 1.1vw, 16px); border-radius: clamp(26px, 3vw, 42px); background: linear-gradient(155deg, #DCE3D2 0%, var(--sage) 46%, #A9B796 100%); box-shadow: inset 0 1px 0 rgba(255,255,255,.65), inset 0 -5px 0 rgba(40,60,30,.2), 0 50px 80px -40px rgba(0,0,0,.9); rotate: -1.6deg; }
+.lu-mat img { width: 100%; height: auto; aspect-ratio: 3 / 2; border-radius: clamp(16px, 2vw, 28px); background: #E9E4DA; }
+/* a slow band of light passes over the glass once */
+.lu-mat::after { content: ''; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(104deg, transparent 38%, rgba(255,255,255,.42) 50%, transparent 62%); translate: -110% 0; animation: luSweep 2.6s .8s var(--ease) both; }
+@keyframes luSweep { to { translate: 110% 0; } }
+.lu-hero-media .sticker { position: absolute; right: clamp(-12px, -1vw, -4px); bottom: clamp(-20px, -1.5vw, -14px); z-index: 2; min-height: 44px; padding: 0 18px; font-size: 15px; transform: rotate(-4deg); }
+@supports (animation-timeline: view()) {
+  html:not(.motion-off) .lu-hero-media { animation: luDrift linear both; animation-timeline: view(); animation-range: exit -20% exit 100%; }
+  @keyframes luDrift { to { translate: 0 -56px; rotate: 1.8deg; } }
+}
+.motion-off .lu-mat::after { animation: none; display: none; }
+
+/* ============================================================ the "ingredients" label laid over the slab edge */
+.lu-label-wrap { position: relative; z-index: 2; margin-top: clamp(-84px, -6vw, -48px); }
+.lu-label { max-width: 980px; margin-inline: auto; padding: 16px 18px 8px; border-radius: 22px; background: #FBFBF9; color: var(--ink); box-shadow: inset 0 1px 0 #fff, 0 1px 0 rgba(17,17,20,.06), 0 34px 56px -30px rgba(17,17,20,.6); rotate: -.8deg; }
+.lu-label-top { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px 12px; font-family: var(--mono); font-size: 12.5px; font-weight: 500; letter-spacing: .02em; text-transform: uppercase; color: var(--graphite); }
+.lu-label-top span:last-child { padding: 2px 8px; border: 1.5px solid currentColor; border-radius: 6px; rotate: 2deg; }
+.lu-label-k { margin-top: 8px; padding-bottom: 8px; border-bottom: 3px solid var(--ink); font-size: clamp(30px, 3.4vw, 46px); font-weight: 700; letter-spacing: -.055em; line-height: 1; }
+.lu-label-dl { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; background: var(--line); }
+.lu-label-dl > div { padding: 10px 12px 10px 0; background: #FBFBF9; }
+.lu-label-dl > div:nth-child(even) { padding-left: 12px; }
+.lu-label-dl dt { font-family: var(--mono); font-size: 12px; font-weight: 500; letter-spacing: .02em; text-transform: uppercase; color: var(--graphite); }
+.lu-label-dl dd { margin-top: 2px; font-size: 16px; font-weight: 600; letter-spacing: -.02em; line-height: 1.25; }
+
+/* ============================================================ 01 the question */
+.lu-q { padding-top: clamp(64px, 8vw, 128px); }
+.lu-q-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 22px; }
+.lu-q-head .sec-title { margin-top: 14px; }
+.lu-q-big { justify-self: start; max-width: 20em; padding: clamp(20px, 2.4vw, 32px) clamp(20px, 2.6vw, 36px) clamp(22px, 2.6vw, 36px); border-radius: clamp(24px, 2.6vw, 36px); background: linear-gradient(160deg, #D3DBC6, var(--sage) 60%, #BAC5A8); color: #1D2518; font-size: clamp(27px, 3vw, 48px); line-height: 1.04; letter-spacing: -.045em; font-weight: 500; text-wrap: balance; rotate: -1deg; box-shadow: inset 0 1px 0 rgba(255,255,255,.55), inset 0 -4px 0 rgba(40,60,30,.16), 0 30px 50px -36px rgba(17,17,20,.6); }
+.lu-q-k { display: block; margin-bottom: 12px; font-family: var(--mono); font-size: 12.5px; font-weight: 500; letter-spacing: .02em; text-transform: uppercase; color: #3B4733; }
+.lu-q-copy { display: grid; gap: 14px; }
+.lu-q-copy p { max-width: 56ch; font-size: clamp(17px, 1.25vw, 19px); line-height: 1.55; color: var(--prose-c); }
+.lu-q-media { margin: 8px 0 0; }
+.lu-q-media img { width: 100%; height: auto; aspect-ratio: 3 / 2; border-radius: var(--r-lg); box-shadow: 0 50px 80px -50px rgba(17,17,20,.6); background: #CFCBC6; }
+.lu-q-media figcaption { margin-top: 12px; font-family: var(--mono); font-size: 13px; color: var(--graphite); }
+
+/* ============================================================ 02 SIGNATURE: Re-glaze */
+/* glaze tokens: the stage carries them, the phone screen, the glow and the notes inherit them */
+.lu-rg-stage, .lu-rg-stage[data-glaze="sage"] {
+  --lu-bg: #EEF0E6; --lu-tx: #26301F; --lu-mut: #4E5A44; --lu-chip: #DCE2D0; --lu-btn: #26301F; --lu-btn-tx: #EEF0E6;
+  --lu-hf: 'Fraunces', Georgia, serif; --lu-hs: normal; --lu-hw: 400; --lu-hc: none; --lu-hl: -.025em; --lu-hz: 10cqi;
+  --lu-btn-r: 99px; --lu-btn-ls: -.01em; --lu-btn-tc: none; --lu-img-r: 6cqi; --lu-filter: none; --lu-glow: #C7D0B8;
+}
+.lu-rg-stage[data-glaze="clay"] {
+  --lu-bg: #F2E5D9; --lu-tx: #4A2C20; --lu-mut: #7A4B36; --lu-chip: #E8CDB9; --lu-btn: #8C4426; --lu-btn-tx: #FFF6EE;
+  --lu-hf: 'Fraunces', Georgia, serif; --lu-hs: italic; --lu-hw: 400; --lu-hc: none; --lu-hl: -.02em; --lu-hz: 10.4cqi;
+  --lu-btn-r: 2.4cqi; --lu-btn-ls: 0em; --lu-btn-tc: none; --lu-img-r: 2cqi; --lu-filter: sepia(.5) saturate(1.15) hue-rotate(-22deg); --lu-glow: #E7B597;
+}
+.lu-rg-stage[data-glaze="night"] {
+  --lu-bg: #14161A; --lu-tx: #ECE6D8; --lu-mut: #A9A296; --lu-chip: #262A31; --lu-btn: #C9A86A; --lu-btn-tx: #14161A;
+  --lu-hf: var(--sans); --lu-hs: normal; --lu-hw: 500; --lu-hc: uppercase; --lu-hl: .06em; --lu-hz: 7.6cqi;
+  --lu-btn-r: 0px; --lu-btn-ls: .16em; --lu-btn-tc: uppercase; --lu-img-r: 0px; --lu-filter: brightness(.62) contrast(1.18) saturate(.75); --lu-glow: #8F8AA0;
+}
+.lu-rg-stage[data-glaze="bloom"] {
+  --lu-bg: #F9E1E6; --lu-tx: #C98B99; --lu-mut: #D3A0AB; --lu-chip: #F3CBD4; --lu-btn: #E7A3B2; --lu-btn-tx: #FFFFFF;
+  --lu-hf: 'Fraunces', Georgia, serif; --lu-hs: normal; --lu-hw: 500; --lu-hc: none; --lu-hl: -.035em; --lu-hz: 11cqi;
+  --lu-btn-r: 99px; --lu-btn-ls: -.01em; --lu-btn-tc: none; --lu-img-r: 50cqi 50cqi 6cqi 6cqi; --lu-filter: hue-rotate(-115deg) saturate(.7) brightness(1.1); --lu-glow: #F2B8C6;
+}
+/* without JS the native radios still re-glaze the phone (CSS :has) */
+html:not(.js) .lu-rg-stage:has(#lu-g-clay:checked) {
+  --lu-bg: #F2E5D9; --lu-tx: #4A2C20; --lu-mut: #7A4B36; --lu-chip: #E8CDB9; --lu-btn: #8C4426; --lu-btn-tx: #FFF6EE;
+  --lu-hs: italic; --lu-hz: 10.4cqi; --lu-btn-r: 2.4cqi; --lu-btn-ls: 0em; --lu-img-r: 2cqi; --lu-filter: sepia(.5) saturate(1.15) hue-rotate(-22deg); --lu-glow: #E7B597;
+}
+html:not(.js) .lu-rg-stage:has(#lu-g-night:checked) {
+  --lu-bg: #14161A; --lu-tx: #ECE6D8; --lu-mut: #A9A296; --lu-chip: #262A31; --lu-btn: #C9A86A; --lu-btn-tx: #14161A;
+  --lu-hf: var(--sans); --lu-hw: 500; --lu-hc: uppercase; --lu-hl: .06em; --lu-hz: 7.6cqi;
+  --lu-btn-r: 0px; --lu-btn-ls: .16em; --lu-btn-tc: uppercase; --lu-img-r: 0px; --lu-filter: brightness(.62) contrast(1.18) saturate(.75); --lu-glow: #8F8AA0;
+}
+html:not(.js) .lu-rg-stage:has(#lu-g-bloom:checked) {
+  --lu-bg: #F9E1E6; --lu-tx: #C98B99; --lu-mut: #D3A0AB; --lu-chip: #F3CBD4; --lu-btn: #E7A3B2; --lu-btn-tx: #FFFFFF;
+  --lu-hw: 500; --lu-hl: -.035em; --lu-hz: 11cqi; --lu-img-r: 50cqi 50cqi 6cqi 6cqi; --lu-filter: hue-rotate(-115deg) saturate(.7) brightness(1.1); --lu-glow: #F2B8C6;
+}
+
+.lu-rg-stage { position: relative; isolation: isolate; overflow: hidden; display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "fig shelf" "notes notes" "foot foot"; gap: 18px 10px; padding: 14px 10px 16px; border-radius: var(--r-lg); background: var(--chalk-2); box-shadow: var(--raised); transition: --lu-glow .9s var(--ease); }
+/* a soft pool of light under the phone takes the glaze's color */
+.lu-rg-stage::before { content: ''; position: absolute; z-index: -1; left: -30%; top: -12%; width: 110%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(closest-side, var(--lu-glow), transparent); opacity: .75; pointer-events: none; }
+.motion-off .lu-rg-stage { transition: none; }
+
+.lu-rg-fig { grid-area: fig; margin: 0; min-width: 0; display: flex; justify-content: center; align-items: flex-start; }
+.lu-phone { width: 100%; max-width: 360px; padding: 6px; border-radius: 38px; background: linear-gradient(160deg, #44444D 0%, #17171B 38%, #050507 100%); box-shadow: inset 0 1px 0 rgba(255,255,255,.28), inset 0 -2px 0 rgba(0,0,0,.6), 0 40px 60px -32px rgba(17,17,20,.7); }
+.lu-screen { position: relative; container-type: inline-size; aspect-ratio: 9 / 17; overflow: hidden; border-radius: 32px; background: var(--lu-bg); color: var(--lu-tx); }
+.lu-m { position: absolute; inset: 0; display: flex; flex-direction: column; padding: 4cqi 6cqi 6cqi; font-family: var(--sans); letter-spacing: -.01em; }
+.lu-m-bar { display: flex; align-items: center; gap: 3cqi; padding: 2.6cqi 0 4cqi; }
+.lu-m-logo { font-family: 'Fraunces', Georgia, serif; font-size: 7.6cqi; line-height: 1; letter-spacing: -.02em; }
+.lu-m-nav { margin-left: auto; font-size: 3.3cqi; color: var(--lu-mut); white-space: nowrap; }
+.lu-m-bag { font-size: 3.3cqi; line-height: 1; padding: 1.3cqi 2.8cqi; border-radius: 99px; box-shadow: inset 0 0 0 .4cqi currentColor; }
+.lu-m-img { aspect-ratio: 1 / .92; overflow: hidden; border-radius: var(--lu-img-r); background: var(--lu-chip); }
+.lu-m-img img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 42%; filter: var(--lu-filter); }
+.lu-m-eye { margin-top: 4.6cqi; font-size: 3.1cqi; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--lu-mut); }
+.lu-m-title { display: flex; align-items: flex-end; min-height: 22.6cqi; margin-top: 1.4cqi; font-family: var(--lu-hf); font-style: var(--lu-hs); font-weight: var(--lu-hw); text-transform: var(--lu-hc); letter-spacing: var(--lu-hl); font-size: var(--lu-hz); line-height: 1.02; }
+.lu-m-desc { margin-top: 2.2cqi; font-size: 3.7cqi; line-height: 1.38; color: var(--lu-tx); }
+.lu-m-steps { display: flex; flex-wrap: wrap; gap: 1.6cqi; margin-top: 3.2cqi; }
+.lu-m-steps li { display: inline-flex; align-items: center; gap: 1.2cqi; padding: 1.2cqi 2.4cqi 1.2cqi 1.2cqi; border-radius: 99px; background: var(--lu-chip); font-size: 3.1cqi; white-space: nowrap; }
+.lu-m-steps b { display: inline-grid; place-items: center; width: 4.2cqi; height: 4.2cqi; border-radius: 50%; background: var(--lu-tx); color: var(--lu-bg); font-size: 2.6cqi; font-weight: 600; }
+.lu-m-btn { margin-top: auto; display: grid; place-items: center; min-height: 12cqi; border-radius: var(--lu-btn-r); background: var(--lu-btn); color: var(--lu-btn-tx); font-size: 4cqi; font-weight: 600; letter-spacing: var(--lu-btn-ls); text-transform: var(--lu-btn-tc); }
+.lu-m-foot { margin-top: 2.4cqi; text-align: center; font-size: 3cqi; color: var(--lu-mut); }
+/* the glaze that pours over the screen (JS sets --c) */
+.lu-pour { --c: var(--lu-bg); position: absolute; z-index: 3; left: 0; right: 0; top: 0; height: 108%; background: var(--c); transform: translateY(-125%); pointer-events: none; box-shadow: inset 0 -1.5cqi 3cqi -1cqi rgba(255,255,255,.35); }
+.lu-pour::after { content: ''; position: absolute; left: 0; right: 0; top: 99%; height: 10cqi; background: radial-gradient(circle at 16% 0, var(--c) 0 3.4cqi, transparent 3.5cqi), radial-gradient(circle at 47% 0, var(--c) 0 5cqi, transparent 5.1cqi), radial-gradient(circle at 81% 0, var(--c) 0 2.8cqi, transparent 2.9cqi); }
+
+/* the shelf of glazed jars: a native radio group */
+.lu-shelf { grid-area: shelf; min-width: 0; margin: 0; padding: 0; border: 0; display: flex; flex-direction: column; align-items: center; }
+.lu-shelf-k { float: left; width: 100%; margin: 0 0 8px; padding: 0; font-family: var(--mono); font-size: 12px; font-weight: 500; line-height: 1.3; text-align: center; color: var(--graphite); }
+.lu-jars { clear: both; display: flex; flex-direction: column; gap: 6px; padding: 8px 5px; border-radius: 28px; background: linear-gradient(90deg, #E2E3E7, #F1F1F3); box-shadow: inset 0 2px 5px rgba(17,17,20,.1), inset 0 -1px 0 #fff; }
+.lu-jar-in { position: absolute; width: 1px; height: 1px; margin: 0; opacity: 0; pointer-events: none; }
+.lu-jar { position: relative; display: grid; justify-items: center; gap: 5px; width: 66px; padding: 9px 0 8px; border-radius: 22px; cursor: pointer; user-select: none; -webkit-user-select: none; transition: background-color .3s, box-shadow .3s; }
+.lu-jar-in:checked + .lu-jar { background: #fff; box-shadow: inset 0 1px 0 #fff, 0 12px 22px -14px rgba(17,17,20,.55); }
+.lu-jar-in:focus-visible + .lu-jar { outline: 3px solid var(--ink); outline-offset: 2px; }
+.lu-pot { position: relative; display: block; width: 40px; height: 50px; transform-origin: 16% 96%; transition: translate .5s var(--spring); }
+.lu-lid { position: absolute; left: 7px; right: 7px; top: 0; height: 12px; border-radius: 6px 6px 3px 3px; background: linear-gradient(180deg, #FFFFFF, #D7D8DD); box-shadow: inset 0 -2px 0 rgba(17,17,20,.14), 0 1px 0 rgba(17,17,20,.15); }
+.lu-body { position: absolute; left: 0; right: 0; top: 10px; bottom: 0; border-radius: 13px 13px 15px 15px; background: radial-gradient(circle at 30% 24%, rgba(255,255,255,.8) 0 6%, transparent 20%), radial-gradient(120% 100% at 28% 18%, var(--j1) 0%, var(--j2) 72%); box-shadow: inset 0 -5px 0 rgba(0,0,0,.18), inset 0 2px 0 rgba(255,255,255,.35), 0 12px 16px -10px rgba(17,17,20,.6); }
+.lu-body::after { content: ''; position: absolute; left: 22%; right: 22%; top: 48%; height: 3px; border-radius: 3px; background: rgba(0,0,0,.2); box-shadow: 0 1px 0 rgba(255,255,255,.35); }
+.lu-jar-sage { --j1: #C3D0B3; --j2: #6F8560; --lu-pour: #EEF0E6; }
+.lu-jar-clay { --j1: #EBAE8C; --j2: #A4502F; --lu-pour: #F2E5D9; }
+.lu-jar-night { --j1: #5A5F6B; --j2: #121418; --lu-pour: #14161A; }
+.lu-jar-night .lu-lid { background: linear-gradient(180deg, #E6CF9C, #B38D4C); }
+.lu-jar-bloom { --j1: #FFE0E7; --j2: #E293A6; --lu-pour: #F9E1E6; }
+.lu-jar-n { font-size: 13.5px; font-weight: 600; letter-spacing: -.01em; line-height: 1.2; }
+.lu-jar-in:checked + .lu-jar .lu-jar-n::after { content: ''; display: inline-block; width: 7px; height: 7px; margin-left: 5px; vertical-align: 1px; border-radius: 50%; background: var(--glaze); box-shadow: 0 1px 0 var(--orange-deep); }
+@media (hover: hover) and (pointer: fine) { .lu-jar:hover .lu-pot { translate: 0 -4px; } }
+.lu-jar-in:checked + .lu-jar .lu-pot { translate: 0 -2px; }
+.motion-off .lu-pot, .motion-off .lu-jar { transition: none; }
+
+/* notes + the honest contrast meter */
+.lu-notes { grid-area: notes; display: grid; gap: 10px; }
+.js .lu-notes { gap: 0; }
+.js .lu-notes > .lu-note { grid-area: 1 / 1; visibility: hidden; }
+.js .lu-notes > .lu-note.is-on { visibility: visible; animation: luNoteIn .6s var(--spring) both; }
+@keyframes luNoteIn { from { opacity: 0; translate: 0 14px; } }
+.motion-off .lu-notes > .lu-note.is-on { animation: none; }
+.lu-note { padding: 16px 16px 14px; border-radius: 24px; background: #fff; box-shadow: inset 0 1px 0 #fff, 0 18px 30px -24px rgba(17,17,20,.55); }
+.lu-note[data-note="sage"] { --sw1: #C3D0B3; --sw2: #6F8560; }
+.lu-note[data-note="clay"] { --sw1: #EBAE8C; --sw2: #A4502F; }
+.lu-note[data-note="night"] { --sw1: #5A5F6B; --sw2: #121418; }
+.lu-note[data-note="bloom"] { --sw1: #FFE0E7; --sw2: #E293A6; }
+.lu-note-k { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; font-size: 22px; font-weight: 600; letter-spacing: -.035em; line-height: 1.1; }
+.lu-note-sw { width: 22px; height: 22px; border-radius: 50%; background: radial-gradient(circle at 32% 28%, rgba(255,255,255,.7) 0 12%, transparent 30%), radial-gradient(circle at 30% 25%, var(--sw1), var(--sw2) 80%); box-shadow: inset 0 -2px 0 rgba(0,0,0,.18), 0 3px 6px -2px rgba(17,17,20,.4); }
+.lu-note-tag { display: inline-flex; align-items: center; min-height: 26px; padding: 0 10px; border-radius: 99px; background: var(--orange); color: var(--ink); font-size: 12.5px; font-weight: 600; letter-spacing: 0; rotate: -3deg; box-shadow: inset 0 1px 0 rgba(255,255,255,.4); }
+.lu-note-tag.is-no { background: var(--ink); color: #fff; rotate: 2deg; }
+.lu-note-d { margin-top: 8px; font-size: 16px; line-height: 1.5; color: var(--prose-c); }
+.lu-meter { display: grid; gap: 8px; margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--line); }
+.lu-meter > div { display: grid; grid-template-columns: minmax(0, 1fr); gap: 4px; }
+.lu-meter dt { font-family: var(--mono); font-size: 12.5px; font-weight: 500; color: var(--graphite); }
+.lu-meter dd { display: grid; grid-template-columns: 4.6em minmax(64px, 1fr) 4.6em; align-items: center; gap: 12px; }
+.lu-v { font-family: var(--mono); font-size: 14px; font-weight: 500; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.lu-bar { position: relative; height: 10px; border-radius: 99px; background: #E4E5E9; overflow: hidden; }
+.lu-bar::after { content: ''; position: absolute; left: 30%; top: 0; bottom: 0; width: 2px; background: var(--ink); } /* the 4.5:1 line on a 0–15 scale */
+.lu-bar i { position: absolute; inset: 0; border-radius: inherit; background: #6F8560; transform-origin: left center; transform: scaleX(var(--v, 0)); transition: transform .8s var(--spring), background-color .3s; }
+.lu-bar.is-low i { background: var(--orange); }
+html:not(.js) .lu-bar { visibility: hidden; }
+.motion-off .lu-bar i { transition: none; }
+.lu-ok, .lu-bad { display: inline-flex; align-items: center; gap: 6px; font-size: 13.5px; font-weight: 600; white-space: nowrap; }
+.lu-ok::before, .lu-bad::before { display: inline-grid; place-items: center; width: 17px; height: 17px; border-radius: 50%; font-size: 11px; line-height: 1; flex: none; }
+.lu-ok::before { content: '✓'; background: #4E5A44; color: #fff; }
+.lu-bad::before { content: '×'; background: var(--orange); color: var(--ink); font-size: 14px; font-weight: 700; }
+.lu-rg-foot { grid-area: foot; max-width: 62ch; font-size: 15px; line-height: 1.5; color: var(--graphite); padding: 0 6px; text-wrap: pretty; }
+
+/* ============================================================ 03 calm store (ink slab) */
+.lu-calm-grid { display: grid; grid-template-columns: minmax(0, 1fr); grid-template-areas: "head" "hush" "list"; gap: 40px; }
+.lu-calm-head { grid-area: head; }
+.lu-calm-head .sec-title { margin-top: 14px; }
+.lu-calm-lede { margin-top: 18px; max-width: 52ch; font-size: clamp(17px, 1.3vw, 20px); line-height: 1.5; color: rgba(243,243,245,.78); }
+.lu-calm-list { grid-area: list; display: grid; gap: 10px; }
+/* the four choices hang like the store's own product tags: sage and cream card with a punched hole, each tilted a
+   little differently; the first one, the lead choice, is the biggest */
+.lu-calm-list li { --tg: #C7D0B8; position: relative; padding: 20px 20px 22px 50px; border-radius: 10px 24px 24px 10px; background: var(--tg); color: #1D2518; box-shadow: inset 0 1px 0 rgba(255,255,255,.5), 0 22px 34px -24px rgba(0,0,0,.85); rotate: var(--tr, 0deg); transition: rotate .6s var(--spring), translate .6s var(--spring); }
+.lu-calm-list li::before { content: ''; position: absolute; left: 18px; top: 24px; width: 14px; height: 14px; border-radius: 50%; background: #111114; box-shadow: inset 0 2px 3px rgba(0,0,0,.6), 0 0 0 3px rgba(255,255,255,.45); }
+.lu-calm-list li:nth-child(1) { --tr: -1.2deg; padding-block: 24px 26px; }
+.lu-calm-list li:nth-child(2) { --tg: #EEF0E6; --tr: .9deg; }
+.lu-calm-list li:nth-child(3) { --tg: #DCE3CF; --tr: -.6deg; }
+.lu-calm-list li:nth-child(4) { --tg: #EEF0E6; --tr: 1.1deg; }
+@media (hover: hover) { .lu-calm-list li:hover { rotate: 0deg; translate: 0 -4px; } }
+.lu-calm-i { font-family: var(--mono); font-size: 13px; font-weight: 500; color: #3D4A33; }
+.lu-calm-list h3 { margin-top: 8px; font-size: clamp(20px, 1.6vw, 24px); font-weight: 600; letter-spacing: -.03em; line-height: 1.15; color: #1D2518; }
+.lu-calm-list li:nth-child(1) h3 { font-size: clamp(25px, 2.2vw, 32px); line-height: 1.05; letter-spacing: -.04em; }
+.lu-calm-list p { margin-top: 6px; font-size: 16px; line-height: 1.5; color: #34402B; }
+.motion-off .lu-calm-list li { transition: none; }
+
+/* the noise that peels off: stickers fall from the product card into the tray */
+.lu-hush { grid-area: hush; position: relative; display: grid; justify-items: center; gap: 14px; }
+.lu-hush-card { position: relative; width: min(100%, 330px); padding: 12px 12px 16px; border-radius: 30px; background: #EEF0E6; color: #26301F; box-shadow: inset 0 1px 0 #fff, 0 44px 70px -34px rgba(0,0,0,.9); }
+.lu-hush-img { aspect-ratio: 4 / 3.3; overflow: hidden; border-radius: 20px; background: #C7D0B8; }
+.lu-hush-img img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 48%; }
+.lu-hush-info { display: grid; gap: 2px; padding: 14px 6px 0; }
+.lu-hush-name { font-family: 'Fraunces', Georgia, serif; font-size: 26px; line-height: 1.05; letter-spacing: -.02em; }
+.lu-hush-sub { font-size: 14px; color: #4E5A44; }
+.lu-hush-btn { display: grid; place-items: center; min-height: 46px; margin-top: 12px; border-radius: 99px; background: #26301F; color: #EEF0E6; font-size: 15px; font-weight: 600; }
+.lu-anchor { position: absolute; width: 0; height: 0; }
+.lu-a1 { left: 30%; top: 12%; } .lu-a2 { left: 70%; top: 34%; } .lu-a3 { left: 36%; top: 54%; } .lu-a4 { left: 66%; top: 80%; }
+.lu-tray { width: min(100%, 460px); padding: 14px 14px 16px; border-radius: 26px; border: 1.5px dashed rgba(255,255,255,.24); background: rgba(255,255,255,.03); }
+.lu-tray-k { font-family: var(--mono); font-size: 12.5px; font-weight: 500; color: rgba(243,243,245,.66); }
+.lu-tray-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 10px; margin-top: 12px; }
+.lu-tray-list li { display: grid; justify-items: start; align-content: start; gap: 7px; min-width: 0; }
+.lu-st { position: relative; z-index: 2; display: inline-flex; align-items: center; min-height: 34px; padding: 0 12px; border-radius: 10px; font-size: 14px; font-weight: 700; letter-spacing: -.01em; white-space: nowrap; box-shadow: 0 10px 18px -10px rgba(0,0,0,.8); will-change: transform; }
+.lu-st1 { background: var(--orange); color: var(--ink); rotate: -3deg; box-shadow: inset 0 1px 0 rgba(255,255,255,.4), 0 10px 18px -10px rgba(0,0,0,.8); }
+.lu-st2 { background: #fff; color: var(--ink); font-family: var(--mono); font-weight: 500; border-radius: 6px; rotate: 2deg; }
+.lu-st3 { background: var(--ink); color: #fff; box-shadow: inset 0 0 0 2px var(--orange), 0 10px 18px -10px rgba(0,0,0,.8); rotate: -1.5deg; }
+.lu-st4 { background: var(--orange-soft); color: var(--ink); border-radius: 99px; rotate: 3deg; }
+.lu-st-why { font-size: 14px; line-height: 1.3; color: rgba(243,243,245,.74); }
+.lu-hush-toggle { display: inline-flex; align-items: center; gap: 12px; min-height: 48px; padding: 0 20px 0 10px; border-radius: 99px; background: rgba(255,255,255,.08); color: #F3F3F5; box-shadow: inset 0 0 0 1px rgba(255,255,255,.2); font-size: 15px; font-weight: 500; transition: background-color .3s, transform .45s var(--spring); }
+.lu-hush-toggle[hidden] { display: none; }
+.lu-hush-toggle:active { transform: scale(.96); }
+@media (hover: hover) { .lu-hush-toggle:hover { background: rgba(255,255,255,.14); } }
+.lu-sw { position: relative; display: block; width: 44px; height: 28px; border-radius: 99px; background: rgba(255,255,255,.16); box-shadow: inset 0 1px 3px rgba(0,0,0,.5); transition: background-color .3s; }
+.lu-sw i { position: absolute; left: 3px; top: 3px; width: 22px; height: 22px; border-radius: 50%; background: #F3F3F5; box-shadow: 0 2px 4px rgba(0,0,0,.45); transition: translate .45s var(--spring); }
+.lu-hush-toggle[aria-pressed="true"] .lu-sw { background: var(--orange); }
+.lu-hush-toggle[aria-pressed="true"] .lu-sw i { translate: 16px 0; }
+.motion-off .lu-sw i, .motion-off .lu-sw { transition: none; }
+
+/* ============================================================ 04 product-page questions on a growing stem */
+.lu-pp-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 36px; }
+.lu-pp-head .sec-title { margin-top: 14px; }
+.lu-pp-lede { margin-top: 20px; max-width: 54ch; font-size: clamp(18px, 1.4vw, 21px); line-height: 1.5; letter-spacing: -.015em; color: var(--ink); }
+.lu-pp-more { margin-top: 14px; max-width: 54ch; font-size: 16.5px; line-height: 1.55; color: var(--graphite); }
+.lu-pp-more a { color: var(--ink); font-weight: 600; text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: .2em; text-decoration-color: rgba(17,17,20,.38); }
+@media (hover: hover) { .lu-pp-more a:hover { text-decoration-color: var(--ink); } }
+.lu-stem { position: relative; padding-left: 50px; }
+.lu-stem-svg { position: absolute; left: 10px; top: 4px; width: 28px; height: calc(100% - 8px); overflow: visible; }
+.lu-stem-path { fill: none; stroke: #7F9270; stroke-width: 2.5; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 0; }
+.lu-stem-list { display: grid; gap: 0; }
+.lu-stem-list li { position: relative; padding: 4px 0 28px; }
+.lu-stem-list li::before { content: ''; position: absolute; left: -31px; top: 9px; width: 10px; height: 10px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #DCE6CF, #7F9270 70%); box-shadow: 0 0 0 3px var(--chalk); }
+.lu-stem-list li:last-child { padding-bottom: 4px; }
+.lu-leaf { position: absolute; top: 6px; left: -25px; width: 22px; height: 15px; border-radius: 1px 100% 1px 100%; background: linear-gradient(135deg, #B4C49F 0%, #6F8560 100%); box-shadow: inset 0 1px 0 rgba(255,255,255,.4); transform-origin: left center; transform: rotate(-28deg) scale(1); transition: transform .9s var(--spring) .2s; }
+.lu-leaf::after { content: ''; position: absolute; left: 2px; right: 3px; top: 50%; height: 1px; background: rgba(38,48,31,.45); rotate: 22deg; }
+.lu-stem-list li:nth-child(even) .lu-leaf { left: -47px; border-radius: 100% 1px 100% 1px; background: linear-gradient(225deg, #B4C49F 0%, #6F8560 100%); transform-origin: right center; transform: rotate(28deg) scale(1); }
+.lu-stem-list li:nth-child(even) .lu-leaf::after { rotate: -22deg; }
+.lu-stem-list h3 { font-size: clamp(22px, 2vw, 28px); font-weight: 600; letter-spacing: -.035em; line-height: 1.12; }
+.lu-stem-list p { margin-top: 6px; max-width: 52ch; font-size: 16.5px; line-height: 1.55; color: var(--prose-c); }
+.lu-stem.is-armed .lu-stem-path { stroke-dashoffset: calc(1 - var(--lu-grow, 0)); transition: stroke-dashoffset 1.2s var(--ease); }
+.lu-stem.is-armed li:not(.is-grown) .lu-leaf { transform: rotate(-28deg) scale(0); }
+.lu-stem.is-armed li:nth-child(even):not(.is-grown) .lu-leaf { transform: rotate(28deg) scale(0); }
+.motion-off .lu-leaf, .motion-off .lu-stem-path { transition: none !important; }
+
+/* ============================================================ 05 learn: loose words settle into one precise line */
+.lu-settle { position: relative; max-width: 12ch; padding-bottom: .16em; font-size: clamp(46px, 7.6vw, 132px); font-weight: 700; line-height: .92; letter-spacing: -.062em; text-wrap: balance; }
+.lu-settle::after { content: ''; position: absolute; left: 0; bottom: 0; width: min(100%, 4.2em); height: max(3px, .035em); border-radius: 99px; background: var(--ink); transform-origin: left center; }
+.lu-w { display: inline-block; }
+.lu-w:nth-child(1) { --dx: -.18em; --dy: -.3em; --r: -7deg; --i: 0; }
+.lu-w:nth-child(2) { --dx: .22em; --dy: .24em; --r: 6deg; --i: 1; }
+.lu-w:nth-child(3) { --dx: -.1em; --dy: -.36em; --r: -4deg; --i: 2; }
+.lu-w:nth-child(4) { --dx: .26em; --dy: .3em; --r: 8deg; --i: 3; }
+.lu-w:nth-child(5) { --dx: -.24em; --dy: .18em; --r: -9deg; --i: 4; }
+.lu-w:nth-child(6) { --dx: .14em; --dy: -.22em; --r: 5deg; --i: 5; }
+.lu-settle.is-armed .lu-w { transition: translate 1.1s var(--spring), rotate 1.1s var(--spring), opacity .7s var(--ease); transition-delay: calc(var(--i) * 85ms); }
+.lu-settle.is-armed:not(.is-set) .lu-w { opacity: .3; translate: var(--dx) var(--dy); rotate: var(--r); }
+.lu-settle.is-armed::after { transition: transform .9s var(--ease) .75s; }
+.lu-settle.is-armed:not(.is-set)::after { transform: scaleX(0); }
+.lu-learn-copy { display: grid; gap: 16px; margin-top: clamp(32px, 4vw, 56px); }
+.lu-learn-copy p { max-width: 58ch; font-size: clamp(17px, 1.3vw, 19px); line-height: 1.6; color: var(--prose-c); }
+
+/* ============================================================ 06 more studies */
+.lu-more-tile .tile-d { max-width: 40ch; }
+/* each study arrives as a taped print that settles straight as it scrolls in, and lifts when the tile is hovered */
+.lu-print { position: relative; display: block; margin: 0 0 6px; padding: 8px; border-radius: 18px; background: #FBFBF9; box-shadow: inset 0 1px 0 #fff, 0 22px 34px -24px rgba(17,17,20,.6); rotate: -1.4deg; transition: rotate .7s var(--spring), translate .7s var(--spring), box-shadow .4s; }
+.lu-more-tile:nth-child(2) .lu-print { rotate: 1.2deg; }
+.lu-print img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; border-radius: 12px; background: #DDD8CF; }
+.lu-tape { position: absolute; left: 50%; top: -9px; width: 74px; height: 22px; margin-left: -37px; border-radius: 3px; background: rgba(251,251,249,.62); box-shadow: 0 1px 2px rgba(17,17,20,.14); rotate: -4deg; backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px); }
+.lu-more-tile:nth-child(2) .lu-tape { rotate: 5deg; }
+@media (hover: hover) and (pointer: fine) {
+  .lu-more-tile:has(.tile-link):hover .lu-print { rotate: 0deg; translate: 0 -6px; box-shadow: inset 0 1px 0 #fff, 0 32px 44px -26px rgba(17,17,20,.65); }
+}
+@supports (animation-timeline: view()) {
+  html:not(.motion-off) .lu-print { animation: luSettlePrint linear both; animation-timeline: view(); animation-range: entry 10% cover 42%; }
+  @keyframes luSettlePrint { from { translate: 0 34px; rotate: -7deg; } }
+  html:not(.motion-off) .lu-more-tile:nth-child(2) .lu-print { animation-name: luSettlePrint2; }
+  @keyframes luSettlePrint2 { from { translate: 0 44px; rotate: 8deg; } }
+}
+.motion-off .lu-print { transition: none; }
+.lu-more-note { max-width: 60ch; margin-top: 22px; font-size: 15px; line-height: 1.5; color: var(--graphite); text-wrap: pretty; }
+
+/* ============================================================ responsive */
+@media (min-width: 768px) {
+  .lu-label-dl { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .lu-label-dl > div, .lu-label-dl > div:nth-child(even) { padding: 10px 14px; }
+  .lu-label { padding: 18px 22px 10px; }
+  .lu-rg-stage { grid-template-columns: minmax(0, 340px) 96px; justify-content: center; gap: 24px 28px; padding: 28px; }
+  .lu-notes, .lu-rg-foot { justify-self: stretch; }
+  .lu-note { padding: 22px 24px 18px; }
+  .lu-calm-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .lu-tray-list { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .lu-tray { width: min(100%, 620px); }
+}
+@media (min-width: 1024px) {
+  .lu-rg-stage { grid-template-columns: minmax(280px, 380px) minmax(0, 600px); grid-template-rows: 1fr auto auto auto 1fr; grid-template-areas: "fig ." "fig shelf" "fig notes" "fig foot" "fig ."; justify-content: center; gap: 24px clamp(40px, 6vw, 96px); padding: clamp(32px, 4.4vw, 64px); }
+  .lu-rg-stage::before { left: -14%; top: -20%; width: 70%; }
+  .lu-shelf { align-items: flex-start; }
+  .lu-shelf-k { text-align: left; padding-left: 6px; }
+  .lu-jars { flex-direction: row; gap: 10px; padding: 12px 14px; border-radius: 34px; }
+  .lu-jar { width: clamp(76px, 7vw, 104px); padding: 12px 0 10px; }
+  .lu-pot { width: 50px; height: 62px; }
+  .lu-lid { left: 9px; right: 9px; height: 14px; }
+  .lu-body { top: 12px; }
+  .lu-note { padding: 24px 26px 20px; }
+  .lu-note-d { font-size: 17px; }
+  .lu-q-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); grid-template-areas: "head media" "big media" "copy media"; column-gap: clamp(40px, 6vw, 110px); row-gap: 28px; align-items: start; }
+  .lu-q-head { grid-area: head; } .lu-q-big { grid-area: big; } .lu-q-copy { grid-area: copy; }
+  .lu-q-media { grid-area: media; align-self: center; margin: 0; rotate: 1.2deg; }
+  .lu-calm-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 480px); grid-template-areas: "head hush" "list list"; column-gap: clamp(40px, 6vw, 110px); row-gap: 44px; align-items: start; }
+  .lu-calm-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .lu-hush { position: sticky; top: calc(var(--nav-space) + 28px); }
+  .lu-tray-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .lu-tray { width: min(100%, 440px); }
+  .lu-pp-grid { grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr); column-gap: clamp(40px, 6vw, 110px); align-items: start; }
+  .lu-pp-head { position: sticky; top: calc(var(--nav-space) + 36px); }
+  .lu-stem { padding-top: 10px; }
+  .lu-stem-list li { padding-bottom: 40px; }
+  .lu-learn-copy { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: clamp(32px, 5vw, 80px); max-width: 1200px; }
+}
+@media (max-width: 1023px) {
+  .lu-hero .ph-in { grid-template-columns: minmax(0, 1fr); }
+  .lu-hero-media { margin-top: 44px; max-width: 640px; }
+}
+@media (max-width: 767px) {
+  /* phones: like the other studies, the print comes right after the title so the first screen shows the object;
+     the answer-first lead keeps its place in the source and reads right under it */
+  .lu-hero .ph-in { grid-template-areas: "crumbs" "kicker" "title" "aside" "lead" "chips" "actions"; }
+  .lu-hero { padding-bottom: 76px; }
+  .lu-hero .ph-title { font-size: clamp(40px, 11.6vw, 58px); }
+  .lu-hero-media { margin-top: 26px; }
+  .lu-hero .lead { margin-top: 38px; }
+  .lu-hero .btn-row { margin-top: 22px; }
+  .lu-label-wrap { margin-top: -46px; }
+  .lu-label { rotate: -1deg; }
+  .lu-rg .sec-head { margin-bottom: 24px; }
+  .lu-calm-grid { gap: 34px; }
+  .lu-settle { font-size: clamp(42px, 12.4vw, 64px); max-width: 11ch; }
+}
+@media (max-width: 379px) {
+  /* small phones: a tighter lead under the print */
+  .lu-hero .lead { font-size: 16px; line-height: 1.45; margin-top: 34px; }
+  .lu-hero-media { margin-top: 22px; }
+}
+@media (max-width: 359px) {
+  .lu-jar { width: 58px; }
+  .lu-pot { width: 34px; height: 44px; }
+}
+@media (min-width: 1280px) {
+  .lu-label { margin-right: clamp(0px, 5vw, 80px); }
+  .lu-calm-grid { grid-template-areas: "head hush" "list hush"; }
+  .lu-meter > div { grid-template-columns: minmax(0, 8.4em) minmax(0, 1fr); align-items: center; gap: 10px; }
+}
+.lu-head .sec-title { margin-top: 14px; }
+
+/* ============================================================ accessibility widget (a11y.js / a11y.css) modes
+   The phone mockup and the hush card are aria-hidden illustrations sized in container units: a11y.js writes inline px
+   sizes on every element, so those are pinned back here (otherwise the screen clips its text and the title stops
+   changing size between glazes). Real copy around them still grows. */
+html:is(.a11y-t1, .a11y-t2, .a11y-t3) .lu-m-logo { font-size: 7.6cqi !important; }
+html:is(.a11y-t1, .a11y-t2, .a11y-t3) :is(.lu-m-nav, .lu-m-bag) { font-size: 3.3cqi !important; }
+html:is(.a11y-t1, .a11y-t2, .a11y-t3) :is(.lu-m-eye, .lu-m-steps li) { font-size: 3.1cqi !important; }
+html:is(.a11y-t1, .a11y-t2, .a11y-t3) .lu-m-title { font-size: var(--lu-hz) !important; }
+html:is(.a11y-t1, .a11y-t2, .a11y-t3) .lu-m-desc { font-size: 3.7cqi !important; }
+html:is(.a11y-t1, .a11y-t2, .a11y-t3) .lu-m-steps b { font-size: 2.6cqi !important; }
+html:is(.a11y-t1, .a11y-t2, .a11y-t3) .lu-m-btn { font-size: 4cqi !important; }
+html:is(.a11y-t1, .a11y-t2, .a11y-t3) .lu-m-foot { font-size: 3cqi !important; }
+html:is(.a11y-t1, .a11y-t2, .a11y-t3) .lu-hush-name { font-size: 26px !important; }
+html:is(.a11y-t1, .a11y-t2, .a11y-t3) .lu-hush-sub { font-size: 14px !important; }
+html:is(.a11y-t1, .a11y-t2, .a11y-t3) .lu-hush-btn { font-size: 15px !important; }
+/* bigger text: the jars line up under the phone, stickers and verdicts may wrap */
+html:is(.a11y-t2, .a11y-t3) .lu-rg-stage { grid-template-columns: minmax(0, 820px); justify-content: center; grid-template-rows: none; grid-template-areas: "fig" "shelf" "notes" "foot"; }
+html:is(.a11y-t2, .a11y-t3) .lu-phone { max-width: 320px; }
+html:is(.a11y-t2, .a11y-t3) .lu-shelf { align-items: center; }
+html:is(.a11y-t2, .a11y-t3) .lu-shelf-k { text-align: center; padding-left: 0; }
+html:is(.a11y-t2, .a11y-t3) .lu-jars { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; width: min(100%, 340px); padding: 10px; }
+html:is(.a11y-t2, .a11y-t3) .lu-jar { width: auto; padding-inline: 8px; }
+@media (min-width: 768px) { html:is(.a11y-t2, .a11y-t3) .lu-jars { grid-template-columns: repeat(4, minmax(0, 1fr)); width: min(100%, 620px); } }
+html:is(.a11y-t1, .a11y-t2, .a11y-t3) .lu-meter > div { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+html:is(.a11y-t2, .a11y-t3) .lu-meter dd { display: flex; flex-wrap: wrap; gap: 6px 12px; }
+html:is(.a11y-t2, .a11y-t3) .lu-bar { flex: 1 1 64px; }
+html:is(.a11y-t2, .a11y-t3) :is(.lu-st, .lu-st-why) { white-space: normal; }
+html:is(.a11y-t2, .a11y-t3) .lu-st { padding-block: 6px; }
+html:is(.a11y-t2, .a11y-t3) .lu-tray-list { grid-template-columns: minmax(0, 1fr); }
+/* dark + high contrast: the surface tagger would repaint the mockup (black label on a black button); inside the
+   illustration the glaze's own colors are the content, so they are kept, and the live meter measures them */
+html:is(.a11y-dark, .a11y-contrast) .lu-phone .lu-screen { background-color: var(--lu-bg) !important; color: var(--lu-tx) !important; }
+html:is(.a11y-dark, .a11y-contrast) .lu-screen :is(.lu-m, .lu-m-bar, .lu-m-logo, .lu-m-bag, .lu-m-title, .lu-m-desc, .lu-m-steps) { background-color: transparent !important; color: var(--lu-tx) !important; }
+html:is(.a11y-dark, .a11y-contrast) .lu-screen :is(.lu-m-nav, .lu-m-eye, .lu-m-foot) { background-color: transparent !important; color: var(--lu-mut) !important; }
+html:is(.a11y-dark, .a11y-contrast) .lu-screen .lu-m-img { background-color: var(--lu-chip) !important; }
+html:is(.a11y-dark, .a11y-contrast) .lu-screen .lu-m-steps li { background-color: var(--lu-chip) !important; color: var(--lu-tx) !important; }
+html:is(.a11y-dark, .a11y-contrast) .lu-screen .lu-m-steps b { background-color: var(--lu-tx) !important; color: var(--lu-bg) !important; }
+html:is(.a11y-dark, .a11y-contrast) .lu-screen .lu-m-btn { background-color: var(--lu-btn) !important; color: var(--lu-btn-tx) !important; }
+html:is(.a11y-dark, .a11y-contrast) .lu-hush .lu-hush-card { background-color: #EEF0E6 !important; color: #26301F !important; }
+html:is(.a11y-dark, .a11y-contrast) .lu-hush-card :is(.lu-hush-info, .lu-hush-name) { background-color: transparent !important; color: #26301F !important; }
+html:is(.a11y-dark, .a11y-contrast) .lu-hush-card .lu-hush-sub { background-color: transparent !important; color: #4E5A44 !important; }
+html:is(.a11y-dark, .a11y-contrast) .lu-hush-card .lu-hush-btn { background-color: #26301F !important; color: #EEF0E6 !important; }
+html:is(.a11y-dark, .a11y-contrast) .lu-note .lu-note-sw { box-shadow: inset 0 -2px 0 rgba(0,0,0,.18), 0 3px 6px -2px rgba(0,0,0,.4) !important; background: radial-gradient(circle at 32% 28%, rgba(255,255,255,.7) 0 12%, transparent 30%), radial-gradient(circle at 30% 25%, var(--sw1), var(--sw2) 80%) !important; }
+html.a11y-dark .lu-tray .lu-st2 { background-color: #fff !important; color: #111114 !important; box-shadow: 0 10px 18px -10px rgba(0,0,0,.8) !important; }

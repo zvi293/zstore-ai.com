@@ -1,0 +1,455 @@
+/* Zstore AI — accessibility widget + display modes (every page; markup contract: tools/a11y-snippet.html).
+   1. the nav button (.a11y-btn, ≥1024px) and the mobile-menu item (.menu-a11y)
+   2. the panel: a porcelain slab of keycaps in <dialog id="a11y-panel"> (anchored card on desktop, bottom sheet below 1024px)
+   3. the tools it adds to the page (reader bar, reading guide, reading mask, image labels)
+   4. the modes, as classes on <html> set before first paint by a11y-boot.js and kept in sync by a11y.js:
+      a11y-t1|t2|t3 (text 125/150/200%), a11y-lh, a11y-sp, a11y-font, a11y-dark | a11y-contrast, a11y-gray | a11y-lowsat,
+      a11y-links, a11y-heads, a11y-cursor, a11y-guide, a11y-mask, a11y-focus, a11y-noimg, a11y-noauto.
+      Motion is the site's own html.motion-off (the panel's "Pause animations" drives the same switch).
+   The modes target the shared system (tactile.css + site.css) by class. a11y.js also tags surfaces a page invents
+   for itself (.a11y-s-ink / .a11y-s-isle / .a11y-s-dark) by what they look like, so dark and high contrast hold up
+   on page components this file has never heard of. Page CSS can key off the same html classes. */
+
+.sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+/* ============================================================ 1. triggers */
+.a11y-ico { display: block; width: 24px; height: 24px; fill: currentColor; flex: none; transition: transform .5s var(--spring); }
+/* nav capsule: a round glazed bead beside the Motion toggle (the menu item replaces it under 1024px) */
+.a11y-btn { position: relative; display: inline-grid; place-items: center; width: 48px; height: 48px; flex: none; border-radius: 50%; color: var(--ink);
+  background: radial-gradient(circle at 34% 24%, #FFFFFF 0 16%, #F2F2F4 46%, #DCDDE2 100%);
+  box-shadow: inset 0 1px 0 #fff, inset 0 -3px 0 rgba(17,17,20,.12), 0 6px 12px -8px rgba(17,17,20,.55);
+  transition: transform .45s var(--spring), box-shadow .3s, background-color .3s; }
+.a11y-btn:active { transform: scale(.9); }
+@media (hover: hover) { .a11y-btn:hover .a11y-ico { transform: rotate(-14deg) scale(1.08); } }
+.a11y-btn[aria-expanded="true"] { background: radial-gradient(circle at 34% 24%, #FFB58F 0 10%, var(--orange) 50%, #D94210 100%); color: #111114; box-shadow: inset 0 1px 0 rgba(255,255,255,.45), inset 0 -3px 0 rgba(120,20,0,.28), 0 6px 14px -8px rgba(180,50,0,.8); }
+.nav.is-dark .a11y-btn:not([aria-expanded="true"]) { color: #F3F3F5; background: radial-gradient(circle at 34% 24%, #62626C 0 10%, #2C2C33 50%, #18181C 100%); box-shadow: inset 0 1px 0 rgba(255,255,255,.18), inset 0 -3px 0 rgba(0,0,0,.4), 0 6px 12px -8px rgba(0,0,0,.8); }
+/* a small orange bead: some setting is on */
+:is(.a11y-btn, .menu-a11y).has-on::after { content: ''; position: absolute; right: 3px; top: 3px; width: 11px; height: 11px; border-radius: 50%; background: var(--orange); box-shadow: 0 0 0 2.5px var(--chalk-2, #F6F6F7); }
+.nav.is-dark .a11y-btn.has-on::after { box-shadow: 0 0 0 2.5px #1B1B20; }
+.a11y-btn[aria-expanded="true"].has-on::after { background: #111114; }
+@media (max-width: 1023px) { .a11y-btn { display: none; } }
+/* desktop: the bead stands on its own just outside the capsule, right beside "Start a project". The nav gives up the
+   room on its right so the capsule + bead pair stays centred; the bead travels with the capsule (it is its child). */
+@media (min-width: 1024px) {
+  .nav:has(.a11y-btn) { padding-right: 62px; }
+  .nav-bar .a11y-btn { position: absolute; right: -62px; top: 50%; width: 52px; height: 52px; margin-top: -26px;
+    box-shadow: inset 0 1px 0 #fff, inset 0 -3px 0 rgba(17,17,20,.12), 0 0 0 1px rgba(17,17,20,.05), 0 12px 26px -14px rgba(17,17,20,.55); }
+  .nav-bar .a11y-btn .a11y-ico { width: 25px; height: 25px; }
+  .nav-bar .a11y-btn[aria-expanded="true"] { box-shadow: inset 0 1px 0 rgba(255,255,255,.45), inset 0 -3px 0 rgba(120,20,0,.28), 0 12px 24px -12px rgba(180,50,0,.75); }
+  .nav.is-dark .nav-bar .a11y-btn:not([aria-expanded="true"]) { box-shadow: inset 0 1px 0 rgba(255,255,255,.18), inset 0 -3px 0 rgba(0,0,0,.4), 0 0 0 1px rgba(255,255,255,.08), 0 12px 26px -14px rgba(0,0,0,.8); }
+}
+html:not(.js) .a11y-btn, html:not(.js) .menu-a11y { display: none; }
+/* room for the extra bead in the capsule (the centred links must never touch the actions):
+   up to 1340px the Motion toggle shows only its dot (as it already does up to 1180px); up to 1120px the CTA
+   is a touch slimmer and the links sit a little left of centre (the Services panel follows them back) */
+@media (min-width: 1024px) and (max-width: 1340px) {
+  .nav-bar:has(.a11y-btn) .motion-label { display: none; }
+  .nav-actions:has(.a11y-btn) .motion-btn { width: 48px; padding: 0; justify-content: center; border-radius: 50%; background: radial-gradient(circle at 34% 24%, #FFFFFF 0 16%, #F2F2F4 46%, #DCDDE2 100%); box-shadow: inset 0 1px 0 #fff, inset 0 -3px 0 rgba(17,17,20,.12), 0 6px 12px -8px rgba(17,17,20,.55); transition: transform .45s var(--spring), box-shadow .3s; }
+  .nav.is-dark .nav-actions:has(.a11y-btn) .motion-btn { background: radial-gradient(circle at 34% 24%, #62626C 0 10%, #2C2C33 50%, #18181C 100%); box-shadow: inset 0 1px 0 rgba(255,255,255,.18), inset 0 -3px 0 rgba(0,0,0,.4), 0 6px 12px -8px rgba(0,0,0,.8); }
+  .nav-actions:has(.a11y-btn) .motion-btn:active { transform: scale(.9); }
+}
+@media (min-width: 1024px) and (max-width: 1180px) { .nav-actions:has(.a11y-btn) { gap: 4px; } .nav-actions:has(.a11y-btn) .nav-cta { padding: 0 14px; } }
+@media (min-width: 1024px) and (max-width: 1120px) {
+  .nav-bar:has(.a11y-btn) .nav-links { transform: translateX(calc(-50% - 34px)); }
+  .nav-bar:has(.a11y-btn) .dd-panel { margin-left: 34px; }
+}
+
+/* mobile menu: a labelled pill beside the menu's Motion toggle */
+.menu-a11y { position: relative; display: inline-flex; align-items: center; gap: 10px; min-height: 48px; padding: 0 18px 0 6px; border-radius: 999px; color: #F3F3F5; font-size: 15px; font-weight: 500; box-shadow: inset 0 0 0 1px rgba(255,255,255,.16); transition: transform .45s var(--spring), background-color .25s; }
+.menu-a11y .a11y-ico { box-sizing: content-box; width: 22px; height: 22px; padding: 7px; border-radius: 50%; color: #111114; background: radial-gradient(circle at 34% 24%, #FFFFFF 0 16%, #F2F2F4 46%, #D6D7DC 100%); box-shadow: inset 0 -2px 0 rgba(17,17,20,.14); }
+.menu-a11y:active { transform: scale(.95); }
+.menu-a11y.has-on::after { right: auto; left: 30px; top: 4px; box-shadow: 0 0 0 2.5px var(--ink); }
+@media (hover: hover) { .menu-a11y:hover { background: rgba(255,255,255,.08); } }
+@media (max-width: 359px) { .menu-a11y { gap: 7px; padding-right: 10px; font-size: 14px; } .menu-a11y .a11y-ico { width: 20px; height: 20px; padding: 6px; } }
+/* phones: clock on its own line, then Accessibility + Motion as an even pair (no ragged row) */
+@media (max-width: 599px), (max-height: 560px) {
+  .menu-foot:has(.menu-a11y) { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 10px 8px; }
+  .menu-foot:has(.menu-a11y) > :not(.menu-a11y):not(.motion-btn) { grid-column: 1 / -1; }
+  .menu-foot:has(.menu-a11y) > :is(.menu-a11y, .motion-btn) { width: 100%; min-width: 0; justify-content: center; }
+  .menu-foot:has(.menu-a11y) .menu-a11y { justify-content: flex-start; }
+}
+@media (min-width: 600px) and (min-height: 561px) { .menu-foot:has(.menu-a11y) .menu-a11y { margin-left: auto; } .menu-foot:has(.menu-a11y) .menu-a11y + .motion-btn, .menu-foot:has(.menu-a11y) .motion-btn + .menu-a11y { margin-left: 0; } }
+
+/* ============================================================ 2. the panel */
+.a11y-panel { --pz: 1;
+  --p-bg: #F6F6F7; --p-fg: #111114; --p-mute: #595C64; --p-line: rgba(17,17,20,.1); --p-well: rgba(17,17,20,.065);
+  --p-cap: linear-gradient(180deg, #FFFFFF 0%, #F0F0F2 100%); --p-hi: rgba(255,255,255,.95); --p-lip: rgba(17,17,20,.14); --p-drop: rgba(17,17,20,.45);
+  position: fixed; margin: 0; padding: 0; border: 0; max-width: none; max-height: none; overflow: visible; background: transparent;
+  color: var(--p-fg); font-family: var(--sans); font-size: calc(15px * var(--pz)); line-height: 1.35; letter-spacing: -.01em; text-align: left; }
+.a11y-panel:not([open]) { display: none; }
+html.a11y-t1 .a11y-panel { --pz: 1.08; } html.a11y-t2 .a11y-panel { --pz: 1.18; } html.a11y-t3 .a11y-panel { --pz: 1.32; }
+.a11y-panel :focus-visible { outline: 3px solid var(--p-fg); outline-offset: 2px; }
+.a11y-sheet { position: relative; display: flex; flex-direction: column; border-radius: 30px; background: var(--p-bg);
+  box-shadow: inset 0 1px 0 var(--p-hi), 0 1px 0 rgba(17,17,20,.06), 0 44px 90px -34px rgba(17,17,20,.62); transition: transform .45s var(--spring); }
+.a11y-sheet.is-drag { transition: none; }
+.a11y-grab { flex: none; display: grid; place-items: center; height: 22px; padding-top: 8px; cursor: grab; touch-action: none; }
+.a11y-grab i { width: 44px; height: 5px; border-radius: 5px; background: var(--p-fg); opacity: .2; }
+.a11y-head { flex: none; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 10px; padding: 14px 14px 12px 22px; }
+.a11y-title-row { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; margin-top: 2px; }
+.a11y-head-t { min-width: 0; }
+.a11y-kicker { font-family: var(--mono); font-size: calc(12.5px * var(--pz)); font-weight: 500; letter-spacing: -.02em; color: var(--p-mute); }
+.a11y-title { font-size: calc(28px * var(--pz)); font-weight: 700; line-height: 1; letter-spacing: -.05em; }
+.a11y-title:focus { outline: none; }
+.a11y-title:focus-visible { outline: 3px solid var(--p-fg); outline-offset: 4px; border-radius: 8px; }
+.a11y-count { flex: none; display: inline-flex; align-items: center; min-height: 30px; padding: 0 12px; border-radius: 999px; font-family: var(--mono); font-size: calc(12.5px * var(--pz)); font-weight: 500; letter-spacing: -.02em; white-space: nowrap; color: var(--p-mute); box-shadow: inset 0 0 0 1.5px var(--p-line); transition: transform .5s var(--spring), background-color .3s; }
+.a11y-count.is-on { background: var(--orange); color: #111114; box-shadow: inset 0 1px 0 rgba(255,255,255,.4), 0 6px 12px -6px rgba(180,50,0,.6); transform: rotate(-3deg); }
+.a11y-x { display: grid; place-items: center; width: 44px; height: 44px; flex: none; border-radius: 50%; background: var(--p-well); color: var(--p-fg); font-size: 28px; line-height: 1; transition: transform .45s var(--spring), background-color .25s; }
+.a11y-x span { transform: translateY(-2px); }
+.a11y-x:active { transform: scale(.9); }
+@media (hover: hover) { .a11y-x:hover { transform: rotate(90deg); } }
+.a11y-body { flex: 1 1 auto; min-height: 0; overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; padding: 4px 14px 18px; scrollbar-width: thin; }
+.a11y-g + .a11y-g { margin-top: 20px; }
+.a11y-gh { display: flex; align-items: center; gap: 8px; margin: 0 0 10px 4px; font-family: var(--mono); font-size: calc(12.5px * var(--pz)); font-weight: 500; letter-spacing: -.02em; color: var(--p-mute); }
+.a11y-gh b { display: inline-grid; place-items: center; min-width: 26px; height: 21px; padding: 0 6px; border-radius: 7px; background: var(--p-fg); color: var(--p-bg); font-size: calc(11.5px * var(--pz)); font-weight: 500; box-shadow: inset 0 -2px 0 rgba(255,255,255,.14), 0 2px 0 rgba(17,17,20,.22); }
+.a11y-i { display: block; width: calc(24px * var(--pz)); height: calc(24px * var(--pz)); flex: none; }
+
+/* keycap toggles: the cap rests raised on its well, sinks when pressed, and glazes orange while it is on */
+.a11y-keys { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; }
+.a11y-key { position: relative; display: block; width: 100%; min-width: 0; padding: 0 0 3px; border-radius: 20px; background: var(--p-well); text-align: left; color: inherit; }
+.a11y-cap { position: relative; display: grid; grid-template-columns: auto minmax(0, 1fr); grid-template-areas: "i led" "l l" "d d"; align-items: center; gap: 2px 8px; height: 100%; padding: 12px 12px 13px 14px; border-radius: 20px;
+  background: var(--p-cap); box-shadow: inset 0 1px 0 var(--p-hi), 0 3px 0 var(--p-lip), 0 12px 18px -14px var(--p-drop);
+  transform: translateY(-3px); transition: transform .5s var(--spring), box-shadow .3s, background-color .3s, color .3s; }
+.a11y-cap > .a11y-i { grid-area: i; }
+.a11y-led { grid-area: led; justify-self: end; display: inline-flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: calc(11.5px * var(--pz)); font-weight: 500; letter-spacing: .04em; text-transform: uppercase; color: var(--p-mute); }
+.a11y-led i { width: 8px; height: 8px; border-radius: 50%; box-shadow: inset 0 0 0 1.5px currentColor; transition: background-color .3s, box-shadow .3s; }
+.a11y-led b { font-weight: 500; }
+.a11y-led-on { display: none; }
+.a11y-kl { grid-area: l; margin-top: 8px; font-size: calc(15.5px * var(--pz)); font-weight: 600; line-height: 1.15; letter-spacing: -.025em; overflow-wrap: anywhere; }
+.a11y-kd { grid-area: d; margin-top: 2px; font-size: calc(12.5px * var(--pz)); line-height: 1.3; color: var(--p-mute); }
+@media (hover: hover) { .a11y-key:hover .a11y-cap { transform: translateY(-4px); } }
+.a11y-key:active .a11y-cap { transform: translateY(1px); box-shadow: inset 0 1px 0 var(--p-hi), 0 0 0 var(--p-lip), 0 4px 8px -8px var(--p-drop); transition-duration: .08s; }
+.a11y-key[aria-pressed="true"] .a11y-cap { color: #111114; transform: translateY(-1px);
+  background: radial-gradient(130% 150% at 14% 0%, #FF7D4A 0%, #FF5A1F 52%, #EE4A12 100%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.42), inset 0 -2px 0 rgba(120,20,0,.2), 0 1px 0 #B93A0C, 0 10px 18px -12px rgba(200,60,10,.85); }
+.a11y-key[aria-pressed="true"]:active .a11y-cap { transform: translateY(1px); }
+.a11y-key[aria-pressed="true"] :is(.a11y-led, .a11y-kd) { color: #111114; }
+.a11y-key[aria-pressed="true"] .a11y-led i { background: #111114; box-shadow: 0 0 0 3px rgba(17,17,20,.16); }
+.a11y-key[aria-pressed="true"] .a11y-led-on { display: inline; } .a11y-key[aria-pressed="true"] .a11y-led-off { display: none; }
+.a11y-key:focus-visible { outline: 3px solid var(--p-fg); outline-offset: 2px; border-radius: 22px; }
+/* a lone last key spans the row, laid out sideways */
+.a11y-keys > .a11y-key:last-child:nth-child(odd) { grid-column: 1 / -1; }
+.a11y-keys > .a11y-key:last-child:nth-child(odd) .a11y-cap { grid-template-columns: auto minmax(0, 1fr) auto; grid-template-areas: "i l led" "i d led"; column-gap: 12px; }
+.a11y-keys > .a11y-key:last-child:nth-child(odd) .a11y-kl { margin-top: 0; }
+
+/* text size: two round keys and a four-step meter that fills like a volume rail */
+.a11y-step { margin-bottom: 9px; padding: 13px 12px 12px 14px; border-radius: 20px; background: var(--p-well); }
+.a11y-step-l { display: flex; align-items: center; gap: 8px; font-size: calc(15.5px * var(--pz)); font-weight: 600; letter-spacing: -.025em; }
+.a11y-step-row { display: grid; grid-template-columns: auto minmax(0, 1fr) auto auto; align-items: center; gap: 12px; margin-top: 10px; }
+.a11y-step-b { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; background: var(--p-cap); color: var(--p-fg);
+  box-shadow: inset 0 1px 0 var(--p-hi), 0 3px 0 var(--p-lip), 0 10px 16px -12px var(--p-drop); transform: translateY(-2px); transition: transform .45s var(--spring), box-shadow .25s, opacity .25s; }
+.a11y-step-b .a11y-i { stroke-width: 2.4; }
+.a11y-step-b:active { transform: translateY(1px); box-shadow: inset 0 1px 0 var(--p-hi), 0 0 0 var(--p-lip); transition-duration: .08s; }
+.a11y-step-b[aria-disabled="true"] { opacity: .42; cursor: default; }
+.a11y-rail { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); align-items: end; gap: 6px; height: 22px; }
+.a11y-rail i { height: 9px; border-radius: 6px; background: var(--p-lip); box-shadow: inset 0 1px 2px rgba(17,17,20,.14); transform-origin: 50% 100%; transition: background-color .3s, transform .5s var(--spring); }
+.a11y-rail i:nth-child(2) { height: 13px; } .a11y-rail i:nth-child(3) { height: 17px; } .a11y-rail i:nth-child(4) { height: 22px; }
+.a11y-rail i.is-on { background: radial-gradient(circle at 30% 20%, #FFB08A 0 12%, var(--orange) 55%, #D94210 100%); box-shadow: 0 3px 6px -3px rgba(180,50,0,.7); }
+.a11y-step-v { min-width: 4.6ch; font-family: var(--mono); font-size: calc(14px * var(--pz)); font-weight: 500; text-align: right; font-variant-numeric: tabular-nums; }
+
+/* read aloud */
+.a11y-say { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 9px; }
+.a11y-say-b { display: flex; align-items: center; gap: 10px; min-height: 56px; padding: 0 18px; border-radius: 20px; background: var(--p-cap); color: var(--p-fg); font-size: calc(15.5px * var(--pz)); font-weight: 600; letter-spacing: -.02em;
+  box-shadow: inset 0 1px 0 var(--p-hi), 0 3px 0 var(--p-lip), 0 12px 18px -14px var(--p-drop); transform: translateY(-3px); transition: transform .5s var(--spring), box-shadow .3s, background-color .3s; }
+.a11y-say-b:active { transform: translateY(1px); box-shadow: inset 0 1px 0 var(--p-hi), 0 0 0 var(--p-lip); transition-duration: .08s; }
+.a11y-say-stop { width: 56px; padding: 0; justify-content: center; }
+.a11y-say-stop[aria-disabled="true"] { opacity: .42; }
+.a11y-say-play.is-on { color: #111114; background: radial-gradient(130% 150% at 14% 0%, #FF7D4A 0%, #FF5A1F 52%, #EE4A12 100%); box-shadow: inset 0 1px 0 rgba(255,255,255,.42), 0 1px 0 #B93A0C, 0 10px 18px -12px rgba(200,60,10,.85); transform: translateY(-1px); }
+.a11y-say-s { margin: 9px 4px 0; font-size: calc(13px * var(--pz)); color: var(--p-mute); }
+
+.a11y-foot { flex: none; display: flex; flex-wrap: wrap; align-items: center; gap: 6px 16px; padding: 12px 16px 16px; border-top: 1px solid var(--p-line); }
+.a11y-reset { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 16px 0 12px; border-radius: 999px; background: var(--p-fg); color: var(--p-bg); font-size: calc(14.5px * var(--pz)); font-weight: 500; transition: transform .45s var(--spring), opacity .25s; }
+.a11y-reset .a11y-i { width: 20px; height: 20px; transition: transform .6s var(--spring); }
+@media (hover: hover) { .a11y-reset:hover .a11y-i { transform: rotate(-200deg); } }
+.a11y-reset:active { transform: scale(.95); }
+.a11y-reset[aria-disabled="true"] { opacity: .45; }
+.a11y-link { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; font-size: calc(14.5px * var(--pz)); font-weight: 600; text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 4px; }
+.a11y-link b { transition: transform .4s var(--spring); }
+@media (hover: hover) { .a11y-link:hover b { transform: translateX(4px); } }
+.a11y-kbd { width: 100%; display: flex; align-items: center; gap: 5px; font-family: var(--mono); font-size: calc(12px * var(--pz)); color: var(--p-mute); }
+.a11y-kbd kbd { display: inline-grid; place-items: center; min-width: 26px; height: 24px; padding: 0 7px; border-radius: 7px; background: var(--p-cap); color: var(--p-fg); font-family: var(--mono); font-size: calc(11.5px * var(--pz)); box-shadow: inset 0 1px 0 var(--p-hi), 0 2px 0 var(--p-lip); }
+@media (hover: none) and (pointer: coarse) { .a11y-kbd { display: none; } }
+
+/* desktop: an anchored card that drops out of the nav button */
+@media (min-width: 1024px) {
+  .a11y-panel { inset: var(--a11y-top, 84px) var(--a11y-right, 24px) auto auto; width: min(480px, calc(100vw - 32px)); }
+  .a11y-panel::backdrop { background: rgba(17,17,20,.16); }
+  .a11y-sheet { max-height: calc(100vh - var(--a11y-top, 84px) - 16px); max-height: calc(100dvh - var(--a11y-top, 84px) - 16px); transform-origin: calc(100% - var(--a11y-tail, 40px)) 0; }
+  .a11y-sheet::before { content: ''; position: absolute; top: -7px; right: calc(var(--a11y-tail, 40px) - 8px); width: 16px; height: 16px; border-radius: 4px 0 0 0; background: var(--p-bg); transform: rotate(45deg); }
+  .a11y-grab { display: none; }
+  .a11y-head { padding-top: 20px; }
+  .a11y-panel[open] .a11y-sheet { animation: a11yDrop .62s var(--spring) both; }
+}
+/* phones and tablets: a bottom sheet with a grab handle (drag it down to close) */
+@media (max-width: 1023px) {
+  .a11y-panel { inset: auto 0 0 0; width: 100%; max-width: 640px; margin: 0 auto; padding: 0 max(8px, env(safe-area-inset-right)) max(8px, env(safe-area-inset-bottom)) max(8px, env(safe-area-inset-left)); }
+  .a11y-panel::backdrop { background: rgba(17,17,20,.46); }
+  .a11y-sheet { max-height: calc(100vh - max(14px, env(safe-area-inset-top)) - max(8px, env(safe-area-inset-bottom))); max-height: calc(100dvh - max(14px, env(safe-area-inset-top)) - max(8px, env(safe-area-inset-bottom))); }
+  .a11y-head { padding-top: 6px; touch-action: none; }
+  .a11y-panel[open] .a11y-sheet { animation: a11yRise .6s var(--spring) both; }
+}
+/* short screens (phones in landscape, small laptops): the whole sheet scrolls as one, so the settings never get
+   squeezed between a fixed header and footer */
+@media (max-height: 560px) {
+  .a11y-sheet { overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; }
+  .a11y-body { flex: none; overflow: visible; }
+  .a11y-grab { height: 14px; padding-top: 6px; } .a11y-head { padding-block: 4px 8px; } .a11y-title { font-size: calc(22px * var(--pz)); }
+  .a11y-kbd { display: none; }
+}
+@media (max-width: 359px) { .a11y-head { padding-left: 16px; gap: 6px; } .a11y-body { padding-inline: 10px; } .a11y-keys { gap: 7px; } .a11y-cap { padding: 11px 10px 12px 12px; } }
+@keyframes a11yDrop { from { opacity: 0; transform: translateY(-16px) scale(.9); } }
+@keyframes a11yRise { from { transform: translateY(104%); } }
+.a11y-panel[open] .a11y-key .a11y-cap { animation: a11yKey .55s var(--spring) backwards; }
+.a11y-panel[open] .a11y-g:nth-child(2) .a11y-cap { animation-delay: .04s; } .a11y-panel[open] .a11y-g:nth-child(3) .a11y-cap { animation-delay: .08s; } .a11y-panel[open] .a11y-g:nth-child(4) .a11y-cap { animation-delay: .12s; }
+@keyframes a11yKey { from { transform: translateY(10px); } }
+.motion-off .a11y-panel[open] :is(.a11y-sheet, .a11y-cap) { animation: none; }
+.motion-off :is(.a11y-sheet, .a11y-cap, .a11y-step-b, .a11y-say-b, .a11y-rail i, .a11y-count, .a11y-btn, .menu-a11y, .a11y-ico, .a11y-reset, .a11y-reset .a11y-i, .a11y-x) { transition-duration: .01ms; }
+
+/* ============================================================ 3. tools on the page */
+/* reader bar: shown while the page is read aloud and the panel is closed */
+.a11y-reader { position: fixed; z-index: 48; right: var(--pad); top: calc(var(--nav-top) + var(--nav-h) + 10px); display: flex; align-items: center; gap: 6px; padding: 5px 5px 5px 14px; border-radius: 999px; background: #111114; color: #F3F3F5; font-size: 14px; font-weight: 500; box-shadow: inset 0 1px 0 rgba(255,255,255,.12), 0 18px 34px -16px rgba(17,17,20,.8); animation: a11yDrop .5s var(--spring) both; }
+.a11y-reader-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--orange); box-shadow: 0 0 0 0 rgba(255,90,31,.5); animation: a11yPulse 1.6s ease-out infinite; }
+.a11y-reader.is-paused .a11y-reader-dot { animation: none; background: transparent; box-shadow: inset 0 0 0 2px currentColor; }
+.a11y-reader-t { margin-right: 6px; white-space: nowrap; }
+.a11y-reader-b { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,.1); color: #F3F3F5; transition: transform .45s var(--spring); }
+.a11y-reader-b:first-of-type { background: var(--orange); color: #111114; }
+.a11y-reader-b .a11y-i { width: 20px; height: 20px; }
+.a11y-reader-b:active { transform: scale(.9); }
+.a11y-reader :focus-visible { outline: 3px solid var(--orange); outline-offset: 2px; }
+.a11y-reader-b:first-of-type:focus-visible { outline-color: #F3F3F5; }
+@keyframes a11yPulse { 70% { box-shadow: 0 0 0 9px rgba(255,90,31,0); } 100% { box-shadow: 0 0 0 0 rgba(255,90,31,0); } }
+.motion-off .a11y-reader, .motion-off .a11y-reader-dot { animation: none; }
+/* the block being read */
+.a11y-reading { background-color: rgba(255,214,10,.3) !important; box-shadow: 0 0 0 4px rgba(255,214,10,.3) !important; border-radius: 6px; }
+
+/* reading guide: a ruler line that follows the pointer, a finger or keyboard focus */
+.a11y-ruler { position: fixed; z-index: 70; left: 0; right: 0; top: 0; height: 2.4em; min-height: 44px; pointer-events: none; transform: translateY(calc(var(--y, 50vh) - 50%)); background: rgba(255,214,10,.2); box-shadow: inset 0 2px 0 rgba(17,17,20,.55), inset 0 -2px 0 rgba(17,17,20,.55); }
+.a11y-ruler::before { content: ''; position: absolute; left: max(6px, env(safe-area-inset-left)); top: 50%; width: 13px; height: 13px; margin-top: -6.5px; border-radius: 50%; background: radial-gradient(circle at 34% 28%, #FFC2A6 0 8%, var(--orange) 42%, #C23A0C 100%); box-shadow: 0 3px 6px -2px rgba(180,50,0,.7); }
+/* reading mask: everything dimmed except one band */
+.a11y-shade { position: fixed; z-index: 70; inset: 0; pointer-events: none; --win: 132px; }
+.a11y-shade i { position: absolute; left: 0; right: 0; top: 0; height: 100vh; height: 100lvh; background: rgba(10,10,13,.66); }
+.a11y-shade i:first-child { transform: translateY(calc(var(--y, 50vh) - var(--win) / 2 - 100vh)); box-shadow: 0 2px 0 rgba(255,214,10,.9); }
+.a11y-shade i:last-child { transform: translateY(calc(var(--y, 50vh) + var(--win) / 2)); box-shadow: 0 -2px 0 rgba(255,214,10,.9); }
+@supports (height: 100lvh) { .a11y-shade i:first-child { transform: translateY(calc(var(--y, 50vh) - var(--win) / 2 - 100lvh)); } }
+
+/* hide images: each image with alt text leaves its description in a dashed frame */
+.a11y-alt { display: none; }
+html.a11y-noimg .a11y-alt { display: flex; align-items: center; gap: 10px; width: 100%; min-height: 64px; padding: 14px 16px; border-radius: 18px; border: 2px dashed currentColor; font-family: var(--mono); font-size: 13px; line-height: 1.45; letter-spacing: -.01em; color: var(--ink); text-align: left; background: var(--chalk-2, #F6F6F7); }
+html.a11y-noimg .a11y-alt::before { content: 'Image' / ''; flex: none; padding: 3px 7px; border-radius: 6px; background: var(--ink); color: var(--chalk); font-size: 11px; }
+html.a11y-noimg :is(main, footer, .menu, .study, .toc-sheet) :is(img, picture, video):not(.zstore-badge img) { display: none !important; }
+html.a11y-noimg :is(.arch, .portrait-frame, .shot, .card-media) > .a11y-alt { height: 100%; align-items: center; justify-content: center; text-align: center; flex-direction: column; }
+
+/* ============================================================ 4. modes */
+/* --- bigger text: a11y.js sizes the text right after parsing; this hides the page until then, and shows it on its
+   own after 1.2s if the script never runs (so it can never stay blank). Only visitors who chose bigger text. */
+html.a11y-tpending body { opacity: 0; animation: a11yReveal 0s 1.2s forwards; }
+@keyframes a11yReveal { to { opacity: 1; } }
+/* labels that never wrap at 100% may need to at 200% (or with wider spacing), so nothing runs off a phone screen */
+html:is(.a11y-t1, .a11y-t2, .a11y-t3, .a11y-sp, .a11y-font) :is(main, footer, .menu, .study, .toc-sheet) :is(.btn, .sticker, .hl-bubble, .tags li, .d-tags li, .panel-tags li, .chip-list li > *, .menu-services a, .legal-updated, .tip-k, .crumbs [aria-current], .portrait-cap strong, .drag-sticker, .back-top, .fm-note > span, .table-wrap thead th, .m-chip) { white-space: normal; }
+html:is(.a11y-t1, .a11y-t2, .a11y-t3, .a11y-sp, .a11y-font) :is(main, footer, .menu, .study, .toc-sheet) .btn { height: auto; padding-block: .5em; line-height: 1.2; text-align: left; }
+/* the letter-roll is one flex row of single characters, which can't wrap between words: with any bigger, wider or
+   swapped type the label's plain accessible copy is shown instead, so long button labels wrap like normal text */
+html:is(.a11y-t1, .a11y-t2, .a11y-t3, .a11y-sp, .a11y-font) :is(main, footer, .menu, .study, .toc-sheet) .roll { display: none; }
+html:is(.a11y-t1, .a11y-t2, .a11y-t3, .a11y-sp, .a11y-font) :is(main, footer, .menu, .study, .toc-sheet) [data-roll] > .sr { position: static; width: auto; height: auto; margin: 0; overflow: visible; clip: auto; white-space: inherit; }
+html:is(.a11y-t2, .a11y-t3) :is(main, footer, .menu, .study) :is(.kicker b, .step-k, .legal-sec h2 span, .menu-links a span, .byline-m > * + *, .wordmark b, .byline-av, .tile-go, .qa-bead) { height: auto; min-height: 1.6em; width: auto; min-width: 1.9em; padding-block: .1em; }
+html:is(.a11y-t2, .a11y-t3) :is(main, footer, .menu, .study) :is(.tile-go, .qa-bead) { min-width: 44px; min-height: 44px; }
+html:is(.a11y-t2, .a11y-t3) :is(main, footer, .menu, .study) :is(h1, h2, h3, .menu-links a) { overflow-wrap: break-word; hyphens: auto; }
+html.a11y-t3 :is(main, footer, .menu, .study) :is(.keycap, .work-title span) { white-space: normal; }
+html:is(.a11y-t2, .a11y-t3, .a11y-sp) :is(main, footer, .menu, .study) .tape { white-space: normal; }
+/* display headings built from no-wrap lines (one line per span at 100%) wrap inside a line once the type grows or spreads */
+html:is(.a11y-t1, .a11y-t2, .a11y-t3, .a11y-sp, .a11y-font) :is(main, footer, .study) :is(h1, h2) > :is(span, em, b, strong):not(.keycap, .sv-kk, .sr, .sr-only) { white-space: normal; }
+/* reflow guard: a box that still runs past the screen with bigger or wider text (an email address in a grid, a long
+   word in display type, a no-wrap label) is tagged by a11y.js, and only there may lines break inside a word */
+:is(.a11y-wrap, .a11y-wrap *):not(pre, pre *, code, svg, svg *) { overflow-wrap: anywhere !important; white-space: normal !important; }
+html:is(.a11y-t2, .a11y-t3) .menu-services ul { flex-wrap: wrap; overflow: visible; }
+html:is(.a11y-t1, .a11y-t2, .a11y-t3, .a11y-sp) :is(.footer-legal, .fb-meta, .fb-end, .menu-foot) { flex-wrap: wrap; }
+/* phones: the 2 x 2 tile keys become one column once text is 150%+ (or spread), so titles never split mid-word */
+@media (max-width: 599px) { html:is(.a11y-t2, .a11y-t3, .a11y-sp) .tile-grid-4:not(.tile-scroll) { grid-template-columns: minmax(0, 1fr); } }
+/* fact and spec grids: columns sized in em, so bigger text means fewer, wider columns */
+html:is(.a11y-t1, .a11y-t2, .a11y-t3, .a11y-sp) :is(main, footer, .study) .facts { grid-template-columns: repeat(auto-fit, minmax(min(100%, 11em), 1fr)); }
+html:is(.a11y-t1, .a11y-t2, .a11y-t3, .a11y-sp) :is(main, footer, .study) :is(.spec, .card-spec) { grid-template-columns: repeat(auto-fit, minmax(min(100%, 10em), 1fr)); }
+html:is(.a11y-t1, .a11y-t2, .a11y-t3, .a11y-sp) :is(main, footer, .study) :is(.facts dt, .spec dt, .card-spec dt) { overflow-wrap: anywhere; }
+/* text drawn by pseudo-elements can't take an inline size, so the shared ones are scaled here */
+html.a11y-t1 { --a11y-f: 1.25; } html.a11y-t2 { --a11y-f: 1.5; } html.a11y-t3 { --a11y-f: 2; }
+html:is(.a11y-t1, .a11y-t2, .a11y-t3) .compare td::before { font-size: calc(13px * var(--a11y-f)); }
+html:is(.a11y-t1, .a11y-t2, .a11y-t3) .chip-list li > a::after { font-size: calc(13px * var(--a11y-f)); }
+html:is(.a11y-t1, .a11y-t2, .a11y-t3) .prose ol:not([class]) > li::before { font-size: calc(13px * var(--a11y-f)); width: auto; min-width: 28px; height: auto; padding: .2em .45em; }
+html:is(.a11y-t1, .a11y-t2, .a11y-t3) .prose ol:not([class]) > li { padding-left: calc(20px + 24px * var(--a11y-f)); }
+
+/* --- line height (WCAG 1.4.12 style: 1.5× and more) */
+html.a11y-lh :is(main, footer, .menu, .study, .toc-sheet) :is(p, li, dd, dt, td, th, summary, blockquote, figcaption, label, caption, .lead, .tile-d) { line-height: 1.85 !important; }
+html.a11y-lh :is(main, footer, .menu, .study, .toc-sheet) :is(h1, h2, h3, h4, h5, h6, .menu-links a) { line-height: 1.22 !important; }
+html.a11y-lh :is(main, .study) :is(p + p, .prose > * + *) { margin-top: 1.4em; }
+
+/* --- text spacing (letters .12em, words .16em: the WCAG 1.4.12 values) */
+html.a11y-sp :is(main, footer, .menu, .study, .toc-sheet) :where(*):not(svg *) { letter-spacing: .12em !important; word-spacing: .16em !important; }
+
+/* --- readable font: the device's own UI typeface, normal tracking (code stays monospaced) */
+html.a11y-font body, html.a11y-font body *:not(code, pre, kbd, samp, svg, svg *) { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif !important; }
+html.a11y-font:not(.a11y-sp) body *:not(svg, svg *) { letter-spacing: 0 !important; }
+html.a11y-font:not(.a11y-sp) body :is(h1, h2, .ph-title, .sec-title, .hero-title, .menu-links a) { letter-spacing: -.015em !important; }
+
+/* --- highlight links: a yellow ring inside an ink ring (visible on chalk, ink and orange alike) + a solid underline */
+html.a11y-links :is(main, footer, .menu, .study, .toc-sheet, .nav) a[href] { text-decoration-line: underline !important; text-decoration-thickness: 2px !important; text-underline-offset: .18em !important; outline: 3px solid #FFD60A !important; outline-offset: 1px !important; box-shadow: 0 0 0 5px #111114 !important; border-radius: 8px; }
+html.a11y-links :is(main, footer, .menu, .study, .toc-sheet, .nav) a[href]:focus-visible { outline-color: #111114 !important; box-shadow: 0 0 0 6px #FFD60A !important; }
+html.a11y-links .tile-link::after { box-shadow: none !important; }
+
+/* --- highlight headings: a dashed frame and a highlighter wash on every heading */
+html.a11y-heads :is(main, footer, .menu, .study, .toc-sheet) :is(h1, h2, h3, h4, h5, h6) { outline: 3px dashed currentColor !important; outline-offset: 6px; border-radius: 6px; background-color: rgba(255,214,10,.24) !important; box-shadow: 0 0 0 6px rgba(255,214,10,.24); }
+/* on ink surfaces (and in dark mode) a bright wash would lift the ground under dimmed heading words: a fainter one */
+html.a11y-heads :is(.slab-ink, .ph-ink, .footer, .work, .process, .tile-ink, .menu-sheet, .a11y-s-ink, .a11y-s-dark) :is(h1, h2, h3, h4, h5, h6),
+html.a11y-heads.a11y-dark :is(main, footer, .menu, .study, .toc-sheet) :is(h1, h2, h3, h4, h5, h6) { background-color: rgba(255,214,10,.09) !important; box-shadow: 0 0 0 6px rgba(255,214,10,.09); }
+html.a11y-heads.a11y-dark .a11y-s-isle:is(h1, h2, h3, h4, h5, h6), html.a11y-heads.a11y-dark .a11y-s-isle :is(h1, h2, h3, h4, h5, h6) { background-color: rgba(255,214,10,.24) !important; box-shadow: 0 0 0 6px rgba(255,214,10,.24); }
+
+/* --- strong focus: an ink ring between a white gap and a yellow halo, readable on any ground */
+html.a11y-focus :focus-visible, html.a11y-focus :is(input, textarea, select):focus { outline: 4px solid #111114 !important; outline-offset: 3px !important; box-shadow: 0 0 0 3px #FFFFFF, 0 0 0 10px #FFD60A !important; border-radius: 10px; }
+html.a11y-focus .a11y-panel :focus-visible { outline-color: #111114 !important; }
+
+/* --- big cursor (fine pointers): a 48px ink arrow / hand with a white edge */
+html.a11y-cursor, html.a11y-cursor * { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'%3E%3Cpath d='M9 4l30 16.5-13 3.6-6.4 12.7z' fill='%23111114' stroke='%23fff' stroke-width='3' stroke-linejoin='round'/%3E%3Cpath d='M26.6 24.6l9 12.6' stroke='%23111114' stroke-width='6' stroke-linecap='round'/%3E%3Cpath d='M26.6 24.6l9 12.6' stroke='%23FF5A1F' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E") 8 4, auto !important; }
+html.a11y-cursor :is(a[href], button, summary, label, select, [role="button"], [role="tab"], [role="switch"], input[type="checkbox"], input[type="radio"], input[type="range"], .card-media, .drag-sticker), html.a11y-cursor :is(a[href], button, summary, label, [role="button"]) * { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'%3E%3Cpath d='M17 22V8.5a3.5 3.5 0 0 1 7 0V20l.2-3a3.4 3.4 0 0 1 6.6.4l.2 2.6.3-1.7a3.3 3.3 0 0 1 6.5.6v2.6l.3-.9a3 3 0 0 1 5.8 1.2V31c0 7-5 12.5-12.4 12.5h-3.2c-4.4 0-7.4-2-9.6-5.6l-5.6-9.4a3.3 3.3 0 0 1 5.4-3.8z' fill='%23111114' stroke='%23fff' stroke-width='3' stroke-linejoin='round'/%3E%3C/svg%3E") 18 4, pointer !important; }
+html.a11y-cursor :is(input:not([type="checkbox"], [type="radio"], [type="range"], [type="submit"], [type="button"]), textarea, [contenteditable="true"]) { cursor: text !important; }
+html.a11y-cursor .cursor { display: none !important; }
+
+/* --- stop autoplay: every CSS animation and loop jumps straight to its resting frame (a11y.js pauses media too) */
+html.a11y-noauto body *, html.a11y-noauto body *::before, html.a11y-noauto body *::after { animation-duration: .001ms !important; animation-delay: 0s !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; }
+
+/* --- grayscale / low saturation: one filter on the page and on open dialogs (the top layer sits outside <html>'s filter) */
+html.a11y-gray, html.a11y-gray dialog[open] { filter: grayscale(1); }
+html.a11y-lowsat, html.a11y-lowsat dialog[open] { filter: saturate(.38); }
+
+html.a11y-notrans *, html.a11y-notrans *::before, html.a11y-notrans *::after { transition: none !important; }
+
+/* ============================================================ dark mode
+   The whole site goes dark, ink slabs included. The text tokens turn light; ink surfaces are re-darkened; orange,
+   pastel and porcelain objects (buttons, stickers, the CTA slab, tinted tiles…) keep their light tokens as islands,
+   so their ink text stays ink. Orange text on the dark ground uses Signal Orange (6:1 on #121216). */
+html.a11y-dark { color-scheme: dark; background: #121216;
+  --chalk: #121216; --chalk-2: #1C1C22; --ink: #EDEDF1; --graphite: #A9ACB5; --line: rgba(255,255,255,.14);
+  --prose-c: #D4D5DB; --dim: #8F929B; --dim-ink: #8F929B;
+  --raised: inset 0 1px 0 rgba(255,255,255,.06), 0 0 0 1px rgba(255,255,255,.05), 0 18px 36px -26px rgba(0,0,0,.9);
+  --lifted: inset 0 1px 0 rgba(255,255,255,.08), 0 0 0 1px rgba(255,255,255,.06), 0 30px 50px -30px rgba(0,0,0,.95); }
+html.a11y-dark body { background: radial-gradient(120% 90% at 70% 20%, #1C1C22 0%, #121216 55%, #0C0C0F 100%) fixed #121216; }
+/* light islands */
+html.a11y-dark :is(.a11y-s-isle, .btn-orange, .sticker, .hl-bubble, .tape, .tip-k, .tip.is-note, .legal-updated, .drag-sticker, .qa-bead, .kit-piece, .kit-live,
+  .slab-orange, .cta-slab, .tile-orange, .tile-sand, .tile-sage, .tile-peri, .services, .fm-contact, .menu-card, .dd-intro, .cursor-blob, .card-slab, .study-visual, .toast-bead,
+  .menu-services a[aria-current], .menu-links a[aria-current] span, .steps button[aria-selected="true"], :is(.slab-ink, .ph-ink) :is(.kicker b, .keycap, .step-k), .tile-ink .tile-go,
+  .logo-light .wordmark b, .nav.is-dark .wordmark b, .nav.is-dark .menu-btn, .btn-card .btn-ico, .cta-title > span, .a11y-alt::before) {
+  --ink: #111114; --chalk: #ECEDEF; --chalk-2: #F6F6F7; --graphite: #595C64; --line: rgba(17,17,20,.12); --prose-c: #34363C; --dim: #7E8189;
+  --raised: inset 0 1px 0 #fff, 0 1px 0 rgba(17,17,20,.06), 0 16px 34px -28px rgba(17,17,20,.5); --lifted: inset 0 1px 0 #fff, 0 30px 50px -30px rgba(17,17,20,.55); }
+html.a11y-dark .tape { color: #111114; }
+html.a11y-dark .a11y-s-isle { color: var(--ink); }
+/* found by a11y.js: a white/glass surface whose text follows the theme becomes dark glass */
+html.a11y-dark .a11y-s-glass { background: rgba(255,255,255,.075) !important; box-shadow: inset 0 0 0 1px rgba(255,255,255,.15) !important; }
+html.a11y-dark .cta-title > span { background: #F6F6F7; color: #111114; }
+html.a11y-dark :is(.cta-slab, .slab-orange, .a11y-s-isle) .btn-ghost { --bg: #F6F6F7; --fg: #111114; }
+/* ink surfaces stay ink (a hair darker than the ground, with a hairline edge so they still read as slabs) */
+html.a11y-dark :is(.a11y-s-ink, .slab-ink, .ph-ink, .footer, .work, .process, .menu-sheet, .tile-ink, .toc-pill, .prose pre, .icon-btn-ink) { background-color: #09090B; }
+html.a11y-dark :is(.slab-ink, .ph-ink, .footer, .work, .process, .tile-ink) { box-shadow: inset 0 0 0 1px rgba(255,255,255,.08), 0 -30px 80px -40px rgba(0,0,0,.6); }
+html.a11y-dark .menu-sheet { box-shadow: inset 0 0 0 1px rgba(255,255,255,.09); }
+html.a11y-dark .menu::after { background: linear-gradient(rgba(9,9,11,0), #09090B 80%); }
+html.a11y-dark :is(.slab-ink, .ph-ink) .faq-list .qa { background: #1C1C22; }
+/* ink objects that carried white text: their text follows the (now dark) ground token instead */
+html.a11y-dark .btn-ink { --fg: var(--chalk); }
+html.a11y-dark :is(.tile-go, .skip, .dd-all, .d-link, .menu-nojs, .icon-btn-ink) { color: var(--chalk); }
+html.a11y-dark .btn-ghost .btn-ico { background: var(--ink); color: var(--chalk); }
+html.a11y-dark :is(.ph-ink, .slab-ink) .btn-ghost .btn-ico { background: rgba(255,255,255,.14); color: #F3F3F5; }
+html.a11y-dark .menu-btn { background: #F3F3F5; } html.a11y-dark .menu-btn i { background: #111114; }
+html.a11y-dark .nav.is-dark .menu-btn { background: var(--orange); }
+html.a11y-dark :is(.dd-list a:focus-visible, .dd-list a[aria-current]) b { background: var(--orange); color: #111114; }
+@media (hover: hover) { html.a11y-dark .dd-list a:hover b { background: var(--orange); color: #111114; } }
+/* glass and white surfaces turn into dark glass */
+html.a11y-dark .nav-bar { background: rgba(26,26,32,.8); box-shadow: inset 0 0 0 1px rgba(255,255,255,.09), 0 10px 34px -20px rgba(0,0,0,.9); }
+@media (hover: hover) { html.a11y-dark :is(.nav-links > a:hover, .nav-dd:hover, .motion-btn:hover) { background: rgba(255,255,255,.08); } }
+html.a11y-dark .nav-dd.is-open { background: rgba(255,255,255,.1); }
+html.a11y-dark .dd-panel { box-shadow: inset 0 1px 0 rgba(255,255,255,.06), 0 0 0 1px rgba(255,255,255,.07), 0 44px 80px -36px rgba(0,0,0,.9); }
+html.a11y-dark :is(.dd-list a:focus-visible, .dd-list a[aria-current]) { background: #2A2A32; box-shadow: none; }
+@media (hover: hover) { html.a11y-dark .dd-list a:hover { background: #2A2A32; box-shadow: none; } }
+html.a11y-dark .dd-list b { background: rgba(255,255,255,.08); }
+html.a11y-dark .btn-ghost { --bg: rgba(255,255,255,.07); box-shadow: inset 0 0 0 1px rgba(255,255,255,.18); }
+@media (hover: hover) { html.a11y-dark .btn-ghost:hover { --bg: rgba(255,255,255,.13); } html.a11y-dark :is(.cta-slab, .slab-orange, .a11y-s-isle) .btn-ghost:hover { --bg: #fff; } }
+html.a11y-dark :is(.qa, .legal-sec, .ph-card) { box-shadow: inset 0 1px 0 rgba(255,255,255,.06), 0 0 0 1px rgba(255,255,255,.05), 0 16px 34px -26px rgba(0,0,0,.9); }
+html.a11y-dark .qa[open] { background: #24242B; }
+html.a11y-dark :is(.field input, .field textarea, .field select) { background: #1C1C22; color: var(--ink); box-shadow: inset 0 0 0 1px rgba(255,255,255,.18); }
+html.a11y-dark :is(.field input, .field textarea)::placeholder { color: #8E919A; }
+html.a11y-dark :is(.field input, .field textarea):focus { box-shadow: inset 0 0 0 2px var(--ink), 0 0 0 5px rgba(255,90,31,.3); }
+html.a11y-dark .field-err { color: #FF9A80; }
+html.a11y-dark :is(.field label span, .contact-title span + span, .hl-orange) { color: var(--orange); }
+html.a11y-dark .chip-list li > * { background: rgba(255,255,255,.06); box-shadow: inset 0 0 0 1px rgba(255,255,255,.16); }
+html.a11y-dark .chip-list li > span { background: none; box-shadow: none; border-color: rgba(255,255,255,.28); }
+@media (hover: hover) { html.a11y-dark .chip-list li > a:hover { background: #2A2A32; box-shadow: inset 0 0 0 1.5px var(--ink); } }
+@media (hover: hover) { html.a11y-dark .tile:not(.tile-ink, .tile-orange, .tile-sand, .tile-sage, .tile-peri):has(.tile-link):hover { background: #24242B; } }
+html.a11y-dark :is(.compare th.is-pick, .compare td.is-pick) { background: #24242B; }
+html.a11y-dark .toc-sheet .toc-list a[aria-current] { background: #2A2A32; }
+@media (hover: hover) { html.a11y-dark .toc-list a:hover { background: rgba(255,255,255,.06); } }
+html.a11y-dark .toc-meter { background: rgba(255,255,255,.14); }
+html.a11y-dark :is(.prose code, .byline-m > * + *, .study-note) { background: rgba(255,255,255,.1); }
+html.a11y-dark :is(.prose a:not(.btn):not(.text-link), .crumbs a, .byline-t a, :is(.split-copy, .sec-lede, .tip, .lead) a:not(.btn):not(.text-link)) { text-decoration-color: rgba(255,255,255,.42); }
+html.a11y-dark .cmp-no::before { box-shadow: inset 0 0 0 2px rgba(255,255,255,.4); }
+html.a11y-dark .fz-ghost, html.a11y-dark .oops-kit .kit-ghost path { stroke: rgba(255,255,255,.32); }
+html.a11y-dark .ph-art::after { background: radial-gradient(closest-side, rgba(0,0,0,.6), transparent); }
+html.a11y-dark .zkit-porcelain .kit-piece, html.a11y-dark .zkit .zp-porcelain { filter: brightness(.92); }
+html.a11y-dark .a11y-ruler { background: rgba(255,214,10,.1); box-shadow: inset 0 2px 0 rgba(255,214,10,.75), inset 0 -2px 0 rgba(255,214,10,.75); }
+html.a11y-dark .a11y-reader { background: #09090B; box-shadow: inset 0 0 0 1px rgba(255,255,255,.12), 0 18px 34px -16px rgba(0,0,0,.9); }
+html.a11y-dark :is(.a11y-btn, .menu-a11y).has-on::after { box-shadow: 0 0 0 2.5px #1B1B20; }
+html.a11y-dark .a11y-btn:not([aria-expanded="true"]) { color: #F3F3F5; background: radial-gradient(circle at 34% 24%, #62626C 0 10%, #2C2C33 50%, #18181C 100%); box-shadow: inset 0 1px 0 rgba(255,255,255,.18), inset 0 -3px 0 rgba(0,0,0,.4), 0 6px 12px -8px rgba(0,0,0,.8); }
+/* the icon-only Motion bead (tactile.css, up to 1340px) turns to dark ceramic with the capsule; its bars go full orange */
+@media (max-width: 1340px) { html.a11y-dark .nav-actions:has(.a11y-btn) .motion-btn { background: radial-gradient(circle at 34% 24%, #62626C 0 10%, #2C2C33 50%, #18181C 100%); box-shadow: inset 0 1px 0 rgba(255,255,255,.18), inset 0 -3px 0 rgba(0,0,0,.4), 0 6px 12px -8px rgba(0,0,0,.8); } }
+html.a11y-dark .nav .motion-dot { --md: var(--orange); }
+html.a11y-contrast .nav .motion-dot { --md: currentColor; }
+html.a11y-dark .a11y-panel { --p-bg: #1C1C22; --p-fg: #EDEDF1; --p-mute: #A9ACB5; --p-line: rgba(255,255,255,.1); --p-well: rgba(0,0,0,.35);
+  --p-cap: linear-gradient(180deg, #2E2E36 0%, #24242B 100%); --p-hi: rgba(255,255,255,.08); --p-lip: rgba(0,0,0,.55); --p-drop: rgba(0,0,0,.9); }
+html.a11y-dark .a11y-panel::backdrop { background: rgba(0,0,0,.55); }
+html.a11y-dark .a11y-sheet { box-shadow: inset 0 1px 0 rgba(255,255,255,.07), 0 0 0 1px rgba(255,255,255,.07), 0 44px 90px -34px rgba(0,0,0,.95); }
+
+/* ============================================================ high contrast
+   Light theme, pushed: white ground, near-black text, solid 2px ink edges on every raised surface, no glass.
+   Dark surfaces force white text and light/orange objects inside them force ink text (a ladder by depth, so a bead
+   inside an orange card inside an ink slab still resolves correctly). */
+html.a11y-contrast { background: #FFFFFF;
+  --chalk: #FFFFFF; --chalk-2: #FFFFFF; --graphite: #24262B; --prose-c: #111114; --dim: #3A3C42; --dim-ink: #E4E5EA; --line: rgba(17,17,20,.6);
+  --raised: inset 0 0 0 2px #111114; --lifted: inset 0 0 0 2px #111114, 0 10px 0 -4px #111114; }
+html.a11y-contrast body { background: #FFFFFF; }
+html.a11y-contrast :is(.qa, .legal-sec, .ph-card, .dd-panel, .tile:not(.tile-ink), .toc-sheet-in, .study, .chip-list li > a, .a11y-alt) { box-shadow: inset 0 0 0 2px #111114; }
+html.a11y-contrast .nav-bar { background: #FFFFFF; -webkit-backdrop-filter: none; backdrop-filter: none; box-shadow: inset 0 0 0 2px #111114; }
+html.a11y-contrast .nav.is-dark .nav-bar { background: #000; box-shadow: inset 0 0 0 2px #FFFFFF; }
+html.a11y-contrast .nav-bar .a11y-btn:not([aria-expanded="true"]) { box-shadow: inset 0 0 0 2px #111114, 0 8px 18px -10px rgba(17,17,20,.5); }
+html.a11y-contrast :is(.nav.is-dark, html.a11y-dark .nav) .nav-bar .a11y-btn:not([aria-expanded="true"]) { box-shadow: inset 0 0 0 2px #FFFFFF; }
+html.a11y-contrast .nav-bar .a11y-btn[aria-expanded="true"] { box-shadow: inset 0 0 0 2px #111114; }
+html.a11y-contrast .btn-ghost { --bg: #FFFFFF; box-shadow: inset 0 0 0 2px #111114; }
+html.a11y-contrast :is(.field input, .field textarea, .field select) { background: #FFFFFF; box-shadow: inset 0 0 0 2px #111114; }
+html.a11y-contrast :is(.field input, .field textarea)::placeholder { color: #45474D; }
+html.a11y-contrast :is(.hl-orange, .contact-title span + span, .field label span) { color: #B03000; }
+html.a11y-contrast .hl-outline { color: currentColor; -webkit-text-stroke: 0; }
+html.a11y-contrast :is(.prose a:not(.btn):not(.text-link), .crumbs a, .byline-t a, :is(.split-copy, .sec-lede, .tip, .lead) a:not(.btn):not(.text-link)) { text-decoration-color: currentColor; text-decoration-thickness: 2px; }
+html.a11y-contrast :is(.slab-ink, .ph-ink, .footer, .work, .process, .menu-sheet, .tile-ink, .toc-pill, .a11y-s-dark) { background-color: #000000; }
+/* the forced-colour ladder (zero-specificity groups: order decides, deepest pattern last) */
+html.a11y-contrast :where(.a11y-s-dark, [data-tone="dark"], .slab-ink, .ph-ink, .footer, .menu-sheet, .tile-ink, .toc-pill, .work, .process, .toast, .prose pre),
+html.a11y-contrast :where(.a11y-s-dark, [data-tone="dark"], .slab-ink, .ph-ink, .footer, .menu-sheet, .tile-ink, .toc-pill, .work, .process, .toast, .prose pre) :where(*:not(svg *)) { color: #FFFFFF !important; }
+html.a11y-contrast :where(.a11y-s-isle, .btn-orange, .sticker, .hl-bubble, .tape, .tip-k, .legal-updated, .slab-orange, .cta-slab, .tile-orange, .tile-sand, .tile-sage, .tile-peri, .services, .fm-contact, .menu-card, .dd-panel, .ph-card, .qa, .tip, .table-wrap, .toc-sheet-in, .menu-services a[aria-current], .menu-links a[aria-current] span, .steps button[aria-selected="true"], .card-slab, .btn-card .btn-ico, .qa-bead, :is(.slab-ink, .ph-ink, .footer, .menu-sheet, .tile-ink, .work, .process, .nav.is-dark) :is(.kicker b, .keycap, .step-k, .tile-go, .wordmark b)),
+html.a11y-contrast :where(.a11y-s-isle, .btn-orange, .sticker, .hl-bubble, .tape, .tip-k, .legal-updated, .slab-orange, .cta-slab, .tile-orange, .tile-sand, .tile-sage, .tile-peri, .services, .fm-contact, .menu-card, .dd-panel, .ph-card, .qa, .tip, .table-wrap, .toc-sheet-in, .menu-services a[aria-current], .menu-links a[aria-current] span, .steps button[aria-selected="true"], .card-slab, .btn-card .btn-ico, .qa-bead, :is(.slab-ink, .ph-ink, .footer, .menu-sheet, .tile-ink, .work, .process, .nav.is-dark) :is(.kicker b, .keycap, .step-k, .tile-go, .wordmark b)) :where(*:not(svg *)) { color: #111114 !important; }
+html.a11y-contrast :where(.a11y-s-isle, .btn-orange, .slab-orange, .cta-slab, .tile-orange, .services, .fm-contact, .menu-card, .dd-panel, .dd-intro, .ph-card, .qa, .tip) :where(.a11y-s-dark, .btn-ink, .btn-ico, .tile-go, .dd-all, .d-link, .d-knob, .fm-line-a b, .menu-card b, .cta-art .sticker, .slab-orange .sticker, .kicker b, .legal-sec h2 span, .menu-btn),
+html.a11y-contrast :where(.a11y-s-isle, .btn-orange, .slab-orange, .cta-slab, .tile-orange, .services, .fm-contact, .menu-card, .dd-panel, .dd-intro, .ph-card, .qa, .tip) :where(.a11y-s-dark, .btn-ink, .btn-ico, .tile-go, .dd-all, .d-link, .d-knob, .fm-line-a b, .menu-card b, .cta-art .sticker, .slab-orange .sticker, .kicker b, .legal-sec h2 span, .menu-btn) :where(*:not(svg *)) { color: #FFFFFF !important; }
+html.a11y-contrast :where(.a11y-s-isle, .btn-orange, .cta-slab, .services, .fm-contact, .menu-card, .dd-intro) :where(.a11y-s-dark, .btn-ink, .dd-all) :where(.a11y-s-isle, .dd-all b),
+html.a11y-contrast :where(.a11y-s-isle, .btn-orange, .cta-slab, .services, .fm-contact, .menu-card, .dd-intro) :where(.a11y-s-dark, .btn-ink, .dd-all) :where(.a11y-s-isle, .dd-all b) :where(*:not(svg *)) { color: #111114 !important; }
+html.a11y-contrast :where(.slab-ink, .ph-ink, .footer, .work, .process, .menu-sheet) :where(.btn-ghost) { --bg: #000; box-shadow: inset 0 0 0 2px #FFFFFF; }
+html.a11y-contrast :where(.slab-ink, .ph-ink, .footer, .menu-sheet, .tile-ink) .hl-outline { -webkit-text-stroke: 0; }
+html.a11y-contrast .menu-a11y, html.a11y-contrast .motion-btn-menu { box-shadow: inset 0 0 0 2px #FFFFFF; }
+html.a11y-contrast .a11y-panel { --p-bg: #FFFFFF; --p-mute: #24262B; --p-line: #111114; --p-well: #111114; --p-cap: #FFFFFF; --p-hi: #FFFFFF; --p-lip: #111114; --p-drop: transparent; }
+html.a11y-contrast .a11y-sheet { box-shadow: 0 0 0 3px #111114, 0 30px 60px -30px rgba(0,0,0,.7); }
+html.a11y-contrast .a11y-cap, html.a11y-contrast .a11y-step-b, html.a11y-contrast .a11y-say-b { box-shadow: inset 0 0 0 2px #111114, 0 3px 0 #111114; }
+html.a11y-contrast .a11y-step { background: #FFFFFF; box-shadow: inset 0 0 0 2px #111114; }
+html.a11y-contrast .a11y-x { background: #FFFFFF; box-shadow: inset 0 0 0 2px #111114; }
+html.a11y-contrast .a11y-count:not(.is-on) { box-shadow: inset 0 0 0 2px #111114; color: #111114; }
+html.a11y-contrast .a11y-key[aria-pressed="true"] .a11y-cap, html.a11y-contrast .a11y-say-play.is-on { box-shadow: inset 0 0 0 2px #111114, 0 1px 0 #111114; }
+html.a11y-contrast .a11y-rail i { background: #FFFFFF; box-shadow: inset 0 0 0 2px #111114; }
+html.a11y-contrast .a11y-rail i.is-on { background: #111114; }
+html.a11y-contrast .a11y-alt { color: #111114 !important; background: #FFFFFF; }
+
+/* ============================================================ dark + high contrast: text a11y.js repaired
+   (a hard-coded colour that fell under 4.5:1, or 3:1 for large type, on the surface actually behind it) */
+html:is(.a11y-dark, .a11y-contrast) .a11y-fg-d { color: #111114 !important; }
+html.a11y-dark .a11y-fg-l { color: #F3F3F5 !important; }
+html.a11y-contrast .a11y-fg-l { color: #FFFFFF !important; }
+
+/* ============================================================ reduced motion, for the widget's own pieces */
+@media (prefers-reduced-motion: reduce) { .a11y-panel[open] :is(.a11y-sheet, .a11y-cap), .a11y-reader, .a11y-reader-dot { animation: none; } }

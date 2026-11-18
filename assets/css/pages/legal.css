@@ -1,0 +1,103 @@
+/* Legal pages (privacy-policy.html, terms.html) — page-scoped, prefix .lg-
+   A glazed Z with a sticker beside the title, "the short version" keycaps that jump to their section,
+   a contents rail (desktop) / pill (phones) built by app.js from [data-toc], section number keys that
+   light up as you read, and cards that slide in as slabs. Motion off / reduced motion = final states. */
+
+.lg-page .legal-head { position: relative; top: auto; }
+
+/* ---------- hero object: the glazed Z + sticker */
+.lg-art { position: absolute; z-index: 0; right: -4px; top: 74px; width: 120px; aspect-ratio: 1; pointer-events: none; }
+.lg-art .zkit { width: 100%; transform: rotate(-9deg); }
+.lg-art .zkit .kp-diag { background: linear-gradient(170deg, #55555F 0%, #26262D 38%, #111114 78%, #050507 100%); box-shadow: inset 0 2px 0 rgba(255,255,255,.2), inset 0 -5px 0 rgba(0,0,0,.45), 0 22px 28px -16px rgba(0,0,0,.65); }
+.lg-art .zkit .kp-diag::after { background: var(--orange); }
+.lg-art .sticker { position: absolute; left: -26px; bottom: -6px; z-index: 2; min-height: 30px; padding: 0 12px; font-size: 12.5px; white-space: nowrap; background: var(--ink); color: #F3F3F5; transform: rotate(-7deg); box-shadow: 0 12px 20px -10px rgba(0,0,0,.55); }
+.lg-art::after { content: ''; position: absolute; left: 14%; right: 10%; bottom: -10%; height: 14%; border-radius: 50%; background: radial-gradient(closest-side, rgba(17,17,20,.2), transparent); filter: blur(5px); z-index: -1; }
+.lg-page .legal-head > :not(.lg-art) { position: relative; z-index: 1; }
+
+/* pieces drop in once, then idle-bob gently */
+.lg-art .kit-piece { animation: lgDrop 1.1s var(--spring) both; }
+.lg-art .kp-top { animation-delay: .15s; }
+.lg-art .kp-diag { animation-delay: .32s; }
+.lg-art .kp-bot { animation-delay: .5s; }
+@keyframes lgDrop { 0% { opacity: 0; translate: 0 -60px; rotate: -18deg; } 40% { opacity: 1; } 100% { opacity: 1; translate: 0 0; rotate: 0deg; } }
+.lg-art .zkit { animation: lgBob 6s ease-in-out 1.6s infinite; }
+@keyframes lgBob { 0%, 100% { transform: rotate(-9deg) translateY(0); } 50% { transform: rotate(-6deg) translateY(-6px); } }
+.lg-art .sticker { animation: lgStick .7s var(--spring) .9s both; }
+@keyframes lgStick { 0% { opacity: 0; transform: rotate(-24deg) scale(.4); } 100% { opacity: 1; transform: rotate(-7deg) scale(1); } }
+
+/* ---------- the short version: keycaps that jump to their section */
+.lg-short { margin-top: 26px; }
+.lg-short-k { font-family: var(--mono); font-size: 13px; font-weight: 500; letter-spacing: -.02em; color: var(--graphite); }
+.lg-keys { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 12px; }
+.lg-keys li { display: grid; }
+.lg-keys a > span:last-child { text-wrap: balance; }
+.lg-keys a { position: relative; display: grid; align-content: space-between; gap: 14px; min-height: 92px; padding: 14px 14px 13px; border-radius: 20px; background: linear-gradient(180deg, #FFFFFF 0%, var(--chalk-2) 100%); color: var(--ink); font-size: 17px; font-weight: 600; line-height: 1.12; letter-spacing: -.03em; box-shadow: inset 0 1px 0 #fff, inset 0 -4px 0 rgba(17,17,20,.08), 0 2px 0 rgba(17,17,20,.08), 0 16px 24px -18px rgba(17,17,20,.55); transition: transform .45s var(--spring), box-shadow .3s; }
+.lg-keys li:nth-child(odd) a { transform: rotate(-.8deg); }
+.lg-keys li:nth-child(even) a { transform: rotate(.9deg) translateY(6px); }
+.lg-keys .lg-n { display: flex; align-items: center; justify-content: space-between; font-family: var(--mono); font-size: 12px; font-weight: 500; letter-spacing: 0; color: var(--graphite); }
+.lg-keys .lg-n b { display: inline-grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: var(--ink); color: var(--orange); font-family: var(--sans); font-size: 14px; font-weight: 600; transition: transform .45s var(--spring); }
+.lg-keys li:first-child a { background: radial-gradient(90% 90% at 20% 0%, #FF7440 0%, var(--orange) 60%, #F4501A 100%); box-shadow: inset 0 1px 0 rgba(255,255,255,.35), inset 0 -4px 0 rgba(120,20,0,.25), 0 2px 0 rgba(120,20,0,.25), 0 16px 24px -14px rgba(180,50,0,.55); }
+.lg-keys li:first-child .lg-n { color: rgba(17,17,20,.72); }
+.lg-keys li a:active { transform: translateY(3px) scale(.97); box-shadow: inset 0 1px 0 #fff, inset 0 -1px 0 rgba(17,17,20,.08), 0 1px 0 rgba(17,17,20,.08), 0 6px 10px -8px rgba(17,17,20,.5); }
+@media (hover: hover) {
+  .lg-keys li a:hover { transform: translateY(-3px) rotate(0deg); }
+  .lg-keys a:hover .lg-n b { transform: translateY(2px) rotate(-90deg); }
+}
+.lg-keys a:focus-visible { outline-offset: 4px; }
+
+/* ---------- sections: number keys light up as you read; cards slide in as slabs */
+.lg-page .legal-sec h2 { scroll-margin-top: calc(var(--nav-top) + var(--nav-h) + 20px); }
+.lg-page .legal-sec h2 span { transition: background-color .35s, color .35s, transform .6s var(--spring), box-shadow .35s; }
+.lg-page .legal-sec.is-read h2 span { background: var(--orange); color: var(--ink); box-shadow: inset 0 -2px 0 rgba(120,20,0,.3), 0 2px 0 rgba(120,20,0,.35); transform: translateY(-3px) rotate(-6deg) scale(1.08); }
+.lg-on .legal-sec:not(.is-in) { opacity: 0; translate: 0 46px; rotate: 1.2deg; }
+.lg-on .legal-sec { transition: opacity .5s, translate .9s var(--spring), rotate .9s var(--spring); transform-origin: 0 0; }
+.lg-instant .legal-sec { transition: none !important; }
+.legal-sec:target, .legal-sec.is-hit { animation: lgHit .9s var(--spring); }
+@keyframes lgHit { 0% { box-shadow: 0 0 0 0 rgba(255,90,31,.0), inset 0 1px 0 #fff; } 30% { box-shadow: 0 0 0 4px var(--orange), inset 0 1px 0 #fff; } 100% { box-shadow: 0 0 0 0 rgba(255,90,31,0), inset 0 1px 0 #fff, 0 16px 34px -28px rgba(17,17,20,.5); } }
+
+/* ---------- closing slab: sits right under the list */
+.lg-page + .cta-slab { margin-top: 0; }
+.lg-page { padding-bottom: clamp(40px, 6vw, 96px); }
+
+/* ---------- desktop: head on top-left, contents rail sticky under it, cards on the right */
+@media (max-width: 1099px) { .lg-page { grid-template-columns: minmax(0, 1fr); } }
+@media (min-width: 1100px) {
+  .lg-page { grid-template-rows: auto 1fr; }
+  .lg-page .legal-head { position: static; grid-column: 1; grid-row: 1; }
+  .lg-page .legal-list { grid-column: 2; grid-row: 1 / span 2; }
+  .lg-page .toc { grid-column: 1; grid-row: 2; margin-top: 44px; }
+  .lg-page .legal-head { display: grid; grid-template-columns: minmax(0, 1fr) 150px; column-gap: 12px; grid-template-areas: "crumbs crumbs" "kicker kicker" "title title" "updated updated" "intro art" "short short"; }
+  .lg-page .legal-head .crumbs { grid-area: crumbs; }
+  .lg-page .legal-head .kicker { grid-area: kicker; }
+  .lg-page .legal-title { grid-area: title; }
+  .lg-page .legal-updated { grid-area: updated; justify-self: start; }
+  .lg-page .legal-intro { grid-area: intro; max-width: none; }
+  .lg-art { grid-area: art; position: relative; right: auto; top: auto; width: 150px; margin-top: 18px; align-self: start; }
+  .lg-art .sticker { left: -34px; bottom: -14px; font-size: 13px; min-height: 34px; padding: 0 14px; }
+  .lg-short { grid-area: short; }
+  .lg-short { margin-top: 30px; max-width: 420px; }
+  .lg-keys a { min-height: 104px; font-size: 18px; }
+}
+@media (min-width: 1100px) {
+  .lg-page .toc.is-built { top: calc(var(--nav-space, 96px) + 24px); max-width: 360px; }
+}
+
+/* ---------- phones */
+@media (max-width: 767px) {
+  .lg-page .legal-title { max-width: calc(100% - 118px); }
+  .lg-page .legal-updated { margin-top: 20px; }
+  .lg-page .legal-intro { font-size: 17px; color: var(--prose-c, #34363C); }
+  .lg-short { margin-top: 24px; }
+  .lg-page .legal-list { margin-top: 6px; }
+}
+@media (max-width: 359px) {
+  .lg-art { width: 96px; top: 70px; }
+  .lg-page .legal-title { max-width: calc(100% - 92px); }
+  .lg-keys a { min-height: 84px; font-size: 15.5px; padding: 12px; }
+}
+
+/* ---------- quiet: final states */
+.motion-off .lg-art .kit-piece, .motion-off .lg-art .zkit, .motion-off .lg-art .sticker { animation: none; }
+.motion-off .lg-on .legal-sec, .motion-off .legal-sec { opacity: 1; translate: none; rotate: none; transition: none; animation: none; }
+.motion-off .lg-page .legal-sec h2 span, .motion-off .lg-keys a, .motion-off .lg-keys .lg-n b { transition: none; }
+@media print { .lg-art, .lg-short { display: none; } .legal-sec { opacity: 1 !important; translate: none !important; rotate: none !important; } }

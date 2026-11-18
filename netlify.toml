@@ -4,6 +4,12 @@
 [build]
   publish = "."
 
+# Serverless functions. With publish = "." Netlify would otherwise guess; say it explicitly.
+# netlify/functions/deploy-succeeded.js is an event function: Netlify runs it after every successful
+# production deploy and it submits the sitemap URLs to IndexNow (Bing / ChatGPT Search / Copilot).
+[functions]
+  directory = "netlify/functions"
+
 # Serve links exactly as written (./privacy-policy.html). Netlify's "Pretty URLs" post-processing
 # rewrote them to /privacy-policy, a non-canonical duplicate. This overrides the UI setting; removing
 # it silently brings the rewriting back and turns every legal link into a hop through the 301s below.
@@ -13,6 +19,9 @@
 # Security headers are also declared per-path in _headers; netlify.toml keeps only the build config
 # so there is a single source of truth for headers.
 
+# NOTE: no trailing-slash redirects (/x -> /x/). Netlify already serves /x and /x/ from x/index.html
+# and matches both forms in one rule, so such a rule loops. Canonical tags carry the trailing slash.
+
 # The Netlify subdomain serves a full copy of the site: send it to the custom domain.
 [[redirects]]
   from = "https://zstore-ai-com.netlify.app/*"
@@ -20,9 +29,52 @@
   status = 301
   force = true
 
-# apps-script/ holds the server code of the contact form for versioning only — never publish it.
+# Private folders that sit inside the published root: never serve them, even if a file exists.
+# apps-script/ holds the server code of the contact form for versioning only.
 [[redirects]]
   from = "/apps-script/*"
+  to = "/404.html"
+  status = 404
+  force = true
+
+# netlify/ holds the function source (deploy-succeeded.js). Functions run from /.netlify/functions/,
+# so this only hides the source file that publish = "." would otherwise expose.
+[[redirects]]
+  from = "/netlify/*"
+  to = "/404.html"
+  status = 404
+  force = true
+
+# tools/ and qa/ are internal (QA scripts, screenshots, notes). They normally live outside the repo
+# or are git-ignored; these rules keep them private if one is ever committed by mistake.
+[[redirects]]
+  from = "/tools/*"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/qa/*"
+  to = "/404.html"
+  status = 404
+  force = true
+
+# Repo-only files at the root (publish = "." would expose them): the internal README, the local dev
+# server and the git ignore list. They stay in git; they are just never served.
+[[redirects]]
+  from = "/README.md"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/serve.cjs"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/.gitignore"
   to = "/404.html"
   status = 404
   force = true

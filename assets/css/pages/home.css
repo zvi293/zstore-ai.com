@@ -1,0 +1,169 @@
+/* Zstore AI — home page touchpoints (the links that turn the single page into the site's front door).
+   Prefix .hm- (loaded after tactile.css; never restyles a shared class globally). Mobile first (390px), then up.
+   Pieces: the work "contact sheet" link (three concept prints that fan out), "Go deeper" rows inside the service
+   drawers, the "All services" key, the process track (beads mirror the tabs), FAQ inline links, the "From the
+   guides" strip (porcelain shelf slab, paper-tab title, bookmark ribbons that drop in; a swipe row on phones) and the study dialog's "Read the full study".
+   Motion off / reduced motion / no JS: every piece rests in its final state. */
+
+/* ============================================================ shared: the round arrow bead */
+.hm-go { display: grid; place-items: center; flex: none; width: 44px; height: 44px; border-radius: 50%; background: var(--orange); color: var(--ink); font-weight: 500; box-shadow: inset 0 1px 0 rgba(255,255,255,.4), inset 0 -3px 0 rgba(120,20,0,.22); transition: transform .5s var(--spring); }
+
+/* ============================================================ work: "See all work and concept studies" */
+.hm-more { position: relative; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 14px; width: min(100%, 620px); min-height: 84px; margin: 20px auto 34px; padding: 12px 12px 12px 10px; border-radius: 28px; background: #1C1C21; color: #F3F3F5; box-shadow: inset 0 1px 0 rgba(255,255,255,.08), inset 0 0 0 1px rgba(255,255,255,.09), 0 24px 40px -30px rgba(0,0,0,.9); transition: transform .5s var(--spring), background-color .3s; }
+.hm-prints { position: relative; width: 76px; height: 58px; }
+.hm-prints i { position: absolute; left: 50%; top: 50%; width: 40px; height: 31px; margin: -15.5px 0 0 -20px; border-radius: 7px; background: var(--c); box-shadow: inset 0 0 0 1px rgba(0,0,0,.06), inset 0 1px 0 rgba(255,255,255,.55), 0 10px 14px -8px rgba(0,0,0,.85); transition: transform .8s var(--spring); }
+/* each print is a tiny page: a title bar and an image block in its concept's own ink */
+.hm-prints i::before { content: ''; position: absolute; left: 6px; top: 6px; width: 15px; height: 3px; border-radius: 2px; background: var(--k); opacity: .7; }
+.hm-prints i::after { content: ''; position: absolute; left: 6px; right: 6px; bottom: 6px; height: 12px; border-radius: 3px; background: var(--k); opacity: .22; }
+.hm-p1 { --c: #DCCFBD; --k: #2A2118; transform: translate(-17px, 4px) rotate(-13deg); }
+.hm-p2 { --c: #C7D0B8; --k: #1D2518; transform: translate(0, -5px) rotate(2deg); transition-delay: .06s; }
+.hm-p3 { --c: #C9CBF3; --k: #191A3A; transform: translate(17px, 4px) rotate(14deg); transition-delay: .12s; }
+/* before it scrolls in: the three prints lie stacked in one pile, then fan out with a spring */
+.hm-wait .hm-prints i { transform: translate(0, 10px) rotate(-3deg) scale(.88); }
+.hm-more-t { display: grid; gap: 4px; min-width: 0; }
+.hm-more-k { font-family: var(--mono); font-size: .78rem; letter-spacing: -.02em; color: rgba(243,243,245,.62); }
+.hm-more-l { font-size: 1.125rem; font-weight: 600; letter-spacing: -.025em; line-height: 1.15; text-wrap: balance; }
+.hm-more:active { transform: scale(.98); }
+@media (hover: hover) {
+  .hm-more:hover { background: #222228; }
+  .hm-more:hover .hm-go { transform: rotate(-45deg); }
+  .hm-more:hover .hm-p1 { transform: translate(-24px, 2px) rotate(-20deg); }
+  .hm-more:hover .hm-p2 { transform: translate(0, -9px) rotate(1deg); }
+  .hm-more:hover .hm-p3 { transform: translate(24px, 2px) rotate(21deg); }
+}
+.hm-more:focus-visible .hm-go { transform: rotate(-45deg); }
+
+/* ============================================================ services: "Go deeper" rows + the "All services" key */
+.hm-deeper { display: grid; gap: 8px; }
+.hm-deeper-k { font-family: var(--mono); font-size: .78rem; letter-spacing: -.02em; color: var(--graphite); }
+.hm-deeper ul { display: grid; border-top: 1.5px solid var(--ink); }
+.hm-deeper li { border-bottom: 1px solid var(--line); }
+.hm-deeper a { position: relative; isolation: isolate; display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 54px; padding: 5px 2px; font-size: 1.0625rem; font-weight: 600; letter-spacing: -.02em; line-height: 1.2; }
+/* a chalk well slides in under the row (hover / focus), like a drawer tray */
+.hm-deeper a::before { content: ''; position: absolute; z-index: -1; inset: 4px -10px; border-radius: 14px; background: var(--chalk); transform: scaleX(0); transform-origin: 0 50%; transition: transform .5s var(--spring); }
+.hm-deeper a b { display: grid; place-items: center; flex: none; width: 36px; height: 36px; border-radius: 50%; background: var(--ink); color: var(--orange); font-weight: 500; transition: transform .5s var(--spring); }
+.hm-deeper a:focus-visible::before { transform: scaleX(1); }
+.hm-deeper a:focus-visible b { transform: rotate(-45deg); }
+@media (hover: hover) { .hm-deeper a:hover::before { transform: scaleX(1); } .hm-deeper a:hover b { transform: rotate(-45deg); } }
+/* opening a drawer slides its rows out one after another, with a little overshoot */
+.drawer[open] .hm-deeper li { animation: hmRow .7s var(--spring) both; animation-delay: .14s; }
+.drawer[open] .hm-deeper li:nth-child(2) { animation-delay: .21s; }
+.drawer[open] .hm-deeper li:nth-child(3) { animation-delay: .28s; }
+@keyframes hmRow { from { opacity: 0; transform: translateX(26px); } }
+
+.hm-all { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 80px; margin: 8px 0 6px; padding: 14px 14px 14px 22px; border-radius: 26px; background: var(--ink); color: #F3F3F5; box-shadow: inset 0 1px 0 rgba(255,255,255,.12), 0 6px 0 #7A2404, 0 22px 34px -16px rgba(90,20,0,.7); transition: transform .3s var(--spring), box-shadow .3s; }
+.hm-all-t { display: grid; gap: 3px; min-width: 0; }
+.hm-all-l { font-size: clamp(1.375rem, 2vw, 1.75rem); font-weight: 600; letter-spacing: -.04em; line-height: 1.05; }
+.hm-all-d { font-size: .875rem; color: rgba(243,243,245,.66); }
+/* a real key: pressing it travels down onto its lip */
+.hm-all:active { transform: translateY(5px); box-shadow: inset 0 1px 0 rgba(255,255,255,.12), 0 1px 0 #7A2404, 0 10px 18px -12px rgba(90,20,0,.7); }
+@media (hover: hover) { .hm-all:hover { transform: translateY(-2px); } .hm-all:hover .hm-go { transform: rotate(-45deg); } .hm-all:active { transform: translateY(5px); } }
+.hm-all:focus-visible .hm-go { transform: rotate(-45deg); }
+
+/* ============================================================ process: the track link (beads mirror the tabs) */
+.hm-track { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "m go" "l go"; align-items: center; gap: 8px 14px; max-width: 1400px; margin: clamp(30px, 4vw, 56px) auto 0; padding: 16px 12px 16px 20px; border-radius: 26px; background: rgba(255,255,255,.035); color: #F3F3F5; box-shadow: inset 0 0 0 1px rgba(255,255,255,.14); transition: background-color .3s, transform .45s var(--spring); }
+.hm-track-m { grid-area: m; display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; }
+.hm-track-k { white-space: nowrap; font-family: var(--mono); font-size: .78rem; letter-spacing: -.02em; color: rgba(243,243,245,.62); font-variant-numeric: tabular-nums; }
+.hm-beads { display: flex; gap: 5px; }
+.hm-beads i { width: 20px; height: 8px; border-radius: 99px; background: rgba(255,255,255,.14); transition: background-color .35s, transform .5s var(--spring), box-shadow .35s; }
+.hm-beads i.on { background: var(--orange); }
+.hm-beads i.now { transform: scaleY(1.35); box-shadow: 0 0 14px rgba(255,90,31,.6); }
+.hm-track-l { grid-area: l; font-size: clamp(1.1875rem, 1.8vw, 1.625rem); font-weight: 600; letter-spacing: -.035em; line-height: 1.15; text-wrap: balance; }
+.hm-track .hm-go { grid-area: go; }
+.hm-track:active { transform: scale(.985); }
+@media (hover: hover) { .hm-track:hover { background: rgba(255,255,255,.07); } .hm-track:hover .hm-go { transform: rotate(-45deg); } }
+.hm-track:focus-visible .hm-go { transform: rotate(-45deg); }
+
+/* ============================================================ FAQ: inline links inside answers */
+.hm-inl { color: var(--ink); font-weight: 600; text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: .2em; transition: text-decoration-thickness .2s; }
+@media (hover: hover) { .hm-inl:hover { text-decoration-thickness: 3px; } }
+
+/* ============================================================ "From the guides" strip */
+/* its own raised porcelain shelf, so FAQ → guides → contact never reads as three flat chalk sections in a row */
+.hm-guides { position: relative; z-index: 2; margin: 0 10px; padding: clamp(40px, 6vw, 88px) var(--pad) clamp(30px, 4vw, 60px); border-radius: var(--r-lg); background: linear-gradient(172deg, #FFFFFF 0%, var(--chalk-2) 38%, #E2E3E7 100%); box-shadow: inset 0 2px 0 #fff, inset 0 -4px 0 rgba(17,17,20,.07), 0 34px 60px -44px rgba(17,17,20,.6); }
+.hm-g-in { max-width: 1400px; margin: 0 auto; }
+.hm-g-head { display: grid; gap: 14px; margin-bottom: clamp(18px, 3vw, 44px); }
+.hm-g-title { font-size: clamp(2.75rem, 12vw, 6rem); font-weight: 700; line-height: .9; letter-spacing: -.06em; text-wrap: balance; }
+/* paper tab: the word sits on a tinted index tab, tilted like a divider pulled up out of a binder,
+   with a tiny orange bookmark hanging out of its lower edge (the same ribbon the cards carry) */
+.hm-tab { position: relative; display: inline-block; margin: .08em 0 0 .02em; padding: .04em .2em .1em; border-radius: .2em .2em .06em .06em; background: #DCCFBD; color: #111114; transform: rotate(-3.5deg); transform-origin: 10% 100%; box-shadow: inset 0 .04em 0 rgba(255,255,255,.6), inset 0 -.05em 0 rgba(17,17,20,.1), 0 .14em .24em -.12em rgba(17,17,20,.45); transition: transform .6s var(--spring); }
+.hm-tab::before { content: ''; position: absolute; right: .9em; top: 100%; width: .16em; height: .36em; background: linear-gradient(180deg, #A9320A 0 18%, var(--orange) 50%, #FF7440 100%); clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 74%, 0 100%); }
+@media (hover: hover) { .hm-guides:hover .hm-tab { transform: rotate(-6deg) translateY(-.04em); } }
+.hm-g-lede { max-width: 42ch; color: var(--graphite); font-size: clamp(1.0625rem, 1.3vw, 1.25rem); text-wrap: pretty; }
+.hm-g-all { justify-self: start; }
+
+/* phones: one swipe row (~82% cards, the next one peeks), so the strip stays about one screen tall */
+.hm-g-list { display: grid; grid-auto-flow: column; grid-auto-columns: 82%; gap: 12px; margin: 0 calc(var(--pad) * -1); padding: 12px var(--pad) 26px; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scroll-padding-inline: var(--pad); scrollbar-width: none; }
+.hm-g-list::-webkit-scrollbar { display: none; }
+.hm-g-list > li { scroll-snap-align: start; }
+.hm-g-card { --tint: #DCCFBD; position: relative; display: flex; flex-direction: column; gap: 10px; padding: 22px 20px 18px 22px; border-radius: 28px; background: var(--chalk); box-shadow: inset 0 1px 0 rgba(255,255,255,.8), inset 0 0 0 1px rgba(17,17,20,.05), 0 18px 30px -24px rgba(17,17,20,.5); transition: transform .5s var(--spring), background-color .3s, box-shadow .4s; }
+.hm-g-sage { --tint: #C7D0B8; } .hm-g-peri { --tint: #C9CBF3; }
+/* a glazed bookmark ribbon tucked in at the top edge: it drops in on arrival and stretches when you reach for the card */
+.hm-ribbon { position: absolute; right: 22px; top: -7px; width: 26px; height: 62px; transform-origin: 50% 0; background: linear-gradient(180deg, #A9320A 0 10%, #E0480F 22%, var(--orange) 46%, #FF7440 78%, var(--orange) 100%); clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 80%, 0 100%); transition: transform .8s var(--spring); }
+.hm-ribbon::after { content: ''; position: absolute; left: 50%; top: 18px; width: 2px; bottom: 16px; margin-left: -1px; border-radius: 2px; background: rgba(120,20,0,.28); }
+.hm-g-list > li:nth-child(2) .hm-ribbon { transition-delay: .09s; }
+.hm-g-list > li:nth-child(3) .hm-ribbon { transition-delay: .18s; }
+.hm-wait .hm-ribbon { transform: scaleY(0); }
+.hm-g-k { display: flex; align-items: center; gap: 10px; padding-right: 40px; font-family: var(--mono); font-size: .78rem; letter-spacing: -.02em; color: var(--graphite); }
+.hm-g-k span { padding: 3px 8px; border-radius: 7px; background: var(--tint); color: var(--ink); box-shadow: inset 0 -2px 0 rgba(17,17,20,.08); }
+.hm-g-t { padding-right: 34px; font-size: clamp(1.3125rem, 1.75vw, 1.625rem); font-weight: 600; line-height: 1.12; letter-spacing: -.035em; text-wrap: balance; }
+/* the whole card is the link; its accessible name is the guide title */
+.hm-g-link::after { content: ''; position: absolute; inset: 0; z-index: 1; border-radius: 28px; }
+.hm-g-link:focus-visible { outline: none; }
+.hm-g-link:focus-visible::after { outline: 3px solid var(--ink); outline-offset: 3px; }
+.hm-g-d { max-width: 46ch; color: var(--graphite); font-size: 1rem; line-height: 1.45; text-wrap: pretty; }
+.hm-g-foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: auto; padding-top: 8px; font-size: .9375rem; font-weight: 600; letter-spacing: -.015em; }
+.hm-g-foot .hm-go { width: 40px; height: 40px; background: var(--ink); color: var(--orange); box-shadow: inset 0 1px 0 rgba(255,255,255,.14); }
+.hm-g-card:active { transform: scale(.985); }
+.hm-g-card:focus-within { background: #fff; }
+.hm-g-card:focus-within .hm-ribbon { transform: scaleY(1.3); transition-delay: 0s; }
+.hm-g-card:focus-within .hm-go { transform: rotate(-45deg); }
+@media (hover: hover) {
+  .hm-g-card:hover { background: #fff; transform: translateY(-4px); box-shadow: inset 0 1px 0 #fff, 0 1px 0 rgba(17,17,20,.06), 0 30px 46px -30px rgba(17,17,20,.55); }
+  .hm-g-card:hover .hm-ribbon { transform: scaleY(1.3); transition-delay: 0s; }
+  .hm-g-card:hover .hm-go { transform: rotate(-45deg); }
+}
+
+/* ============================================================ study dialog: the third action */
+.study-copy .hm-study-link { margin-top: -6px; }
+
+/* ============================================================ wider screens */
+@media (min-width: 768px) {
+  .hm-more { margin-top: 26px; padding: 12px 14px 12px 14px; }
+  .hm-more-l { font-size: 1.25rem; }
+  .hm-track { grid-template-columns: auto minmax(0, 1fr) auto; grid-template-areas: "m l go"; gap: 24px; padding: 14px 14px 14px 26px; border-radius: 999px; }
+  .hm-track-m { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .hm-g-title { font-size: clamp(3.5rem, 7.4vw, 6rem); }
+  /* tablets: a 2-up grid, the third guide runs the full width */
+  .hm-g-list { grid-auto-flow: row; grid-auto-columns: auto; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin: 0; padding: 8px 0 0; overflow: visible; scroll-snap-type: none; }
+  .hm-g-list > li:nth-child(3) { grid-column: 1 / -1; }
+  .hm-g-card { padding: 26px 22px 20px 24px; min-height: 17rem; }
+}
+@media (min-width: 1024px) {
+  .hm-g-head { grid-template-columns: minmax(0, 1fr) minmax(0, 30rem); align-items: end; gap: 18px 48px; }
+  .hm-g-title { grid-row: span 2; }
+  .hm-g-lede { align-self: end; }
+  .hm-g-list { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .hm-g-list > li:nth-child(3) { grid-column: auto; }
+  .hm-g-card { min-height: 19rem; }
+}
+@media (min-width: 1100px) {
+  .hm-g-list { gap: 18px; }
+  .hm-g-card { padding: 30px 28px 24px 30px; border-radius: 34px; }
+  .hm-g-link::after { border-radius: 34px; }
+  .hm-ribbon { right: 28px; height: 70px; }
+}
+
+/* ============================================================ accessibility widget themes (a11y.css owns the tokens) */
+/* dark: the porcelain shelf becomes a raised dark slab; cards lift to a lighter graphite instead of white */
+html.a11y-dark .hm-guides { background: linear-gradient(172deg, #22222A 0%, #1A1A20 100%); box-shadow: inset 0 0 0 1px rgba(255,255,255,.08), 0 34px 60px -44px rgba(0,0,0,.9); }
+html.a11y-dark .hm-g-card { box-shadow: inset 0 0 0 1px rgba(255,255,255,.08), 0 18px 30px -24px rgba(0,0,0,.9); }
+html.a11y-dark .hm-g-card:focus-within { background: #2A2A32; }
+@media (hover: hover) { html.a11y-dark .hm-g-card:hover { background: #2A2A32; box-shadow: inset 0 0 0 1px rgba(255,255,255,.12), 0 30px 46px -30px rgba(0,0,0,.95); } }
+/* high contrast: every surface is white, so edges carry the shape */
+html.a11y-contrast .hm-guides, html.a11y-contrast .hm-g-card { background: #FFFFFF; box-shadow: inset 0 0 0 2px #111114; }
+
+/* ============================================================ quiet: Motion off / reduced motion */
+.motion-off .hm-deeper a::before { transition: none; } /* a pseudo-element is not allowed inside :is() */
+.motion-off :is(.hm-prints i, .hm-ribbon, .hm-tab, .hm-deeper a b, .hm-go, .hm-all, .hm-track, .hm-more, .hm-g-card, .hm-beads i) { transition: none; }
+.motion-off .drawer[open] .hm-deeper li { animation: none; }

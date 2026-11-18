@@ -8,9 +8,11 @@ Location:   Tel Aviv, Israel. Working with clients worldwide.
 Languages:  English, Hebrew
 
 /* SITE */
-Last update:  2026-09-15
-Language:     English
-Standards:    HTML5, CSS, WCAG 2.2 AA, Schema.org, Open Graph
-Components:   Hand-coded HTML, CSS and JavaScript. Hand-written WebGL. No frameworks, no build step, no runtime dependencies.
+Last update:  2026-11-17
+Language:     English (American)
+Pages:        Home, Services (5 service pages), Work (3 concept studies), Process, Pricing, About, Contact, Guides (6 guides + glossary), Accessibility, Privacy, Terms
+Standards:    HTML5, CSS, WCAG 2.2 AA, Schema.org, Open Graph, llms.txt, IndexNow
+Components:   Hand-coded HTML, CSS and JavaScript on open web standards. Hand-written WebGL on the home page. No frameworks, no build step, no runtime dependencies.
+Concept:      "Tactile Play": glazed ceramic Z pieces, slabs, stickers and keycaps; motion with mass that respects reduced motion
 Fonts:        Space Grotesk, JetBrains Mono, Fraunces (self-hosted)
-Hosting:      Netlify
+Analytics:    Cloudflare Web Analytics (cookieless, aggregate only)

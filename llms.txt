@@ -1,8 +1,8 @@
 # Zstore AI
 
-> Zstore AI is the independent web design and development studio of Zvi Moshe, based in Tel Aviv, working with clients worldwide. One person designs and hand-codes websites, landing pages, UI/UX and integrations: no templates, no page builders, no hand-offs. Contact: zstore.ai295@gmail.com · WhatsApp +972 58 729 2029.
+> Zstore AI is the independent web design and development studio of Zvi Moshe, based in Tel Aviv, working with clients worldwide. One person designs and hand-codes custom websites, online stores, landing pages, UI/UX and integrations on open web standards: no templates, no page builders, no hand-offs. Contact: zstore.ai295@gmail.com · WhatsApp +972 58 729 2029.
 
-Zstore AI is a one-person studio: the person you brief (Zvi Moshe) is the person who designs and builds the site. Founded in 2024. Projects are quoted at a fixed price based on the agreed scope, and every launch includes 30 days of post-launch care. Zvi works in English and Hebrew and replies within one business day.
+Zstore AI is a one-person studio: the person you brief (Zvi Moshe) is the person who designs and builds the site. Founded in 2024. There are two ways to work together: a fixed project price based on the agreed scope (the client owns the design, code and content outright at handover, with an optional monthly Care plan afterward), or a monthly plan (website as a service) in which Zvi hosts, secures, maintains and keeps improving the site, with the option to buy it out anytime. No prices are published; quotes follow a short conversation. Every launch includes 30 days of post-launch care. Zvi works in English and Hebrew and replies within one business day.
 
 The canonical site of the English-language studio is https://zstore-ai.com/. Zvi also runs a separate Hebrew-language site at https://zstore-ai.co.il/ (linked from the footer credit).
 
@@ -18,28 +18,50 @@ The canonical site of the English-language studio is https://zstore-ai.com/. Zvi
 - GitHub: https://github.com/zvi293
 - Track record: 40+ projects shipped, 98% client retention, ~1.2s average load time
 - Response time: within one business day
+- How sites are built: designed from scratch and hand-coded on open web standards (HTML, CSS, JavaScript, open-source tools), never on a rented platform or page builder
+- Typical timelines: landing pages 1–2 weeks; full marketing sites 4–6 weeks (depends on scope, content readiness and integrations)
+- Process: Discover, Design, Develop, Launch
+- Ownership: the domain is registered in the client's name and the content they supplied is always theirs
+- Accessibility: this site targets WCAG 2.2 AA and offers an on-page accessibility panel
 
 ## Services
 
-- Web experiences: custom websites and landing pages, responsive development
-- Digital product design: UI/UX, prototyping, design systems
-- Code & connections: integrations, payment flows, forms, WordPress and CMS
-- Refinement & care: performance, accessibility, SEO foundations, ongoing support
+- [Services](https://zstore-ai.com/services/): Overview of everything Zstore AI designs and builds, including digital product design (UI/UX, prototyping, design systems), code and connections (payments, forms, content management, integrations) and refinement and care (performance, accessibility, SEO foundations, ongoing support).
+- [Custom website design](https://zstore-ai.com/services/custom-website-design/): Custom websites designed from scratch and hand-coded by Zvi Moshe; full marketing sites typically take 4–6 weeks, at a fixed price based on the agreed scope or on a monthly plan.
+- [E-commerce websites](https://zstore-ai.com/services/ecommerce-websites/): Custom-coded online stores focused on clear product pages, a short checkout and mobile shopping, with secure checkout through an established payment provider and integrations connected.
+- [Landing pages](https://zstore-ai.com/services/landing-pages/): Single-goal landing pages for launches, ads and campaigns, hand-coded for speed; most take 1–2 weeks.
+- [AI search optimization](https://zstore-ai.com/services/ai-search-optimization/): GEO/AEO foundations that help AI search tools find, understand and cite a site: crawler access, structured data, answer-first content and consistent business facts, with no guaranteed placement.
+- [Website redesign](https://zstore-ai.com/services/website-redesign/): Redesigns that protect what already works (URLs, content, search visibility) and fix what doesn't, from a focused refresh to a full rebuild.
 
-## Pages
+## Studio
 
-- [Home](https://zstore-ai.com/): who Zstore AI is, concept studies, services, the studio, process, FAQ and the contact form
-- [Concept studies](https://zstore-ai.com/#work): Atelier Studio, Lume and Meridian, self-initiated design explorations (not client work)
-- [Services](https://zstore-ai.com/#services): what Zstore AI designs and builds
-- [Process](https://zstore-ai.com/#process): Discover, Design, Develop, Launch
-- [FAQ](https://zstore-ai.com/#faq): timelines, pricing, redesigns, content updates, after launch, international clients and time zones
-- [Contact](https://zstore-ai.com/#contact): send a brief, email or WhatsApp
+- [Home](https://zstore-ai.com/): Who Zstore AI is, selected work and concept studies, services, the studio, process, FAQ and the contact form.
+- [Work](https://zstore-ai.com/work/): Genuine screenshots of websites Zvi has designed and built (no client names or invented results) plus three self-initiated concept studies.
+- [Atelier Studio (concept study)](https://zstore-ai.com/work/atelier-studio/): A self-initiated concept, not client work: an image-led architecture firm website paced like a walk through a building.
+- [Lume (concept study)](https://zstore-ai.com/work/lume/): A self-initiated concept, not client work: skincare e-commerce built around one ritual product and a calm checkout.
+- [Meridian (concept study)](https://zstore-ai.com/work/meridian/): A self-initiated concept with sample data, not client work: a small-business finance dashboard where one number leads.
+- [Process](https://zstore-ai.com/process/): Discover, Design, Develop, Launch; what happens in each step, typical timelines, what clients provide and how async work across time zones runs.
+- [Pricing](https://zstore-ai.com/pricing/): How pricing works without published figures: a fixed project price based on the agreed scope or a monthly plan, a written proposal, 30 days of post-launch care included, and an optional monthly Care plan.
+- [About](https://zstore-ai.com/about/): Zvi Moshe, independent web designer and developer; founded Zstore AI in 2024 in Tel Aviv; 40+ projects shipped for clients worldwide; works in English and Hebrew.
+- [Contact](https://zstore-ai.com/contact/): Send a brief by form, email (zstore.ai295@gmail.com) or WhatsApp (+972 58 729 2029); personal reply within one business day.
+
+## Guides
+
+- [Guides](https://zstore-ai.com/guides/): Plain-English guides for business owners on AI search, strategy, building, launching and accessibility, written by Zvi Moshe.
+- [Web design glossary](https://zstore-ai.com/guides/glossary/): 62 alphabetical, plain-English definitions of web design, development, SEO, GEO/AEO, e-commerce and accessibility terms.
+- [What is generative engine optimization (GEO)?](https://zstore-ai.com/guides/generative-engine-optimization/): How AI search tools choose sources, how GEO relates to SEO, what Google says, and seven honest steps to get cited.
+- [Custom website vs website builder](https://zstore-ai.com/guides/custom-website-vs-website-builder/): An honest comparison of Squarespace, Wix or Webflow against a custom website, including when a builder is the better choice.
+- [How to write a website brief](https://zstore-ai.com/guides/how-to-write-a-website-brief/): The nine sections of a useful website brief, guiding questions, a fill-in template and an example.
+- [Website launch checklist](https://zstore-ai.com/guides/website-launch-checklist/): What to check before launch, on launch day and in the first 30 days, plus extra steps for relaunches (redirects).
+- [Website accessibility and the ADA](https://zstore-ai.com/guides/website-accessibility-ada/): How the ADA applies to websites, the 2024 DOJ Title II rule and its compliance dates, WCAG AA in practice, why overlays aren't a fix, first steps and laws outside the US; not legal advice.
+- [Core Web Vitals, explained for business owners](https://zstore-ai.com/guides/core-web-vitals/): What LCP, INP and CLS measure, the good thresholds (2.5 s, 200 ms, 0.1 at the 75th percentile of visits), how they affect Google rankings, how to check them in PageSpeed Insights and Search Console, and the fixes that usually help.
 
 ## Details
 
-- [Full plain-text profile](https://zstore-ai.com/llms-full.txt): every fact, service, process step and FAQ answer in one file
+- [Full plain-text profile](https://zstore-ai.com/llms-full.txt): every fact, service, process step, pricing principle and FAQ answer in one file
 
 ## Optional
 
-- [Privacy policy](https://zstore-ai.com/privacy-policy.html)
+- [Accessibility statement](https://zstore-ai.com/accessibility/): WCAG 2.2 AA target, what's built in, the on-page accessibility panel (text size, contrast, dark mode, readable font, motion and more), known limitations, and how to report a barrier by email or WhatsApp with a reply within one business day.
+- [Privacy policy](https://zstore-ai.com/privacy-policy.html): what the contact form collects, cookieless analytics, and your rights under the GDPR and UK GDPR
 - [Terms of service](https://zstore-ai.com/terms.html)

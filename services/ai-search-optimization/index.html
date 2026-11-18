@@ -1,0 +1,711 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>AI Search Optimization (GEO &amp; AEO) | Zstore AI</title>
+  <meta name="description" content="AI search optimization (GEO and AEO) that helps ChatGPT, Google AI Overviews and Perplexity find, trust and cite your site. Foundations, not tricks. Let's talk." />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <meta name="author" content="Zvi Moshe" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta name="theme-color" content="#ECEDEF" />
+  <meta name="color-scheme" content="light" />
+  <meta name="format-detection" content="telephone=no" />
+  <link rel="canonical" href="https://zstore-ai.com/services/ai-search-optimization/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://zstore-ai.com/services/ai-search-optimization/" />
+  <meta property="og:title" content="AI search optimization (GEO &amp; AEO), built on foundations that last" />
+  <meta property="og:description" content="Help ChatGPT, Google AI Overviews and Perplexity find, understand and cite your site: crawler access, structured data, answer-first content and consistent facts." />
+  <meta property="og:site_name" content="Zstore AI" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:image" content="https://zstore-ai.com/image/brand/og-share.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Zstore AI — glazed ceramic Z pieces and the line: Websites people can't put down." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="AI search optimization (GEO &amp; AEO), built on foundations that last" />
+  <meta name="twitter:description" content="Help ChatGPT, Google AI Overviews and Perplexity find, understand and cite your site: crawler access, structured data, answer-first content and consistent facts." />
+  <meta name="twitter:image" content="https://zstore-ai.com/image/brand/og-share.jpg" />
+  <link rel="icon" href="/favicon.ico" sizes="48x48" />
+  <link rel="icon" type="image/svg+xml" href="/image/brand/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/image/brand/favicon-32.png" />
+  <link rel="apple-touch-icon" href="/image/brand/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <link rel="preload" href="/fonts/studio-09.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/studio-06.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" as="image" href="/image/art/a-clear-signal-poster-800.webp" imagesrcset="/image/art/a-clear-signal-poster-800.webp 800w, /image/art/a-clear-signal-poster-1200.webp 1200w, /image/art/a-clear-signal-poster-1536.webp 1536w" imagesizes="(max-width: 767px) calc(100vw - 32px), 600px" fetchpriority="high" />
+  <style>
+    /* shared @font-face block (the only inline style allowed). Fraunces 500: the fictional bookkeeping firm in the Crawler Loupe mockup. */
+    @font-face { font-family: 'Fraunces'; font-style: normal; font-weight: 500; font-display: swap; src: url(/fonts/studio-03.woff2) format('woff2'); }
+    @font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 400; font-display: swap; src: url(/fonts/studio-04.woff2) format('woff2'); }
+    @font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 500; font-display: swap; src: url(/fonts/studio-05.woff2) format('woff2'); }
+    @font-face { font-family: 'Space Grotesk'; font-style: normal; font-weight: 400; font-display: swap; src: url(/fonts/studio-06.woff2) format('woff2'); }
+    @font-face { font-family: 'Space Grotesk'; font-style: normal; font-weight: 500; font-display: swap; src: url(/fonts/studio-07.woff2) format('woff2'); }
+    @font-face { font-family: 'Space Grotesk'; font-style: normal; font-weight: 600; font-display: swap; src: url(/fonts/studio-08.woff2) format('woff2'); }
+    @font-face { font-family: 'Space Grotesk'; font-style: normal; font-weight: 700; font-display: swap; src: url(/fonts/studio-09.woff2) format('woff2'); }
+  </style>
+  <script src="/assets/js/boot.js"></script>
+  <link rel="stylesheet" href="/tactile.css" />
+  <link rel="stylesheet" href="/assets/css/site.css" />
+  <link rel="stylesheet" href="/assets/css/pages/ai-search-optimization.css" />
+  <link rel="stylesheet" href="/assets/css/a11y.css" />
+  <script src="/assets/js/a11y-boot.js"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      { "@type": "WebSite", "@id": "https://zstore-ai.com/#website", "url": "https://zstore-ai.com/", "name": "Zstore AI" },
+      { "@type": "Organization", "@id": "https://zstore-ai.com/#organization", "name": "Zstore AI", "url": "https://zstore-ai.com/" },
+      { "@type": "Person", "@id": "https://zstore-ai.com/#zvi-moshe", "name": "Zvi Moshe", "url": "https://zstore-ai.com/about/" },
+      { "@type": "WebPage", "@id": "https://zstore-ai.com/services/ai-search-optimization/#webpage", "url": "https://zstore-ai.com/services/ai-search-optimization/", "name": "AI Search Optimization (GEO & AEO)", "description": "AI search optimization (GEO and AEO) that helps ChatGPT, Google AI Overviews and Perplexity find, trust and cite your site. Foundations, not tricks. Let's talk.", "inLanguage": "en", "isPartOf": { "@id": "https://zstore-ai.com/#website" }, "about": { "@id": "https://zstore-ai.com/services/ai-search-optimization/#service" }, "mainEntity": { "@id": "https://zstore-ai.com/services/ai-search-optimization/#service" }, "breadcrumb": { "@id": "https://zstore-ai.com/services/ai-search-optimization/#breadcrumb" }, "primaryImageOfPage": { "@type": "ImageObject", "url": "https://zstore-ai.com/image/art/a-clear-signal-poster-1536.webp", "width": 1536, "height": 1024 }, "speakable": { "@type": "SpeakableSpecification", "cssSelector": ["h1", ".lead"] }, "datePublished": "2026-11-17", "dateModified": "2026-11-17" },
+      { "@type": "BreadcrumbList", "@id": "https://zstore-ai.com/services/ai-search-optimization/#breadcrumb", "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://zstore-ai.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://zstore-ai.com/services/" },
+        { "@type": "ListItem", "position": 3, "name": "AI search optimization", "item": "https://zstore-ai.com/services/ai-search-optimization/" }
+      ] },
+      { "@type": "Service", "@id": "https://zstore-ai.com/services/ai-search-optimization/#service", "name": "AI search optimization", "serviceType": "AI search optimization (GEO/AEO)", "alternateName": ["Generative engine optimization", "Answer engine optimization"], "description": "Making a website easy for AI assistants and AI search features to find, understand and cite: crawl and index audit, structured data that matches the page, answer-first content, consistent business facts, llms.txt, performance and accessibility fixes, and IndexNow.", "url": "https://zstore-ai.com/services/ai-search-optimization/", "provider": { "@id": "https://zstore-ai.com/#organization" }, "areaServed": [ { "@type": "Country", "name": "United States" }, { "@type": "Place", "name": "Worldwide" } ], "audience": { "@type": "BusinessAudience", "name": "Small and mid-size businesses, founders and professionals" }, "image": "https://zstore-ai.com/image/art/a-clear-signal-poster-1536.webp" },
+      { "@type": "FAQPage", "@id": "https://zstore-ai.com/services/ai-search-optimization/#faq", "isPartOf": { "@id": "https://zstore-ai.com/services/ai-search-optimization/#webpage" }, "mainEntity": [
+        { "@type": "Question", "name": "Can you guarantee my business will appear in ChatGPT or Google's AI answers?", "acceptedAnswer": { "@type": "Answer", "text": "No, and be wary of anyone who does. AI systems choose their sources on their own terms, and those terms change often. What I can do is remove the obstacles and strengthen the signals they rely on: access, clear structure, accurate facts and genuinely useful answers. That improves your odds everywhere at once, classic search included." } },
+        { "@type": "Question", "name": "Does structured data (schema markup) help with AI search?", "acceptedAnswer": { "@type": "Answer", "text": "It helps machines read the facts on a page without guessing, and it's still the route to rich results in Google. Google says structured data isn't required for its AI features and that there's no special AI markup, so I treat schema as part of a clean foundation, always matching what's visible on the page, never as a shortcut." } },
+        { "@type": "Question", "name": "Do I need an llms.txt file?", "acceptedAnswer": { "@type": "Answer", "text": "It's optional. llms.txt is a proposed plain-text map of your site for AI tools. Google says its Search doesn't use it, and so far there's little public evidence that AI crawlers request it often. It takes little effort to add, so I include one as an inexpensive bet, not as a strategy." } },
+        { "@type": "Question", "name": "How long until changes show up in AI answers?", "acceptedAnswer": { "@type": "Answer", "text": "There's no fixed timeline. Pages first need to be recrawled and re-indexed, which can take days to weeks depending on the engine and your site. IndexNow and Google Search Console help with discovery, but each AI system refreshes its sources on its own schedule." } },
+        { "@type": "Question", "name": "Can you do AI search optimization on a website you didn't build?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Most of the work, like crawler access, structured data, content structure and performance, can be done on an existing site. If the platform limits what's possible, I'll say so in the audit and suggest the smallest change that removes the limit. Sometimes that's a redesign without losing search visibility." } },
+        { "@type": "Question", "name": "Does AI search matter for local service businesses?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. People increasingly ask assistants for recommendations like “a good accountant near me.” Accurate business details on your site and profiles (such as your Google Business Profile), clear service pages and genuine reviews on the platforms where customers leave them all feed those answers." } }
+      ] }
+    ]
+  }
+  </script>
+</head>
+<body id="top">
+  <svg class="sprite" width="0" height="0" aria-hidden="true" focusable="false">
+    <symbol id="z-glyph" viewBox="0 0 48 48"><path d="M10.5 8H37.5Q40 8 40 10.5V17L21 31H37.5Q40 31 40 33.5V37.5Q40 40 37.5 40H10.5Q8 40 8 37.5V31L27 17H10.5Q8 17 8 14.5V10.5Q8 8 10.5 8Z" /></symbol>
+  </svg>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="nav" data-nav>
+    <div class="nav-bar">
+      <a class="logo" href="/" aria-label="Zstore AI, home">
+        <span class="zmark" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#z-glyph" /></svg></span>
+        <span class="wordmark" aria-hidden="true">Zstore <b>AI</b></span>
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="/work/" data-roll>Work</a>
+        <div class="nav-dd" data-dd>
+          <a class="nav-dd-link" href="/services/" data-roll aria-current="true">Services</a>
+          <button class="dd-btn" type="button" aria-expanded="false" aria-controls="nav-services" aria-label="Service pages" data-dd-btn></button>
+          <div class="dd-panel" id="nav-services" data-dd-panel>
+            <div class="dd-intro">
+              <p class="dd-kicker">Services · 05</p>
+              <p class="dd-line">Everything it takes, in one pair of hands.</p>
+              <span class="zkit zkit-ink zkit-loose" aria-hidden="true"><span class="kit-piece kp-top"></span><span class="kit-piece kp-diag"></span><span class="kit-piece kp-bot"></span></span>
+              <a class="dd-all" href="/services/"><span data-roll>All services</span><b aria-hidden="true">→</b></a>
+            </div>
+            <ul class="dd-list">
+              <li><a href="/services/custom-website-design/"><span class="dd-i">01</span><span class="dd-n">Custom website design</span><span class="dd-d">Designed from scratch and hand-coded.</span><b aria-hidden="true">→</b></a></li>
+              <li><a href="/services/ecommerce-websites/"><span class="dd-i">02</span><span class="dd-n">E-commerce websites</span><span class="dd-d">Online stores that make buying feel easy.</span><b aria-hidden="true">→</b></a></li>
+              <li><a href="/services/landing-pages/"><span class="dd-i">03</span><span class="dd-n">Landing pages</span><span class="dd-d">One page, one goal, live in weeks.</span><b aria-hidden="true">→</b></a></li>
+              <li><a href="/services/ai-search-optimization/" aria-current="page"><span class="dd-i">04</span><span class="dd-n">AI search optimization</span><span class="dd-d">Answer-first pages that AI search can quote.</span><b aria-hidden="true">→</b></a></li>
+              <li><a href="/services/website-redesign/"><span class="dd-i">05</span><span class="dd-n">Website redesign</span><span class="dd-d">A new direction for a site that holds you back.</span><b aria-hidden="true">→</b></a></li>
+            </ul>
+          </div>
+        </div>
+        <a href="/process/" data-roll>Process</a>
+        <a href="/pricing/" data-roll>Pricing</a>
+        <a href="/about/" data-roll>About</a>
+        <a href="/guides/" data-roll>Guides</a>
+      </nav>
+      <div class="nav-actions">
+        <button type="button" class="a11y-btn" data-a11y-open aria-controls="a11y-panel" aria-expanded="false" aria-haspopup="dialog">
+          <svg class="a11y-ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="4.2" r="2.2" /><path d="M4 8.2c2.6.8 5.3 1.2 8 1.2s5.4-.4 8-1.2M12 9.4v5.2m0 0-3.2 6.6m3.2-6.6 3.2 6.6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+          <span class="sr-only">Accessibility settings</span>
+        </button>
+        <button class="motion-btn" type="button" data-motion aria-pressed="true">
+          <span class="motion-dot" aria-hidden="true"></span><span class="motion-label">Motion on</span>
+        </button>
+        <a class="btn btn-orange nav-cta" href="/contact/"><span data-roll>Start a project</span></a>
+        <a class="menu-nojs" href="#footer-nav">Menu</a>
+        <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu" aria-label="Open menu" data-menu-open>
+          <i></i><i></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ===================================================== HERO: split with the "A Clear Signal" poster (full 3:2 frame,
+         never cropped) + an example AI answer card. H1 treatment: cut-out line ("foundations that last."). -->
+    <header class="ph ph-split aso-hero" data-aso-hero>
+      <div class="ph-in">
+        <nav class="crumbs" aria-label="Breadcrumb">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/services/">Services</a></li>
+            <li><span aria-current="page">AI search optimization</span></li>
+          </ol>
+        </nav>
+        <p class="kicker"><b>04</b>Service · GEO &amp; AEO</p>
+        <h1 class="ph-title aso-h1">AI search optimization, built on <span class="aso-cut">foundations that&nbsp;last.</span></h1>
+        <p class="lead">AI search optimization (also called GEO or AEO) means making your website easy for AI assistants and AI search features to find, understand and cite. I do it with foundations, not tricks: crawler access, structured data, answer-first content and consistent facts.</p>
+        <div class="btn-row">
+          <a class="btn btn-orange" href="/contact/"><span data-roll>Start a project</span><b class="btn-ico" aria-hidden="true">→</b></a>
+          <a class="btn btn-ghost" href="#crawler-loupe"><span data-roll>Try the crawler loupe</span><b class="btn-ico" aria-hidden="true">↓</b></a>
+        </div>
+        <figure class="ph-media aso-hmedia">
+          <div class="aso-poster">
+            <img src="/image/art/a-clear-signal-poster-800.webp" srcset="/image/art/a-clear-signal-poster-800.webp 800w, /image/art/a-clear-signal-poster-1200.webp 1200w, /image/art/a-clear-signal-poster-1536.webp 1536w" sizes="(max-width: 767px) calc(100vw - 32px), 600px" alt="Vintage poster of a radio tower on a hilltop sending out orange signal rings, headlined &quot;A Clear Signal&quot;" width="800" height="533" fetchpriority="high" decoding="async" />
+            <span class="aso-rings" aria-hidden="true"><i></i><i></i><i></i></span>
+          </div>
+          <div class="aso-answer" aria-hidden="true" data-nav-dark>
+            <p class="aso-answer-k"><span class="aso-chip">Example</span><span>AI answer</span></p>
+            <p class="aso-answer-q">Bookkeeper for restaurants in Portland, Maine?</p>
+            <p class="aso-answer-a">Harbor &amp; Pine Bookkeeping works with independent restaurants and cafés in Portland, Maine. <span class="aso-cite">1</span></p>
+            <p class="aso-answer-src"><span>1</span>harborandpine.example</p>
+          </div>
+        </figure>
+      </div>
+    </header>
+
+    <!-- ===================================================== 01 WHAT IS IT: answer + kinetic "Find. Understand. Cite." -->
+    <section class="sec aso-what" aria-labelledby="what-title">
+      <div class="wrap aso-what-in">
+        <div class="aso-what-copy">
+          <p class="kicker"><b>01</b>The short answer</p>
+          <h2 class="sec-title" id="what-title">What is <span class="hl-outline">AI search</span> optimization?</h2>
+          <p class="aso-answer-first">It's work that helps the AI systems that answer questions, like ChatGPT search, Google's AI Overviews and AI Mode, Perplexity, Microsoft Copilot and Claude, find, understand and cite your pages.</p>
+          <p>Those tools don't hand out ten blue links. They read a handful of pages, write one answer and credit a few sources. The job is to make your pages the easy, trustworthy ones to read and quote: reachable by their crawlers, clear about who you are and what you do, and written so a single passage makes sense on its own.</p>
+          <p>If you want the concept in depth, I wrote a plain-English guide to <a href="/guides/generative-engine-optimization/">what generative engine optimization is</a> and how AI search chooses its sources.</p>
+          <div class="chip-list aso-engines">
+            <p class="chip-list-k">Where this shows up</p>
+            <ul>
+              <li><span>ChatGPT search</span></li>
+              <li><span>Google AI Overviews</span></li>
+              <li><span>Google AI Mode</span></li>
+              <li><span>Perplexity</span></li>
+              <li><span>Microsoft Copilot</span></li>
+              <li><span>Claude</span></li>
+            </ul>
+          </div>
+        </div>
+        <ol class="aso-verbs" aria-label="Three things every AI search tool needs from your page">
+          <li><span class="aso-verb">Find.</span><span class="aso-verb-d"><b>01</b>Its crawler can reach the page and is allowed to.</span></li>
+          <li><span class="aso-verb">Understand.</span><span class="aso-verb-d"><b>02</b>Structure and facts leave nothing to guess.</span></li>
+          <li><span class="aso-verb">Cite.</span><span class="aso-verb-d"><b>03</b>One passage answers the question on its own.</span></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===================================================== 02 GEO vs SEO: parallax poster + a layer stack that drops into place -->
+    <section class="sec aso-vs" aria-labelledby="vs-title">
+      <div class="wrap">
+        <div class="sec-head">
+          <h2 class="sec-title" id="vs-title">How does AI search optimization <span class="tape">build on</span> SEO?</h2>
+          <p class="sec-lede"><strong>It starts with SEO done thoroughly, then adds extra attention to being quotable.</strong> The foundation is the same; a few layers on top are new.</p>
+        </div>
+        <div class="aso-vs-grid">
+          <figure class="aso-vs-media" data-aso-depth>
+            <div class="aso-vs-frame">
+              <img src="/image/art/organic-vines-on-a-graphite-grid-800.webp" srcset="/image/art/organic-vines-on-a-graphite-grid-800.webp 800w, /image/art/organic-vines-on-a-graphite-grid-1200.webp 1200w, /image/art/organic-vines-on-a-graphite-grid-1536.webp 1536w" sizes="(max-width: 767px) calc(100vw - 32px), (max-width: 1023px) 90vw, 520px" alt="Orange nasturtium vines climbing over a fine ink grid, headlined &quot;Organic by Design&quot;" width="800" height="533" loading="lazy" decoding="async" />
+            </div>
+            <span class="sticker aso-vs-sticker">Organic search still counts</span>
+          </figure>
+          <div class="aso-vs-copy">
+            <p>Google's guidance for site owners says there are no extra requirements or special optimizations for its AI Overviews and AI Mode: a page has to be indexed and eligible to appear in Search with a snippet, and the usual SEO best practices apply. So the classic foundation isn't optional. It's most of the job.</p>
+            <p>Other AI search tools run their own crawlers and indexes, and they quote passages rather than rank pages. That adds three layers worth doing on purpose:</p>
+            <ol class="aso-stack" data-aso-stack>
+              <li class="aso-layer aso-layer-base"><span class="aso-layer-k">SEO</span><strong>The classic foundation</strong><span>Crawlable, indexable, fast, accessible and genuinely helpful pages.</span></li>
+              <li class="aso-layer aso-layer-x"><span class="aso-layer-k">+1</span><strong>AI search crawlers let in</strong><span><span class="nowrap">OAI-SearchBot</span>, <span class="nowrap">Claude-SearchBot</span> and PerplexityBot allowed deliberately, not by accident.</span></li>
+              <li class="aso-layer aso-layer-x"><span class="aso-layer-k">+2</span><strong>The same facts everywhere</strong><span>Name, services, location and contact details that match on your site and your profiles.</span></li>
+              <li class="aso-layer aso-layer-x"><span class="aso-layer-k">+3</span><strong>Answer-first passages</strong><span>A direct answer under each heading that still makes sense when quoted alone.</span></li>
+            </ol>
+            <p class="aso-vs-more">The full side-by-side lives in my guide: <a href="/guides/generative-engine-optimization/#how-is-geo-different-from-seo">how GEO is different from SEO</a>.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================== 03 SIGNATURE: Crawler Loupe (ink slab) -->
+    <section class="slab slab-ink aso-lx" id="crawler-loupe" data-tone="dark" aria-labelledby="loupe-title">
+      <div class="wrap">
+        <div class="sec-head">
+          <h2 class="sec-title" id="loupe-title">What does a crawler <span class="hl-dim">actually read?</span></h2>
+          <p class="sec-lede">Here's a homepage for a fictional bookkeeping firm in two versions that look almost the same to you. Move the loupe over the page to see the layer AI search tools work from, then flip to the weak version and look again.</p>
+        </div>
+
+        <div class="aso-loupe" data-aso-loupe data-wa-hold>
+          <div class="aso-ctrl">
+            <div class="aso-ver" role="group" aria-label="Page version">
+              <span class="aso-ver-puck" aria-hidden="true"></span>
+              <button type="button" class="aso-ver-btn" data-ver="strong" aria-pressed="true">Strong page</button>
+              <button type="button" class="aso-ver-btn" data-ver="weak" aria-pressed="false">Weak page</button>
+            </div>
+            <div class="aso-jump">
+              <p class="aso-jump-k" id="loupe-jump-k">Jump the loupe to</p>
+              <div class="aso-jump-row" role="group" aria-labelledby="loupe-jump-k">
+                <button type="button" class="aso-jump-btn" data-go="head" aria-pressed="true">Heading</button>
+                <button type="button" class="aso-jump-btn" data-go="image" aria-pressed="false">Images</button>
+                <button type="button" class="aso-jump-btn" data-go="facts" aria-pressed="false">Business facts</button>
+                <button type="button" class="aso-jump-btn" data-go="faq" aria-pressed="false">FAQ</button>
+                <button type="button" class="aso-jump-btn" data-go="footer" aria-pressed="false">Footer</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="aso-stagewrap" data-aso-stage>
+            <div class="aso-bar" aria-hidden="true"><span class="aso-bar-dots"><i></i><i></i><i></i></span><span class="aso-bar-url">harborandpine.example</span><span class="aso-example">Example page</span></div>
+            <div class="aso-sheet" aria-hidden="true">
+              <div class="aso-page" data-v="strong">
+                <div class="aso-rg aso-rg-head" data-r="head">
+                  <div class="aso-h">
+                    <div class="hp-nav"><span class="hp-logo"><i></i>Harbor &amp; Pine</span><span class="hp-links"><i>Services</i><i>About</i><i>Contact</i></span></div>
+                    <p class="hp-eyebrow">Bookkeeping · Portland, Maine</p>
+                    <p class="hp-h1">Bookkeeping for restaurants and cafés in Portland, Maine</p>
+                    <p class="hp-lead hp-v-strong">Harbor &amp; Pine keeps the books for independent restaurants and cafés: monthly reconciliations, payroll and tax-ready reports.</p>
+                    <p class="hp-lead hp-v-weak">Your numbers, our passion. Let's grow together.</p>
+                    <span class="hp-btn">Book a call</span>
+                  </div>
+                </div>
+                <div class="aso-rg aso-rg-image" data-r="image">
+                  <div class="aso-h">
+                    <div class="hp-photo"><span class="hp-ledger"><i></i><i></i><i></i><i></i></span><span class="hp-cup"></span><span class="hp-pen"></span></div>
+                  </div>
+                </div>
+                <div class="aso-rg aso-rg-facts" data-r="facts">
+                  <div class="aso-h">
+                    <ul class="hp-badges"><li><b>Monthly</b>Bookkeeping</li><li><b>Biweekly</b>Payroll</li><li><b>Year-end</b>Tax prep</li></ul>
+                    <p class="hp-by">Founded by Dana Reyes, CPA</p>
+                  </div>
+                </div>
+                <div class="aso-rg aso-rg-faq" data-r="faq">
+                  <div class="aso-h">
+                    <p class="hp-h2">Questions owners ask</p>
+                    <p class="hp-q">Do you work with seasonal restaurants?<i>+</i></p>
+                    <p class="hp-q">What do you need from me each month?<i>+</i></p>
+                  </div>
+                </div>
+                <div class="aso-rg aso-rg-footer" data-r="footer">
+                  <div class="aso-h">
+                    <p class="hp-foot-n">Harbor &amp; Pine Bookkeeping</p>
+                    <p class="hp-foot-l">Portland, Maine · (207) 555-0142 · Mon–Fri 8–5</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button type="button" class="aso-lens" data-aso-lens aria-label="Crawler loupe over the example page. Enter jumps to the next region; arrow keys move it.">
+              <span class="aso-lens-read" data-aso-read aria-hidden="true"></span>
+              <span class="aso-lens-rim" aria-hidden="true"><span class="aso-lens-glare"></span><span class="aso-lens-tag" data-aso-cap>Crawler view</span></span>
+              <span class="aso-lens-handle" aria-hidden="true"></span>
+              <span class="aso-lens-hint" aria-hidden="true">Drag me</span>
+            </button>
+          </div>
+
+          <div class="aso-side">
+            <div class="aso-meters" aria-hidden="true">
+              <p class="aso-meter"><b data-aso-ok>0</b><span>facts a crawler can read</span></p>
+              <p class="aso-meter aso-meter-gap"><b data-aso-gap>0</b><span>gaps it runs into</span></p>
+            </div>
+            <div class="aso-out">
+              <div class="aso-out-stack" data-aso-out></div>
+              <p class="aso-out-dots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></p>
+            </div>
+          </div>
+
+          <p class="sr" aria-live="polite" data-aso-say></p>
+
+          <details class="aso-report" open data-aso-report>
+            <summary><span>The full crawler report, both versions</span><span class="qa-bead" aria-hidden="true"></span></summary>
+            <div class="aso-report-in">
+              <div class="table-wrap">
+                <table class="compare aso-tbl" data-v="strong">
+                  <caption>Strong page: what a visitor sees and what a crawler reads</caption>
+                  <thead><tr><th scope="col">Region</th><th scope="col">What a visitor sees</th><th scope="col" class="is-pick">What a crawler reads</th></tr></thead>
+                  <tbody>
+                    <tr data-r="head"><th scope="row">Heading and first sentence</th><td data-label="What a visitor sees">A bold headline, a one-line intro and a Book a call button.</td><td data-label="What a crawler reads" class="is-pick"><ul class="aso-kv">
+                      <li data-s="ok"><b>Title</b><span>Bookkeeping for Restaurants in Portland, ME | Harbor &amp; Pine</span></li>
+                      <li data-s="ok"><b>H1</b><span>Bookkeeping for restaurants and cafés in Portland, Maine</span></li>
+                      <li data-s="ok"><b>Lead</b><span><mark>Harbor &amp; Pine keeps the books for independent restaurants and cafés</mark>: an answer-first sentence that can be quoted alone</span></li>
+                      <li data-s="ok"><b>Robots</b><span>index, follow · OAI-SearchBot allowed</span></li>
+                    </ul></td></tr>
+                    <tr data-r="image"><th scope="row">Images</th><td data-label="What a visitor sees">A warm photo of a ledger, a coffee cup and a pen.</td><td data-label="What a crawler reads" class="is-pick"><ul class="aso-kv">
+                      <li data-s="ok"><b>Alt</b><span>Dana Reyes reviewing a café's monthly ledger</span></li>
+                      <li data-s="ok"><b>File</b><span>dana-reyes-ledger-review.webp</span></li>
+                      <li data-s="ok"><b>Size</b><span>width and height set, so nothing jumps</span></li>
+                    </ul></td></tr>
+                    <tr data-r="facts"><th scope="row">Business facts</th><td data-label="What a visitor sees">Three service badges and a line about the founder.</td><td data-label="What a crawler reads" class="is-pick"><ul class="aso-kv">
+                      <li data-s="ok"><b>Type</b><span>AccountingService (JSON-LD)</span></li>
+                      <li data-s="ok"><b>Name</b><span>Harbor &amp; Pine Bookkeeping</span></li>
+                      <li data-s="ok"><b>Area</b><span>Portland, Maine</span></li>
+                      <li data-s="ok"><b>Founder</b><span>Dana Reyes, CPA</span></li>
+                    </ul></td></tr>
+                    <tr data-r="faq"><th scope="row">FAQ</th><td data-label="What a visitor sees">Two questions that open when tapped.</td><td data-label="What a crawler reads" class="is-pick"><ul class="aso-kv">
+                      <li data-s="ok"><b>H2</b><span>Do you work with seasonal restaurants?</span></li>
+                      <li data-s="ok"><b>H2</b><span>What do you need from me each month?</span></li>
+                      <li data-s="ok"><b>Answers</b><span>in the HTML, matching the FAQ markup</span></li>
+                    </ul></td></tr>
+                    <tr data-r="footer"><th scope="row">Footer and contact details</th><td data-label="What a visitor sees">The firm's name, city, phone number and hours.</td><td data-label="What a crawler reads" class="is-pick"><ul class="aso-kv">
+                      <li data-s="ok"><b>Phone</b><span>(207) 555-0142, as text</span></li>
+                      <li data-s="ok"><b>Hours</b><span>Mon–Fri 8–5, as text</span></li>
+                      <li data-s="ok"><b>Match</b><span>same name, city and phone as the business profile</span></li>
+                    </ul></td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="table-wrap">
+                <table class="compare aso-tbl" data-v="weak">
+                  <caption>Weak page: the same design, and what a crawler reads instead</caption>
+                  <thead><tr><th scope="col">Region</th><th scope="col">What a visitor sees</th><th scope="col" class="is-pick">What a crawler reads</th></tr></thead>
+                  <tbody>
+                    <tr data-r="head"><th scope="row">Heading and first sentence</th><td data-label="What a visitor sees">The same headline (it's an image here) and a vaguer intro.</td><td data-label="What a crawler reads" class="is-pick"><ul class="aso-kv">
+                      <li data-s="gap"><b>Title</b><span>Home</span><i class="aso-flag">Gap</i></li>
+                      <li data-s="gap"><b>H1</b><span>none found: the headline is text inside an image</span><i class="aso-flag">Gap</i></li>
+                      <li data-s="gap"><b>Lead</b><span>“Your numbers, our passion.” Who, what, where?</span><i class="aso-flag">Gap</i></li>
+                      <li data-s="gap"><b>Robots</b><span>OAI-SearchBot blocked by robots.txt</span><i class="aso-flag">Gap</i></li>
+                    </ul></td></tr>
+                    <tr data-r="image"><th scope="row">Images</th><td data-label="What a visitor sees">The same warm photo.</td><td data-label="What a crawler reads" class="is-pick"><ul class="aso-kv">
+                      <li data-s="gap"><b>Alt</b><span>missing</span><i class="aso-flag">Gap</i></li>
+                      <li data-s="gap"><b>File</b><span>IMG_2291.jpg</span><i class="aso-flag">Gap</i></li>
+                      <li data-s="gap"><b>Size</b><span>not set, so the layout jumps while it loads</span><i class="aso-flag">Gap</i></li>
+                    </ul></td></tr>
+                    <tr data-r="facts"><th scope="row">Business facts</th><td data-label="What a visitor sees">The same badges and founder line.</td><td data-label="What a crawler reads" class="is-pick"><ul class="aso-kv">
+                      <li data-s="gap"><b>Type</b><span>no structured data found</span><i class="aso-flag">Gap</i></li>
+                      <li data-s="gap"><b>Name</b><span>three versions: “H&amp;P”, “Harbor and Pine LLC”, “HP Books”</span><i class="aso-flag">Gap</i></li>
+                      <li data-s="ok"><b>Founder</b><span>Dana Reyes, CPA (plain text only)</span></li>
+                    </ul></td></tr>
+                    <tr data-r="faq"><th scope="row">FAQ</th><td data-label="What a visitor sees">The same two questions.</td><td data-label="What a crawler reads" class="is-pick"><ul class="aso-kv">
+                      <li data-s="gap"><b>Headings</b><span>none: the questions are styled boxes</span><i class="aso-flag">Gap</i></li>
+                      <li data-s="gap"><b>Answers</b><span>loaded by a script only after a tap</span><i class="aso-flag">Gap</i></li>
+                    </ul></td></tr>
+                    <tr data-r="footer"><th scope="row">Footer and contact details</th><td data-label="What a visitor sees">The same name, city, phone and hours.</td><td data-label="What a crawler reads" class="is-pick"><ul class="aso-kv">
+                      <li data-s="gap"><b>Contact</b><span>address, phone and hours are one image</span><i class="aso-flag">Gap</i></li>
+                      <li data-s="gap"><b>Match</b><span>the profile lists a different phone number</span><i class="aso-flag">Gap</i></li>
+                    </ul></td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </details>
+        </div>
+
+        <p class="aso-lx-foot">Same design, very different raw material. Most of what I fix in an AI search project lives in that second layer, which is why it rarely changes how your site looks.</p>
+      </div>
+    </section>
+
+    <!-- ===================================================== 04 DELIVERABLES: sticky counter + seven bricks -->
+    <section class="sec aso-do" aria-labelledby="do-title">
+      <div class="wrap">
+        <div class="sec-head">
+          <h2 class="sec-title sec-title-sm" id="do-title">What do you <span class="keycap">actually do</span> in an AI search optimization project?</h2>
+          <p class="sec-lede">Seven pieces of work, on a site I build or on the one you already have. You get a fixed project price based on the scope, or a monthly plan, whatever suits you.</p>
+        </div>
+        <div class="aso-do-grid">
+          <div class="aso-do-aside" aria-hidden="true">
+            <p class="aso-do-count"><span class="aso-do-num" data-aso-num>01</span><span class="aso-do-of">/ 07</span></p>
+            <p class="aso-do-meter"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></p>
+            <span class="zkit zkit-loose aso-do-kit"><span class="kit-piece kp-top"></span><span class="kit-piece kp-diag"></span><span class="kit-piece kp-bot"></span></span>
+          </div>
+          <ol class="aso-bricks" data-aso-bricks>
+            <li class="aso-brick"><span class="aso-brick-k">01</span><div><h3>Crawl and index audit</h3><p>I check your <a href="/guides/glossary/#term-robots-txt">robots.txt</a>, XML sitemaps, canonical tags, redirects and stray noindex tags, so every page you care about can be found. AI search crawlers end up allowed or blocked on purpose, never by accident.</p></div></li>
+            <li class="aso-brick"><span class="aso-brick-k">02</span><div><h3>Structured data that matches the page</h3><p>Organization, Service or Product, Article, FAQ and Breadcrumb <a href="/guides/glossary/#term-structured-data">structured data</a> in JSON-LD, written from what's visible on each page. Nothing invented, nothing hidden.</p></div></li>
+            <li class="aso-brick"><span class="aso-brick-k">03</span><div><h3>Answer-first rewrites</h3><p>Key pages open with a 40 to 70-word answer, use the questions people actually ask as headings, and keep each passage clear enough to be quoted alone.</p></div></li>
+            <li class="aso-brick"><span class="aso-brick-k">04</span><div><h3>One set of business facts</h3><p>Your name, location, contact details, founder and description, aligned across the site and the profiles that describe you, such as your Google Business Profile.</p></div></li>
+            <li class="aso-brick aso-brick-bet"><span class="aso-brick-k">05</span><div><h3>llms.txt and llms-full.txt</h3><p>A plain-text map of your site for AI tools, presented honestly: an <a href="/guides/glossary/#term-llms-txt">llms.txt file</a> is an inexpensive bet some tools may read, not a ranking factor, and Google says its Search doesn't use it.</p></div><span class="sticker aso-brick-st">Cheap bet</span></li>
+            <li class="aso-brick"><span class="aso-brick-k">06</span><div><h3>Performance and accessibility fixes</h3><p>Fast, semantic, accessible pages are easier for every crawler to fetch and parse, and better for every visitor. It's the same craft behind a <a href="/services/custom-website-design/">custom website design</a> project.</p></div></li>
+            <li class="aso-brick"><span class="aso-brick-k">07</span><div><h3>IndexNow</h3><p>Whenever a page changes, Bing and the other participating search engines get an instant notice, so updates are discovered sooner instead of waiting for the next crawl.</p></div></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================== 05 CRAWLER ACCESS: allow / block board with a live robots.txt -->
+    <section class="sec aso-rbx" aria-labelledby="rb-title">
+      <div class="wrap">
+        <div class="aso-rb-head">
+          <h2 class="sec-title sec-title-sm" id="rb-title">Should I block AI crawlers or let them in?</h2>
+          <span class="hl-bubble" aria-hidden="true">Your call, split two ways</span>
+        </div>
+        <div class="aso-rb-grid" data-wa-hold>
+          <div class="aso-rb-copy">
+            <p><strong>It's a business choice, and you can split it: allow the search crawlers that can cite you, and decide separately about the crawlers that collect training data.</strong></p>
+            <div class="aso-rb-who">
+            <p class="aso-rb-who-k">Who's who</p>
+            <p>As each company documents its crawlers at the time of writing, OpenAI's <span class="nowrap aso-bot">OAI-SearchBot</span> finds pages for ChatGPT search while <span class="nowrap aso-bot aso-bot-t">GPTBot</span> gathers training data. Anthropic's <span class="nowrap aso-bot">Claude-SearchBot</span> serves search in Claude, and <span class="nowrap aso-bot aso-bot-t">ClaudeBot</span> collects training data. <span class="nowrap aso-bot">PerplexityBot</span> powers Perplexity's search results.</p>
+            <p><span class="nowrap aso-bot aso-bot-t">Google-Extended</span> isn't a separate crawler. It's a <code>robots.txt</code> token that controls whether Google may use your content to train Gemini models and ground Gemini answers, and it doesn't affect Google Search, AI Overviews included.</p>
+            </div>
+            <p class="aso-rb-note">One caveat: <code>robots.txt</code> is a request, not a lock. Reputable crawlers follow it; it can't enforce anything on its own.</p>
+          </div>
+          <div class="aso-rb" data-aso-robots>
+            <div class="aso-rb-presets" role="group" aria-label="Presets">
+              <button type="button" class="aso-rb-pre" data-preset="split" aria-pressed="true">Search yes, training no</button>
+              <button type="button" class="aso-rb-pre" data-preset="all" aria-pressed="false">Allow all</button>
+              <button type="button" class="aso-rb-pre" data-preset="none" aria-pressed="false">Block all AI</button>
+            </div>
+            <ul class="aso-rb-list">
+              <li class="aso-rb-row" data-bot="OAI-SearchBot" data-kind="search"><div class="aso-rb-id"><code>OAI-SearchBot</code><span>OpenAI · ChatGPT search</span></div><div class="aso-rb-keys" role="group" aria-label="OAI-SearchBot"><button type="button" data-act="allow" aria-pressed="true">Allow</button><button type="button" data-act="block" aria-pressed="false">Block</button></div></li>
+              <li class="aso-rb-row" data-bot="GPTBot" data-kind="train"><div class="aso-rb-id"><code>GPTBot</code><span>OpenAI · model training</span></div><div class="aso-rb-keys" role="group" aria-label="GPTBot"><button type="button" data-act="allow" aria-pressed="false">Allow</button><button type="button" data-act="block" aria-pressed="true">Block</button></div></li>
+              <li class="aso-rb-row" data-bot="Claude-SearchBot" data-kind="search"><div class="aso-rb-id"><code>Claude-SearchBot</code><span>Anthropic · search in Claude</span></div><div class="aso-rb-keys" role="group" aria-label="Claude-SearchBot"><button type="button" data-act="allow" aria-pressed="true">Allow</button><button type="button" data-act="block" aria-pressed="false">Block</button></div></li>
+              <li class="aso-rb-row" data-bot="ClaudeBot" data-kind="train"><div class="aso-rb-id"><code>ClaudeBot</code><span>Anthropic · model training</span></div><div class="aso-rb-keys" role="group" aria-label="ClaudeBot"><button type="button" data-act="allow" aria-pressed="false">Allow</button><button type="button" data-act="block" aria-pressed="true">Block</button></div></li>
+              <li class="aso-rb-row" data-bot="PerplexityBot" data-kind="search"><div class="aso-rb-id"><code>PerplexityBot</code><span>Perplexity · search results</span></div><div class="aso-rb-keys" role="group" aria-label="PerplexityBot"><button type="button" data-act="allow" aria-pressed="true">Allow</button><button type="button" data-act="block" aria-pressed="false">Block</button></div></li>
+              <li class="aso-rb-row" data-bot="Google-Extended" data-kind="train"><div class="aso-rb-id"><code>Google-Extended</code><span>Google · Gemini training and grounding</span></div><div class="aso-rb-keys" role="group" aria-label="Google-Extended"><button type="button" data-act="allow" aria-pressed="false">Allow</button><button type="button" data-act="block" aria-pressed="true">Block</button></div></li>
+            </ul>
+            <div class="aso-rb-out" data-nav-dark>
+              <p class="aso-rb-file"><span>robots.txt</span><span class="aso-chip">Example</span></p>
+              <pre class="aso-rb-code" tabindex="0" role="group" aria-label="robots.txt example for the selected choices"><code data-aso-code># Search engines: always welcome
+User-agent: Googlebot
+User-agent: Bingbot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: GPTBot
+Disallow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+Sitemap: https://example.com/sitemap.xml</code></pre>
+              <p class="aso-rb-sum" aria-live="polite" data-aso-sum>AI search crawlers allowed: 3 of 3. Training controls allowed: 0 of 3.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================== 06 MEASURING: instruments + a typed prompt check -->
+    <section class="sec aso-ms" aria-labelledby="ms-title">
+      <div class="wrap">
+        <div class="sec-head">
+          <h2 class="sec-title sec-title-sm" id="ms-title">How do you measure <span class="hl-orange">results from AI search?</span></h2>
+          <p class="sec-lede"><strong>With a few honest instruments, because no single dashboard shows AI visibility yet.</strong> I won't promise a ranking, a spot in ChatGPT or a number of mentions. I'll show you where to look and what changed.</p>
+        </div>
+        <div class="aso-ms-grid">
+          <article class="aso-inst">
+            <p class="aso-inst-k"><span>01</span><span>Search Console</span></p>
+            <h3>Google's own numbers</h3>
+            <p>Google Search Console counts clicks and impressions from AI features such as AI Overviews and AI Mode in its Performance report, though it doesn't always break them out separately. Watch the pages you improved.</p>
+          </article>
+          <article class="aso-inst">
+            <p class="aso-inst-k"><span>02</span><span>Analytics</span></p>
+            <h3>AI referrals</h3>
+            <p>Visits from assistants show up as referrals in most analytics tools. Grouping sources like these makes the trend easy to watch:</p>
+            <ul class="aso-refs"><li>chatgpt.com</li><li>perplexity.ai</li><li>copilot.microsoft.com</li><li>gemini.google.com</li></ul>
+          </article>
+          <figure class="aso-tw" data-aso-type>
+            <p class="aso-inst-k"><span>03</span><span>Prompt checks</span></p>
+            <div class="aso-tw-card" data-nav-dark>
+              <p class="aso-tw-bar"><span class="aso-chip">Example</span><span>Monthly check</span></p>
+              <p class="aso-tw-q"><span class="aso-tw-who">Ask</span><span class="aso-tw-text" data-aso-tw-text>Who does bookkeeping for restaurants in Portland, Maine?</span></p>
+              <div class="aso-tw-a" data-aso-tw-a>
+                <p>Harbor &amp; Pine Bookkeeping works with independent restaurants and cafés in Portland, offering monthly bookkeeping, payroll and year-end tax prep. <span class="aso-cite">1</span></p>
+                <ul class="aso-tw-log"><li>Mentioned</li><li>Cited</li><li>Facts accurate</li></ul>
+              </div>
+            </div>
+            <figcaption>Ask assistants the questions your customers ask, on a schedule, and log whether you're mentioned, cited and described correctly. Answers vary by person, place and day, so the trend matters more than any single reply.</figcaption>
+          </figure>
+        </div>
+        <p class="aso-ms-foot">Checks like these can keep running after launch as part of <a href="/pricing/#care">ongoing care</a>.</p>
+      </div>
+    </section>
+
+    <!-- ===================================================== 07 PROOF: this site, built the same way (ink slab) -->
+    <section class="slab slab-ink aso-pf" data-tone="dark" aria-labelledby="pf-title">
+      <div class="wrap">
+        <div class="sec-head">
+          <h2 class="sec-title sec-title-sm" id="pf-title">Is this site <span class="hl-outline">built this way?</span></h2>
+          <p class="sec-lede"><strong>Yes, and you can check it yourself.</strong> Everything on this page runs on the site you're reading. Open the files, or view the page source.</p>
+        </div>
+        <ul class="aso-files">
+          <li><a class="aso-file" href="/robots.txt"><span class="aso-file-ear">/robots.txt</span><span class="aso-file-d">Welcomes search engines and AI crawlers by name, with content signals.</span><b aria-hidden="true">↗</b></a></li>
+          <li><a class="aso-file" href="/llms.txt"><span class="aso-file-ear">/llms.txt</span><span class="aso-file-d">A one-screen summary of the studio for AI tools.</span><b aria-hidden="true">↗</b></a></li>
+          <li><a class="aso-file" href="/llms-full.txt"><span class="aso-file-ear">/llms-full.txt</span><span class="aso-file-d">The key facts and answers, in plain text.</span><b aria-hidden="true">↗</b></a></li>
+          <li><a class="aso-file" href="/sitemap.xml"><span class="aso-file-ear">/sitemap.xml</span><span class="aso-file-d">Every page, with its last-modified date.</span><b aria-hidden="true">↗</b></a></li>
+          <li><div class="aso-file aso-file-flat"><span class="aso-file-ear">JSON-LD</span><span class="aso-file-d">One structured-data graph per page. This one describes the service, its breadcrumbs and the FAQ below.</span></div></li>
+          <li><div class="aso-file aso-file-flat"><span class="aso-file-ear">IndexNow</span><span class="aso-file-d">Every deploy notifies participating search engines automatically.</span></div></li>
+        </ul>
+        <div class="aso-tick" aria-hidden="true">
+          <div class="aso-tick-row">
+            <span>User-agent: OAI-SearchBot</span><span>User-agent: Claude-SearchBot</span><span>User-agent: PerplexityBot</span><span>Allow: /</span><span>Content-Signal: search=yes, ai-input=yes, ai-train=yes</span><span>Sitemap: https://zstore-ai.com/sitemap.xml</span>
+            <span>User-agent: OAI-SearchBot</span><span>User-agent: Claude-SearchBot</span><span>User-agent: PerplexityBot</span><span>Allow: /</span><span>Content-Signal: search=yes, ai-input=yes, ai-train=yes</span><span>Sitemap: https://zstore-ai.com/sitemap.xml</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================== FAQ -->
+    <section class="sec" aria-labelledby="faq-title">
+      <div class="wrap faq-block">
+        <div class="faq-block-intro">
+          <h2 class="sec-title" id="faq-title">Fair questions.</h2>
+          <span class="hl-bubble" aria-hidden="true">6 straight answers</span>
+          <p>Wondering how this applies to your site?</p>
+          <a class="text-link" href="/contact/"><span data-roll>Ask me directly</span> <b aria-hidden="true">→</b></a>
+        </div>
+        <div class="faq-list" data-accordion>
+          <details class="qa"><summary>Can you guarantee my business will appear in ChatGPT or Google's AI answers?<span class="qa-bead" aria-hidden="true"></span></summary><div class="qa-body"><p>No, and be wary of anyone who does. AI systems choose their sources on their own terms, and those terms change often. What I can do is remove the obstacles and strengthen the signals they rely on: access, clear structure, accurate facts and genuinely useful answers. That improves your odds everywhere at once, classic search included.</p></div></details>
+          <details class="qa"><summary>Does structured data (schema markup) help with AI search?<span class="qa-bead" aria-hidden="true"></span></summary><div class="qa-body"><p>It helps machines read the facts on a page without guessing, and it's still the route to rich results in Google. Google says structured data isn't required for its AI features and that there's no special AI markup, so I treat schema as part of a clean foundation, always matching what's visible on the page, never as a shortcut.</p></div></details>
+          <details class="qa"><summary>Do I need an llms.txt file?<span class="qa-bead" aria-hidden="true"></span></summary><div class="qa-body"><p>It's optional. llms.txt is a proposed plain-text map of your site for AI tools. Google says its Search doesn't use it, and so far there's little public evidence that AI crawlers request it often. It takes little effort to add, so I include one as an inexpensive bet, not as a strategy.</p></div></details>
+          <details class="qa"><summary>How long until changes show up in AI answers?<span class="qa-bead" aria-hidden="true"></span></summary><div class="qa-body"><p>There's no fixed timeline. Pages first need to be recrawled and re-indexed, which can take days to weeks depending on the engine and your site. IndexNow and Google Search Console help with discovery, but each AI system refreshes its sources on its own schedule.</p></div></details>
+          <details class="qa"><summary>Can you do AI search optimization on a website you didn't build?<span class="qa-bead" aria-hidden="true"></span></summary><div class="qa-body"><p>Yes. Most of the work, like crawler access, structured data, content structure and performance, can be done on an existing site. If the platform limits what's possible, I'll say so in the audit and suggest the smallest change that removes the limit. Sometimes that's a <a href="/services/website-redesign/">redesign without losing search visibility</a>.</p></div></details>
+          <details class="qa"><summary>Does AI search matter for local service businesses?<span class="qa-bead" aria-hidden="true"></span></summary><div class="qa-body"><p>Yes. People increasingly ask assistants for recommendations like “a good accountant near me.” Accurate business details on your site and profiles (such as your Google Business Profile), clear service pages and genuine reviews on the platforms where customers leave them all feed those answers.</p></div></details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================== CTA SLAB (per-page copy) -->
+    <section class="cta-slab" aria-labelledby="cta-title" data-push>
+      <div class="cta-in">
+        <div class="cta-copy">
+          <h2 class="cta-title" id="cta-title">Make your site<br /> <span>easy to quote.</span></h2>
+          <p class="cta-lede">Tell me about your site and the questions your customers ask. I reply personally within one business day, with an honest view of what's worth doing first.</p>
+          <div class="btn-row">
+            <a class="btn btn-ink btn-xl" href="/contact/"><span data-roll>Start a project</span><b class="btn-ico" aria-hidden="true">→</b></a>
+            <a class="btn btn-ghost btn-xl" href="https://wa.me/972587292029" target="_blank" rel="noopener noreferrer" data-wa><span data-roll>WhatsApp me</span><b class="btn-ico" aria-hidden="true">↗</b></a>
+          </div>
+          <p class="cta-mail">Or email <a href="mailto:zstore.ai295@gmail.com">zstore.ai295@gmail.com</a></p>
+        </div>
+        <div class="cta-art" aria-hidden="true">
+          <span class="zkit zkit-ink"><span class="kit-piece kp-top"></span><span class="kit-piece kp-diag"></span><span class="kit-piece kp-bot"></span></span>
+          <span class="sticker"><span class="live-dot"></span>Replies in one business day</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" data-tone="dark">
+    <div class="fm-top">
+      <div class="fm-brand">
+        <a href="/" class="logo logo-light" aria-label="Zstore AI, home">
+          <span class="zmark" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#z-glyph" /></svg></span>
+        <span class="wordmark" aria-hidden="true">Zstore <b>AI</b></span>
+        </a>
+        <p class="fm-line">Websites people <span>can't put&nbsp;down.</span></p>
+        <p class="fm-sub">Designed and hand-coded by Zvi Moshe in Tel Aviv, for ambitious brands worldwide. No templates, no page builders, no hand-offs.</p>
+      </div>
+      <span class="zkit fm-kit" aria-hidden="true"><span class="kit-piece kp-top"></span><span class="kit-piece kp-diag"></span><span class="kit-piece kp-bot"></span></span>
+    </div>
+    <div class="fm-cols">
+      <nav class="fm-nav" id="footer-nav" aria-label="Footer">
+        <div class="fm-col">
+          <h2 class="fm-h"><span>01</span>Services</h2>
+          <ul>
+            <li><a href="/services/custom-website-design/">Custom website design</a></li>
+            <li><a href="/services/ecommerce-websites/">E-commerce websites</a></li>
+            <li><a href="/services/landing-pages/">Landing pages</a></li>
+            <li><a href="/services/ai-search-optimization/" aria-current="page">AI search optimization</a></li>
+            <li><a href="/services/website-redesign/">Website redesign</a></li>
+            <li><a href="/services/">All services</a></li>
+          </ul>
+        </div>
+        <div class="fm-col">
+          <h2 class="fm-h"><span>02</span>Studio</h2>
+          <ul>
+            <li><a href="/work/">Work</a></li>
+            <li><a href="/process/">Process</a></li>
+            <li><a href="/pricing/">Pricing</a></li>
+            <li><a href="/about/">About</a></li>
+            <li><a href="/contact/">Contact</a></li>
+          </ul>
+        </div>
+        <div class="fm-col fm-guides">
+          <h2 class="fm-h"><span>03</span>Guides</h2>
+          <ul>
+            <li><a href="/guides/">All guides</a></li>
+            <li><a href="/guides/glossary/">Glossary</a></li>
+            <li><a href="/guides/generative-engine-optimization/">What is GEO?</a></li>
+            <li><a href="/guides/custom-website-vs-website-builder/">Custom site vs. builder</a></li>
+            <li><a href="/guides/how-to-write-a-website-brief/">Write a website brief</a></li>
+            <li><a href="/guides/website-launch-checklist/">Launch checklist</a></li>
+            <li><a href="/guides/website-accessibility-ada/">Accessibility &amp; the ADA</a></li>
+            <li><a href="/guides/core-web-vitals/">Core Web Vitals</a></li>
+          </ul>
+        </div>
+      </nav>
+      <div class="fm-contact">
+        <h2 class="fm-h"><span>04</span>Contact</h2>
+        <a class="fm-line-a" href="mailto:zstore.ai295@gmail.com"><span class="mc-k">Email</span><span class="mc-v">zstore.ai295@gmail.com</span><b aria-hidden="true">↗</b></a>
+        <a class="fm-line-a" href="https://wa.me/972587292029" target="_blank" rel="noopener noreferrer" data-wa><span class="mc-k">WhatsApp</span><span class="mc-v">+972 58 729 2029</span><b aria-hidden="true">↗</b></a>
+        <p class="fm-note"><span>Replies within one business day.</span><span><span class="live-dot" aria-hidden="true"></span>Tel Aviv <time data-clock>--:--</time></span></p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="fb-meta">
+        <span>© <span data-year>2026</span> Zstore AI · Zvi Moshe</span>
+        <nav class="footer-legal" aria-label="Legal"><a href="/privacy-policy.html" data-roll>Privacy</a><a href="/terms.html" data-roll>Terms</a><a href="/accessibility/" data-roll>Accessibility</a></nav>
+      </div>
+      <div class="fb-end">
+        <a class="back-top" href="#top"><span data-roll>Back to top</span> <b aria-hidden="true">↑</b></a>
+        <a class="zstore-badge" href="https://zstore-ai.co.il/" target="_blank" rel="noopener noreferrer" aria-label="Zstore AI — opens in a new tab"><img src="/image/brand/zstore-logo.webp" alt="Zstore AI" width="652" height="217" loading="lazy" decoding="async" /></a>
+      </div>
+    </div>
+  </footer>
+
+  <a class="wa-fab" href="https://wa.me/972587292029?text=Hi%20Zvi!%20I%20came%20across%20Zstore%20AI%20and%20I%27d%20love%20to%20talk%20about%20a%20project%20I%20have%20in%20mind." target="_blank" rel="noopener noreferrer" data-wa aria-label="Chat with Zvi on WhatsApp">
+    <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+  </a>
+
+  <a class="mail-fab" href="mailto:zstore.ai295@gmail.com?subject=A%20project%20for%20Zstore%20AI" aria-label="Email Zvi at zstore.ai295@gmail.com">
+    <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true"><rect x="2.75" y="5" width="18.5" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="2.1" /><path d="m3.8 7.2 7.15 5.55a1.7 1.7 0 0 0 2.1 0L20.2 7.2" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" /></svg>
+  </a>
+
+  <dialog class="menu" id="menu" aria-label="Menu">
+    <div class="menu-sheet">
+      <div class="menu-top">
+        <a class="logo logo-light" href="/" aria-label="Zstore AI, home">
+          <span class="zmark" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#z-glyph" /></svg></span>
+        <span class="wordmark" aria-hidden="true">Zstore <b>AI</b></span>
+        </a>
+        <button class="icon-btn" type="button" data-popup-close aria-label="Close menu"><span aria-hidden="true">×</span></button>
+      </div>
+      <div class="menu-body">
+        <nav class="menu-links" aria-label="Menu">
+          <a href="/work/"><span>01</span>Work</a>
+          <a href="/services/" aria-current="true"><span>02</span>Services</a>
+          <a href="/process/"><span>03</span>Process</a>
+          <a href="/pricing/"><span>04</span>Pricing</a>
+          <a href="/about/"><span>05</span>About</a>
+          <a href="/guides/"><span>06</span>Guides</a>
+          <a href="/contact/"><span>07</span>Contact</a>
+        </nav>
+        <div class="menu-z" aria-hidden="true"><span class="kit-piece kp-top"></span><span class="kit-piece kp-diag"></span><span class="kit-piece kp-bot"></span></div>
+      </div>
+      <nav class="menu-services" aria-label="Services">
+        <p>Jump to a service</p>
+        <ul>
+          <li><a href="/services/custom-website-design/">Custom sites</a></li>
+          <li><a href="/services/ecommerce-websites/">E-commerce</a></li>
+          <li><a href="/services/landing-pages/">Landing pages</a></li>
+          <li><a href="/services/ai-search-optimization/" aria-current="page">AI search</a></li>
+          <li><a href="/services/website-redesign/">Redesign</a></li>
+        </ul>
+      </nav>
+      <div class="menu-card">
+        <a href="mailto:zstore.ai295@gmail.com"><span class="mc-k">Email</span><span class="mc-v">zstore.ai295@gmail.com</span><b aria-hidden="true">↗</b></a>
+        <a href="https://wa.me/972587292029" target="_blank" rel="noopener noreferrer" data-wa><span class="mc-k">WhatsApp</span><span class="mc-v">+972 58 729 2029</span><b aria-hidden="true">↗</b></a>
+      </div>
+      <div class="menu-foot">
+        <span class="menu-clock"><span class="live-dot" aria-hidden="true"></span>Tel Aviv <time data-clock>--:--</time></span>
+        <button type="button" class="menu-a11y" data-a11y-open aria-controls="a11y-panel" aria-expanded="false" aria-haspopup="dialog">
+          <svg class="a11y-ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="4.2" r="2.2" /><path d="M4 8.2c2.6.8 5.3 1.2 8 1.2s5.4-.4 8-1.2M12 9.4v5.2m0 0-3.2 6.6m3.2-6.6 3.2 6.6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+          <span>Accessibility</span>
+        </button>
+        <button class="motion-btn motion-btn-menu" type="button" data-motion aria-pressed="true"><span class="motion-dot" aria-hidden="true"></span><span class="motion-label">Motion on</span></button>
+      </div>
+    </div>
+  </dialog>
+
+  <dialog id="a11y-panel" class="a11y-panel" aria-labelledby="a11y-title"></dialog>
+
+  <script src="/app.js" defer></script>
+  <script src="/assets/js/a11y.js" defer></script>
+  <script src="/assets/js/pages/ai-search-optimization.js" defer></script>
+  <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "54b09318eb1b4249a311f6c5bb91d5bc"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>
